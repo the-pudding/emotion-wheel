@@ -78,3 +78,9 @@
 <div bind:this={container}>
 	<slot />
 </div>
+
+<style>
+	div {
+		display: flex;
+	}
+</style>
