@@ -91,7 +91,7 @@
 {:else if i === 6}
 	<div class="words">
 		<p>Here, you try...</p>
-		<p>How are you doing?</p>
+		<p>What do you mean by <strong>ok</strong>?</p>
 		{#each words.slice(0, 6) as word}
 			<label>
 				<input
