@@ -14,7 +14,7 @@
 			? "white"
 			: value >= 2 && value < 10
 			? "lightgrey"
-			: "lightblue";
+			: "#e2f4f9";
 
 	const stepText = ["How are you feeling?"];
 
@@ -52,13 +52,13 @@
 		class="background"
 		style={`--bg: url(assets/img/background_plain.png)`}
 		style:left={"500%"}
-		style:width={"1000%"}
+		style:width={"2500%"}
 	/>
 
 	<Scrolly bind:value>
-		{#each range(20) as i}
+		{#each range(30) as i}
 			<div class="step" class:hidden={true}>
-				<Prose {i} bind:balloonColor />
+				<Prose {i} bind:balloonColor scrollValue={value} />
 			</div>
 		{/each}
 	</Scrolly>
@@ -95,6 +95,7 @@
 		position: sticky;
 		left: 3em;
 		bottom: 2em;
+		z-index: 1;
 	}
 
 	.background {
