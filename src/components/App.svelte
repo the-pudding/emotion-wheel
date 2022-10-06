@@ -39,18 +39,18 @@
 
 	<div
 		class="background"
-		style={`--bg: url(../../assets/img/background_plain.png)`}
+		style={`--bg: url(../../../assets/img/background_plain.png)`}
 		style:width={"400%"}
 	/>
 	<div
 		class="background"
-		style={`--bg: url(../../assets/img/background_tree.png)`}
+		style={`--bg: url(../../../assets/img/background_tree.png)`}
 		style:left={"400%"}
 		style:width={"100%"}
 	/>
 	<div
 		class="background"
-		style={`--bg: url(../../assets/img/background_plain.png)`}
+		style={`--bg: url(../../../assets/img/background_plain.png)`}
 		style:left={"500%"}
 		style:width={"2500%"}
 	/>
