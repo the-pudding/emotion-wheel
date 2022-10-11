@@ -2,7 +2,9 @@
 	import Prose from "$components/Prose.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import { range } from "d3";
+	import Character from "$components/Character.svelte";
 
+	let userId; // store
 	let containerEl;
 	let value;
 	let balloonColor = "grey";
@@ -35,7 +37,7 @@
 		<div style="margin-top: 3em">Scroll to continue -></div>
 	</div>
 
-	<img class="character" src={`assets/img/character_${balloonColor}.png`} />
+	<Character {balloonColor} />
 
 	<div
 		class="background"
@@ -58,7 +60,7 @@
 	<Scrolly bind:value>
 		{#each range(30) as i}
 			<div class="step" class:hidden={true}>
-				<Prose {i} bind:balloonColor scrollValue={value} />
+				<Prose {i} bind:balloonColor scrollValue={value} bind:userId />
 			</div>
 		{/each}
 	</Scrolly>
@@ -88,14 +90,6 @@
 		text-align: center;
 		flex-shrink: 0;
 		align-self: center;
-	}
-
-	.character {
-		height: 150px;
-		position: sticky;
-		left: 3em;
-		bottom: 2em;
-		z-index: 1;
 	}
 
 	.background {

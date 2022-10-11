@@ -1,9 +1,11 @@
 <script>
 	import { range } from "d3";
+	import { insert, update } from "$utils/supabase.js";
 
 	export let i;
 	export let balloonColor;
 	export let scrollValue;
+	export let userId;
 
 	let basicFeeling;
 	let words = [
@@ -26,21 +28,49 @@
 	let selectedColor;
 	let showGenius = false;
 
-	const onClick = (e) => {
-		basicFeeling = e.target.id;
+	$: if (wordsSelected2) storeWords();
+
+	const storeWords = async () => {
+		// try/catch
+		await update({
+			table: "emotions",
+			column: "deeper_words",
+			value: selectedWords.join("|"),
+			id: userId
+		});
 	};
-	const onClickColor = (e) => {
+
+	const selectBasic = async (e) => {
+		basicFeeling = e.target.id;
+
+		const data = [
+			{
+				basic_word: basicFeeling
+			}
+		];
+		// try/catch
+		const result = await insert({ table: "emotions", data });
+		userId = result[0].id;
+	};
+	const selectColor = async (e) => {
 		selectedColor = e.target.id;
 		balloonColor = "purple";
+
+		await update({
+			table: "emotions",
+			column: "colors",
+			value: selectedColor,
+			id: userId
+		});
 	};
 </script>
 
 {#if i === 0}
 	<div class="words">
 		<p>Hi, how are you doing?</p>
-		<button on:click={onClick} id="ok">ok</button>
-		<button on:click={onClick} id="good">good</button>
-		<button on:click={onClick} id="busy">busy</button>
+		<button on:click={selectBasic} id="ok">ok</button>
+		<button on:click={selectBasic} id="good">good</button>
+		<button on:click={selectBasic} id="busy">busy</button>
 		{#if basicFeeling}
 			<p>Here's how everyone is doing...</p>
 		{/if}
@@ -163,11 +193,11 @@
 				id="red"
 				on:click={() => (selectedColor = "red")}
 			/>
-			<div class="swatch" id="yellow" on:click={onClickColor} />
-			<div class="swatch" id="purple" on:click={onClickColor} />
-			<div class="swatch" id="orange" on:click={onClickColor} />
-			<div class="swatch" id="green" on:click={onClickColor} />
-			<div class="swatch" id="blue" on:click={onClickColor} />
+			<div class="swatch" id="yellow" on:click={selectColor} />
+			<div class="swatch" id="purple" on:click={selectColor} />
+			<div class="swatch" id="orange" on:click={selectColor} />
+			<div class="swatch" id="green" on:click={selectColor} />
+			<div class="swatch" id="blue" on:click={selectColor} />
 		</div>
 	</div>
 {:else if i === 10}
