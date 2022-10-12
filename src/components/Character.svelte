@@ -4,12 +4,12 @@
 	export let balloonColor;
 </script>
 
-<div class="balloon-container">
+<!-- <div class="balloon-container">
 	<Balloon color={"#deddea"} />
 	<Balloon color={"#8882c9"} />
 	<Balloon color={"#3c7bce"} />
 	<Balloon color={"#e4c410"} />
-</div>
+</div> -->
 
 <img class="character" src={`assets/img/character_${balloonColor}.png`} />
 

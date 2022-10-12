@@ -1,4 +1,5 @@
 <script>
+	import Title from "$components/Title.svelte";
 	import Prose from "$components/Prose.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import { range } from "d3";
@@ -11,12 +12,12 @@
 
 	$: console.log({ value });
 
-	$: backgroundColor =
-		value === undefined || value < 2 || (value >= 6 && value < 10)
-			? "white"
-			: value >= 2 && value < 10
-			? "lightgrey"
-			: "#e2f4f9";
+	// $: backgroundColor =
+	// 	value === undefined || value < 2 || (value >= 6 && value < 10)
+	// 		? "white"
+	// 		: value >= 2 && value < 10
+	// 		? "lightgrey"
+	// 		: "#e2f4f9";
 
 	const stepText = ["How are you feeling?"];
 
@@ -29,20 +30,16 @@
 	class="container"
 	bind:this={containerEl}
 	on:mousewheel|preventDefault={onMouseWheel}
-	style={`background: ${backgroundColor}`}
 >
-	<div class="title">
-		<h1>How are you feeling?</h1>
-		<div>By Abby VanMujien and Michelle McGhee</div>
-		<div style="margin-top: 3em">Scroll to continue -></div>
-	</div>
+	<Title />
 
 	<Character {balloonColor} />
 
 	<div
 		class="background"
 		style={`--bg: url(../../../assets/img/background_plain.png)`}
-		style:width={"400%"}
+		style:left={"115%"}
+		style:width={"300%"}
 	/>
 	<div
 		class="background"
@@ -67,11 +64,6 @@
 </div>
 
 <style>
-	h1 {
-		font-size: 4em;
-		font-family: var(--font-titles);
-		font-weight: bold;
-	}
 	.container {
 		position: relative;
 		overflow-x: hidden;
@@ -79,17 +71,7 @@
 		align-items: flex-end;
 		height: 100vh;
 		transition: background 1s;
-	}
-
-	.title {
-		width: 100vw;
-		color: black;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		text-align: center;
-		flex-shrink: 0;
-		align-self: center;
+		background: #b5bbbb;
 	}
 
 	.background {

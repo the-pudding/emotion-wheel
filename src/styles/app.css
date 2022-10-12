@@ -6,9 +6,9 @@
 /* colors defined in variables.css */
 :root {
 	/* font */
-	--sans: "Supreme", "National 2 Web", -apple-system, BlinkMacSystemFont,
+	--sans: "Avenir", "National 2 Web", -apple-system, BlinkMacSystemFont,
 		Helvetica, Arial, sans-serif;
-	--serif: "Chubbo", "Tiempos Text Web", Iowan Old Style, Times New Roman, Times,
+	--serif: "Abby", "Tiempos Text Web", Iowan Old Style, Times New Roman, Times,
 		serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
@@ -20,9 +20,9 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
-	--font-body: var(--sans);
+	--font-body: var(--serif);
 	--font-titles: var(--serif);
-	--font-form: var(--sans);
+	--font-form: var(--serif);
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-gray-900);
 	--color-primary: var(--color-black);
@@ -91,4 +91,8 @@ h5 {
 
 h6 {
 	font-size: var(--20px, 20px);
+}
+
+body {
+	font-size: 20px;
 }
