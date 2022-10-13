@@ -1,4 +1,5 @@
 <script>
+	import { fade } from "svelte/transition";
 	import {
 		forceSimulation,
 		select,
@@ -73,9 +74,9 @@
 		.on("tick", ticked);
 </script>
 
-<img class="character" src={`assets/img/character.png`} />
+<img class="character" src={`assets/img/character.png`} transition:fade />
 
-<svg width={"1000%"} {height} bind:this={svg}>
+<svg width={"1000%"} {height} bind:this={svg} transition:fade>
 	{#each links as l}
 		<line stroke="darkgrey" />
 	{/each}

@@ -1,63 +1,55 @@
 <script>
-	import inView from "$actions/inView.js";
-	import { fade, scale } from "svelte/transition";
-	import { quintOut } from "svelte/easing";
+	import { fade } from "svelte/transition";
+	import { scaleLinear } from "d3-scale";
 
-	// TODO: to refine - maybe just trigger this when someone scrolls on this page, instead of moving it along
-	// on enter, return it to normal (coming back)
+	export let scrolled;
+	export let scrollMax;
+	export let entered;
 
-	const rightGap = 15;
+	const zoomScale = scaleLinear()
+		.domain([0, scrollMax])
+		.range([1, 2.5])
+		.clamp(true);
 
-	let zoomed = false;
-	const zoom = () => {
-		zoomed = true;
-	};
+	$: zoom = zoomScale(scrolled);
+	$: showText = scrolled < 80;
 </script>
 
-{#if !zoomed}
-	<div
-		class="scaler"
-		transition:scale={{
-			start: 2.5,
-			duration: 4000,
-			opacity: 1,
-			easing: quintOut
-		}}
-	>
-		<div
-			class="title"
-			style={`width: ${100 + rightGap}vw; background-position-x: ${
-				-1 * rightGap
-			}vw`}
-		>
-			<div
-				class="words"
-				transition:fade
-				style={`transform: translate(-${rightGap}%, -50%)`}
-			>
+<div
+	class="scaler"
+	style={`transform: scale(${zoom})`}
+	class:visible={!entered}
+>
+	<div class="title">
+		{#if showText}
+			<div class="words" transition:fade>
+				<img class="logo" src="assets/img/logo_full.png" />
 				<h1>How are you feeling?</h1>
 				<div>By Abby VanMujien and Michelle McGhee</div>
 				<div class="scroll">Scroll to continue -></div>
 			</div>
-		</div>
-
-		<div
-			class="spacer"
-			use:inView
-			on:enter={zoom}
-			style={`width: ${rightGap - 2}vw`}
-		/>
+		{/if}
 	</div>
-{/if}
+</div>
 
 <style>
 	.scaler {
-		position: relative;
-		transition: transform 3s;
-		transform: scale(1);
+		position: absolute;
+		visibility: hidden;
+	}
+	.visible {
+		visibility: visible;
+	}
+	.logo {
+		position: absolute;
+		top: 0;
+		height: 2.3em;
+		left: 50%;
+		transform: translate(-50%, -100%);
 	}
 
 	.title {
+		width: 100vw;
 		height: 100vh;
 		background: url("assets/img/notebook.jpeg") no-repeat center center fixed;
 		-webkit-background-size: cover;
@@ -75,6 +67,7 @@
 	.words {
 		position: fixed;
 		top: 50%;
+		transform: translate(0, -50%);
 	}
 	h1 {
 		font-size: 3em;
