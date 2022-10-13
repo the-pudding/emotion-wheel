@@ -96,6 +96,9 @@
 		position: sticky;
 		left: 4em;
 		bottom: 2em;
+	}
+	.character,
+	svg {
 		z-index: 1;
 	}
 	.balloon-container {

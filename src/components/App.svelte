@@ -41,7 +41,7 @@
 	{#if entered}
 		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
-		<div
+		<!-- <div
 			class="background"
 			style={`--bg: url(../../../assets/img/background_plain.png)`}
 			style:width={"400%"}
@@ -60,11 +60,16 @@
 			style:left={"500%"}
 			style:width={"2500%"}
 			transition:fade
-		/>
+		/> -->
 
 		<Scrolly bind:value>
 			{#each range(30) as i}
 				<div class="step" class:hidden={true}>
+					<!-- <img
+						src="assets/img/testpanel.jpg"
+						class="full-panel"
+						transition:fade
+					/> -->
 					<Prose {i} bind:balloonColor scrollValue={value} bind:userId />
 				</div>
 			{/each}
@@ -73,6 +78,11 @@
 </div>
 
 <style>
+	.full-panel {
+		visibility: visible;
+		height: 100vh;
+		max-width: none;
+	}
 	.world {
 		position: relative;
 		overflow-x: hidden;
@@ -96,14 +106,11 @@
 		margin: 0;
 		display: flex;
 		align-items: center;
+		flex-shrink: 0;
+
+		/* comment these out when you bring back full-panel*/
 		height: 100vh;
 		width: 100vw;
-		flex-shrink: 0;
-		background: lightblue;
-		border: 1px solid grey;
-	}
-	.step:nth-child(even) {
-		background: lightgoldenrodyellow;
 	}
 	.hidden {
 		visibility: hidden;

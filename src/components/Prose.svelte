@@ -421,8 +421,8 @@
 <style>
 	.words {
 		position: absolute;
-		top: 40%;
-		left: 30%;
+		top: 24%;
+		left: 52%;
 		max-width: 500px;
 		visibility: visible;
 	}

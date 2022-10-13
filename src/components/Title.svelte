@@ -45,7 +45,7 @@
 		top: 0;
 		height: 2.3em;
 		left: 50%;
-		transform: translate(-50%, -100%);
+		transform: translate(-50%, -200%);
 	}
 
 	.title {
@@ -66,7 +66,7 @@
 	}
 	.words {
 		position: fixed;
-		top: 50%;
+		top: 55%;
 		transform: translate(0, -50%);
 	}
 	h1 {
