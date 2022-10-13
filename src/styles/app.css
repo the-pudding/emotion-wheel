@@ -20,9 +20,9 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
-	--font-body: var(--serif);
-	--font-titles: var(--serif);
-	--font-form: var(--serif);
+	--font-body: var(--sans);
+	--font-titles: var(--sans);
+	--font-form: var(--sans);
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-gray-900);
 	--color-primary: var(--color-black);
@@ -95,4 +95,8 @@ h6 {
 
 body {
 	font-size: 20px;
+}
+
+button {
+	background: #aa9f9f;
 }

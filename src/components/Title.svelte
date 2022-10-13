@@ -3,6 +3,9 @@
 	import { fade, scale } from "svelte/transition";
 	import { quintOut } from "svelte/easing";
 
+	// TODO: to refine - maybe just trigger this when someone scrolls on this page, instead of moving it along
+	// on enter, return it to normal (coming back)
+
 	const rightGap = 15;
 
 	let zoomed = false;

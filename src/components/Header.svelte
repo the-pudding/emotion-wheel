@@ -3,12 +3,22 @@
 </script>
 
 <header>
-	<div class="wordmark">
+	<img src="assets/img/logo_small.png" />
+	<!-- <div class="wordmark">
 		<a href="https://pudding.cool" aria-label="The Pudding">{@html wordmark}</a>
-	</div>
+	</div> -->
 </header>
 
 <style>
+	header {
+		position: fixed;
+		z-index: 1;
+	}
+	img {
+		height: 4em;
+		margin: 1em 0 0 1em;
+	}
+
 	.wordmark {
 		max-width: 10em;
 		margin: 0 auto;

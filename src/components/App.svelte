@@ -12,13 +12,6 @@
 
 	$: console.log({ value });
 
-	// $: backgroundColor =
-	// 	value === undefined || value < 2 || (value >= 6 && value < 10)
-	// 		? "white"
-	// 		: value >= 2 && value < 10
-	// 		? "lightgrey"
-	// 		: "#e2f4f9";
-
 	const stepText = ["How are you feeling?"];
 
 	const onMouseWheel = (e) => {
@@ -31,15 +24,14 @@
 	bind:this={containerEl}
 	on:mousewheel|preventDefault={onMouseWheel}
 >
-	<Title />
+	<!-- <Title /> -->
 
-	<Character {balloonColor} />
+	<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
 	<div
 		class="background"
 		style={`--bg: url(../../../assets/img/background_plain.png)`}
-		style:left={"115%"}
-		style:width={"300%"}
+		style:width={"400%"}
 	/>
 	<div
 		class="background"
