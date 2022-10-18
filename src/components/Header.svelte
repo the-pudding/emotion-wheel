@@ -1,12 +1,12 @@
 <script>
 	import wordmark from "$svg/wordmark.svg";
+	import { entered } from "$stores/misc.js";
 </script>
 
 <header>
-	<img src="assets/img/logo_small.png" />
-	<!-- <div class="wordmark">
-		<a href="https://pudding.cool" aria-label="The Pudding">{@html wordmark}</a>
-	</div> -->
+	<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
+		<img src="assets/img/logo_small.png" class:visible={$entered} />
+	</a>
 </header>
 
 <style>
@@ -15,8 +15,13 @@
 		z-index: 1;
 	}
 	img {
-		height: 4em;
+		height: 3em;
 		margin: 1em 0 0 1em;
+		opacity: 0;
+		transition: opacity 1s;
+	}
+	img.visible {
+		opacity: 1;
 	}
 
 	.wordmark {

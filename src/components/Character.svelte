@@ -24,30 +24,34 @@
 		{ name: "source", fx, fy },
 		...range(numBalloons).map((d) => ({ name: d }))
 	];
-	let links = range(numBalloons).map((d) => ({ source: 0, target: d + 1 }));
-	$: console.log({ numBalloons });
+	$: links = range(numBalloons).map((d) => ({ source: 0, target: d + 1 }));
 
-	// $: numBalloons, newBalloons();
-	// const newBalloons = () => {
-	// 	if (simulation) simulation.alpha(0.5).restart();
-	// };
+	$: numBalloons, newBalloons();
+	const newBalloons = async () => {
+		if (simulation) {
+			const source = nodes.find((d) => d.name === "source");
+			source.fx = scrollLeft + fx;
+			simulation.alpha(0.5).restart();
+		}
+	};
 
-	// $: $colors, colorChange();
+	$: $colors, colorChange();
 	const colorChange = () => {
-		// select(svg)
-		// 	.selectAll("ellipse")
-		// 	.attr("fill", (d, i) => {
-		// 		return $colors[i] || "darkgrey";
-		// 	});
+		select(svg)
+			.selectAll("ellipse")
+			.attr("fill", (d, i) => {
+				if (d.name === "source") return null;
+				return $colors[i - 1] || "lightgrey";
+			});
 	};
 
 	$: scrollLeft, scrollChange();
 	const scrollChange = () => {
-		// if (scrollLeft) {
-		// 	const source = nodes.find((d) => d.name === "source");
-		// 	source.fx = scrollLeft + fx;
-		// 	simulation.alpha(0.5).restart();
-		// }
+		if (scrollLeft && simulation) {
+			const source = nodes.find((d) => d.name === "source");
+			source.fx = scrollLeft + fx;
+			simulation.alpha(0.5).restart();
+		}
 	};
 
 	const ticked = () => {
@@ -69,7 +73,7 @@
 			.attr("cy", (d) => d.y);
 	};
 
-	const simulation = forceSimulation(nodes)
+	$: simulation = forceSimulation(nodes)
 		.force("charge", forceManyBody().strength(5))
 		.force(
 			"collision",
@@ -93,7 +97,7 @@
 
 <img class="character" src={`assets/img/character.png`} transition:fade />
 
-<svg width={"1000%"} {height} bind:this={svg} transition:fade>
+<svg width={"2000%"} {height} bind:this={svg} transition:fade>
 	{#each links as l}
 		<line stroke="darkgrey" />
 	{/each}
@@ -104,8 +108,6 @@
 </svg>
 
 <style>
-	.container {
-	}
 	.character {
 		position: absolute;
 		bottom: 0;

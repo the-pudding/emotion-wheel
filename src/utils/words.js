@@ -165,3 +165,8 @@ export const outerWords = [
 	["Isolation", "Grief"], // blue
 	["Reactivity", "Rage"] // red
 ];
+
+export const allWords = wheelSections
+	.map((d) => d.words.slice(1).flat())
+	.flat()
+	.map((d) => d.toLowerCase());

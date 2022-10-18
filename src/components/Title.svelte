@@ -1,11 +1,11 @@
 <script>
 	import copy from "$data/copy.json";
 	import { fade } from "svelte/transition";
+	import { entered } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
 
 	export let scrolled;
 	export let scrollMax;
-	export let entered;
 
 	const zoomScale = scaleLinear()
 		.domain([0, scrollMax])
@@ -19,12 +19,15 @@
 <div
 	class="scaler"
 	style={`transform: scale(${zoom})`}
-	class:visible={!entered}
+	class:visible={!$entered}
 >
 	<div class="title">
 		{#if showText}
 			<div class="words" transition:fade>
-				<img class="logo" src="assets/img/logo_full.png" />
+				<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
+					<img class="logo" src="assets/img/logo_full.png" />
+				</a>
+
 				<h1>{@html copy.title}</h1>
 				<div>{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
@@ -35,6 +38,9 @@
 </div>
 
 <style>
+	a {
+		border-bottom: none;
+	}
 	.scaler {
 		position: absolute;
 		visibility: hidden;
@@ -43,11 +49,7 @@
 		visibility: visible;
 	}
 	.logo {
-		position: absolute;
-		top: 0;
 		height: 2.3em;
-		left: 50%;
-		transform: translate(-50%, -200%);
 	}
 
 	.title {
@@ -67,6 +69,9 @@
 		text-align: center;
 	}
 	.words {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		position: fixed;
 		top: 55%;
 		transform: translate(0, -50%);

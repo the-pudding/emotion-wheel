@@ -3,21 +3,21 @@
 	import { words, colors, userId } from "$stores/misc.js";
 	import ColorSelect from "svelte-color-select";
 
-	let r = 102;
-	let g = 51;
-	let b = 153;
-
-	$: selectedColor = `rgb(${r.toFixed(0)}, ${g.toFixed(0)}, ${b.toFixed(0)})`;
-
 	let i = 0;
 	$: currentWord = $words[i];
 
-	$: console.log($words);
-	$: console.log($colors);
+	let selectedColor;
+	let r = 0;
+	let g = 0;
+	let b = 0;
 
-	const confirm = async (e) => {
+	const onChange = (e) => {
+		const rgb = e.detail.rgb;
+		selectedColor = `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
 		$colors[i] = selectedColor;
+	};
 
+	const next = async (e) => {
 		const value = $colors.join("|");
 		await update({
 			table: "emotions",
@@ -34,11 +34,11 @@
 <p>
 	You're feeling <strong>{currentWord}</strong> - what color is it?
 </p>
-<ColorSelect bind:r bind:g bind:b />
+<ColorSelect {r} {g} {b} on:change={onChange} />
 
 <div style={`display: flex`}>
 	<div class="swatch" style:background={selectedColor} />
-	<button on:click={confirm}>Next</button>
+	<button on:click={next}>Next</button>
 </div>
 
 <style>

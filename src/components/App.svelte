@@ -4,21 +4,20 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Character from "$components/Character.svelte";
 	import copy from "$data/copy.json";
+	import { entered } from "$stores/misc.js";
 
 	let userId; // store
 	let containerEl;
 	let value;
 	let balloonColor = "grey";
 
-	$: console.log({ value });
-
 	let scrolled = 0;
 	const scrollMax = 400;
-	$: entered = scrolled >= scrollMax;
+	$: $entered = scrolled >= scrollMax;
 
 	const onMouseWheel = (e) => {
-		const leaving = entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
-		if (!entered || leaving) {
+		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
+		if (!$entered || leaving) {
 			if (
 				(e.deltaY > 0 && scrolled < scrollMax) ||
 				(e.deltaY < 0 && scrolled >= 0)
@@ -35,9 +34,9 @@
 	bind:this={containerEl}
 	on:mousewheel|preventDefault={onMouseWheel}
 >
-	<Title {scrolled} {scrollMax} {entered} />
+	<Title {scrolled} {scrollMax} />
 
-	{#if entered}
+	{#if $entered}
 		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
 		<Scrolly bind:value>

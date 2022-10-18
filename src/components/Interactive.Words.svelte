@@ -1,22 +1,16 @@
 <script>
 	import { basicFeeling, words, userId } from "$stores/misc.js";
 	import { update } from "$utils/supabase.js";
+	import { wheelSections } from "$utils/words.js";
+	import _ from "lodash";
 
 	let selectedWords = [];
-	const options = [
-		"calm",
-		"creative",
-		"frustrated",
-		"guilty",
-		"nervous",
-		"tired",
-		"overwhelmed",
-		"lonely",
-		"grateful",
-		"pissed off",
-		"curious",
-		"self-conscious"
-	];
+
+	const options = wheelSections
+		.map((d) => _.sampleSize(d.words.slice(1).flat(), 2))
+		.flat()
+		.map((d) => d.toLowerCase());
+	$: console.log({ options });
 
 	const submit = async () => {
 		$words = selectedWords;
