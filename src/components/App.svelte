@@ -1,10 +1,9 @@
 <script>
 	import Title from "$components/Title.svelte";
-	import Prose from "$components/Prose.svelte";
+	import Content from "$components/Content.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
-	import { range } from "d3";
 	import Character from "$components/Character.svelte";
-	import { fade } from "svelte/transition";
+	import copy from "$data/copy.json";
 
 	let userId; // store
 	let containerEl;
@@ -41,36 +40,15 @@
 	{#if entered}
 		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
-		<!-- <div
-			class="background"
-			style={`--bg: url(../../../assets/img/background_plain.png)`}
-			style:width={"400%"}
-			transition:fade
-		/>
-		<div
-			class="background"
-			style={`--bg: url(../../../assets/img/background_tree.png)`}
-			style:left={"400%"}
-			style:width={"100%"}
-			transition:fade
-		/>
-		<div
-			class="background"
-			style={`--bg: url(../../../assets/img/background_plain.png)`}
-			style:left={"500%"}
-			style:width={"2500%"}
-			transition:fade
-		/> -->
-
 		<Scrolly bind:value>
-			{#each range(30) as i}
+			{#each copy.steps as step}
 				<div class="step" class:hidden={true}>
 					<!-- <img
 						src="assets/img/testpanel.jpg"
 						class="full-panel"
 						transition:fade
 					/> -->
-					<Prose {i} bind:balloonColor scrollValue={value} bind:userId />
+					<Content {step} bind:balloonColor scrollValue={value} bind:userId />
 				</div>
 			{/each}
 		</Scrolly>
@@ -78,11 +56,6 @@
 </div>
 
 <style>
-	.full-panel {
-		visibility: visible;
-		height: 100vh;
-		max-width: none;
-	}
 	.world {
 		position: relative;
 		overflow-x: hidden;
@@ -91,14 +64,6 @@
 		height: 100vh;
 		transition: background 1s;
 		background: #b5bbbb;
-	}
-
-	.background {
-		position: absolute;
-		bottom: 0;
-		background-image: var(--bg);
-		background-repeat: repeat-x;
-		height: 450px; /* height of image */
 	}
 
 	.step {
@@ -114,5 +79,11 @@
 	}
 	.hidden {
 		visibility: hidden;
+	}
+
+	.full-panel {
+		visibility: visible;
+		height: 100vh;
+		max-width: none;
 	}
 </style>

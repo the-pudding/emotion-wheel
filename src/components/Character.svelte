@@ -9,29 +9,45 @@
 		forceLink,
 		range
 	} from "d3";
+	import { colors, words } from "$stores/misc.js";
 
 	export let scrollLeft;
 
 	let svg;
-	let numBalloons = 4;
 	const height = 400;
 	const r = 20;
-	const fx = 100;
-	const fy = 318;
+	const fx = 112;
+	const fy = 310;
 
-	let nodes = [
+	$: numBalloons = $words.length > 0 ? $words.length : 1;
+	$: nodes = [
 		{ name: "source", fx, fy },
 		...range(numBalloons).map((d) => ({ name: d }))
 	];
-	const links = range(numBalloons).map((d) => ({ source: 0, target: d + 1 }));
+	let links = range(numBalloons).map((d) => ({ source: 0, target: d + 1 }));
+	$: console.log({ numBalloons });
+
+	// $: numBalloons, newBalloons();
+	// const newBalloons = () => {
+	// 	if (simulation) simulation.alpha(0.5).restart();
+	// };
+
+	// $: $colors, colorChange();
+	const colorChange = () => {
+		// select(svg)
+		// 	.selectAll("ellipse")
+		// 	.attr("fill", (d, i) => {
+		// 		return $colors[i] || "darkgrey";
+		// 	});
+	};
 
 	$: scrollLeft, scrollChange();
 	const scrollChange = () => {
-		if (scrollLeft) {
-			const source = nodes.find((d) => d.name === "source");
-			source.fx = scrollLeft + fx;
-			simulation.alpha(0.5).restart();
-		}
+		// if (scrollLeft) {
+		// 	const source = nodes.find((d) => d.name === "source");
+		// 	source.fx = scrollLeft + fx;
+		// 	simulation.alpha(0.5).restart();
+		// }
 	};
 
 	const ticked = () => {
@@ -48,6 +64,7 @@
 			.selectAll("ellipse")
 			.data(nodes)
 			.join("ellipse")
+			.attr("class", (d) => (d.name === "source" ? "source" : "balloon"))
 			.attr("cx", (d) => d.x)
 			.attr("cy", (d) => d.y);
 	};
@@ -111,16 +128,9 @@
 		position: absolute;
 		bottom: 0;
 	}
-	ellipse:nth-of-type(2) {
-		fill: orange;
-	}
-	ellipse:nth-of-type(3) {
-		fill: purple;
-	}
-	ellipse:nth-of-type(4) {
-		fill: yellow;
-	}
-	ellipse:nth-of-type(5) {
-		fill: green;
+	:global(ellipse.balloon) {
+		stroke-width: 1px;
+		stroke: darkgrey;
+		opacity: 0.7;
 	}
 </style>

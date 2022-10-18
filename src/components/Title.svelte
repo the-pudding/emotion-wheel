@@ -1,4 +1,5 @@
 <script>
+	import copy from "$data/copy.json";
 	import { fade } from "svelte/transition";
 	import { scaleLinear } from "d3-scale";
 
@@ -24,8 +25,9 @@
 		{#if showText}
 			<div class="words" transition:fade>
 				<img class="logo" src="assets/img/logo_full.png" />
-				<h1>How are you feeling?</h1>
-				<div>By Abby VanMujien and Michelle McGhee</div>
+				<h1>{@html copy.title}</h1>
+				<div>{@html copy.description}</div>
+				<div>{@html copy.byline}</div>
 				<div class="scroll">Scroll to continue -></div>
 			</div>
 		{/if}
