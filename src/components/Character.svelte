@@ -9,12 +9,12 @@
 		forceLink,
 		range
 	} from "d3";
-	import { colors, words } from "$stores/misc.js";
+	import { colors, words, basicFeeling } from "$stores/misc.js";
 
 	export let scrollLeft;
+	export let numSteps;
 
 	let svg;
-	const height = 400;
 	const r = 20;
 	const fx = 112;
 	const fy = 310;
@@ -31,18 +31,20 @@
 		if (simulation) {
 			const source = nodes.find((d) => d.name === "source");
 			source.fx = scrollLeft + fx;
-			simulation.alpha(0.5).restart();
 		}
 	};
 
 	$: $colors, colorChange();
 	const colorChange = () => {
-		select(svg)
-			.selectAll("ellipse")
-			.attr("fill", (d, i) => {
-				if (d.name === "source") return null;
-				return $colors[i - 1] || "lightgrey";
-			});
+		if ($colors.length) {
+			select(svg)
+				.selectAll("ellipse")
+				.data(nodes)
+				.attr("fill", (d, i) => {
+					if (d.name === "source") return null;
+					return $colors[i - 1] ? $colors[i - 1] : "lightgrey";
+				});
+		}
 	};
 
 	$: scrollLeft, scrollChange();
@@ -65,12 +67,10 @@
 			.attr("y2", (d) => d.target.y);
 
 		select(svg)
-			.selectAll("ellipse")
+			.selectAll("g.node")
 			.data(nodes)
-			.join("ellipse")
-			.attr("class", (d) => (d.name === "source" ? "source" : "balloon"))
-			.attr("cx", (d) => d.x)
-			.attr("cy", (d) => d.y);
+			.join("g.node")
+			.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 	};
 
 	$: simulation = forceSimulation(nodes)
@@ -97,14 +97,32 @@
 
 <img class="character" src={`assets/img/character.png`} transition:fade />
 
-<svg width={"2000%"} {height} bind:this={svg} transition:fade>
-	{#each links as l}
-		<line stroke="darkgrey" />
-	{/each}
-	{#each nodes as n}
-		{@const opacity = n.name === "source" ? 0 : 1}
-		<ellipse rx={r} ry={r * 1.2} {opacity} />
-	{/each}
+<svg width={`${numSteps * 100}%`} height={400} bind:this={svg} transition:fade>
+	<g class="links">
+		{#each links as l}
+			<line stroke="darkgrey" />
+		{/each}
+	</g>
+
+	<g class="nodes">
+		{#each nodes as n, i}
+			{@const opacity = n.name === "source" ? 0 : 1}
+			{@const label = $words[i - 1]
+				? $words[i - 1]
+				: $basicFeeling
+				? $basicFeeling
+				: ""}
+			<g class="node" {opacity}>
+				<ellipse
+					class={n.name === "source" ? "source" : "balloon"}
+					rx={r}
+					ry={r * 1.2}
+					fill="rgb(216,216,216)"
+				/>
+				<text class="label">{label}</text>
+			</g>
+		{/each}
+	</g>
 </svg>
 
 <style>
@@ -129,6 +147,11 @@
 	svg {
 		position: absolute;
 		bottom: 0;
+	}
+	text.label {
+		alignment-baseline: central;
+		text-anchor: middle;
+		font-size: 0.6em;
 	}
 	:global(ellipse.balloon) {
 		stroke-width: 1px;

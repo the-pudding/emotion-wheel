@@ -4,16 +4,25 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Character from "$components/Character.svelte";
 	import copy from "$data/copy.json";
-	import { entered } from "$stores/misc.js";
+	import { entered, basicFeeling, words, colors } from "$stores/misc.js";
 
-	let userId; // store
 	let containerEl;
 	let value;
-	let balloonColor = "grey";
 
 	let scrolled = 0;
 	const scrollMax = 400;
 	$: $entered = scrolled >= scrollMax;
+	$: surveyNeeded = !$basicFeeling
+		? "survey-basic"
+		: $words.length <= 0
+		? "survey-words"
+		: $colors.length <= 0
+		? "survey-color"
+		: null;
+	$: stopIndex = !surveyNeeded
+		? copy.steps.length
+		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
+	$: visibleSteps = copy.steps.slice(0, stopIndex);
 
 	const onMouseWheel = (e) => {
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
@@ -37,17 +46,20 @@
 	<Title {scrolled} {scrollMax} />
 
 	{#if $entered}
-		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
+		<Character
+			scrollLeft={containerEl ? containerEl.scrollLeft : 0}
+			numSteps={visibleSteps.length}
+		/>
 
 		<Scrolly bind:value>
-			{#each copy.steps as step}
+			{#each visibleSteps as step}
 				<div class="step" class:hidden={true}>
 					<!-- <img
 						src="assets/img/testpanel.jpg"
 						class="full-panel"
 						transition:fade
 					/> -->
-					<Content {step} bind:balloonColor scrollValue={value} bind:userId />
+					<Content {step} />
 				</div>
 			{/each}
 		</Scrolly>
@@ -61,7 +73,7 @@
 		display: flex;
 		align-items: flex-end;
 		height: 100vh;
-		transition: background 1s;
+		transition: background-color 1s;
 		background: #b5bbbb;
 	}
 

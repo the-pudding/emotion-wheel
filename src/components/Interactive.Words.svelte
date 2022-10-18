@@ -10,7 +10,6 @@
 		.map((d) => _.sampleSize(d.words.slice(1).flat(), 2))
 		.flat()
 		.map((d) => d.toLowerCase());
-	$: console.log({ options });
 
 	const submit = async () => {
 		$words = selectedWords;
