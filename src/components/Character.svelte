@@ -16,8 +16,8 @@
 
 	let svg;
 	const r = 20;
-	const fx = 114;
-	const fy = 308;
+	const fx = 98;
+	const fy = 278;
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -95,7 +95,7 @@
 		.on("tick", ticked);
 </script>
 
-<img class="character" src={`assets/img/character.png`} transition:fade />
+<img class="character" src={`assets/img/wagon.png`} transition:fade />
 
 <svg width={`${numSteps * 100}%`} height={400} bind:this={svg} transition:fade>
 	<g class="links">
@@ -132,11 +132,10 @@
 		height: 150px;
 		position: sticky;
 		left: 4em;
-		bottom: 2em;
+		bottom: 3em;
 	}
-	.character,
-	svg {
-		/* z-index: 1; */
+	.character {
+		z-index: 1;
 	}
 	.balloon-container {
 		margin: 20px;

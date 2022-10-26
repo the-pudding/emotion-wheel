@@ -8,8 +8,8 @@
 	/* font */
 	--sans: "Avenir", "National 2 Web", -apple-system, BlinkMacSystemFont,
 		Helvetica, Arial, sans-serif;
-	--serif: "Abby", "Tiempos Text Web", Iowan Old Style, Times New Roman, Times,
-		serif;
+	--serif: "Abby Lowercase", "Tiempos Text Web", Iowan Old Style,
+		Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
 	/* z-index */
@@ -21,7 +21,7 @@
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
 	--font-body: var(--serif);
-	--font-titles: var(--serif);
+	--font-titles: "Abby Uppercase";
 	--font-form: var(--serif);
 	--color-bg: var(--color-white);
 	--color-fg: var(--color-gray-900);
@@ -95,7 +95,7 @@ h6 {
 
 body {
 	font-size: 24px;
-	letter-spacing: 0.07em;
+	/* letter-spacing: 0.07em; */
 }
 
 button {

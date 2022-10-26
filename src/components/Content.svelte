@@ -40,7 +40,7 @@
 	.words {
 		position: absolute;
 		top: 24%;
-		left: 52%;
+		left: 5%;
 		max-width: 500px;
 		visibility: visible;
 	}

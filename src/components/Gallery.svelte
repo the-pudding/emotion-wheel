@@ -1,20 +1,43 @@
-<div>
-	<img src="assets/img/george_floyd_6.png" />
-	<img src="assets/img/dress.png" />
-	<img src="assets/img/family.png" />
-	<img src="assets/img/pronouns.png" />
-	<img src="assets/img/the_things.png" />
+<script>
+	import Card from "$components/Gallery.Card.svelte";
+	import Modal from "$components/Gallery.Modal.svelte";
+
+	let selected;
+</script>
+
+<div class="container" class:faded={selected}>
+	<div class="row">
+		<Card
+			img="george_floyd_6.png"
+			title="George Floyd protests"
+			bind:selected
+		/>
+		<Card img="dress.png" title="Dress" bind:selected />
+		<Card img="suit.png" title="Suit" bind:selected />
+		<Card img="family.png" title="Family" bind:selected />
+	</div>
+	<div class="row">
+		<Card img="pronouns.png" title="Pronouns" bind:selected />
+		<Card img="the_things_color.png" title="Life audit" bind:selected />
+	</div>
 </div>
 
+<Modal bind:selected />
+
 <style>
-	div {
+	.container {
+		position: absolute;
 		visibility: visible;
-		width: 100%;
-		height: 100vh;
+		height: 75vh;
 		display: flex;
-		flex-wrap: wrap;
+		flex-direction: column;
 	}
-	img {
-		max-height: 30%;
+	.container.faded {
+		opacity: 0.3;
+	}
+	.row {
+		display: flex;
+		justify-content: space-between;
+		height: 50%;
 	}
 </style>

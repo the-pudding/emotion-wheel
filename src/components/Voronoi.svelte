@@ -1,54 +1,71 @@
 <script>
 	import { voronoiTreemap } from "d3-voronoi-treemap";
-	import { hierarchy, select, selectAll, line } from "d3";
+	import { hierarchy, select, selectAll, line, range } from "d3";
 	import { onMount } from "svelte";
+
 	export let data;
 
-	$: console.log({ data });
+	// TODO: group by color, another level of depth
+	// key: data, value: [word, color, frequency]
 
 	let svg;
-	let height = 500;
-	let width = 500;
+	let group;
+	const canvasHeight = 500;
+	const canvasWidth = 500;
+	const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+	const innerHeight = canvasHeight - margin.top - margin.bottom;
+	const innerWidth = canvasWidth - margin.left - margin.right;
 
-	function weightAccessor(d) {
-		console.log(d);
-		return d.frequency; // computes the weight of one of your data; depending on your data, it may be 'd.area', or 'd.percentage', ...
-	}
+	const circleClip = range(100).map((i) => [
+		(innerWidth * (1 + 0.99 * Math.cos((i / 50) * Math.PI))) / 2,
+		(innerHeight * (1 + 0.99 * Math.sin((i / 50) * Math.PI))) / 2
+	]);
 
-	var treemap = voronoiTreemap().clip([
-		[0, 0],
-		[0, height],
-		[width, height],
-		[width, 0]
-	]); // sets the clipping polygon
+	const frequencyHeirarchy = hierarchy(data, (d) => d.children).sum(
+		(d) => d.frequency
+	);
+	const withColor = (hierarchy) => {
+		if (hierarchy.depth === 0) {
+			hierarchy.color = "black";
+		} else if (hierarchy.depth === 1) {
+			hierarchy.color = hierarchy.data.color;
+		} else {
+			hierarchy.color = hierarchy.parent.color;
+		}
+		if (hierarchy.children) {
+			hierarchy.children.forEach((child) => withColor(child));
+		}
+	};
+
+	var treemap = voronoiTreemap().clip(circleClip);
+	treemap(frequencyHeirarchy);
+	withColor(frequencyHeirarchy);
+
+	const allNodes = frequencyHeirarchy
+		.descendants()
+		.sort((a, b) => b.depth - a.depth)
+		.map((d, i) => Object.assign({}, d, { id: i }));
 
 	onMount(() => {
-		var rootNode = hierarchy(data); // a d3-hierarchy of your nested data
-		treemap(rootNode); // computes the weighted Voronoi tessellation of the d3-hierarchy; assigns a 'polygon' property to each node of the hierarchy
-		rootNode.sum(weightAccessor); // assigns the adequate weight to each node of the d3-hierarchy
-
-		var allNodes = rootNode.descendants();
-		console.log({ allNodes, rootNode });
-
-		select(svg)
+		select(group)
 			.selectAll("path")
 			.data(allNodes)
 			.enter()
 			.append("path")
-			.attr("d", function (d) {
-				// d is a node
-				return line()(d.polygon) + "z"; // d.polygon is the computed Voronoï cell encoding the relative weight of your underlying original data
-			})
-			.style("fill", function (d) {
-				return "red";
-			});
+			.attr("d", (d) => "M" + d.polygon.join("L") + "Z")
+			.style("fill", (d) => d.color)
+			.attr("stroke", "white")
+			.attr("stroke-width", 1)
+			.style("fill-opacity", (d) => (d.depth === 0 ? 0 : 1));
 	});
 </script>
 
-<svg bind:this={svg} {height} {width} />
+<svg bind:this={svg} width={canvasWidth} height={canvasHeight}>
+	<g bind:this={group} transform={`translate(${margin.left}, ${margin.top})`} />
+</svg>
 
 <style>
 	svg {
-		background: lightgrey;
+		flex-shrink: 0;
 	}
 </style>

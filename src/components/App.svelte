@@ -4,7 +4,13 @@
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Character from "$components/Character.svelte";
 	import copy from "$data/copy.json";
-	import { entered, basicFeeling, words, colors } from "$stores/misc.js";
+	import {
+		entered,
+		basicFeeling,
+		words,
+		colors,
+		scrollX
+	} from "$stores/misc.js";
 
 	let containerEl;
 	let value;
@@ -34,8 +40,11 @@
 				scrolled += e.deltaY;
 		} else {
 			containerEl.scrollLeft += e.deltaY;
+			$scrollX = containerEl.scrollLeft;
 		}
 	};
+
+	$: console.log({ visibleSteps });
 </script>
 
 <div
@@ -54,11 +63,15 @@
 		<Scrolly bind:value>
 			{#each visibleSteps as step}
 				<div class="step" class:hidden={true}>
-					<!-- <img
-						src="assets/img/testpanel.jpg"
-						class="full-panel"
-						transition:fade
-					/> -->
+					<img src="assets/img/ground.png" class="full-panel" />
+
+					{#if step.id === "not-okay"}
+						<img
+							src="assets/img/bubbles.png"
+							class="full-panel"
+							style="position: absolute"
+						/>
+					{/if}
 					<Content {step} />
 				</div>
 			{/each}
@@ -76,22 +89,16 @@
 		transition: background-color 1s;
 		background: #b5bbbb;
 	}
-
 	.step {
 		position: relative;
 		margin: 0;
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
-
-		/* comment these out when you bring back full-panel*/
-		height: 100vh;
-		width: 100vw;
 	}
 	.hidden {
 		visibility: hidden;
 	}
-
 	.full-panel {
 		visibility: visible;
 		height: 100vh;

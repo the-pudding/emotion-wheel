@@ -24,7 +24,7 @@
 						name: d,
 						color: colors[i],
 						basicWord: current.basic_word,
-						frequency: 10
+						frequency: 1
 					}));
 
 					if (acc.length) return [...acc, ...entries];
@@ -35,7 +35,8 @@
 
 		let result = [];
 		_.forEach(grouped, (value, key) => {
-			result.push({ name: key, children: value });
+			const children = _.uniqBy(value, (d) => d.name);
+			result.push({ name: key, children });
 		});
 
 		data = result;
@@ -67,11 +68,18 @@
 	<p>Here's how everyone is doing...</p>
 
 	{#if data}
-		<Voronoi data={data.find((d) => d.name === "good")} />
+		<!-- <div class="voronois">
+			{#each data as d}
+				<Voronoi data={d} />
+			{/each}
+		</div> -->
 	{/if}
 {/if}
 
 <style>
+	.voronois {
+		display: flex;
+	}
 	button {
 		background: none;
 		font-size: 1.6em;
