@@ -16,8 +16,8 @@
 
 	let svg;
 	const r = 20;
-	const fx = 112;
-	const fy = 310;
+	const fx = 114;
+	const fy = 308;
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -136,7 +136,7 @@
 	}
 	.character,
 	svg {
-		z-index: 1;
+		/* z-index: 1; */
 	}
 	.balloon-container {
 		margin: 20px;

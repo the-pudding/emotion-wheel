@@ -41,6 +41,7 @@
 	"subdirectory": "emotion-prototype",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.0.0",
+		"d3-voronoi-treemap": "^1.1.2",
 		"svelte-color-select": "^0.0.4"
 	}
 }

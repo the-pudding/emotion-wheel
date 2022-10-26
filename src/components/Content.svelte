@@ -3,6 +3,7 @@
 	import Words from "$components/Interactive.Words.svelte";
 	import Color from "$components/Interactive.Color.svelte";
 	import Body from "$components/Interactive.Body.svelte";
+	import Gallery from "$components/Gallery.svelte";
 
 	export let step;
 
@@ -25,6 +26,8 @@
 	<div class="words">
 		<Body />
 	</div>
+{:else if id === "gallery"}
+	<Gallery />
 {:else}
 	<div class="words">
 		{#each text as t}

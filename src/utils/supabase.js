@@ -26,3 +26,15 @@ export const update = async ({ table, column, value, id }) => {
 	} else if (response.data) return response.data;
 	return undefined;
 };
+
+export const getData = async () => {
+	const response = await supabase.from("emotions").select();
+
+	if (response.error) {
+		console.log(response.error);
+		throw new Error("getData failed");
+	} else if (response.data) {
+		return response.data;
+	}
+	return undefined;
+};

@@ -50,17 +50,21 @@
 </script>
 
 <p>
-	You're feeling <strong>{currentWord}</strong> - what color is it?
+	You're feeling <strong class="word">{currentWord}</strong> - what color is it?
 </p>
 <ColorSelect {r} {g} {b} on:change={onChange} />
 
-<div style={`display: flex`}>
+{#if $words.length > 1}
 	<button on:click={next}>Next</button>
-</div>
+{/if}
 
 <style>
 	button {
 		display: block;
 		z-index: 1;
+	}
+	.word {
+		font-size: 1.6em;
+		margin: 0 3px;
 	}
 </style>

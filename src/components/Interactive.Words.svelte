@@ -4,20 +4,22 @@
 	import { wheelSections } from "$utils/words.js";
 	import _ from "lodash";
 
-	let selectedWords = [];
-
 	const options = wheelSections
 		.map((d) => _.sampleSize(d.words.slice(1).flat(), 2))
 		.flat()
 		.map((d) => d.toLowerCase());
 
-	const submit = async () => {
-		$words = selectedWords;
+	const select = async (e) => {
+		let word = e.target.id;
+
+		if ($words.includes(word)) $words = $words.filter((d) => d !== word);
+		else $words = [...$words, word];
+
 		// try/catch
 		await update({
 			table: "emotions",
 			column: "deeper_words",
-			value: selectedWords.join("|"),
+			value: $words.join("|"),
 			id: $userId
 		});
 	};
@@ -25,28 +27,34 @@
 
 <p>Here, you try...</p>
 <p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
-{#each options as word}
-	<label>
-		<input
-			type="checkbox"
-			bind:group={selectedWords}
-			name="words"
-			value={word}
-		/>
-		{word}
-	</label>
-{/each}
-<button class="continue" on:click={submit}>Confirm</button>
+<div class="emotions">
+	{#each options as word}
+		{@const selected = $words.includes(word)}
+		<p id={word} class:selected on:click={select}>{word}</p>
+	{/each}
+</div>
 
 {#if $words.length}
 	<p>Here's how everyone is doing...</p>
 {/if}
 
 <style>
-	input {
-		appearance: auto;
-	}
 	button.continue {
 		display: block;
+	}
+	.emotions {
+		z-index: 1;
+	}
+	.emotions p {
+		margin: 0;
+	}
+	.emotions p:hover {
+		cursor: pointer;
+		font-size: 1.6em;
+		text-decoration: underline;
+	}
+	.emotions p.selected {
+		font-size: 1.6em;
+		text-decoration: underline;
 	}
 </style>
