@@ -21,7 +21,8 @@
 		width: 90vw;
 		display: flex;
 		justify-content: center;
-		z-index: 2;
+		align-items: center;
+		z-index: -1;
 		position: fixed;
 		top: 50%;
 		left: 50%;
@@ -37,6 +38,7 @@
 	}
 	.modal.visible {
 		opacity: 1;
+		z-index: 2;
 	}
 	.close {
 		color: rgb(50 50 93 / 60%);

@@ -1,7 +1,8 @@
 <script>
 	import { zoom, select, zoomIdentity } from "d3";
-	import { afterUpdate, onMount, tick } from "svelte";
+	import { onMount } from "svelte";
 	import loadImage from "$utils/loadImage.js";
+	import viewport from "$stores/viewport.js";
 
 	export let src;
 
@@ -21,7 +22,10 @@
 	};
 
 	const zoomIn = () => {
-		select(outer).call(z.scaleBy, 0.5);
+		z.scaleBy(select(outer).transition(), 1.3);
+	};
+	const zoomOut = () => {
+		z.scaleBy(select(outer).transition(), 1 / 1.3);
 	};
 
 	const imageUpdate = async () => {
@@ -34,10 +38,13 @@
 		}
 	};
 
-	const setupZoom = () => {
-		// note to self: clientheight is 0, which is weird. we need a way to get the w/h of the image, could do that with load image as well.
-		console.log(select(imageWrapper));
-		console.log("setup", { zoomableWidth, zoomableHeight });
+	const setupZoom = async () => {
+		const i = await loadImage(src);
+		let ratio = i.height / i.width;
+
+		let actualHeight = ratio * zoomableWidth;
+		zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
+
 		z = zoom()
 			.scaleExtent([1, 4])
 			.translateExtent([
@@ -53,20 +60,16 @@
 	});
 </script>
 
-<div class="outer" bind:this={outer}>
-	<div
-		class="image-wrapper"
-		bind:this={imageWrapper}
-		bind:clientWidth={zoomableWidth}
-		bind:clientHeight={zoomableHeight}
-	>
+<div class="outer" bind:this={outer} bind:clientWidth={zoomableWidth}>
+	<div class="image-wrapper" bind:this={imageWrapper}>
 		<img {src} />
 	</div>
 </div>
 
 <div class="buttons">
-	<button>+</button>
-	<button>-</button>
+	<div class="zoom-title">Zoom</div>
+	<button on:click={zoomIn}>+</button>
+	<button on:click={zoomOut}>-</button>
 </div>
 
 <style>
@@ -80,10 +83,19 @@
 		width: 100%;
 		height: 100%;
 	}
+	.zoom-title {
+		text-align: center;
+	}
 	.buttons {
 		position: absolute;
-		left: 0;
-		top: 0;
+		left: 16px;
+		top: 16px;
+		font-size: 0.7em;
+	}
+	button {
+		font-size: 1.7em;
+		width: 1.6em;
+		height: 1.6em;
 	}
 	img {
 		max-height: 85vh;
