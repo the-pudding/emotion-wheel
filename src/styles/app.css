@@ -23,7 +23,7 @@
 	--font-body: var(--serif);
 	--font-titles: "Abby Uppercase";
 	--font-form: var(--serif);
-	--color-bg: var(--color-white);
+	--color-bg: #b5bbbb;
 	--color-fg: var(--color-gray-900);
 	--color-primary: var(--color-black);
 	--color-link: var(--color-black);

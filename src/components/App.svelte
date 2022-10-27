@@ -9,7 +9,8 @@
 		basicFeeling,
 		words,
 		colors,
-		scrollX
+		scrollX,
+		selectedGalleryImage
 	} from "$stores/misc.js";
 
 	let containerEl;
@@ -31,6 +32,8 @@
 	$: visibleSteps = copy.steps.slice(0, stopIndex);
 
 	const onMouseWheel = (e) => {
+		if ($selectedGalleryImage) return;
+
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
 			if (
@@ -43,8 +46,6 @@
 			$scrollX = containerEl.scrollLeft;
 		}
 	};
-
-	$: console.log({ visibleSteps });
 </script>
 
 <div
@@ -87,7 +88,7 @@
 		align-items: flex-end;
 		height: 100vh;
 		transition: background-color 1s;
-		background: #b5bbbb;
+		background: var(--color-bg);
 	}
 	.step {
 		position: relative;

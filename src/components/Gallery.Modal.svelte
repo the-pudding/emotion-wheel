@@ -1,38 +1,52 @@
 <script>
-	export let selected;
+	import Icon from "$components/helpers/Icon.svelte";
+	import ZoomableImage from "$components/ZoomableImage.svelte";
+	import { selectedGalleryImage } from "$stores/misc.js";
 
+	let modal;
 	const close = () => {
-		selected = undefined;
+		$selectedGalleryImage = undefined;
 	};
 </script>
 
-<div class="modal" class:visible={selected}>
-	<img src={selected ? `assets/img/${selected}` : ""} />
-	<div class="close" on:click={close}>x</div>
+<div class="modal" bind:this={modal} class:visible={$selectedGalleryImage}>
+	<ZoomableImage
+		src={$selectedGalleryImage ? `assets/img/${$selectedGalleryImage}` : ""}
+	/>
+	<div class="close" on:click={close}><Icon name="x" /></div>
 </div>
 
 <style>
 	.modal {
-		max-height: 90vh;
-		max-width: 90vw;
+		width: 90vw;
+		display: flex;
+		justify-content: center;
+		z-index: 2;
 		position: fixed;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		opacity: 0;
 		transition: opacity 1s;
-		background: lightblue;
+		background: var(--color-bg);
 		visibility: visible;
+		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
+			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+		border: 1px solid rgb(50 50 93 / 15%);
+		border-radius: 6px;
 	}
 	.modal.visible {
 		opacity: 1;
 	}
 	.close {
+		color: rgb(50 50 93 / 60%);
 		position: absolute;
-		top: 0.5em;
-		right: 0.5em;
+		top: 16px;
+		right: 16px;
+		font-size: 24px;
 	}
 	.close:hover {
 		cursor: pointer;
+		color: rgb(50 50 93 / 100%);
 	}
 </style>

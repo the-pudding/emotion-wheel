@@ -1,23 +1,23 @@
 <script>
+	import { selectedGalleryImage } from "$stores/misc.js";
+
 	export let img;
 	export let title;
-	export let selected;
 
 	let hovering = false;
 
 	const onClick = () => {
-		selected = img;
+		$selectedGalleryImage = img;
 	};
 </script>
 
-<div class="card">
-	<img
-		src={`assets/img/${img}`}
-		on:mouseenter={() => (hovering = true)}
-		on:mouseleave={() => (hovering = false)}
-		class:faded={hovering}
-		on:click={onClick}
-	/>
+<div
+	class="card"
+	on:mouseenter={() => (hovering = true)}
+	on:mouseleave={() => (hovering = false)}
+	on:click={onClick}
+>
+	<img src={`assets/img/${img}`} class:faded={hovering} />
 
 	{#if hovering}
 		<div class="title">{title}</div>

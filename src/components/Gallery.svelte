@@ -1,28 +1,23 @@
 <script>
 	import Card from "$components/Gallery.Card.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
-
-	let selected;
+	import { selectedGalleryImage } from "$stores/misc.js";
 </script>
 
-<div class="container" class:faded={selected}>
+<div class="container" class:faded={$selectedGalleryImage}>
 	<div class="row">
-		<Card
-			img="george_floyd_6.png"
-			title="George Floyd protests"
-			bind:selected
-		/>
-		<Card img="dress.png" title="Dress" bind:selected />
-		<Card img="suit.png" title="Suit" bind:selected />
-		<Card img="family.png" title="Family" bind:selected />
+		<Card img="george_floyd_6.png" title="George Floyd protests" />
+		<Card img="dress.png" title="Dress" />
+		<Card img="suit.png" title="Suit" />
+		<Card img="family.png" title="Family" />
 	</div>
 	<div class="row">
-		<Card img="pronouns.png" title="Pronouns" bind:selected />
-		<Card img="the_things_color.png" title="Life audit" bind:selected />
+		<Card img="pronouns.png" title="Pronouns" />
+		<Card img="the_things_color.png" title="Life audit" />
 	</div>
 </div>
 
-<Modal bind:selected />
+<Modal />
 
 <style>
 	.container {
