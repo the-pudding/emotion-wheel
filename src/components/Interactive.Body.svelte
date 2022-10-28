@@ -1,11 +1,12 @@
 <script>
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
-	import ColorSelect from "svelte-color-select";
+	import ColorPicker from "$components/ColorPicker.svelte";
 
 	let canvas;
 	let ctx;
 	let painting = false;
+	let color = "rgb(0, 0, 0)";
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
@@ -24,6 +25,7 @@
 		ctx.lineWidth = 4;
 		ctx.lineCap = "round";
 		ctx.lineTo(e.offsetX, e.offsetY);
+		ctx.strokeStyle = color;
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.moveTo(e.offsetX, e.offsetY);
@@ -44,19 +46,25 @@
 <p>Where do you feel <strong>frustration</strong>?</p>
 
 <button on:click={clear}>clear</button>
+<div class="row">
+	<div class="container">
+		<canvas
+			bind:this={canvas}
+			height={canvasHeight}
+			width={canvasWidth}
+			on:mousedown={onMouseDown}
+			on:mouseup={onMouseUp}
+			on:mousemove={onMouseMove}
+		/>
+	</div>
 
-<div class="container">
-	<canvas
-		bind:this={canvas}
-		height={canvasHeight}
-		width={canvasWidth}
-		on:mousedown={onMouseDown}
-		on:mouseup={onMouseUp}
-		on:mousemove={onMouseMove}
-	/>
+	<ColorPicker bind:color />
 </div>
 
 <style>
+	.row {
+		display: flex;
+	}
 	.container {
 		position: relative;
 	}
