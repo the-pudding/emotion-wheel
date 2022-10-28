@@ -42,6 +42,7 @@
 	"dependencies": {
 		"@supabase/supabase-js": "^2.0.0",
 		"d3-voronoi-treemap": "^1.1.2",
+		"howler": "^2.2.3",
 		"svelte-color-select": "^0.0.4",
 		"vanilla-colorful": "^0.7.1"
 	}
