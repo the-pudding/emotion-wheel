@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import copy from "$data/copy.json";
 	import { fade } from "svelte/transition";
 	import { entered } from "$stores/misc.js";
@@ -14,6 +15,7 @@
 
 	$: zoom = zoomScale(scrolled);
 	$: showText = scrolled < 80;
+	$: bgImage = `${base}/assets/img/notebook.jpeg`;
 </script>
 
 <div
@@ -21,7 +23,7 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<div class="title">
+	<div class="title" style={`background-image: url(${bgImage})`}>
 		{#if showText}
 			<div class="words" transition:fade>
 				<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
@@ -55,7 +57,8 @@
 	.title {
 		width: 100vw;
 		height: 100vh;
-		background: url("assets/img/notebook.jpeg") no-repeat center center fixed;
+		background-position: center;
+		background-repeat: no-repeat;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;

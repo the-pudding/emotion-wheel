@@ -43,7 +43,8 @@
 /* Abby handwriting */
 @font-face {
 	font-family: "Abby Uppercase";
-	src: url("assets/fonts/abby.ttf") format("truetype");
+	src: url("https://pudding.cool/assets/fonts/abby-handwriting/abby.ttf")
+		format("truetype");
 	font-weight: 400;
 	font-style: normal;
 	font-stretch: normal;
@@ -51,7 +52,8 @@
 }
 @font-face {
 	font-family: "Abby Lowercase";
-	src: url("assets/fonts/abby_lowercase.ttf") format("truetype");
+	src: url("https://pudding.cool/assets/fonts/abby-handwriting/abby_lowercase.ttf")
+		format("truetype");
 	font-weight: 400;
 	font-style: normal;
 	font-stretch: normal;
