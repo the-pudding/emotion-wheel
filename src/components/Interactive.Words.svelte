@@ -3,6 +3,10 @@
 	import { update } from "$utils/supabase.js";
 	import { wheelSections } from "$utils/words.js";
 	import _ from "lodash";
+	import { Howl } from "howler";
+	import { onDestroy } from "svelte";
+
+	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
 	const options = wheelSections
 		.map((d) => _.sampleSize(d.words.slice(1).flat(), 2))
@@ -10,6 +14,8 @@
 		.map((d) => d.toLowerCase());
 
 	const select = async (e) => {
+		sound.play();
+
 		let word = e.target.id;
 
 		if ($words.includes(word)) $words = $words.filter((d) => d !== word);
@@ -23,6 +29,10 @@
 			id: $userId
 		});
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <p>Here, you try...</p>

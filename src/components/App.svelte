@@ -12,7 +12,6 @@
 		scrollX,
 		selectedGalleryImage
 	} from "$stores/misc.js";
-	import { Howl } from "howler";
 
 	let containerEl;
 	let value;
@@ -31,15 +30,6 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.slice(0, stopIndex);
-
-	// TODO: declare the sound upfront and then just play it
-	// TODO: plays too often
-	// TODO: another sound effect for colors and for basic word, different
-	$: $basicFeeling, $words, playPop();
-	const playPop = () => {
-		const popSound = new Howl({ src: ["assets/pop.wav"] });
-		popSound.play();
-	};
 
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;

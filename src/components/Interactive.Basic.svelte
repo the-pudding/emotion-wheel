@@ -2,9 +2,12 @@
 	import { basicFeeling, userId } from "$stores/misc.js";
 	import { insert, getData } from "$utils/supabase.js";
 	import _ from "lodash";
+	import { Howl } from "howler";
+	import { onDestroy } from "svelte";
 
 	export let options;
 
+	const sound = new Howl({ src: ["assets/sound/after-basic.wav"] });
 	let data;
 
 	$: if ($basicFeeling) prepareData();
@@ -41,9 +44,9 @@
 		data = result;
 	};
 
-	$: console.log({ data });
-
 	const submit = async (e) => {
+		sound.play();
+
 		const response = e.target.id;
 		$basicFeeling = response;
 		const data = [
@@ -56,6 +59,10 @@
 
 		$userId = result[0].id;
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <p>Hi, how are you doing?</p>

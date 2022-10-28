@@ -2,14 +2,18 @@
 	import { update } from "$utils/supabase.js";
 	import { words, colors, userId } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import { Howl } from "howler";
+	import { onDestroy } from "svelte";
 
-	let i = 0;
-	$: currentWord = $words[i];
-
+	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
 	let color = "rgb(216, 216, 216)";
+	let i = 0;
 
+	$: currentWord = $words[i];
 	$: color, onColorChange();
+
 	const onColorChange = () => {
+		sound.play();
 		$colors[i] = color;
 	};
 
@@ -36,6 +40,10 @@
 
 		initialize();
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <p>
