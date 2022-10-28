@@ -1,23 +1,18 @@
 <script>
-	import ColorSelect from "svelte-color-select";
+	import { onMount } from "svelte";
 
 	export let color;
 
-	$: r = stringToRgb(color)[0];
-	$: g = stringToRgb(color)[1];
-	$: b = stringToRgb(color)[2];
-
-	const stringToRgb = (str) => {
-		const nums = str.replace("rgb(", "").replace(")", "");
-		return nums.split(",").map((d) => d.trim());
+	const colorChange = (event) => {
+		color = event.detail.value;
 	};
 
-	$: r, g, b, onChange();
-	const onChange = () => {
-		if (r && g && b) {
-			color = `rgb(${r}, ${g}, ${b})`;
-		}
-	};
+	let Thing;
+	onMount(async () => {
+		Thing = (await import("vanilla-colorful")).default;
+	});
 </script>
 
-<ColorSelect bind:r bind:g bind:b />
+<div>
+	<hex-color-picker {color} on:color-changed={colorChange} />
+</div>

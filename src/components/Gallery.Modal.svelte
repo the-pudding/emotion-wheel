@@ -40,6 +40,12 @@
 		opacity: 1;
 		z-index: 2;
 	}
+	.modal:hover {
+		cursor: grab;
+	}
+	.modal:active {
+		cursor: grabbing;
+	}
 	.close {
 		color: rgb(50 50 93 / 60%);
 		position: absolute;

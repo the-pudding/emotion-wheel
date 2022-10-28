@@ -10,7 +10,8 @@
 		words,
 		colors,
 		scrollX,
-		selectedGalleryImage
+		selectedGalleryImage,
+		worldBg
 	} from "$stores/misc.js";
 
 	let containerEl;
@@ -52,6 +53,7 @@
 	class="world"
 	bind:this={containerEl}
 	on:mousewheel|preventDefault={onMouseWheel}
+	style:background={$worldBg}
 >
 	<Title {scrolled} {scrollMax} />
 
@@ -87,7 +89,6 @@
 		align-items: flex-end;
 		height: 100vh;
 		transition: background-color 1s;
-		background: var(--color-bg);
 	}
 	.step {
 		position: relative;
