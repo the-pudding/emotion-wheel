@@ -42,10 +42,8 @@
 		top: 24%;
 		left: 5%;
 		max-width: 500px;
-		visibility: visible;
 	}
 	img {
-		visibility: visible;
 		position: absolute;
 	}
 	img.notebook {

@@ -1,5 +1,4 @@
 <script>
-	import { fade } from "svelte/transition";
 	import {
 		forceSimulation,
 		select,
@@ -9,7 +8,7 @@
 		forceLink,
 		range
 	} from "d3";
-	import { colors, words, basicFeeling } from "$stores/misc.js";
+	import { colors, words, basicFeeling, entered } from "$stores/misc.js";
 
 	export let scrollLeft;
 	export let numSteps;
@@ -95,9 +94,14 @@
 		.on("tick", ticked);
 </script>
 
-<img class="character" src={`assets/img/wagon.png`} transition:fade />
+<img class="character" class:visible={$entered} src={`assets/img/wagon.png`} />
 
-<svg width={`${numSteps * 100}%`} height={400} bind:this={svg} transition:fade>
+<svg
+	width={`${numSteps * 100}%`}
+	height={400}
+	bind:this={svg}
+	class:visible={$entered}
+>
 	<g class="links">
 		{#each links as l}
 			<line stroke="darkgrey" />
@@ -126,9 +130,15 @@
 </svg>
 
 <style>
+	.character,
+	svg {
+		opacity: 0;
+		transition: opacity 1s;
+	}
+	.visible {
+		opacity: 1;
+	}
 	.character {
-		position: absolute;
-		bottom: 0;
 		height: 150px;
 		position: sticky;
 		left: 4em;

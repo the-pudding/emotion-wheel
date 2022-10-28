@@ -55,29 +55,28 @@
 >
 	<Title {scrolled} {scrollMax} />
 
-	{#if $entered}
-		<Character
-			scrollLeft={containerEl ? containerEl.scrollLeft : 0}
-			numSteps={visibleSteps.length}
-		/>
+	<Character
+		scrollLeft={containerEl ? containerEl.scrollLeft : 0}
+		numSteps={visibleSteps.length}
+	/>
 
-		<Scrolly bind:value>
-			{#each visibleSteps as step}
-				<div class="step" class:hidden={true}>
-					<img src="assets/img/ground.png" class="full-panel" />
+	<Scrolly bind:value>
+		{#each visibleSteps as step}
+			<div class="step" class:visible={$entered}>
+				<!-- custom panel image goes here -->
+				<img src="assets/img/ground.png" class="full-panel" />
 
-					{#if step.id === "not-okay"}
-						<img
-							src="assets/img/bubbles.png"
-							class="full-panel"
-							style="position: absolute"
-						/>
-					{/if}
-					<Content {step} />
-				</div>
-			{/each}
-		</Scrolly>
-	{/if}
+				{#if step.id === "not-okay"}
+					<img
+						src="assets/img/bubbles.png"
+						class="full-panel"
+						style="position: absolute"
+					/>
+				{/if}
+				<Content {step} />
+			</div>
+		{/each}
+	</Scrolly>
 </div>
 
 <style>
@@ -96,12 +95,14 @@
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
+		min-width: 100vw;
+		opacity: 0;
+		transition: opacity 1s;
 	}
-	.hidden {
-		visibility: hidden;
+	.visible {
+		opacity: 1;
 	}
 	.full-panel {
-		visibility: visible;
 		height: 100vh;
 		max-width: none;
 	}
