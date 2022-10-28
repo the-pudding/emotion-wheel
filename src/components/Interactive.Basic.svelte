@@ -1,5 +1,4 @@
 <script>
-	import Voronoi from "$components/Voronoi.svelte";
 	import { basicFeeling, userId } from "$stores/misc.js";
 	import { insert, getData } from "$utils/supabase.js";
 	import _ from "lodash";

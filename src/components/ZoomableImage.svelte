@@ -33,26 +33,26 @@
 			select(outer).call(z.transform, zoomIdentity);
 		}
 
-		if (src !== "") {
-			setupZoom();
-		}
+		setupZoom();
 	};
 
 	const setupZoom = async () => {
-		const i = await loadImage(src);
-		let ratio = i.height / i.width;
+		if (src !== "") {
+			const i = await loadImage(src);
+			let ratio = i.height / i.width;
 
-		let actualHeight = ratio * zoomableWidth;
-		zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
+			let actualHeight = ratio * zoomableWidth;
+			zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
 
-		z = zoom()
-			.scaleExtent([1, 4])
-			.translateExtent([
-				[0, 0],
-				[zoomableWidth, zoomableHeight]
-			])
-			.on("zoom", handleZoom);
-		select(outer).call(z);
+			z = zoom()
+				.scaleExtent([1, 4])
+				.translateExtent([
+					[0, 0],
+					[zoomableWidth, zoomableHeight]
+				])
+				.on("zoom", handleZoom);
+			select(outer).call(z);
+		}
 	};
 
 	onMount(async () => {
