@@ -10,6 +10,6 @@ export const scrollX = writable(0);
 
 export const basicFeeling = writable("ok");
 export const words = writable(["happy", "sad"]);
-export const colors = writable(["yellow", "lightblue"]);
+export const colors = writable([]);
 
 export const selectedGalleryImage = writable(undefined);
