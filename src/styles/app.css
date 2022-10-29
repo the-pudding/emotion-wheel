@@ -101,3 +101,7 @@ body {
 button {
 	background: #aa9f9f;
 }
+
+a:hover {
+	color: var(--color-gray-700);
+}

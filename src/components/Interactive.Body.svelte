@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
@@ -10,6 +11,7 @@
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
+	$: bgImage = `${base}/assets/img/blank_body.png`;
 
 	const onMouseDown = (e) => {
 		painting = true;
@@ -55,6 +57,7 @@
 			on:mousedown={onMouseDown}
 			on:mouseup={onMouseUp}
 			on:mousemove={onMouseMove}
+			style={`background-image: url(${bgImage})`}
 		/>
 	</div>
 
@@ -69,7 +72,6 @@
 		position: relative;
 	}
 	canvas {
-		background-image: url("assets/img/blank_body.png");
 		background-size: contain;
 		background-position: center center;
 	}

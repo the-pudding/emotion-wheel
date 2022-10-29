@@ -185,6 +185,6 @@
 	:global(ellipse.balloon) {
 		stroke-width: 1px;
 		stroke: darkgrey;
-		opacity: 0.7;
+		opacity: 0.9;
 	}
 </style>

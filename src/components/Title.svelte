@@ -49,6 +49,7 @@
 	}
 	.visible {
 		visibility: visible;
+		z-index: 2;
 	}
 	.logo {
 		height: 2.3em;
