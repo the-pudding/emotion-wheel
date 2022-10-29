@@ -8,10 +8,21 @@
 
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
-	const options = wheelSections
-		.map((d) => _.sampleSize(d.words.slice(1).flat(), 2))
-		.flat()
-		.map((d) => d.toLowerCase());
+	const skip = ["busy", "addicted", "tainted", "hateful", "violent"];
+	const options = _.shuffle(
+		wheelSections
+			.map((d) =>
+				_.sampleSize(
+					d.words
+						.slice(1)
+						.flat()
+						.filter((w) => !skip.includes(w.toLowerCase())),
+					2
+				)
+			)
+			.flat()
+			.map((d) => d.toLowerCase())
+	);
 
 	const select = async (e) => {
 		sound.play();
