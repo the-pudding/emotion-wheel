@@ -5,7 +5,7 @@
 
 <header>
 	<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
-		<!-- <img src="assets/img/logo_small.png" class:visible={$entered} /> -->
+		<img src="assets/img/logo_small.png" class:visible={$entered} />
 	</a>
 </header>
 

@@ -8,7 +8,13 @@
 		forceLink,
 		range
 	} from "d3";
-	import { colors, words, basicFeeling, entered } from "$stores/misc.js";
+	import {
+		colors,
+		words,
+		basicFeeling,
+		entered,
+		visibleWidth
+	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 
 	export let scrollLeft;
@@ -98,7 +104,7 @@
 <img class="character" class:visible={$entered} src={`assets/img/wagon.png`} />
 
 <svg
-	width={`${numSteps * 100}%`}
+	width={$visibleWidth}
 	height={400}
 	bind:this={svg}
 	class:visible={$entered}

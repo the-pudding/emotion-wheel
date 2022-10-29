@@ -12,6 +12,8 @@
 	 * <Scrolly root={null} top={0} bottom={0} increments={100}>
 	 */
 	import { onMount } from "svelte";
+	import { visibleWidth } from "$stores/misc.js";
+
 	export let root = null;
 	export let top = 0;
 	export let bottom = 0;
@@ -75,7 +77,7 @@
 	});
 </script>
 
-<div bind:this={container}>
+<div bind:this={container} bind:clientWidth={$visibleWidth}>
 	<slot />
 </div>
 

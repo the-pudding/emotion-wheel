@@ -14,3 +14,4 @@ export const colors = writable([]);
 
 export const selectedGalleryImage = writable(undefined);
 export const worldBg = writable("#b5bbbb");
+export const visibleWidth = writable(0);
