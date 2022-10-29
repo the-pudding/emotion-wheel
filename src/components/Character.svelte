@@ -54,6 +54,16 @@
 				});
 
 			select(svg)
+				.selectAll("polygon")
+				.data(nodes)
+				.attr("fill", (d, i) => {
+					if (d.name === "source") return null;
+					return $colors[i - 1]
+						? $colors[i - 1]
+						: variables.color["grey-balloon"];
+				});
+
+			select(svg)
 				.selectAll("text")
 				.data(nodes)
 				.attr("fill", (d, i) => {
@@ -137,12 +147,18 @@
 				? $basicFeeling
 				: ""}
 			<g class="node" {opacity}>
+				<polygon
+					points={`0,${r + 2} -5,${r + 8} 5,${r + 8}`}
+					class="triangle"
+					fill={variables.color["grey-balloon"]}
+				/>
 				<ellipse
 					class={n.name === "source" ? "source" : "balloon"}
 					rx={r}
 					ry={r * 1.2}
 					fill={variables.color["grey-balloon"]}
 				/>
+
 				<text class="label">{label}</text>
 			</g>
 		{/each}
@@ -186,5 +202,9 @@
 		stroke-width: 1px;
 		stroke: darkgrey;
 		opacity: 0.9;
+	}
+	polygon {
+		stroke-width: 1px;
+		stroke: darkgrey;
 	}
 </style>
