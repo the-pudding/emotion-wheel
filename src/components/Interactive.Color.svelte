@@ -5,6 +5,7 @@
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 	import variables from "$data/variables.json";
+	import determineFontColor from "$utils/determineFontColor.js";
 
 	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
 	const initialColor = variables.color["grey-balloon"];
@@ -14,6 +15,7 @@
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
+	$: textColor = determineFontColor($worldBg);
 
 	const onColorChange = () => {
 		if (color !== initialColor) $worldBg = color;
@@ -65,7 +67,7 @@
 </script>
 
 {#if editing}
-	<p>
+	<p class="text" style:color={textColor}>
 		You're feeling <strong class="word">{currentWord}</strong> - what color is it?
 	</p>
 	<ColorPicker bind:color />
@@ -85,5 +87,8 @@
 	.word {
 		font-size: 1.6em;
 		margin: 0 3px;
+	}
+	.text {
+		transition: color 500ms;
 	}
 </style>

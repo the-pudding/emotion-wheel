@@ -16,9 +16,9 @@
 		visibleWidth
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
+	import determineFontColor from "$utils/determineFontColor.js";
 
 	export let scrollLeft;
-	export let numSteps;
 
 	let svg;
 	const r = 20;
@@ -48,7 +48,20 @@
 				.data(nodes)
 				.attr("fill", (d, i) => {
 					if (d.name === "source") return null;
-					return $colors[i - 1] ? $colors[i - 1] : "lightgrey";
+					return $colors[i - 1]
+						? $colors[i - 1]
+						: variables.color["grey-balloon"];
+				});
+
+			select(svg)
+				.selectAll("text")
+				.data(nodes)
+				.attr("fill", (d, i) => {
+					if (d.name === "source") return null;
+					const balloonColor = $colors[i - 1]
+						? $colors[i - 1]
+						: variables.color["grey-balloon"];
+					return determineFontColor(balloonColor);
 				});
 		}
 	};

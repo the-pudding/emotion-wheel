@@ -57,10 +57,7 @@
 >
 	<Title {scrolled} {scrollMax} />
 
-	<Character
-		scrollLeft={containerEl ? containerEl.scrollLeft : 0}
-		numSteps={visibleSteps.length}
-	/>
+	<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
 	<Scrolly bind:value>
 		{#each visibleSteps as step}
