@@ -4,21 +4,19 @@
 	import ColorPicker from "$components/ColorPicker.svelte";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
+	import variables from "$data/variables.json";
 
 	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
-	const initialColor = "rgb(216, 216, 216)";
+	const initialColor = variables.color["grey-balloon"];
 	let color = initialColor;
 	let i = 0;
-
-	// TODO: let them go one time through, then be done, there can be an option to go back
-	// when you're in it, the world changes whenever the colors change
-	// when you're not, we go back to grey
+	let editing = true;
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
 
 	const onColorChange = () => {
-		if (color !== initialColor && !$colors[i]) $worldBg = color;
+		if (color !== initialColor) $worldBg = color;
 	};
 
 	const initialize = () => {
@@ -47,9 +45,18 @@
 		await updateDb();
 
 		if (i + 1 < $words.length) i += 1;
-		else i = 0;
+		else {
+			editing = false;
+		}
 
 		initialize();
+	};
+
+	const edit = () => {
+		editing = true;
+		i = 0;
+		color = $colors[i];
+		$worldBg = color;
 	};
 
 	onDestroy(() => {
@@ -57,13 +64,16 @@
 	});
 </script>
 
-<p>
-	You're feeling <strong class="word">{currentWord}</strong> - what color is it?
-</p>
-<ColorPicker bind:color />
+{#if editing}
+	<p>
+		You're feeling <strong class="word">{currentWord}</strong> - what color is it?
+	</p>
+	<ColorPicker bind:color />
 
-{#if $words.length > 1}
 	<button on:click={confirm}>That's it</button>
+{:else}
+	<p>Nice work!</p>
+	<button on:click={edit}>Edit my colors</button>
 {/if}
 
 <style>

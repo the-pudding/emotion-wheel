@@ -53,6 +53,9 @@
 		},
 		"yellow": {
 			"value": "#e5e338"
+		},
+		"grey-balloon": {
+			"value": "#d8d8d8"
 		}
 	}
 }

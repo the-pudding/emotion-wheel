@@ -9,6 +9,7 @@
 		range
 	} from "d3";
 	import { colors, words, basicFeeling, entered } from "$stores/misc.js";
+	import variables from "$data/variables.json";
 
 	export let scrollLeft;
 	export let numSteps;
@@ -121,7 +122,7 @@
 					class={n.name === "source" ? "source" : "balloon"}
 					rx={r}
 					ry={r * 1.2}
-					fill="rgb(216,216,216)"
+					fill={variables.color["grey-balloon"]}
 				/>
 				<text class="label">{label}</text>
 			</g>
