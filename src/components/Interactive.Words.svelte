@@ -1,16 +1,31 @@
 <script>
+	import Viz from "$components/Viz.svelte";
 	import { basicFeeling, words, userId } from "$stores/misc.js";
-	import { update } from "$utils/supabase.js";
+	import { update, getData } from "$utils/supabase.js";
 	import { fromBasic } from "$utils/words.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 
+	let data;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
 	$: options = $basicFeeling
 		? _.shuffle(fromBasic[$basicFeeling].map((d) => d.toLowerCase()))
 		: [];
+
+	$: if ($words.length) prepareData();
+
+	const prepareData = async () => {
+		const raw = await getData();
+		const recent = _.orderBy(
+			raw.filter((d) => d.deeper_words),
+			"created_at",
+			"desc"
+		).slice(0, 100);
+
+		data = recent.map((d) => _.pick(d, ["id", "created_at", "deeper_words"]));
+	};
 
 	const select = async (e) => {
 		sound.play();
@@ -34,20 +49,40 @@
 	});
 </script>
 
-<p>Here, you try...</p>
-<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
-<div class="emotions">
-	{#each options as word}
-		{@const selected = $words.includes(word)}
-		<p id={word} class:selected on:click={select}>{word}</p>
-	{/each}
+<div class="container">
+	<div class="words">
+		<p>Here, you try...</p>
+		<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
+		<div class="emotions">
+			{#each options as word}
+				{@const selected = $words.includes(word)}
+				<p id={word} class:selected on:click={select}>{word}</p>
+			{/each}
+		</div>
+
+		{#if $words.length}
+			<p>Here's how everyone is doing...</p>
+		{/if}
+	</div>
+
+	{#if data}
+		<Viz {data} wordAccessor={(d) => d.deeper_words.split("|")[0]} />
+	{/if}
 </div>
 
-{#if $words.length}
-	<p>Here's how everyone is doing...</p>
-{/if}
-
 <style>
+	.container {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100vh;
+	}
+	.words {
+		width: 20%;
+	}
+
 	button.continue {
 		display: block;
 	}

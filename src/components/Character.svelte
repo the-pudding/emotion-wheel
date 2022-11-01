@@ -132,6 +132,21 @@
 	bind:this={svg}
 	class:visible={$entered}
 >
+	<filter id="inset-shadow" x="-50%" y="-50%" width="200%" height="200%">
+		<feComponentTransfer in="SourceAlpha">
+			<feFuncA type="table" tableValues="1 0" />
+		</feComponentTransfer>
+		<feGaussianBlur stdDeviation="4" />
+		<feOffset dx="6" dy="-5" result="offsetblur" />
+		<feFlood flood-color="rgb(0, 0, 0, 0.3)" result="color" />
+		<feComposite in2="offsetblur" operator="in" />
+		<feComposite in2="SourceAlpha" operator="in" />
+		<feMerge>
+			<feMergeNode in="SourceGraphic" />
+			<feMergeNode />
+		</feMerge>
+	</filter>
+
 	<g class="links">
 		{#each links as l}
 			<line stroke="darkgrey" />
@@ -148,15 +163,17 @@
 				: ""}
 			<g class="node" {opacity}>
 				<polygon
-					points={`0,${r + 2} -5,${r + 8} 5,${r + 8}`}
+					points={`0,${r + 2} -3,${r + 8} 3,${r + 8}`}
 					class="triangle"
 					fill={variables.color["grey-balloon"]}
+					opacity={0.75}
 				/>
 				<ellipse
 					class={n.name === "source" ? "source" : "balloon"}
 					rx={r}
 					ry={r * 1.2}
 					fill={variables.color["grey-balloon"]}
+					filter="url(#inset-shadow)"
 				/>
 
 				<text class="label">{label}</text>
@@ -199,12 +216,6 @@
 		font-size: 0.6em;
 	}
 	:global(ellipse.balloon) {
-		stroke-width: 1px;
-		stroke: darkgrey;
 		opacity: 0.9;
-	}
-	polygon {
-		stroke-width: 1px;
-		stroke: darkgrey;
 	}
 </style>

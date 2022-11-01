@@ -13,13 +13,9 @@
 {#if id === "survey-basic"}
 	<Basic options={options.split("|")} />
 {:else if id === "survey-words"}
-	<div class="words">
-		<Words />
-	</div>
+	<Words />
 {:else if id === "survey-color"}
-	<div class="words">
-		<Color />
-	</div>
+	<Color />
 {:else if id === "survey-body"}
 	<div class="words">
 		<Body />

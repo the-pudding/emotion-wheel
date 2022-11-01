@@ -1,21 +1,38 @@
 <script>
-	import { update } from "$utils/supabase.js";
+	import Viz from "$components/Viz.svelte";
+	import { update, getData } from "$utils/supabase.js";
 	import { words, colors, userId, worldBg } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
-	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
+	import _ from "lodash";
 
 	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
-	const initialColor = variables.color["grey-balloon"];
+	const initialColor = "#b5bbbb";
 	let color = initialColor;
 	let i = 0;
 	let editing = true;
+	let data;
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
 	$: textColor = determineFontColor($worldBg);
+	$: if ($colors.length) prepareData();
+
+	const prepareData = async () => {
+		const raw = await getData();
+		const recent = _.orderBy(
+			raw.filter((d) => d.colors),
+			"created_at",
+			"desc"
+		).slice(0, 100);
+
+		data = recent.map((d) =>
+			_.pick(d, ["id", "created_at", "deeper_words", "colors"])
+		);
+	};
+	$: console.log({ data });
 
 	const onColorChange = () => {
 		if (color !== initialColor) $worldBg = color;
@@ -66,19 +83,44 @@
 	});
 </script>
 
-{#if editing}
-	<p class="text" style:color={textColor}>
-		You're feeling <strong class="word">{currentWord}</strong> - what color is it?
-	</p>
-	<ColorPicker bind:color />
+<div class="container">
+	<div class="words">
+		{#if editing}
+			<p class="text" style:color={textColor}>
+				You're feeling <strong class="word">{currentWord}</strong> - what color is
+				it?
+			</p>
+			<ColorPicker bind:color />
 
-	<button on:click={confirm}>That's it</button>
-{:else}
-	<p>Nice work!</p>
-	<button on:click={edit}>Edit my colors</button>
-{/if}
+			<button on:click={confirm}>That's it</button>
+		{:else}
+			<p>Nice work!</p>
+			<button on:click={edit}>Edit my colors</button>
+		{/if}
+	</div>
+
+	{#if data && !editing}
+		<Viz
+			{data}
+			wordAccessor={(d) => d.deeper_words.split("|")[0]}
+			colorAccessor={(d) => d.colors.split("|")[0]}
+		/>
+	{/if}
+</div>
 
 <style>
+	.container {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100vh;
+	}
+	.words {
+		width: 20%;
+	}
+
 	button {
 		display: block;
 		z-index: 1;

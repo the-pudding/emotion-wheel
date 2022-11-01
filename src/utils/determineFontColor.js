@@ -3,8 +3,11 @@ const THRESHOLD = 120;
 const determineFontColor = (backgroundColor) => {
 	let rgbStr;
 
-	if (backgroundColor.substring(0, 1) === "#")
+	if (backgroundColor.substring(0, 1) === "#") {
 		rgbStr = hexToRGB(backgroundColor);
+	} else if (backgroundColor.substring(0, 3) === "rgb") {
+		rgbStr = backgroundColor;
+	}
 
 	const rgb = rgbStr
 		.substring(4, rgbStr.length - 1)
