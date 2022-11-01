@@ -11,9 +11,7 @@
 </script>
 
 {#if id === "survey-basic"}
-	<div class="words">
-		<Basic options={options.split("|")} />
-	</div>
+	<Basic options={options.split("|")} />
 {:else if id === "survey-words"}
 	<div class="words">
 		<Words />

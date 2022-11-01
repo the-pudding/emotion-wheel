@@ -1,28 +1,16 @@
 <script>
 	import { basicFeeling, words, userId } from "$stores/misc.js";
 	import { update } from "$utils/supabase.js";
-	import { wheelSections } from "$utils/words.js";
+	import { fromBasic } from "$utils/words.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
-	const skip = ["busy", "addicted", "tainted", "hateful", "violent"];
-	const options = _.shuffle(
-		wheelSections
-			.map((d) =>
-				_.sampleSize(
-					d.words
-						.slice(1)
-						.flat()
-						.filter((w) => !skip.includes(w.toLowerCase())),
-					2
-				)
-			)
-			.flat()
-			.map((d) => d.toLowerCase())
-	);
+	$: options = $basicFeeling
+		? _.shuffle(fromBasic[$basicFeeling].map((d) => d.toLowerCase()))
+		: [];
 
 	const select = async (e) => {
 		sound.play();

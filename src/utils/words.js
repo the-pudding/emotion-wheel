@@ -166,6 +166,47 @@ export const outerWords = [
 	["Reactivity", "Rage"] // red
 ];
 
+export const fromBasic = {
+	ok: [
+		"Numb",
+		"Bored",
+		"Present",
+		"Calm",
+		"Uncomfortable",
+		"Tired",
+		"Worried",
+		"Overwhelmed",
+		"Judgemental"
+	],
+	good: [
+		"Grounded",
+		"Silly",
+		"Grateful",
+		"Curious",
+		"Passionate",
+		"Bored",
+		"Tired",
+		"Proud",
+		"Calm",
+		"Focused"
+	],
+	busy: [
+		"Tense",
+		"Irritated",
+		"Exhausted",
+		"Burnt Out",
+		"Overwhelmed",
+		"Anxious",
+		"Insecure",
+		"Avoidance",
+		"In Flow",
+		"Creative",
+		"Motivated",
+		"Challenged",
+		"Focused"
+	]
+};
+
 export const allWords = wheelSections
 	.map((d) => d.words.slice(1).flat())
 	.flat()

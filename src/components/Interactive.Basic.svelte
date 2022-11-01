@@ -4,6 +4,7 @@
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
+	import Viz from "$components/Viz.svelte";
 
 	export let options;
 
@@ -15,33 +16,13 @@
 	const prepareData = async () => {
 		const raw = await getData();
 
-		let grouped = _.groupBy(
-			raw
-				.filter((d) => d.deeper_words && d.colors)
-				.reduce((acc, current) => {
-					const deeperWords = current.deeper_words.split("|");
-					const colors = current.colors.split("|");
+		const recent = _.orderBy(
+			raw.filter((d) => d.basic_word !== ""),
+			"created_at",
+			"desc"
+		).slice(0, 100);
 
-					const entries = deeperWords.map((d, i) => ({
-						name: d,
-						color: colors[i],
-						basicWord: current.basic_word,
-						frequency: 1
-					}));
-
-					if (acc.length) return [...acc, ...entries];
-					return entries;
-				}),
-			"basicWord"
-		);
-
-		let result = [];
-		_.forEach(grouped, (value, key) => {
-			const children = _.uniqBy(value, (d) => d.name);
-			result.push({ name: key, children });
-		});
-
-		data = result;
+		data = recent.map((d) => _.pick(d, ["id", "created_at", "basic_word"]));
 	};
 
 	const submit = async (e) => {
@@ -65,26 +46,33 @@
 	});
 </script>
 
-<p>Hi, how are you doing?</p>
-{#each options as d}
-	{@const selected = d === $basicFeeling}
-	<button on:click={submit} id={d} class:selected>{d}</button>
-{/each}
-{#if $basicFeeling}
-	<p>Here's how everyone is doing...</p>
+<div class="container">
+	<div class="words">
+		<p>Hi, how are you doing?</p>
+		{#each options as d}
+			{@const selected = d === $basicFeeling}
+			<button on:click={submit} id={d} class:selected>{d}</button>
+		{/each}
+		{#if $basicFeeling}
+			<p>Here's how the last 100 people to visit this site have felt:</p>
+		{/if}
+	</div>
 
 	{#if data}
-		<!-- <div class="voronois">
-			{#each data as d}
-				<Voronoi data={d} />
-			{/each}
-		</div> -->
+		<Viz {data} wordAccessor={(d) => d.basic_word} />
 	{/if}
-{/if}
+</div>
 
 <style>
-	.voronois {
+	.container {
+		position: absolute;
 		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 100vh;
+	}
+	.words {
+		width: 20%;
 	}
 	button {
 		background: none;
