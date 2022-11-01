@@ -32,7 +32,6 @@
 			_.pick(d, ["id", "created_at", "deeper_words", "colors"])
 		);
 	};
-	$: console.log({ data });
 
 	const onColorChange = () => {
 		if (color !== initialColor) $worldBg = color;
@@ -48,11 +47,10 @@
 	};
 
 	const updateDb = async () => {
-		const value = $colors.join("|");
 		await update({
 			table: "emotions",
 			column: "colors",
-			value,
+			value: $colors.join("|"),
 			id: $userId
 		});
 	};

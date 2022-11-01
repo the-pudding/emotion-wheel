@@ -8,6 +8,7 @@
 	import { onDestroy } from "svelte";
 
 	let data;
+	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
 	$: options = $basicFeeling
@@ -27,6 +28,16 @@
 		data = recent.map((d) => _.pick(d, ["id", "created_at", "deeper_words"]));
 	};
 
+	const updateDb = async () => {
+		console.log("write to db");
+		await update({
+			table: "emotions",
+			column: "deeper_words",
+			value: $words.join("|"),
+			id: $userId
+		});
+	};
+
 	const select = async (e) => {
 		sound.play();
 
@@ -34,14 +45,15 @@
 
 		if ($words.includes(word)) $words = $words.filter((d) => d !== word);
 		else $words = [...$words, word];
+	};
 
-		// try/catch
-		await update({
-			table: "emotions",
-			column: "deeper_words",
-			value: $words.join("|"),
-			id: $userId
-		});
+	const confirm = async () => {
+		await updateDb();
+		editing = false;
+	};
+
+	const edit = () => {
+		editing = true;
 	};
 
 	onDestroy(() => {
@@ -51,21 +63,23 @@
 
 <div class="container">
 	<div class="words">
-		<p>Here, you try...</p>
-		<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
-		<div class="emotions">
-			{#each options as word}
-				{@const selected = $words.includes(word)}
-				<p id={word} class:selected on:click={select}>{word}</p>
-			{/each}
-		</div>
-
-		{#if $words.length}
-			<p>Here's how everyone is doing...</p>
+		{#if editing}
+			<p>Here, you try...</p>
+			<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
+			<div class="emotions">
+				{#each options as word}
+					{@const selected = $words.includes(word)}
+					<p id={word} class:selected on:click={select}>{word}</p>
+				{/each}
+			</div>
+			<button on:click={confirm}>Confirm</button>
+		{:else}
+			<p>Nice work!</p>
+			<button on:click={edit}>Edit my words</button>
 		{/if}
 	</div>
 
-	{#if data}
+	{#if data && !editing}
 		<Viz {data} wordAccessor={(d) => d.deeper_words.split("|")[0]} />
 	{/if}
 </div>

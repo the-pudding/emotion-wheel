@@ -33,19 +33,17 @@
 </script>
 
 <div class="balloons" in:fly={{ y: 200, duration: 1000 }}>
-	{#each data as d, i}
+	{#each data.filter((d) => d.id !== $userId) as d, i}
 		{@const fill = colorAccessor(d)}
 		{@const duration = 3 + Math.random()}
 		{@const labelVisible = hovered === d.id}
 		{@const timespan = getTimespan(d.created_at)}
-		{@const me = $userId === d.id}
 		{@const fontColor =
 			fill === variables.color["grey-balloon"]
 				? "black"
 				: determineFontColor(colorAccessor(d))}
 		<div
 			class="balloon"
-			class:me
 			id={`balloon-${d.id}`}
 			style:color={fontColor}
 			style={`--duration: ${duration}s; --fill: ${fill}`}
@@ -87,9 +85,6 @@
 		z-index: 2;
 		animation: balloons var(--duration) ease-in-out infinite;
 		transform-origin: bottom center;
-	}
-	.balloon.me {
-		box-shadow: lightslategrey 0px 0px 10px 20px;
 	}
 	.balloon:hover {
 		cursor: pointer;
