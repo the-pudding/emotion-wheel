@@ -1,22 +1,15 @@
 <script>
+	import BalloonBunch from "$components/Viz.BalloonBunch.svelte";
 	import variables from "$data/variables.json";
 	import { userId } from "$stores/misc.js";
 	import { fly } from "svelte/transition";
-	import determineFontColor from "$utils/determineFontColor.js";
+	import _ from "lodash";
 
 	export let data;
 	export let wordAccessor;
-	export let colorAccessor = (d) => variables.color["grey-balloon"];
+	export let withColor = false;
 
 	$: console.log({ data });
-
-	let hovered;
-	const onMouseEnter = (e) => {
-		hovered = parseInt(e.target.id.replace("balloon-", ""));
-	};
-	const onMouseLeave = () => {
-		hovered = undefined;
-	};
 
 	const getTimespan = (date) => {
 		const diff = Math.abs(new Date(date) - new Date());
@@ -33,29 +26,16 @@
 </script>
 
 <div class="balloons" in:fly={{ y: 200, duration: 1000 }}>
-	{#each data.filter((d) => d.id !== $userId) as d, i}
-		{@const fill = colorAccessor(d)}
-		{@const duration = 3 + Math.random()}
-		{@const labelVisible = hovered === d.id}
+	{#each data.filter((d) => d.id !== $userId) as d}
+		{@const allWords = d[wordAccessor].split("|")}
+		{@const indexes = _.sampleSize(_.range(allWords.length), 3)}
+		{@const words = indexes.map((i) => allWords[i])}
+		{@const colors = withColor
+			? indexes.map((i) => d.colors.split("|")[i])
+			: _.fill(Array(indexes.length), variables.color["grey-balloon"])}
 		{@const timespan = getTimespan(d.created_at)}
-		{@const fontColor =
-			fill === variables.color["grey-balloon"]
-				? "black"
-				: determineFontColor(colorAccessor(d))}
-		<div
-			class="balloon"
-			id={`balloon-${d.id}`}
-			style:color={fontColor}
-			style={`--duration: ${duration}s; --fill: ${fill}`}
-			on:mouseenter={onMouseEnter}
-			on:mouseleave={onMouseLeave}
-		>
-			{wordAccessor(d)}
-			<span class:visible={labelVisible} style:color={fontColor}
-				>{timespan.value}
-				{timespan.unit}{timespan.value > 1 ? "s" : ""} ago</span
-			>
-		</div>
+
+		<BalloonBunch id={d.id} {words} {colors} {timespan} />
 	{/each}
 </div>
 
@@ -66,70 +46,5 @@
 		flex-wrap: wrap;
 		align-self: flex-start;
 		margin-top: 2em;
-	}
-	.balloon {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		font-size: var(--16px);
-		width: 60px;
-		height: 72.5px;
-		background-color: var(--fill);
-		border-radius: 80%;
-		position: relative;
-		box-shadow: inset 8px -3px 6px rgba(0, 0, 0, 0.1);
-		margin: 10px 15px;
-		transition: transform 0.5s ease;
-		z-index: 2;
-		animation: balloons var(--duration) ease-in-out infinite;
-		transform-origin: bottom center;
-	}
-	.balloon:hover {
-		cursor: pointer;
-	}
-	.balloon span {
-		font-size: var(--12px);
-		white-space: nowrap;
-		opacity: 0.5;
-	}
-	.balloon span.visible {
-		opacity: 1;
-	}
-
-	@keyframes balloons {
-		0%,
-		100% {
-			transform: translateY(0) rotate(-2deg);
-		}
-		50% {
-			transform: translateY(-8px) rotate(2deg);
-		}
-	}
-
-	.balloon:before {
-		content: "▲";
-		font-size: 10px;
-		color: var(--fill);
-		opacity: 0.75;
-		display: block;
-		text-align: center;
-		width: 100%;
-		position: absolute;
-		bottom: -10px;
-	}
-
-	.balloon:after {
-		display: inline-block;
-		top: 76px;
-		left: 29px;
-		position: absolute;
-		height: 120px;
-		width: 1px;
-		margin: 0 auto;
-		content: "";
-		background: rgba(0, 0, 0, 0.1);
-		z-index: -1;
 	}
 </style>

@@ -29,7 +29,6 @@
 	};
 
 	const updateDb = async () => {
-		console.log("write to db");
 		await update({
 			table: "emotions",
 			column: "deeper_words",
@@ -80,7 +79,7 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz {data} wordAccessor={(d) => d.deeper_words.split("|")[0]} />
+		<Viz {data} wordAccessor={"deeper_words"} />
 	{/if}
 </div>
 

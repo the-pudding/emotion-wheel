@@ -59,7 +59,7 @@
 	</div>
 
 	{#if data}
-		<Viz {data} wordAccessor={(d) => d.basic_word} />
+		<Viz {data} wordAccessor={"basic_word"} />
 	{/if}
 </div>
 

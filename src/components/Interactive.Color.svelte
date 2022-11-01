@@ -23,7 +23,12 @@
 	const prepareData = async () => {
 		const raw = await getData();
 		const recent = _.orderBy(
-			raw.filter((d) => d.colors),
+			raw.filter(
+				(d) =>
+					d.deeper_words &&
+					d.colors &&
+					d.colors.split("|").length === d.deeper_words.split("|").length
+			),
 			"created_at",
 			"desc"
 		).slice(0, 100);
@@ -98,11 +103,7 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz
-			{data}
-			wordAccessor={(d) => d.deeper_words.split("|")[0]}
-			colorAccessor={(d) => d.colors.split("|")[0]}
-		/>
+		<Viz {data} wordAccessor={"deeper_words"} withColor={true} />
 	{/if}
 </div>
 
