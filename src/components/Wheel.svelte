@@ -1,46 +1,67 @@
 <script>
+	import Section from "$components/Wheel.Section.svelte";
+	import { wheelSections } from "$utils/words.js";
+
 	let width;
 	let height;
+	$: r = height / 2;
+	$: margin = 0;
+
+	// TODO: selection
+	// TODO: responsiveness
+	let selectedSections = [];
+
+	const handleSectionClick = (e) => {
+		const clickedId = e.target.dataset.id;
+		if (selectedSections.includes(clickedId)) {
+			const updatedSelectedSections = selectedSections.filter(
+				(s) => s !== clickedId
+			);
+			setSelectedSections(updatedSelectedSections);
+		} else {
+			setSelectedSections([...selectedSections, clickedId]);
+		}
+	};
 </script>
 
-<div bind:clientHeight={height} bind:clientWidth={width}>
+<div class="img-container" bind:clientHeight={height} bind:clientWidth={width}>
 	<img src="../assets/wheel/emotion_wheel.png" />
-	<svg {height} {width}>
-		<ellipse
-			cx={width / 2 + 3}
-			cy={height / 2 + 7}
-			rx={90}
-			ry={89}
-			fill="red"
-			opacity={0.6}
-		/>
 
-		<ellipse
-			cx={width / 2 + 5}
-			cy={height / 2 + 4}
-			rx={218}
-			ry={215}
-			fill="green"
-			opacity={0.6}
-		/>
-
-		<ellipse
-			cx={width / 2 + 4}
-			cy={height / 2 - 3}
-			rx={340}
-			ry={328}
-			fill="purple"
-			opacity={0.6}
-		/>
-	</svg>
+	{#if width && height}
+		<svg
+			id="the-wheel"
+			{height}
+			{width}
+			opacity={0.5}
+			transform={`translate(${width * 0.014}, ${height * 0.013})`}
+		>
+			<g id="wheel" transform={`translate(${margin}, ${margin})`}>
+				{#each wheelSections as section, index}
+					<Section
+						key={index}
+						{section}
+						{index}
+						{handleSectionClick}
+						{selectedSections}
+						{r}
+					/>
+				{/each}
+			</g>
+		</svg>
+	{/if}
 </div>
 
 <style>
-	div {
+	.img-container {
 		position: relative;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		width: fit-content;
+		margin: 0 auto;
 	}
 	img {
-		max-width: 100vw;
+		max-width: 80vw;
 		max-height: 100vh;
 	}
 	svg {

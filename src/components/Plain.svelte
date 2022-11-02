@@ -21,5 +21,9 @@
 		max-width: 700px;
 		margin: 0 auto;
 		font-size: var(--18px);
+		font-family: var(--sans);
+	}
+	:global(body) {
+		background-color: white;
 	}
 </style>
