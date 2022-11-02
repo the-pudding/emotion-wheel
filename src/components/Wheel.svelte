@@ -1,7 +1,6 @@
 <script>
 	let width;
 	let height;
-	$: console.log({ width, height });
 </script>
 
 <div bind:clientHeight={height} bind:clientWidth={width}>

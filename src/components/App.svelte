@@ -1,4 +1,6 @@
 <script>
+	import Toggle from "$components/helpers/Toggle.svelte";
+	import Plain from "$components/Plain.svelte";
 	import Title from "$components/Title.svelte";
 	import Content from "$components/Content.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
@@ -16,6 +18,7 @@
 
 	let containerEl;
 	let value;
+	let toggleValue = "off";
 
 	let scrolled = 0;
 	const scrollMax = 400;
@@ -49,34 +52,41 @@
 	};
 </script>
 
-<div
-	class="world"
-	bind:this={containerEl}
-	on:mousewheel|preventDefault={onMouseWheel}
-	style:background={$worldBg}
->
-	<Title {scrolled} {scrollMax} />
-
-	<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
-
-	<Scrolly bind:value>
-		{#each visibleSteps as step}
-			<div class="step" class:visible={$entered}>
-				<!-- custom panel image goes here -->
-				<img src="assets/img/ground.png" class="full-panel" />
-
-				{#if step.id === "not-okay"}
-					<img
-						src="assets/img/bubbles.png"
-						class="full-panel"
-						style="position: absolute"
-					/>
-				{/if}
-				<Content {step} />
-			</div>
-		{/each}
-	</Scrolly>
+<div class="toggle">
+	<Toggle label="plain text version" style="inner" bind:value={toggleValue} />
 </div>
+
+{#if toggleValue === "on"}
+	<Plain />
+{:else}
+	<div
+		class="world"
+		bind:this={containerEl}
+		on:mousewheel|preventDefault={onMouseWheel}
+		style:background={$worldBg}
+	>
+		<Title {scrolled} {scrollMax} />
+
+		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
+
+		<Scrolly bind:value>
+			{#each visibleSteps as step}
+				<div class="step" class:visible={$entered}>
+					<img src="assets/img/ground.png" class="full-panel" />
+
+					{#if step.id === "not-okay"}
+						<img
+							src="assets/img/bubbles.png"
+							class="full-panel"
+							style="position: absolute"
+						/>
+					{/if}
+					<Content {step} />
+				</div>
+			{/each}
+		</Scrolly>
+	</div>
+{/if}
 
 <style>
 	.world {
@@ -103,5 +113,12 @@
 	.full-panel {
 		height: 100vh;
 		max-width: none;
+	}
+	.toggle {
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		right: 0;
+		font-size: var(--14px);
 	}
 </style>
