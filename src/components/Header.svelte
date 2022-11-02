@@ -1,11 +1,14 @@
 <script>
+	import { base } from "$app/paths";
 	import wordmark from "$svg/wordmark.svg";
 	import { entered } from "$stores/misc.js";
+
+	let src = `${base}/assets/img/logo_small.png`;
 </script>
 
 <header>
 	<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
-		<img src="assets/img/logo_small.png" class:visible={$entered} />
+		<img {src} class:visible={$entered} />
 	</a>
 </header>
 
