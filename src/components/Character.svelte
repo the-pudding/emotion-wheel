@@ -17,6 +17,7 @@
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
+	import { fade } from "svelte/transition";
 
 	export let scrollLeft;
 
@@ -176,7 +177,9 @@
 					filter="url(#inset-shadow)"
 				/>
 
-				<text class="label">{label}</text>
+				{#if label !== ""}
+					<text class="label" transition:fade>{label}</text>
+				{/if}
 			</g>
 		{/each}
 	</g>

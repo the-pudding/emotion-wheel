@@ -116,9 +116,9 @@
 	}
 	.toggle {
 		position: absolute;
-		top: 0;
+		top: 1em;
+		right: 1em;
 		z-index: 10;
-		right: 0;
 		font-size: var(--14px);
 	}
 </style>

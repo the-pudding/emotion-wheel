@@ -3,6 +3,7 @@
 	import variables from "$data/variables.json";
 	import { userId } from "$stores/misc.js";
 	import { fly } from "svelte/transition";
+	import { quintOut } from "svelte/easing";
 	import _ from "lodash";
 
 	export let data;
@@ -25,7 +26,7 @@
 	};
 </script>
 
-<div class="balloons" in:fly={{ y: 200, duration: 1000 }}>
+<div class="balloons" in:fly={{ y: 200, duration: 1000, easing: quintOut }}>
 	{#each data.filter((d) => d.id !== $userId) as d}
 		{@const allWords = d[wordAccessor].split("|")}
 		{@const indexes = _.sampleSize(_.range(allWords.length), 3)}
