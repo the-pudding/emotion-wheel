@@ -1,6 +1,5 @@
 <script>
 	import { base } from "$app/paths";
-	import wordmark from "$svg/wordmark.svg";
 	import { entered } from "$stores/misc.js";
 
 	let src = `${base}/assets/img/logo_small.png`;

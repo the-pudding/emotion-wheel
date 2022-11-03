@@ -1,71 +1,58 @@
 <script>
-	import Section from "$components/Wheel.Section.svelte";
-	import { wheelSections } from "$utils/words.js";
+	import slices from "$svg/slices.svg";
+	import { onMount, onDestroy } from "svelte";
+	import { select, selectAll } from "d3";
+	import { Howl } from "howler";
 
-	let width;
-	let height;
-	$: r = height / 2;
-	$: margin = 0;
+	const sound = new Howl({ src: ["../assets/wheel/select.wav"] });
 
-	// TODO: selection
-	// TODO: responsiveness
-	let selectedSections = [];
+	onMount(() => {
+		selectAll("#the-wheel #slices path").on("click", (e) => {
+			sound.play();
 
-	const handleSectionClick = (e) => {
-		const clickedId = e.target.dataset.id;
-		if (selectedSections.includes(clickedId)) {
-			const updatedSelectedSections = selectedSections.filter(
-				(s) => s !== clickedId
+			let current = select(`#the-wheel #slices path#${e.target.id}`)
+				.node()
+				.classList.contains("highlighted");
+			select(`#the-wheel #slices path#${e.target.id}`).classed(
+				"highlighted",
+				!current
 			);
-			setSelectedSections(updatedSelectedSections);
-		} else {
-			setSelectedSections([...selectedSections, clickedId]);
-		}
-	};
+		});
+	});
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
-<div class="img-container" bind:clientHeight={height} bind:clientWidth={width}>
-	<img src="../assets/wheel/emotion_wheel.png" />
+<div class="container">
+	<img src="../assets/wheel/wheel.png" />
 
-	{#if width && height}
-		<svg
-			id="the-wheel"
-			{height}
-			{width}
-			opacity={0.5}
-			transform={`translate(${width * 0.014}, ${height * 0.013})`}
-		>
-			<g id="wheel" transform={`translate(${margin}, ${margin})`}>
-				{#each wheelSections as section, index}
-					<Section
-						key={index}
-						{section}
-						{index}
-						{handleSectionClick}
-						{selectedSections}
-						{r}
-					/>
-				{/each}
-			</g>
-		</svg>
-	{/if}
+	{@html slices}
 </div>
 
 <style>
-	.img-container {
+	:global(body) {
+		background: rgb(2, 11, 41);
+	}
+	.container {
 		position: relative;
-		display: flex;
-		align-items: center;
-		flex-direction: column;
-		width: fit-content;
+		max-width: 800px;
 		margin: 0 auto;
 	}
 	img {
-		max-width: 80vw;
-		max-height: 100vh;
+		width: 100%;
 	}
-	svg {
+	:global(svg#the-wheel) {
 		position: absolute;
 		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	:global(#the-wheel #slices path) {
+		opacity: 0;
+	}
+	:global(#the-wheel #slices path.highlighted) {
+		opacity: 0.4;
 	}
 </style>
