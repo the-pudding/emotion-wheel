@@ -8,6 +8,9 @@
 	let ctx;
 	let painting = false;
 	let color = "rgb(0, 0, 0)";
+	let mouseX;
+	let mouseY;
+	let showCursor = false;
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
@@ -22,6 +25,9 @@
 		ctx.beginPath();
 	};
 	const onMouseMove = (e) => {
+		mouseX = e.offsetX;
+		mouseY = e.offsetY;
+
 		if (!painting) return;
 
 		ctx.lineWidth = 4;
@@ -31,6 +37,12 @@
 		ctx.stroke();
 		ctx.beginPath();
 		ctx.moveTo(e.offsetX, e.offsetY);
+	};
+	const onMouseEnter = () => {
+		showCursor = true;
+	};
+	const onMouseLeave = () => {
+		showCursor = false;
 	};
 	const clear = () => {
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -57,7 +69,17 @@
 			on:mousedown={onMouseDown}
 			on:mouseup={onMouseUp}
 			on:mousemove={onMouseMove}
+			on:mouseenter={onMouseEnter}
+			on:mouseleave={onMouseLeave}
 			style={`background-image: url(${bgImage})`}
+		/>
+
+		<div
+			class="cursor"
+			class:visible={showCursor}
+			style:left={`${mouseX}px`}
+			style:top={`${mouseY}px`}
+			style={`--color: ${color}`}
 		/>
 	</div>
 
@@ -74,5 +96,21 @@
 	canvas {
 		background-size: contain;
 		background-position: center center;
+	}
+	canvas:hover {
+		cursor: none;
+	}
+	.cursor {
+		height: 10px;
+		width: 10px;
+		transform: translate(-50%, -50%);
+		border-radius: 5px;
+		background-color: var(--color);
+		position: absolute;
+		pointer-events: none;
+		visibility: hidden;
+	}
+	.cursor.visible {
+		visibility: visible;
 	}
 </style>

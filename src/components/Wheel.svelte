@@ -26,16 +26,31 @@
 </script>
 
 <div class="container">
-	<img src="../assets/wheel/wheel.png" />
+	<h1>Hi, how are you feeling?</h1>
+	<div class="wheel">
+		<img
+			src="../assets/wheel/wheel.png"
+			alt="watercolor illustrated emotion wheel by abby"
+		/>
 
-	{@html slices}
+		{@html slices}
+	</div>
 </div>
 
 <style>
 	:global(body) {
 		background: rgb(2, 11, 41);
+		color: white;
 	}
 	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	h1 {
+		text-align: center;
+	}
+	.wheel {
 		position: relative;
 		max-width: 800px;
 		margin: 0 auto;
