@@ -23,6 +23,7 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
+	<a class="wheel" href="/wheel">Go to the emotion wheel</a>
 	<div class="title" style={`background-image: url(${bgImage})`}>
 		{#if showText}
 			<div class="words" transition:fade>
@@ -53,6 +54,14 @@
 	}
 	.logo {
 		height: 2.3em;
+	}
+	a.wheel {
+		z-index: 5;
+		position: absolute;
+		top: 1em;
+		left: 1em;
+		background: white;
+		padding: 0.3em;
 	}
 
 	.title {

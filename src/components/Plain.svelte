@@ -22,6 +22,7 @@
 		margin: 0 auto;
 		font-size: var(--18px);
 		font-family: var(--sans);
+		letter-spacing: normal;
 	}
 	:global(body) {
 		background-color: white;

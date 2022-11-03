@@ -53,7 +53,7 @@
 </script>
 
 <div class="toggle">
-	<Toggle label="plain text version" style="inner" bind:value={toggleValue} />
+	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 </div>
 
 {#if toggleValue === "on"}
@@ -120,5 +120,7 @@
 		right: 1em;
 		z-index: 10;
 		font-size: var(--14px);
+		font-family: var(--sans);
+		letter-spacing: normal;
 	}
 </style>
