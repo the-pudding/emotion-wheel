@@ -1,10 +1,11 @@
 <script>
+	import { base } from "$app/paths";
 	import slices from "$svg/slices.svg";
 	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
 
-	const sound = new Howl({ src: ["../assets/wheel/select.wav"] });
+	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
 
 	onMount(() => {
 		selectAll("#the-wheel #slices path").on("click", (e) => {
@@ -29,7 +30,7 @@
 	<h1>Hi, how are you feeling?</h1>
 	<div class="wheel">
 		<img
-			src="../assets/wheel/wheel.png"
+			src={`${base}/assets/wheel/wheel.png`}
 			alt="watercolor illustrated emotion wheel by abby"
 		/>
 

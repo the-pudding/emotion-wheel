@@ -23,7 +23,7 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<a class="wheel" href="/wheel">Go to the emotion wheel</a>
+	<a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a>
 	<div class="title" style={`background-image: url(${bgImage})`}>
 		{#if showText}
 			<div class="words" transition:fade>
