@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 
+export const mobile = writable(undefined);
 export const entered = writable(false);
 export const userId = writable(undefined);
 export const scrollX = writable(0);

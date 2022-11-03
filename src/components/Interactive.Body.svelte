@@ -3,14 +3,17 @@
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import { words, colors } from "$stores/misc.js";
+	import _ from "lodash";
 
 	let canvas;
 	let ctx;
 	let painting = false;
-	let color = "rgb(0, 0, 0)";
 	let mouseX;
 	let mouseY;
 	let showCursor = false;
+	let word = _.sample($words);
+	let color = _.sample($colors);
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
@@ -57,7 +60,9 @@
 	Ok, so that's how feelings show up in my body/nervous system... how do they
 	show up in yours?
 </p>
-<p>Where do you feel <strong>frustration</strong>?</p>
+<p>
+	Where do you feel <span class="word">{word}</span>?
+</p>
 
 <button on:click={clear}>clear</button>
 <div class="row">
@@ -89,6 +94,9 @@
 <style>
 	.row {
 		display: flex;
+	}
+	.word {
+		font-weight: bold;
 	}
 	.container {
 		position: relative;

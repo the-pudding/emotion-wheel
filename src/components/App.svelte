@@ -15,6 +15,7 @@
 		selectedGalleryImage,
 		worldBg
 	} from "$stores/misc.js";
+	import { onMount } from "svelte";
 
 	let containerEl;
 	let value;
@@ -35,6 +36,10 @@
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.slice(0, stopIndex);
 
+	// on mobile: rotate, everything laid out horizontally
+	// while on title, block scroll [come back to this later]
+	// title -> character + steps + world, horizontal scroll
+
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;
 
@@ -50,6 +55,17 @@
 			$scrollX = containerEl.scrollLeft;
 		}
 	};
+
+	// let startY;
+	// const onTouchStart = (e) => {
+	// 	if ($selectedGalleryImage) return;
+
+	// 	startY = e.touches[0].clientY;
+	// };
+	// const onTouchMove = (e) => {
+	// 	const deltaY = (startY - e.touches[0].clientY) / 5;
+	// 	scroll(deltaY);
+	// };
 </script>
 
 <div class="toggle">

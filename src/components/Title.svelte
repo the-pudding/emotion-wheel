@@ -41,8 +41,16 @@
 </div>
 
 <style>
-	a {
+	a:not(.wheel) {
 		border-bottom: none;
+	}
+	a.wheel {
+		z-index: 5;
+		position: absolute;
+		top: 1em;
+		left: 1em;
+		font-family: var(--sans);
+		letter-spacing: normal;
 	}
 	.scaler {
 		position: absolute;
@@ -55,15 +63,6 @@
 	.logo {
 		height: 2.3em;
 	}
-	a.wheel {
-		z-index: 5;
-		position: absolute;
-		top: 1em;
-		left: 1em;
-		background: white;
-		padding: 0.3em;
-	}
-
 	.title {
 		width: 100vw;
 		height: 100vh;

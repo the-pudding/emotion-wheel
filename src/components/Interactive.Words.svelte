@@ -65,6 +65,7 @@
 		{#if editing}
 			<p>Here, you try...</p>
 			<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
+			<p>Pick as many as you like!</p>
 			<div class="emotions">
 				{#each options as word}
 					{@const selected = $words.includes(word)}
