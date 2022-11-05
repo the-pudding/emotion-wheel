@@ -23,10 +23,7 @@
 			"desc"
 		).slice(0, 100);
 
-		data = recent.map((d) => ({
-			id: d.id,
-			..._.pick(d, ["created_at", "basic_word"])
-		}));
+		data = recent.map((d) => _.pick(d, ["id", "created_at", "basic_word"]));
 	};
 
 	const submit = async (e) => {

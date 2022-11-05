@@ -19,27 +19,33 @@
 	export let withColor = false;
 
 	let svg;
-	// TODO: fix this
-	let width = 1200;
+	let width = 1224;
 	let height = 688;
-	let r = 20;
+	let r = 15;
 	$: xCenters = { ok: width * 0.2, good: width * 0.5, busy: width * 0.8 };
-	$: nodes = [
-		{ id: "source-ok", fx: width * 0.2, fy: height },
-		{ id: "source-good", fx: width * 0.5, fy: height },
-		{ id: "source-busy", fx: width * 0.8, fy: height },
-		...data
-	];
-	$: links = ["ok", "good", "busy"].reduce((acc, current) => {
-		const matchingNodes = nodes.filter((d) => d.basic_word === current);
-		const linkage = matchingNodes.map((d) => ({
-			source: `source-${current}`,
-			target: d.id
+	$: nodes = [{ id: "center", fx: width / 2, fy: height / 2 }, ...data];
+	$: links = nodes.reduce((acc, current) => {
+		const likeMe = nodes.filter((d) => {
+			// TODO: if withColor, group by color instead
+			return d[wordAccessor] === current[wordAccessor];
+		});
+		const linkage = likeMe.map((d) => ({
+			source: current.id,
+			target: d.id,
+			value: 10
 		}));
-		return [...acc, ...linkage];
-	}, []);
+		const filtered = linkage.filter(
+			(d) =>
+				d.source !== d.target &&
+				!acc.some((a) => a.source === d.target && a.target === d.source)
+		);
+		const result = [
+			...filtered,
+			{ source: "center", target: current.id, value: 300 }
+		];
 
-	$: console.log({ nodes, links });
+		return [...acc, ...result];
+	}, []);
 
 	const ticked = () => {
 		select(svg)
@@ -65,14 +71,14 @@
 
 	$: simulation = forceSimulation(nodes)
 		.force("charge", forceManyBody().strength(5))
-		//.force("center", forceCenter(width / 2, height / 2))
-		.force(
-			"x",
-			forceX().x(function (d) {
-				if (!width) return 0;
-				return xCenters[d[wordAccessor]];
-			})
-		)
+		.force("center", forceCenter(width / 2, height / 2))
+		// .force(
+		// 	"x",
+		// 	forceX().x(function (d) {
+		// 		if (!width) return 0;
+		// 		return xCenters[d[wordAccessor]];
+		// 	})
+		// )
 		// .force(
 		// 	"y",
 		// 	forceY().y((d) => {
@@ -90,7 +96,7 @@
 			forceLink()
 				.links(links)
 				.id((d) => d.id)
-				.distance((d) => height / 2)
+				.distance((d) => d.value)
 		)
 		.on("tick", ticked);
 </script>
@@ -105,7 +111,7 @@
 
 		<g class="nodes">
 			{#each nodes as n, i}
-				{@const opacity = _.startsWith(n.id, "source") ? 0 : 1}
+				{@const opacity = n.id === "center" ? 0 : 1}
 				<g class="node" {opacity}>
 					<ellipse
 						rx={r}
@@ -129,12 +135,12 @@
 		height: 70vh;
 	}
 	svg {
-		/* background: lightsteelblue; */
+		background: lightsteelblue;
 		height: 100%;
 		width: 100%;
 	}
 	text {
-		font-size: var(--16px);
+		font-size: var(--14px);
 		text-anchor: middle;
 		alignment-baseline: middle;
 	}
