@@ -76,6 +76,7 @@
 		padding: 3em 1em;
 		margin-top: 3em;
 		flex-shrink: 0;
+		width: 90vw;
 	}
 
 	.stories {

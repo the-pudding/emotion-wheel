@@ -21,7 +21,7 @@
 			raw.filter((d) => d.basic_word !== ""),
 			"created_at",
 			"desc"
-		).slice(0, 100);
+		).slice(0, 50);
 
 		data = recent.map((d) => _.pick(d, ["id", "created_at", "basic_word"]));
 	};
@@ -55,7 +55,7 @@
 			<button on:click={submit} id={d} class:selected>{d}</button>
 		{/each}
 		{#if $basicFeeling}
-			<p>Here's how the last 100 people to visit this site have felt:</p>
+			<p>Here's how the last 50 people to visit this site have felt:</p>
 		{/if}
 	</div>
 

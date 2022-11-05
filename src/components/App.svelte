@@ -25,6 +25,7 @@
 	let scrolled = 0;
 	const scrollMax = 400;
 	$: $entered = scrolled >= scrollMax;
+	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
 		: $words.length <= 0
@@ -69,26 +70,30 @@
 	>
 		<Title {scrolled} {scrollMax} />
 
-		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
+		<div class="before-footer">
+			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 
-		<Scrolly bind:value>
-			{#each visibleSteps as step}
-				<div class="step" class:visible={$entered}>
-					<img src="assets/img/ground.png" class="full-panel" />
+			<Scrolly bind:value>
+				{#each visibleSteps as step}
+					<div class="step" class:visible={$entered}>
+						<img src="assets/img/ground.png" class="full-panel" />
 
-					{#if step.id === "not-okay"}
-						<img
-							src="assets/img/bubbles.png"
-							class="full-panel"
-							style="position: absolute"
-						/>
-					{/if}
-					<Content {step} scrollValue={value} />
-				</div>
-			{/each}
-		</Scrolly>
+						{#if step.id === "not-okay"}
+							<img
+								src="assets/img/bubbles.png"
+								class="full-panel"
+								style="position: absolute"
+							/>
+						{/if}
+						<Content {step} scrollValue={value} />
+					</div>
+				{/each}
+			</Scrolly>
+		</div>
 
-		<Footer />
+		{#if showFooter}
+			<Footer />
+		{/if}
 	</div>
 {/if}
 
@@ -100,6 +105,11 @@
 		align-items: flex-end;
 		height: 100vh;
 		transition: background-color 1s;
+	}
+	.before-footer {
+		display: flex;
+		flex-shrink: 0;
+		height: 100vh;
 	}
 	.step {
 		position: relative;
