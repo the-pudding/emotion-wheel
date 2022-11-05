@@ -5,6 +5,7 @@
 	import Content from "$components/Content.svelte";
 	import Scrolly from "$components/helpers/Scrolly.svelte";
 	import Character from "$components/Character.svelte";
+	import Footer from "$components/Footer.svelte";
 	import copy from "$data/copy.json";
 	import {
 		entered,
@@ -36,10 +37,6 @@
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
 
-	// on mobile: rotate, everything laid out horizontally
-	// while on title, block scroll [come back to this later]
-	// title -> character + steps + world, horizontal scroll
-
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;
 
@@ -55,17 +52,6 @@
 			$scrollX = containerEl.scrollLeft;
 		}
 	};
-
-	// let startY;
-	// const onTouchStart = (e) => {
-	// 	if ($selectedGalleryImage) return;
-
-	// 	startY = e.touches[0].clientY;
-	// };
-	// const onTouchMove = (e) => {
-	// 	const deltaY = (startY - e.touches[0].clientY) / 5;
-	// 	scroll(deltaY);
-	// };
 </script>
 
 <div class="toggle">
@@ -101,6 +87,8 @@
 				</div>
 			{/each}
 		</Scrolly>
+
+		<Footer />
 	</div>
 {/if}
 
