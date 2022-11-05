@@ -7,6 +7,7 @@
 	import { onDestroy } from "svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import _ from "lodash";
+	import nearestColor from "$utils/nearestColor.js";
 
 	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
 	const initialColor = "#b5bbbb";
@@ -42,6 +43,7 @@
 				id: `${current.id}-${i}`,
 				deeper_word: w,
 				color: colors[i],
+				color_group: nearestColor(colors[i]).hex,
 				...theRest
 			}));
 
@@ -116,7 +118,12 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz2 {data} wordAccessor={"deeper_word"} withColor={true} />
+		<Viz2
+			{data}
+			wordAccessor={"deeper_word"}
+			groupBy={"color_group"}
+			withColor={true}
+		/>
 	{/if}
 </div>
 

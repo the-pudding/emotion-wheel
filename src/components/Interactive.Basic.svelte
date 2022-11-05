@@ -60,7 +60,7 @@
 	</div>
 
 	{#if data}
-		<Viz2 {data} wordAccessor={"basic_word"} />
+		<Viz2 {data} wordAccessor={"basic_word"} groupBy={"basic_word"} />
 		<!-- <Viz {data} wordAccessor={"basic_word"} /> -->
 	{/if}
 </div>

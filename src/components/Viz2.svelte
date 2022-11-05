@@ -16,18 +16,20 @@
 
 	export let data;
 	export let wordAccessor;
+	export let groupBy;
 	export let withColor = false;
 
 	let svg;
-	let width = 1224;
-	let height = 688;
+	let width = 0;
+	let height = 0;
 	let r = 15;
-	$: xCenters = { ok: width * 0.2, good: width * 0.5, busy: width * 0.8 };
-	$: nodes = [{ id: "center", fx: width / 2, fy: height / 2 }, ...data];
+
+	$: console.log({ width, height });
+
+	$: nodes = data;
 	$: links = nodes.reduce((acc, current) => {
 		const likeMe = nodes.filter((d) => {
-			// TODO: if withColor, group by color instead
-			return d[wordAccessor] === current[wordAccessor];
+			return d[groupBy] === current[groupBy];
 		});
 		const linkage = likeMe.map((d) => ({
 			source: current.id,
@@ -39,80 +41,76 @@
 				d.source !== d.target &&
 				!acc.some((a) => a.source === d.target && a.target === d.source)
 		);
-		const result = [
-			...filtered,
-			{ source: "center", target: current.id, value: 300 }
-		];
-
-		return [...acc, ...result];
+		return [...acc, ...filtered];
 	}, []);
 
 	const ticked = () => {
-		select(svg)
-			.selectAll("line")
-			.data(links)
-			.join("line")
-			.attr("x1", (d) => d.source.x)
-			.attr("y1", (d) => d.source.y)
-			.attr("x2", (d) => d.target.x)
-			.attr("y2", (d) => d.target.y);
-
 		select(svg)
 			.selectAll("g.node")
 			.data(nodes)
 			.join("g.node")
 			.attr("transform", (d) => {
-				d.x = Math.max(r, Math.min(width - r, d.x));
-				d.y = Math.max(r, Math.min(height - r, d.y));
+				d.x = Math.max(r * 1.2, Math.min(width - r * 1.2, d.x));
+				d.y = Math.max(r * 1.2, Math.min(height - r * 1.2, d.y));
 
 				return `translate(${d.x}, ${d.y})`;
 			});
 	};
 
-	$: simulation = forceSimulation(nodes)
-		.force("charge", forceManyBody().strength(5))
-		.force("center", forceCenter(width / 2, height / 2))
-		// .force(
-		// 	"x",
-		// 	forceX().x(function (d) {
-		// 		if (!width) return 0;
-		// 		return xCenters[d[wordAccessor]];
-		// 	})
-		// )
-		// .force(
-		// 	"y",
-		// 	forceY().y((d) => {
-		// 		return height / 2;
-		// 	})
-		// )
-		.force(
-			"collision",
-			forceCollide().radius(function (d) {
-				return r * 1.2;
-			})
-		)
-		.force(
-			"link",
-			forceLink()
-				.links(links)
-				.id((d) => d.id)
-				.distance((d) => d.value)
-		)
-		.on("tick", ticked);
+	$: if (width && height) setupSimulation();
+
+	const setupSimulation = () => {
+		forceSimulation(nodes)
+			.force("charge", forceManyBody().strength(-20))
+			.force("center", forceCenter(width / 2, height / 2))
+			.force(
+				"collision",
+				forceCollide().radius((d) => r * 1.2)
+			)
+			.force(
+				"y",
+				forceY()
+					.y((d) => height / 2)
+					.strength(-0.02)
+			)
+			.force(
+				"link",
+				forceLink()
+					.links(links)
+					.id((d) => d.id)
+					.distance((d) => r * 1.2)
+			)
+			.on("tick", ticked);
+	};
+
+	let highlightedId;
+	const onMouseEnter = (e) => {
+		if (wordAccessor !== "basic_word")
+			highlightedId = e.target.id.split("-")[0];
+	};
+	const onMouseLeave = () => {
+		if (wordAccessor !== "basic_word") highlightedId = undefined;
+	};
+
+	$: console.log({ data });
 </script>
 
-<div class="viz">
+<div class="viz" bind:clientWidth={width} bind:clientHeight={height}>
 	<svg bind:this={svg}>
-		<g class="links">
-			{#each links as l}
-				<line stroke="darkgrey" />
-			{/each}
-		</g>
-
+		<text class="title" x={width / 2} y={height / 2}
+			>Here's how the last 100 people to visit this site felt.</text
+		>
 		<g class="nodes">
 			{#each nodes as n, i}
-				{@const opacity = n.id === "center" ? 0 : 1}
-				<g class="node" {opacity}>
+				{@const opacity =
+					highlightedId && n.id.split("-")[0] !== highlightedId ? 0.2 : 1}
+				<g
+					id={n.id}
+					class="node"
+					{opacity}
+					on:mouseenter={onMouseEnter}
+					on:mouseleave={onMouseLeave}
+				>
 					<ellipse
 						rx={r}
 						ry={r * 1.2}
@@ -132,16 +130,24 @@
 <style>
 	.viz {
 		width: 70%;
-		height: 70vh;
+		height: 60vh;
+		transform: translate(0, -10vh);
 	}
 	svg {
-		background: lightsteelblue;
+		/* background: lightsteelblue; */
 		height: 100%;
 		width: 100%;
 	}
-	text {
+	text.label {
 		font-size: var(--14px);
 		text-anchor: middle;
 		alignment-baseline: middle;
+	}
+	text.title {
+		font-size: var(--28px);
+		text-anchor: middle;
+	}
+	.node:hover {
+		cursor: pointer;
 	}
 </style>

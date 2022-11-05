@@ -93,7 +93,7 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz2 {data} wordAccessor={"deeper_word"} />
+		<Viz2 {data} wordAccessor={"deeper_word"} groupBy={"deeper_word"} />
 	{/if}
 </div>
 
