@@ -23,7 +23,6 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a>
 	<div class="title" style={`background-image: url(${bgImage})`}>
 		{#if showText}
 			<div class="words" transition:fade>
@@ -35,6 +34,7 @@
 				<div>{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 				<div class="scroll">Scroll to continue -></div>
+				<a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a>
 			</div>
 		{/if}
 	</div>
@@ -43,14 +43,6 @@
 <style>
 	a:not(.wheel) {
 		border-bottom: none;
-	}
-	a.wheel {
-		z-index: 5;
-		position: absolute;
-		top: 1em;
-		left: 1em;
-		font-family: var(--sans);
-		letter-spacing: normal;
 	}
 	.scaler {
 		position: absolute;

@@ -5,6 +5,7 @@
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 	import Viz from "$components/Viz.svelte";
+	import Viz2 from "$components/Viz2.svelte";
 
 	export let options;
 
@@ -22,7 +23,10 @@
 			"desc"
 		).slice(0, 100);
 
-		data = recent.map((d) => _.pick(d, ["id", "created_at", "basic_word"]));
+		data = recent.map((d) => ({
+			id: d.id,
+			..._.pick(d, ["created_at", "basic_word"])
+		}));
 	};
 
 	const submit = async (e) => {
@@ -59,7 +63,8 @@
 	</div>
 
 	{#if data}
-		<Viz {data} wordAccessor={"basic_word"} />
+		<Viz2 {data} wordAccessor={"basic_word"} />
+		<!-- <Viz {data} wordAccessor={"basic_word"} /> -->
 	{/if}
 </div>
 

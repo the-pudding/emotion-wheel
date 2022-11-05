@@ -4,6 +4,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
+	import Icon from "$components/helpers/Icon.svelte";
 
 	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
 
@@ -27,6 +28,7 @@
 </script>
 
 <div class="container">
+	<a href={`../`}>Back to the story</a>
 	<h1>Hi, how are you feeling?</h1>
 	<div class="wheel">
 		<img
@@ -35,11 +37,16 @@
 		/>
 
 		{@html slices}
+
+		<a class="download" download="" alt="download your emotion wheel"
+			><Icon name="download" /></a
+		>
 	</div>
 </div>
 
 <style>
-	:global(body) {
+	:global(body),
+	a {
 		background: rgb(2, 11, 41);
 		color: white;
 	}
@@ -47,6 +54,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-top: 1em;
 	}
 	h1 {
 		text-align: center;
@@ -58,6 +66,17 @@
 	}
 	img {
 		width: 100%;
+	}
+	a.download {
+		background: lightgrey;
+		border-radius: 0;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0.2em 0.3em 0 0.3em;
+	}
+	a.download:hover {
+		cursor: pointer;
 	}
 	:global(svg#the-wheel) {
 		position: absolute;

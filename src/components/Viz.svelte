@@ -10,8 +10,6 @@
 	export let wordAccessor;
 	export let withColor = false;
 
-	$: console.log({ data });
-
 	const getTimespan = (date) => {
 		const diff = Math.abs(new Date(date) - new Date());
 

@@ -34,7 +34,7 @@
 	$: stopIndex = !surveyNeeded
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
-	$: visibleSteps = copy.steps.slice(0, stopIndex);
+	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
 
 	// on mobile: rotate, everything laid out horizontally
 	// while on title, block scroll [come back to this later]
@@ -97,7 +97,7 @@
 							style="position: absolute"
 						/>
 					{/if}
-					<Content {step} />
+					<Content {step} scrollValue={value} />
 				</div>
 			{/each}
 		</Scrolly>

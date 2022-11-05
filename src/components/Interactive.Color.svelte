@@ -1,5 +1,5 @@
 <script>
-	import Viz from "$components/Viz.svelte";
+	import Viz2 from "$components/Viz2.svelte";
 	import { update, getData } from "$utils/supabase.js";
 	import { words, colors, userId, worldBg } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
@@ -31,11 +31,24 @@
 			),
 			"created_at",
 			"desc"
-		).slice(0, 100);
+		)
+			.slice(0, 50)
+			.map((d) => _.pick(d, ["id", "created_at", "deeper_words", "colors"]));
+		const split = recent.reduce((acc, current) => {
+			const words = current.deeper_words.split("|");
+			const colors = current.colors.split("|");
+			const theRest = _.omit(current, ["deeper_words", "colors", "id"]);
+			const entries = words.map((w, i) => ({
+				id: `${current.id}-${i}`,
+				deeper_word: w,
+				color: colors[i],
+				...theRest
+			}));
 
-		data = recent.map((d) =>
-			_.pick(d, ["id", "created_at", "deeper_words", "colors"])
-		);
+			return [...acc, ...entries];
+		}, []);
+
+		data = split;
 	};
 
 	const onColorChange = () => {
@@ -103,7 +116,7 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz {data} wordAccessor={"deeper_words"} withColor={true} />
+		<Viz2 {data} wordAccessor={"deeper_word"} withColor={true} />
 	{/if}
 </div>
 

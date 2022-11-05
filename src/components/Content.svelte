@@ -6,6 +6,7 @@
 	import Gallery from "$components/Gallery.svelte";
 
 	export let step;
+	export let scrollValue;
 
 	$: ({ id, text, options } = step);
 </script>

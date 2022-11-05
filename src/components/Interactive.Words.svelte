@@ -1,5 +1,5 @@
 <script>
-	import Viz from "$components/Viz.svelte";
+	import Viz2 from "$components/Viz2.svelte";
 	import { basicFeeling, words, userId } from "$stores/misc.js";
 	import { update, getData } from "$utils/supabase.js";
 	import { fromBasic } from "$utils/words.js";
@@ -23,9 +23,22 @@
 			raw.filter((d) => d.deeper_words),
 			"created_at",
 			"desc"
-		).slice(0, 100);
+		)
+			.slice(0, 50)
+			.map((d) => _.pick(d, ["id", "created_at", "deeper_words"]));
+		const split = recent.reduce((acc, current) => {
+			const words = current.deeper_words.split("|");
+			const theRest = _.omit(current, ["deeper_words", "id"]);
+			const entries = words.map((w, i) => ({
+				id: `${current.id}-${i}`,
+				deeper_word: w,
+				...theRest
+			}));
 
-		data = recent.map((d) => _.pick(d, ["id", "created_at", "deeper_words"]));
+			return [...acc, ...entries];
+		}, []);
+
+		data = split;
 	};
 
 	const updateDb = async () => {
@@ -80,7 +93,7 @@
 	</div>
 
 	{#if data && !editing}
-		<Viz {data} wordAccessor={"deeper_words"} />
+		<Viz2 {data} wordAccessor={"deeper_word"} />
 	{/if}
 </div>
 
