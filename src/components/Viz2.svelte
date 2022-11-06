@@ -46,7 +46,6 @@
 		select(svg)
 			.selectAll("g.node")
 			.data(nodes)
-			.join("g.node")
 			.attr("transform", (d) => {
 				d.x = Math.max(r * 1.2, Math.min(width - r * 1.2, d.x));
 				d.y = Math.max(r * 1.2, Math.min(height - r * 1.2, d.y));

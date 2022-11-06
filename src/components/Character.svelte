@@ -90,7 +90,6 @@
 		select(svg)
 			.selectAll("line")
 			.data(links)
-			.join("line")
 			.attr("x1", (d) => d.source.x)
 			.attr("y1", (d) => d.source.y)
 			.attr("x2", (d) => d.target.x)
@@ -99,7 +98,6 @@
 		select(svg)
 			.selectAll("g.node")
 			.data(nodes)
-			.join("g.node")
 			.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 	};
 
