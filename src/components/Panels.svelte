@@ -25,6 +25,8 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
+
+	$: console.log($panelNum);
 </script>
 
 <Scrolly bind:value={$panelNum}>
@@ -58,7 +60,7 @@
 			{/if}
 
 			<!-- extras -->
-			{#if id === "try-wheel"}
+			{#if $panelNum === 6 && id === "try-wheel"}
 				<img class="rolling-wheel" src={`assets/img/grey_wheel_blank.png`} />
 			{/if}
 		</div>
@@ -92,7 +94,18 @@
 	img.rolling-wheel {
 		position: absolute;
 		bottom: 3em;
-		left: 30%;
+		left: 30vw;
 		width: 30%;
+		animation: spin 4s linear;
+	}
+	@keyframes spin {
+		0% {
+			left: 100%;
+			transform: rotate(0deg);
+		}
+		100% {
+			left: 30vw;
+			transform: rotate(360deg);
+		}
 	}
 </style>
