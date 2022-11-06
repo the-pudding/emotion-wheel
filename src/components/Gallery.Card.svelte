@@ -17,7 +17,7 @@
 	on:mouseleave={() => (hovering = false)}
 	on:click={onClick}
 >
-	<img src={`assets/img/${img}`} class:faded={hovering} />
+	<img src={`assets/img/gallery/${img}`} class:faded={hovering} />
 
 	{#if hovering}
 		<div class="title">{title}</div>

@@ -23,7 +23,7 @@
 
 	let svg;
 	const r = 20;
-	const fx = -137;
+	const fx = 98;
 	const fy = 278;
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
@@ -128,7 +128,8 @@
 <img class="character" class:visible={$entered} src={`assets/img/wagon.png`} />
 
 <svg
-	width={$visibleWidth - 235}
+	id="character-balloon-area"
+	width={$visibleWidth}
 	height={400}
 	bind:this={svg}
 	class:visible={$entered}
@@ -212,7 +213,6 @@
 	svg {
 		position: absolute;
 		bottom: 0;
-		transform: translate(235px, 0px); /* image width */
 	}
 	text.label {
 		alignment-baseline: central;

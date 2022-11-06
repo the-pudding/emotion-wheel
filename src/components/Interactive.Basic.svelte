@@ -7,7 +7,7 @@
 	import Viz from "$components/Viz.svelte";
 	import Viz2 from "$components/Viz2.svelte";
 
-	export let options;
+	const options = ["ok", "good", "busy"];
 
 	const sound = new Howl({ src: ["assets/sound/after-basic.wav"] });
 	let data;
@@ -76,6 +76,7 @@
 	}
 	.words {
 		width: 20%;
+		margin-left: 10%;
 	}
 	button {
 		background: none;

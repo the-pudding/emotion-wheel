@@ -77,12 +77,13 @@
 	});
 </script>
 
-<div bind:this={container} bind:clientWidth={$visibleWidth}>
+<div id="panel-steps" bind:this={container} bind:clientWidth={$visibleWidth}>
 	<slot />
 </div>
 
 <style>
 	div {
 		display: flex;
+		transform: translate(-235px, 0); /* character width */
 	}
 </style>

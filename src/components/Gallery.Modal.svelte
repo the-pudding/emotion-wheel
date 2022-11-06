@@ -11,7 +11,9 @@
 
 <div class="modal" bind:this={modal} class:visible={$selectedGalleryImage}>
 	<ZoomableImage
-		src={$selectedGalleryImage ? `assets/img/${$selectedGalleryImage}` : ""}
+		src={$selectedGalleryImage
+			? `assets/img/gallery/${$selectedGalleryImage}`
+			: ""}
 	/>
 	<div class="close" on:click={close}><Icon name="x" /></div>
 </div>

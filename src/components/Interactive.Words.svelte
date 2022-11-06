@@ -1,19 +1,16 @@
 <script>
 	import Viz2 from "$components/Viz2.svelte";
+	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import { basicFeeling, words, userId } from "$stores/misc.js";
 	import { update, getData } from "$utils/supabase.js";
-	import { fromBasic } from "$utils/words.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
+	import slices from "$svg/grey-wheel-slices.svg";
 
 	let data;
 	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
-
-	$: options = $basicFeeling
-		? _.shuffle(fromBasic[$basicFeeling].map((d) => d.toLowerCase()))
-		: [];
 
 	$: if ($words.length) prepareData();
 
@@ -50,15 +47,6 @@
 		});
 	};
 
-	const select = async (e) => {
-		sound.play();
-
-		let word = e.target.id;
-
-		if ($words.includes(word)) $words = $words.filter((d) => d !== word);
-		else $words = [...$words, word];
-	};
-
 	const confirm = async () => {
 		await updateDb();
 		editing = false;
@@ -79,12 +67,13 @@
 			<p>Here, you try...</p>
 			<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
 			<p>Pick as many as you like!</p>
-			<div class="emotions">
-				{#each options as word}
-					{@const selected = $words.includes(word)}
-					<p id={word} class:selected on:click={select}>{word}</p>
-				{/each}
-			</div>
+
+			<ClickableWheel
+				{slices}
+				imgSrc={`assets/img/grey_wheel.png`}
+				wheelId="grey-wheel"
+				bind:selected={$words}
+			/>
 			<button on:click={confirm}>Confirm</button>
 		{:else}
 			<p>Nice work!</p>
@@ -127,5 +116,26 @@
 	.emotions p.selected {
 		font-size: 1.6em;
 		text-decoration: underline;
+	}
+
+	.wheel {
+		position: relative;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	img {
+		width: 100%;
+	}
+	:global(svg#grey-wheel) {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	:global(#grey-wheel #slices path) {
+		opacity: 0;
+	}
+	:global(#grey-wheel #slices path.highlighted) {
+		opacity: 0.4;
 	}
 </style>

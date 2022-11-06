@@ -5,6 +5,7 @@
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
 	import Icon from "$components/helpers/Icon.svelte";
+	import ClickableWheel from "$components/ClickableWheel.svelte";
 
 	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
 
@@ -30,18 +31,15 @@
 <div class="container">
 	<a href={`../`}>Back to the story</a>
 	<h1>Hi, how are you feeling?</h1>
-	<div class="wheel">
-		<img
-			src={`${base}/assets/wheel/wheel.png`}
-			alt="watercolor illustrated emotion wheel by abby"
-		/>
+	<a class="download" download="" alt="download your emotion wheel"
+		><Icon name="download" /></a
+	>
 
-		{@html slices}
-
-		<a class="download" download="" alt="download your emotion wheel"
-			><Icon name="download" /></a
-		>
-	</div>
+	<ClickableWheel
+		{slices}
+		imgSrc={`assets/wheel/wheel.png`}
+		wheelId="the-wheel"
+	/>
 </div>
 
 <style>
@@ -59,14 +57,6 @@
 	h1 {
 		text-align: center;
 	}
-	.wheel {
-		position: relative;
-		max-width: 800px;
-		margin: 0 auto;
-	}
-	img {
-		width: 100%;
-	}
 	a.download {
 		background: lightgrey;
 		border-radius: 0;
@@ -77,17 +67,5 @@
 	}
 	a.download:hover {
 		cursor: pointer;
-	}
-	:global(svg#the-wheel) {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 100%;
-	}
-	:global(#the-wheel #slices path) {
-		opacity: 0;
-	}
-	:global(#the-wheel #slices path.highlighted) {
-		opacity: 0.4;
 	}
 </style>

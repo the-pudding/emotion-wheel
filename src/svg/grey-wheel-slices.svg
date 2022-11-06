@@ -1,0 +1,28 @@
+<svg id="grey-wheel" viewBox="0 0 1150 1121" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="slices">
+<path id="grateful" d="M536.5 53.5L433 72L536 429L564 425L536.5 53.5Z" fill="black"/>
+<path id="connected" d="M544 52.5L674 59L595 428.5L569 424.5L544 52.5Z" fill="black"/>
+<path id="belonging" d="M425 73.5L311 120.5L500.5 439L531.5 428.5L425 73.5Z" fill="black"/>
+<path id="avoidant" d="M198.5 202.5L302.5 126L493.5 442L464 465.5L198.5 202.5Z" fill="black"/>
+<path id="guilty" d="M119 303L195 207L459.5 468.5L442 494.5L119 303Z" fill="black"/>
+<path id="embarassed" d="M116 309.5L66.5 417L428.5 527.5L439 498.5L116 309.5Z" fill="black"/>
+<path id="not-good-enough" d="M423 563L46.5 551.5L64.5 423L427 533.5L423 563Z" fill="black"/>
+<path id="overwhelmed" d="M429 608L68 700.5L46.5 558.5L422.5 569L429 608Z" fill="black"/>
+<path id="anxious" d="M116.5 813.5L70.5 707.5L430.5 612L447.5 646L116.5 813.5Z" fill="black"/>
+<path id="worried" d="M450 650L473.5 677L217.5 934L119.5 818L450 650Z" fill="black"/>
+<path id="stressed" d="M477 680L507 699L347.5 1016L223 938.5L477 680Z" fill="black"/>
+<path id="isolated" d="M548.5 712L512.5 701L353 1019.5L486.5 1058.5L548.5 712Z" fill="black"/>
+<path id="tired" d="M582 715L553 712.5L492 1058.5L612 1065.5L582 715Z" fill="black"/>
+<path id="bored" d="M716 1047.5L618.5 1065L587 715L613.5 710L716 1047.5Z" fill="black"/>
+<path id="disappointed" d="M618 709.5L648 698.5L831 1000.5L721.5 1046L618 709.5Z" fill="black"/>
+<path id="furious" d="M655 695L681.5 673L939.5 925.5L836 997L655 695Z" fill="black"/>
+<path id="irritated" d="M684.5 669.5L700 651L1011 845.5L943.5 920L684.5 669.5Z" fill="black"/>
+<path id="protective" d="M1015.5 839L1072.5 724.5L718 612.5L703 647L1015.5 839Z" fill="black"/>
+<path id="tense" d="M719.5 607.5L723.5 578.5L1102 590L1075.5 718.5L719.5 607.5Z" fill="black"/>
+<path id="challenged" d="M1094.5 461.5L719.5 543.5L724 572.5L1102 584L1094.5 461.5Z" fill="black"/>
+<path id="motivated" d="M719.5 538L707.5 507L1046 340L1093.5 454L719.5 538Z" fill="black"/>
+<path id="proud" d="M704.5 502L681.5 472.5L953.5 202.5L1043.5 335.5L704.5 502Z" fill="black"/>
+<path id="creative" d="M678.5 469.5L642.5 443L812.5 104L949.5 198.5L678.5 469.5Z" fill="black"/>
+<path id="satisfied" d="M638 441L602 428.5L680 60L808 101.5L638 441Z" fill="black"/>
+</g>
+</svg>

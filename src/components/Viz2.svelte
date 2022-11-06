@@ -24,8 +24,6 @@
 	let height = 0;
 	let r = 15;
 
-	$: console.log({ width, height });
-
 	$: nodes = data;
 	$: links = nodes.reduce((acc, current) => {
 		const likeMe = nodes.filter((d) => {
@@ -91,8 +89,6 @@
 	const onMouseLeave = () => {
 		if (wordAccessor !== "basic_word") highlightedId = undefined;
 	};
-
-	$: console.log({ data });
 </script>
 
 <div class="viz" bind:clientWidth={width} bind:clientHeight={height}>
