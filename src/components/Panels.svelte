@@ -25,14 +25,16 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
-
-	$: console.log($panelNum);
 </script>
 
 <Scrolly bind:value={$panelNum}>
 	{#each visibleSteps as { id, text }}
 		{@const panelBg =
-			id.includes("survey") || id === "show-you" || id === "try-wheel"
+			id.includes("survey") ||
+			id === "show-you" ||
+			id === "try-wheel" ||
+			id === "granularity" ||
+			id === "color"
 				? "ground"
 				: id}
 		<div class="step" class:visible={$entered}>
@@ -61,7 +63,14 @@
 
 			<!-- extras -->
 			{#if $panelNum === 6 && id === "try-wheel"}
-				<img class="rolling-wheel" src={`assets/img/grey_wheel_blank.png`} />
+				<img
+					class="simple-wheel roll-in"
+					src={`assets/img/grey_wheel_blank.png`}
+				/>
+			{:else if id === "granularity"}
+				<img class="simple-wheel" src={`assets/img/grey_wheel.png`} />
+			{:else if id === "color"}
+				<img class="simple-wheel" src={`assets/img/simple_wheel_color.png`} />
 			{/if}
 		</div>
 	{/each}
@@ -91,13 +100,16 @@
 		left: 5%;
 		max-width: 500px;
 	}
-	img.rolling-wheel {
+	img.simple-wheel {
 		position: absolute;
 		bottom: 3em;
-		left: 30vw;
+		left: 40vw;
 		width: 30%;
+	}
+	img.roll-in {
 		animation: spin 4s linear;
 	}
+
 	@keyframes spin {
 		0% {
 			left: 100%;

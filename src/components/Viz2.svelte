@@ -93,7 +93,7 @@
 <div class="viz" bind:clientWidth={width} bind:clientHeight={height}>
 	<svg bind:this={svg}>
 		<text class="title" x={width / 2} y={height / 2}
-			>Here's how the last 100 people to visit this site felt.</text
+			>Here's how the last 50 people who visited this site felt.</text
 		>
 		<g class="nodes">
 			{#each nodes as n, i}

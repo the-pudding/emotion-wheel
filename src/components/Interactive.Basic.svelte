@@ -54,9 +54,6 @@
 			{@const selected = d === $basicFeeling}
 			<button on:click={submit} id={d} class:selected>{d}</button>
 		{/each}
-		{#if $basicFeeling}
-			<p>Here's how the last 50 people to visit this site have felt:</p>
-		{/if}
 	</div>
 
 	{#if data}

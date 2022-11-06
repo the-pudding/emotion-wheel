@@ -28,6 +28,10 @@
 				selected = selected.filter((d) => d !== e.target.id);
 			}
 		});
+
+		selected.forEach((id) => {
+			select(`#${wheelId} #slices path#${id}`).classed("highlighted", true);
+		});
 	});
 </script>
 
