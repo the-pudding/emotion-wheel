@@ -14,6 +14,8 @@
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 
+	$: console.log("panelNum", $panelNum);
+
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
 		: $words.length <= 0

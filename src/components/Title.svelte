@@ -19,7 +19,7 @@
 </script>
 
 <div
-	class="scaler"
+	class="title-wrapper"
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
@@ -44,12 +44,12 @@
 	a:not(.wheel) {
 		border-bottom: none;
 	}
-	.scaler {
+	.title-wrapper {
 		position: absolute;
-		visibility: hidden;
+		display: none;
 	}
 	.visible {
-		visibility: visible;
+		display: block;
 		z-index: 2;
 	}
 	.logo {

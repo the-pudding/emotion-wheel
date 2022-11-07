@@ -56,42 +56,47 @@
 	});
 </script>
 
-<p>
-	Ok, so that's how feelings show up in my body/nervous system... how do they
-	show up in yours?
-</p>
-<p>
-	Where do you feel <span class="word">{word}</span>?
-</p>
+<div class="wrapper">
+	<p>
+		Ok, so that's how feelings show up in my body/nervous system... how do they
+		show up in yours?
+	</p>
+	<p>
+		Where do you feel <span class="word">{word}</span>?
+	</p>
 
-<button on:click={clear}>clear</button>
-<div class="row">
-	<div class="container">
-		<canvas
-			bind:this={canvas}
-			height={canvasHeight}
-			width={canvasWidth}
-			on:mousedown={onMouseDown}
-			on:mouseup={onMouseUp}
-			on:mousemove={onMouseMove}
-			on:mouseenter={onMouseEnter}
-			on:mouseleave={onMouseLeave}
-			style={`background-image: url(${bgImage})`}
-		/>
+	<button on:click={clear}>clear</button>
+	<div class="row">
+		<div class="container">
+			<canvas
+				bind:this={canvas}
+				height={canvasHeight}
+				width={canvasWidth}
+				on:mousedown={onMouseDown}
+				on:mouseup={onMouseUp}
+				on:mousemove={onMouseMove}
+				on:mouseenter={onMouseEnter}
+				on:mouseleave={onMouseLeave}
+				style={`background-image: url(${bgImage})`}
+			/>
 
-		<div
-			class="cursor"
-			class:visible={showCursor}
-			style:left={`${mouseX}px`}
-			style:top={`${mouseY}px`}
-			style={`--color: ${color}`}
-		/>
+			<div
+				class="cursor"
+				class:visible={showCursor}
+				style:left={`${mouseX}px`}
+				style:top={`${mouseY}px`}
+				style={`--color: ${color}`}
+			/>
+		</div>
+
+		<ColorPicker bind:color />
 	</div>
-
-	<ColorPicker bind:color />
 </div>
 
 <style>
+	.wrapper {
+		position: absolute;
+	}
 	.row {
 		display: flex;
 	}

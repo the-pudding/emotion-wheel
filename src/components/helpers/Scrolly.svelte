@@ -29,6 +29,8 @@
 
 	$: top, bottom, update();
 
+	$: console.log({ steps });
+
 	const update = () => {
 		if (!nodes.length) return;
 		nodes.forEach(createObserver);
@@ -84,6 +86,6 @@
 <style>
 	div {
 		display: flex;
-		transform: translate(-235px, 0); /* character width */
+		transform: translate(-235px, 0);
 	}
 </style>

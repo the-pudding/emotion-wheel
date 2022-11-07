@@ -80,7 +80,6 @@
 
 	.before-footer {
 		display: flex;
-		flex-shrink: 0;
 		height: 100vh;
 	}
 
