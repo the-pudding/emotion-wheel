@@ -5,6 +5,7 @@
 	import Color from "$components/Interactive.Color.svelte";
 	import Body from "$components/Interactive.Body.svelte";
 	import Gallery from "$components/Gallery.svelte";
+	import Text from "$components/Panels.Text.svelte";
 	import {
 		panelNum,
 		basicFeeling,
@@ -13,8 +14,6 @@
 		entered
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
-
-	$: console.log("panelNum", $panelNum);
 
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
@@ -29,7 +28,8 @@
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
 </script>
 
-<Scrolly bind:value={$panelNum}>
+<!-- <Scrolly bind:value={$panelNum}> -->
+<div class="steps">
 	{#each visibleSteps as { id, text }}
 		{@const panelBg =
 			id.includes("survey") ||
@@ -56,11 +56,7 @@
 				<Gallery />
 			{:else}
 				<!-- or just words -->
-				<div class="words">
-					{#each text as t}
-						<p>{@html t}</p>
-					{/each}
-				</div>
+				<Text {text} />
 			{/if}
 
 			<!-- extras -->
@@ -76,9 +72,13 @@
 			{/if}
 		</div>
 	{/each}
-</Scrolly>
+</div>
 
 <style>
+	.steps {
+		display: flex;
+		transform: translate(-235px, 0);
+	}
 	.step {
 		position: relative;
 		margin: 0;
@@ -95,12 +95,6 @@
 	.full-panel {
 		height: 100vh;
 		max-width: none;
-	}
-	.words {
-		position: absolute;
-		top: 24%;
-		left: 5%;
-		max-width: 500px;
 	}
 	img.simple-wheel {
 		position: absolute;
