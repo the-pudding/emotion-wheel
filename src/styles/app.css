@@ -20,7 +20,7 @@
 
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
-	--font-body: var(--serif);
+	--font-body: var(--sans);
 	--font-titles: "Abby Uppercase";
 	--font-form: var(--serif);
 	--color-bg: #b5bbbb;

@@ -17,7 +17,7 @@
 		z-index: 1;
 	}
 	img {
-		height: 3em;
+		height: 5em;
 		margin: 1em 0 0 1em;
 		opacity: 0;
 		transition: opacity 1s;

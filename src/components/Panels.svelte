@@ -15,6 +15,9 @@
 		entered
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
+	import { tick } from "svelte";
+
+	let scrollyEl;
 
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
@@ -27,6 +30,12 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
+	$: if (scrollyEl) refreshNodes(visibleSteps);
+
+	const refreshNodes = async () => {
+		await tick();
+		scrollyEl.refreshNodes(visibleSteps);
+	};
 
 	const noBg = [
 		"survey-basic",
@@ -46,7 +55,7 @@
 	];
 </script>
 
-<Scrolly bind:value={$panelNum}>
+<Scrolly bind:value={$panelNum} bind:this={scrollyEl}>
 	{#each visibleSteps as { id, text }, i}
 		{@const panelBg = noBg.includes(id) ? "ground" : id}
 		<div class="step" class:visible={$entered} {id}>

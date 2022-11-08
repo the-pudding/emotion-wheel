@@ -1,6 +1,6 @@
 <script>
 	import { basicFeeling, userId } from "$stores/misc.js";
-	import { insert, getData } from "$utils/supabase.js";
+	import { insert, getData, update } from "$utils/supabase.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
@@ -11,8 +11,6 @@
 
 	const sound = new Howl({ src: ["assets/sound/after-basic.wav"] });
 	let data;
-
-	$: if ($basicFeeling) prepareData();
 
 	const prepareData = async () => {
 		const raw = await getData();
@@ -28,18 +26,24 @@
 
 	const submit = async (e) => {
 		sound.play();
-
 		const response = e.target.id;
 		$basicFeeling = response;
-		const data = [
-			{
-				basic_word: response
-			}
-		];
-		// try/catch
-		const result = await insert({ table: "emotions", data });
 
-		$userId = result[0].id;
+		if ($userId === undefined) {
+			const result = await insert({
+				table: "emotions",
+				data: { basic_word: response }
+			});
+			$userId = result[0].id;
+			prepareData();
+		} else {
+			await update({
+				table: "emotions",
+				column: "basic_word",
+				value: $basicFeeling,
+				id: $userId
+			});
+		}
 	};
 
 	onDestroy(() => {

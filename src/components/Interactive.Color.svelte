@@ -19,6 +19,8 @@
 	$: currentWord = $words[i];
 	$: color, onColorChange();
 	$: textColor = determineFontColor($worldBg);
+
+	// this might be causing a bug
 	$: if ($colors.length) prepareData();
 
 	const prepareData = async () => {
