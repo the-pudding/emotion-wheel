@@ -119,11 +119,12 @@
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.story {
+		.everything {
 			font-size: 24px;
 		}
 		.world {
 			overflow-x: visible;
+			flex-shrink: inherit;
 		}
 		.toggle {
 			font-size: var(--14px);
