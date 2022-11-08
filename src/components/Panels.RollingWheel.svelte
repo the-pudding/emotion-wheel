@@ -1,16 +1,11 @@
 <script>
-	import inView from "$actions/inView.js";
+	import { currentPanel } from "$stores/misc.js";
 
-	let visible = false;
+	export let i;
+	export let img;
 </script>
 
-<img
-	class:roll-in={visible}
-	src={`assets/img/grey_wheel_blank.png`}
-	use:inView
-	on:enter={() => (visible = true)}
-	on:exit={() => (visible = false)}
-/>
+<img class:roll-in={$currentPanel === i} src={`assets/img/${img}`} />
 
 <style>
 	img {

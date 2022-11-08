@@ -11,7 +11,7 @@
 		basicFeeling,
 		colors,
 		words,
-		panelNum,
+		currentPanel,
 		entered
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
@@ -55,7 +55,7 @@
 	];
 </script>
 
-<Scrolly bind:value={$panelNum} bind:this={scrollyEl}>
+<Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
 	{#each visibleSteps as { id, text }, i}
 		{@const panelBg = noBg.includes(id) ? "ground" : id}
 		<div class="step" class:visible={$entered} {id}>
@@ -75,20 +75,20 @@
 				<Gallery />
 			{:else}
 				<!-- or just words -->
-				<Text {text} />
+				<Text {i} {text} />
 			{/if}
 
 			<!-- extras -->
 			{#if id === "try-wheel"}
-				<RollingWheel />
+				<RollingWheel img={"grey_wheel_blank.png"} {i} />
 			{:else if id === "granularity"}
 				<img class="simple-wheel" src={`assets/img/grey_wheel.png`} />
 			{:else if id === "color"}
-				<img class="simple-wheel" src={`assets/img/simple_wheel_color.png`} />
+				<RollingWheel img={"simple_wheel_color.png"} {i} />
 			{:else if id === "body"}
 				<img class="body-diagram" src={`assets/img/blank_body.png`} />
 			{:else if id === "final-wheel"}
-				<img class="simple-wheel" src={`assets/img/final_wheel.png`} />
+				<RollingWheel img={"final_wheel.png"} {i} />
 			{/if}
 		</div>
 	{/each}

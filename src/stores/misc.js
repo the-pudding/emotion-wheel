@@ -3,7 +3,6 @@ import { writable } from "svelte/store";
 export const isMobile = writable(false);
 export const entered = writable(false);
 export const userId = writable(undefined);
-export const panelNum = writable(undefined);
 export const currentPanel = writable(undefined);
 
 export const basicFeeling = writable(undefined);

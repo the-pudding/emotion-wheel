@@ -1,18 +1,11 @@
 <script>
-	import inView from "$actions/inView.js";
+	import { currentPanel } from "$stores/misc.js";
 
+	export let i;
 	export let text;
-
-	let visible = false;
 </script>
 
-<div
-	class="words"
-	class:visible
-	use:inView
-	on:enter={() => (visible = true)}
-	on:exit={() => (visible = false)}
->
+<div class="words" class:visible={i === $currentPanel}>
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
