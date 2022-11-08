@@ -56,18 +56,20 @@
 	});
 </script>
 
-<div class="wrapper">
-	<p>
-		Ok, so that's how feelings show up in my body/nervous system... how do they
-		show up in yours?
-	</p>
-	<p>
-		Where do you feel <span class="word">{word}</span>?
-	</p>
+<div class="container">
+	<div class="words">
+		<p>
+			How does <span class="word">{word}</span> show up in your body?
+		</p>
+		<p>
+			Take a breath– scan from the top of your head down through your chest,
+			down into your toes. Make a mark on the diagram on the right based on what
+			you notice.
+		</p>
+	</div>
 
-	<button on:click={clear}>clear</button>
-	<div class="row">
-		<div class="container">
+	<div class="interactive">
+		<div class="canvas">
 			<canvas
 				bind:this={canvas}
 				height={canvasHeight}
@@ -89,26 +91,47 @@
 			/>
 		</div>
 
-		<ColorPicker bind:color />
+		<div class="color-picker">
+			<ColorPicker bind:color />
+			<button on:click={clear}>clear</button>
+		</div>
 	</div>
 </div>
 
 <style>
-	.wrapper {
+	.container {
 		position: absolute;
-	}
-	.row {
 		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		height: 100vh;
+	}
+	.words {
+		width: 20%;
+		margin-left: 10%;
+	}
+	.interactive {
+		display: flex;
+		width: 70%;
+		position: relative;
+		align-items: center;
 	}
 	.word {
 		font-weight: bold;
 	}
-	.container {
+	.canvas {
 		position: relative;
+	}
+	.color-picker {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	canvas {
 		background-size: contain;
 		background-position: center center;
+		background-repeat: no-repeat;
 	}
 	canvas:hover {
 		cursor: none;

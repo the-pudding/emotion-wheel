@@ -48,14 +48,14 @@
 	<Plain />
 {:else}
 	<div
-		class="world"
+		class="story"
 		bind:this={containerEl}
 		on:mousewheel|preventDefault={onMouseWheel}
 		style={`--backgroundColor: ${$worldBg}`}
 	>
 		<Title {scrolled} {scrollMax} />
 
-		<div class="before-footer">
+		<div class="world">
 			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 			<Panels />
 		</div>
@@ -67,7 +67,7 @@
 {/if}
 
 <style>
-	.world {
+	.story {
 		position: relative;
 		overflow-x: hidden;
 		display: flex;
@@ -78,7 +78,7 @@
 		background-color: var(--backgroundColor);
 	}
 
-	.before-footer {
+	.world {
 		display: flex;
 		height: 100vh;
 	}

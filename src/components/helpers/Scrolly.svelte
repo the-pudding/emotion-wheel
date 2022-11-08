@@ -14,7 +14,7 @@
 	import { onMount } from "svelte";
 	import { visibleWidth } from "$stores/misc.js";
 
-	export let root = null;
+	export let root;
 	export let top = 0;
 	export let bottom = 0;
 	export let increments = 100;
@@ -28,8 +28,6 @@
 	let container;
 
 	$: top, bottom, update();
-
-	$: console.log({ steps });
 
 	const update = () => {
 		if (!nodes.length) return;

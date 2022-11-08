@@ -5,12 +5,13 @@
 	import Color from "$components/Interactive.Color.svelte";
 	import Body from "$components/Interactive.Body.svelte";
 	import Gallery from "$components/Gallery.svelte";
+	import RollingWheel from "$components/Panels.RollingWheel.svelte";
 	import Text from "$components/Panels.Text.svelte";
 	import {
-		panelNum,
 		basicFeeling,
 		colors,
 		words,
+		panelNum,
 		entered
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
@@ -26,20 +27,29 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
+
+	const noBg = [
+		"survey-basic",
+		"survey-words",
+		"survey-color",
+		"survey-body",
+		"try-wheel",
+		"granularity",
+		"color",
+		"body",
+		"fascinating",
+		"brene",
+		"final-wheel",
+		"visual-language",
+		"gallery",
+		"closing"
+	];
 </script>
 
-<!-- <Scrolly bind:value={$panelNum}> -->
-<div class="steps">
-	{#each visibleSteps as { id, text }}
-		{@const panelBg =
-			id.includes("survey") ||
-			id === "show-you" ||
-			id === "try-wheel" ||
-			id === "granularity" ||
-			id === "color"
-				? "ground"
-				: id}
-		<div class="step" class:visible={$entered}>
+<Scrolly bind:value={$panelNum}>
+	{#each visibleSteps as { id, text }, i}
+		{@const panelBg = noBg.includes(id) ? "ground" : id}
+		<div class="step" class:visible={$entered} {id}>
 			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
 
@@ -60,24 +70,28 @@
 			{/if}
 
 			<!-- extras -->
-			{#if $panelNum === 6 && id === "try-wheel"}
-				<img
-					class="simple-wheel roll-in"
-					src={`assets/img/grey_wheel_blank.png`}
-				/>
+			{#if id === "try-wheel"}
+				<RollingWheel />
 			{:else if id === "granularity"}
 				<img class="simple-wheel" src={`assets/img/grey_wheel.png`} />
 			{:else if id === "color"}
 				<img class="simple-wheel" src={`assets/img/simple_wheel_color.png`} />
+			{:else if id === "body"}
+				<img class="body-diagram" src={`assets/img/blank_body.png`} />
+			{:else if id === "final-wheel"}
+				<img class="simple-wheel" src={`assets/img/final_wheel.png`} />
 			{/if}
 		</div>
 	{/each}
-</div>
+</Scrolly>
 
 <style>
 	.steps {
 		display: flex;
 		transform: translate(-235px, 0);
+	}
+	.step.visible {
+		opacity: 1;
 	}
 	.step {
 		position: relative;
@@ -86,12 +100,10 @@
 		align-items: center;
 		flex-shrink: 0;
 		min-width: 100vw;
-		opacity: 0;
 		transition: opacity 1s;
+		opacity: 0;
 	}
-	.step.visible {
-		opacity: 1;
-	}
+
 	.full-panel {
 		height: 100vh;
 		max-width: none;
@@ -102,18 +114,10 @@
 		left: 40vw;
 		width: 30%;
 	}
-	img.roll-in {
-		animation: spin 4s linear;
-	}
 
-	@keyframes spin {
-		0% {
-			left: 100%;
-			transform: rotate(0deg);
-		}
-		100% {
-			left: 30vw;
-			transform: rotate(360deg);
-		}
+	img.body-diagram {
+		position: absolute;
+		height: 50vh;
+		left: 40%;
 	}
 </style>
