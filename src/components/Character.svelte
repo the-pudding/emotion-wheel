@@ -19,8 +19,7 @@
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { fade } from "svelte/transition";
-
-	export let scrollLeft;
+	import scrollX from "$stores/scrollX.js";
 
 	let svg;
 	const r = $isMobile ? 12 : 20;
@@ -39,7 +38,7 @@
 	const newBalloons = async () => {
 		if (simulation) {
 			const source = nodes.find((d) => d.name === "source");
-			source.fx = scrollLeft + fx;
+			source.fx = $scrollX + fx;
 		}
 	};
 
@@ -79,11 +78,11 @@
 		}
 	};
 
-	$: scrollLeft, scrollChange();
+	$: $scrollX, scrollChange();
 	const scrollChange = () => {
-		if (scrollLeft && simulation) {
+		if ($scrollX && simulation) {
 			const source = nodes.find((d) => d.name === "source");
-			source.fx = scrollLeft + fx;
+			source.fx = $scrollX + fx;
 			simulation.alpha(0.5).restart();
 		}
 	};
@@ -199,7 +198,7 @@
 		height: 75px;
 		position: fixed;
 		left: 4em;
-		top: 76vh;
+		top: 77%; /*TODO*/
 	}
 	.character {
 		z-index: 1;

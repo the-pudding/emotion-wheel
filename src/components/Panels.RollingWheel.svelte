@@ -18,7 +18,7 @@
 
 	img.roll-in {
 		opacity: 1;
-		animation: spin 4s linear;
+		animation: spin 3s ease-out;
 	}
 
 	@keyframes spin {

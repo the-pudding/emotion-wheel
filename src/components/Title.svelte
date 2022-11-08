@@ -8,14 +8,18 @@
 	export let scrolled;
 	export let scrollMax;
 
+	$: zoom = zoomScale(scrolled);
+	$: showText = scrolled < 80;
+	$: bgImage = `${base}/assets/img/notebook.jpeg`;
+
 	const zoomScale = scaleLinear()
 		.domain([0, scrollMax])
 		.range([1, 2.5])
 		.clamp(true);
 
-	$: zoom = zoomScale(scrolled);
-	$: showText = scrolled < 80;
-	$: bgImage = `${base}/assets/img/notebook.jpeg`;
+	const enter = () => {
+		scrolled = 400;
+	};
 </script>
 
 <div
@@ -35,6 +39,8 @@
 				<div>{@html copy.byline}</div>
 				<div class="scroll">Scroll to continue -></div>
 				<a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a>
+
+				<button on:click={enter}>enter</button>
 			</div>
 		{/if}
 	</div>
@@ -47,6 +53,7 @@
 	.title-wrapper {
 		position: absolute;
 		display: none;
+		height: 100%;
 	}
 	.visible {
 		display: block;
@@ -57,7 +64,7 @@
 	}
 	.title {
 		width: 100vw;
-		height: 100vh;
+		height: 100%;
 		background-position: center;
 		background-repeat: no-repeat;
 		-webkit-background-size: cover;
@@ -89,7 +96,7 @@
 		margin-top: 3em;
 	}
 	.spacer {
-		height: 100vh;
+		height: 100%;
 		flex-shrink: 0;
 		position: absolute;
 		right: 0;

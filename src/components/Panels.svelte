@@ -114,7 +114,7 @@
 	}
 
 	.full-panel {
-		height: 100vh;
+		height: 100%;
 		max-width: none;
 	}
 	img.simple-wheel {

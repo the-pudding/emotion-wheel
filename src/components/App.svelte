@@ -19,6 +19,7 @@
 	let toggleValue = "off";
 	let scrolled = 0;
 	const scrollMax = 400;
+	let innerHeight;
 
 	$: $entered = scrolled >= scrollMax;
 	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
@@ -38,28 +39,6 @@
 			containerEl.scrollLeft += e.deltaY;
 		}
 	};
-
-	// mobile scroll
-	let start;
-	let scrollLeft;
-	const onTouchStart = (e) => {
-		start = e.changedTouches[0].pageX;
-	};
-	const onTouchMove = (e) => {
-		const current = e.changedTouches[0].pageX;
-		scrollLeft = start - current;
-
-		const leaving = $entered && containerEl.scrollLeft === 0 && scrollLeft < 0;
-		if (!$entered || leaving) {
-			if (
-				(scrollLeft > 0 && scrolled < scrollMax) ||
-				(scrollLeft < 0 && scrolled >= 0)
-			)
-				scrolled += scrollLeft / 50;
-		} else {
-			containerEl.scrollLeft += scrollLeft;
-		}
-	};
 </script>
 
 <div class="toggle">
@@ -73,11 +52,9 @@
 		class="everything"
 		bind:this={containerEl}
 		on:mousewheel|preventDefault={onMouseWheel}
-		on:touchstart={onTouchStart}
-		on:touchmove={onTouchMove}
-		style={`--backgroundColor: ${$worldBg}; background-image: url(${bgImage})`}
+		style={`--height: ${innerHeight}px; --backgroundColor: ${$worldBg}; background-image: url(${bgImage})`}
 	>
-		<Title {scrolled} {scrollMax} />
+		<Title bind:scrolled {scrollMax} />
 
 		<div class="world">
 			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
@@ -89,14 +66,15 @@
 		{/if}
 	</div>
 {/if}
+<svelte:window bind:innerHeight />
 
 <style>
 	.everything {
 		position: relative;
-		overflow-x: hidden;
+		overflow-x: scroll;
 		display: flex;
 		align-items: flex-end;
-		height: 100vh;
+		height: var(--height);
 		transition: background-color 1s;
 		background-color: var(--backgroundColor);
 		font-size: 14px;
@@ -104,8 +82,7 @@
 
 	.world {
 		display: flex;
-		height: 100vh;
-		overflow-x: scroll;
+		height: 100%;
 		flex-shrink: 0;
 	}
 
@@ -122,6 +99,7 @@
 	@media (hover: hover) and (pointer: fine) {
 		.everything {
 			font-size: 24px;
+			overflow-x: hidden;
 		}
 		.world {
 			overflow-x: visible;

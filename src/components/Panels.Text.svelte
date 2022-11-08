@@ -19,7 +19,7 @@
 		max-width: 500px;
 		opacity: 0;
 		transform: translateX(100px);
-		transition: transform 1s 300ms, opacity 1s 300ms;
+		transition: transform 1s, opacity 1s;
 	}
 	.visible {
 		opacity: 1;
