@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import Toggle from "$components/helpers/Toggle.svelte";
 	import Plain from "$components/Plain.svelte";
 	import Title from "$components/Title.svelte";
@@ -21,6 +22,7 @@
 
 	$: $entered = scrolled >= scrollMax;
 	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
+	$: bgImage = `${base}/assets/img/bg.png`;
 
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;
@@ -73,7 +75,7 @@
 		on:mousewheel|preventDefault={onMouseWheel}
 		on:touchstart={onTouchStart}
 		on:touchmove={onTouchMove}
-		style={`--backgroundColor: ${$worldBg}`}
+		style={`--backgroundColor: ${$worldBg}; background-image: url(${bgImage})`}
 	>
 		<Title {scrolled} {scrollMax} />
 
@@ -96,7 +98,6 @@
 		align-items: flex-end;
 		height: 100vh;
 		transition: background-color 1s;
-		background-image: url("assets/img/bg.png");
 		background-color: var(--backgroundColor);
 		font-size: 14px;
 	}
