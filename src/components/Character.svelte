@@ -13,7 +13,8 @@
 		words,
 		basicFeeling,
 		entered,
-		visibleWidth
+		visibleWidth,
+		isMobile
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
@@ -22,9 +23,10 @@
 	export let scrollLeft;
 
 	let svg;
-	const r = 20;
-	const fx = 98;
-	const fy = 278;
+	const r = $isMobile ? 12 : 20;
+	const fx = $isMobile ? 65 : 98;
+	const fy = $isMobile ? 350 : 278;
+	const stringLength = $isMobile ? 75 : 150;
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -118,7 +120,7 @@
 			"link",
 			forceLink()
 				.links(links)
-				.distance((d) => 150)
+				.distance((d) => stringLength)
 		)
 		.on("tick", ticked);
 </script>
@@ -194,8 +196,8 @@
 		opacity: 1;
 	}
 	.character {
-		height: 150px;
-		position: sticky;
+		height: 75px;
+		position: fixed;
 		left: 4em;
 		top: 76vh;
 	}
@@ -219,5 +221,11 @@
 	}
 	:global(ellipse.balloon) {
 		opacity: 0.9;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.character {
+			height: 150px;
+			position: sticky;
+		}
 	}
 </style>

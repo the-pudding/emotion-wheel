@@ -17,8 +17,7 @@
 	let containerEl;
 	let toggleValue = "off";
 	let scrolled = 0;
-	let isMobile = true;
-	const scrollMax = isMobile ? 4000 : 400;
+	const scrollMax = 400;
 
 	$: $entered = scrolled >= scrollMax;
 	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
@@ -54,9 +53,9 @@
 				(scrollLeft > 0 && scrolled < scrollMax) ||
 				(scrollLeft < 0 && scrolled >= 0)
 			)
-				scrolled += scrollLeft;
+				scrolled += scrollLeft / 50;
 		} else {
-			containerEl.scrollLeft += scrollLeft / 100;
+			containerEl.scrollLeft += scrollLeft;
 		}
 	};
 </script>
@@ -69,7 +68,7 @@
 	<Plain />
 {:else}
 	<div
-		class="story"
+		class="everything"
 		bind:this={containerEl}
 		on:mousewheel|preventDefault={onMouseWheel}
 		on:touchstart={onTouchStart}
@@ -90,7 +89,7 @@
 {/if}
 
 <style>
-	.story {
+	.everything {
 		position: relative;
 		overflow-x: hidden;
 		display: flex;
@@ -106,6 +105,7 @@
 		display: flex;
 		height: 100vh;
 		overflow-x: scroll;
+		flex-shrink: 0;
 	}
 
 	.toggle {
@@ -113,7 +113,7 @@
 		top: 1em;
 		right: 1em;
 		z-index: 10;
-		font-size: var(--14px);
+		font-size: var(--12px);
 		font-family: var(--sans);
 		letter-spacing: normal;
 	}
@@ -124,6 +124,9 @@
 		}
 		.world {
 			overflow-x: visible;
+		}
+		.toggle {
+			font-size: var(--14px);
 		}
 	}
 </style>

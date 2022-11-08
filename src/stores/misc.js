@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-export const mobile = writable(undefined);
+export const isMobile = writable(true);
 export const entered = writable(false);
 export const userId = writable(undefined);
 export const panelNum = writable(undefined);

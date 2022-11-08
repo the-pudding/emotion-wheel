@@ -84,6 +84,12 @@
 <style>
 	div {
 		display: flex;
-		transform: translate(-235px, 0);
+		transform: none;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		div {
+			transform: translate(-235px, 0);
+		}
 	}
 </style>
