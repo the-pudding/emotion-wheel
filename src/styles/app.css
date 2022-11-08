@@ -93,11 +93,6 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
-body {
-	font-size: 24px;
-	letter-spacing: -2px;
-}
-
 button {
 	background: #aa9f9f;
 }
