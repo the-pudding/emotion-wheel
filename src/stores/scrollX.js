@@ -18,16 +18,19 @@ export default readable(0, (set) => {
 		}
 	};
 
-	if (browser)
-		document
-			.querySelector("div.everything")
-			.addEventListener("scroll", onScroll);
+	if (browser) {
+		const container = document.querySelector("div.everything");
+		if (container) {
+			container.addEventListener("scroll", onScroll);
+		}
+	}
 
 	return () => {
 		if (browser) {
-			document
-				.querySelector("div.everything")
-				.removeEventListener("scroll", onScroll);
+			const container = document.querySelector("div.everything");
+			if (container) {
+				container.removeEventListener("scroll", onScroll);
+			}
 		}
 	};
 });
