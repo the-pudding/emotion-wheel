@@ -1,11 +1,20 @@
 <script>
 	import { currentPanel } from "$stores/misc.js";
+	import inView from "$actions/inView.js";
 
 	export let i;
 	export let img;
+
+	let onScreen = false;
 </script>
 
-<img class:roll-in={$currentPanel === i} src={`assets/img/${img}`} />
+<img
+	class:roll-in={$currentPanel === i || onScreen}
+	src={`assets/img/${img}`}
+	use:inView
+	on:enter={() => (onScreen = true)}
+	on:exit={() => (onScreen = false)}
+/>
 
 <style>
 	img {
