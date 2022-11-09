@@ -1,7 +1,7 @@
 <script>
 	import Viz2 from "$components/Viz2.svelte";
 	import ClickableWheel from "$components/ClickableWheel.svelte";
-	import { basicFeeling, words, userId } from "$stores/misc.js";
+	import { basicFeeling, words, userId, soundOn } from "$stores/misc.js";
 	import { update, getData } from "$utils/supabase.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
@@ -12,6 +12,8 @@
 	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 	$: if ($words.length) prepareData();
 
 	const prepareData = async () => {

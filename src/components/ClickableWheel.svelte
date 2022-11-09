@@ -3,11 +3,15 @@
 	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
+	import { soundOn } from "$stores/misc.js";
 
 	export let imgSrc;
 	export let slices;
 	export let wheelId;
 	export let selected = [];
+
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
 	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
 

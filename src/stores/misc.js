@@ -4,6 +4,7 @@ export const isMobile = writable(false);
 export const entered = writable(false);
 export const userId = writable(undefined);
 export const currentPanel = writable(undefined);
+export const soundOn = writable(true);
 
 export const basicFeeling = writable(undefined);
 export const words = writable([]);

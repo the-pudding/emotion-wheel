@@ -1,5 +1,5 @@
 <script>
-	import { basicFeeling, userId } from "$stores/misc.js";
+	import { basicFeeling, userId, soundOn } from "$stores/misc.js";
 	import { insert, getData, update } from "$utils/supabase.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
@@ -7,10 +7,15 @@
 	import Viz from "$components/Viz.svelte";
 	import Viz2 from "$components/Viz2.svelte";
 
+	let data;
 	const options = ["ok", "good", "busy"];
 
-	const sound = new Howl({ src: ["assets/sound/after-basic.wav"] });
-	let data;
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
+
+	const sound = new Howl({
+		src: ["assets/sound/after-basic.wav"]
+	});
 
 	const prepareData = async () => {
 		const raw = await getData();

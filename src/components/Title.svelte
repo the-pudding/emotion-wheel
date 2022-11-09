@@ -40,12 +40,13 @@
 				<div>{@html copy.byline}</div>
 
 				<div class="scroll">Scroll to begin</div>
+
 				<div class="mouse">
 					<span class="icon"><Icon name="arrow-down" /></span>
 				</div>
+				<div class="audio">This story contains audio.</div>
 
 				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->
-
 				<!-- <button on:click={enter}>enter (mobile only)</button> -->
 			</div>
 		{/if}
@@ -130,6 +131,10 @@
 	.icon {
 		position: absolute;
 		animation: moveArrow 1.5s linear infinite;
+	}
+	.audio {
+		font-size: var(--16px);
+		margin-top: 1em;
 	}
 
 	@keyframes moveArrow {

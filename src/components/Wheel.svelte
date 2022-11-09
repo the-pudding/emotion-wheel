@@ -3,10 +3,13 @@
 	import slices from "$svg/slices.svg";
 	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
+	import { soundOn } from "$stores/misc.js";
 	import { Howl } from "howler";
 	import Icon from "$components/helpers/Icon.svelte";
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
 
 	onMount(() => {

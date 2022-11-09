@@ -1,7 +1,7 @@
 <script>
 	import Viz2 from "$components/Viz2.svelte";
 	import { update, getData } from "$utils/supabase.js";
-	import { words, colors, userId, worldBg } from "$stores/misc.js";
+	import { words, colors, userId, worldBg, soundOn } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
@@ -19,6 +19,8 @@
 	$: currentWord = $words[i];
 	$: color, onColorChange();
 	$: textColor = determineFontColor($worldBg);
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
 	// this might be causing a bug
 	$: if ($colors.length) prepareData();

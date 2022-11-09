@@ -12,7 +12,8 @@
 		words,
 		colors,
 		selectedGalleryImage,
-		worldBg
+		worldBg,
+		soundOn
 	} from "$stores/misc.js";
 
 	let containerEl;
@@ -39,9 +40,14 @@
 			containerEl.scrollLeft += e.deltaY;
 		}
 	};
+
+	const mute = () => {
+		$soundOn = !$soundOn;
+	};
 </script>
 
-<div class="toggle">
+<div class="top-bar">
+	<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
 	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 </div>
 
@@ -86,7 +92,9 @@
 		flex-shrink: 0;
 	}
 
-	.toggle {
+	.top-bar {
+		display: flex;
+		align-items: center;
 		position: absolute;
 		top: 1em;
 		right: 1em;
@@ -94,6 +102,16 @@
 		font-size: var(--12px);
 		font-family: var(--sans);
 		letter-spacing: normal;
+	}
+
+	.mute {
+		background: none;
+		text-decoration: underline;
+		font-family: var(--sans);
+		margin-right: 1em;
+	}
+	.mute:hover {
+		font-weight: bold;
 	}
 
 	@media (hover: hover) and (pointer: fine) {
@@ -106,7 +124,7 @@
 			overflow-x: visible;
 			flex-shrink: inherit;
 		}
-		.toggle {
+		.top-bar {
 			font-size: var(--14px);
 		}
 	}
