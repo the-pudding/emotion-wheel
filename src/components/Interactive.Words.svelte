@@ -68,13 +68,14 @@
 		{#if editing}
 			<p>Here, you try...</p>
 			<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
-			<p>Pick as many as you like!</p>
+			<p>You can choose up to 3.</p>
 
 			<ClickableWheel
 				{slices}
 				imgSrc={`assets/img/grey_wheel.png`}
 				wheelId="grey-wheel"
 				bind:selected={$words}
+				limit={3}
 			/>
 			<button on:click={confirm}>Confirm</button>
 		{:else}

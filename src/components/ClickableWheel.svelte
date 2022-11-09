@@ -1,6 +1,6 @@
 <script>
 	import { base } from "$app/paths";
-	import { onMount, onDestroy } from "svelte";
+	import { onMount } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
 	import { soundOn } from "$stores/misc.js";
@@ -9,6 +9,7 @@
 	export let slices;
 	export let wheelId;
 	export let selected = [];
+	export let limit = 1000;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -17,19 +18,22 @@
 
 	onMount(() => {
 		selectAll(`#${wheelId} #slices path`).on("click", (e) => {
-			sound.play();
-
 			let current = select(`#${wheelId} #slices path#${e.target.id}`)
 				.node()
 				.classList.contains("highlighted");
-			select(`#${wheelId} #slices path#${e.target.id}`).classed(
-				"highlighted",
-				!current
-			);
-			if (!current) {
-				selected = [...selected, e.target.id];
-			} else {
-				selected = selected.filter((d) => d !== e.target.id);
+
+			if (selected.length < limit || current) {
+				sound.play();
+
+				select(`#${wheelId} #slices path#${e.target.id}`).classed(
+					"highlighted",
+					!current
+				);
+				if (!current) {
+					selected = [...selected, e.target.id];
+				} else {
+					selected = selected.filter((d) => d !== e.target.id);
+				}
 			}
 		});
 
