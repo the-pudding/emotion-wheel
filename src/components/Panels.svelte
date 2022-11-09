@@ -38,7 +38,6 @@
 	};
 
 	const noBg = [
-		"survey-basic",
 		"survey-words",
 		"survey-color",
 		"survey-body",
@@ -53,6 +52,7 @@
 		"gallery",
 		"closing"
 	];
+	const hasOverlay = ["core", "body-color"];
 </script>
 
 <Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
@@ -61,6 +61,13 @@
 		<div class="step" class:visible={$entered} {id}>
 			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
+			{#if hasOverlay.includes(id)}
+				<img
+					src={`assets/img/panels/${panelBg}2.png`}
+					class="full-panel overlay"
+					class:visible={$currentPanel === i}
+				/>
+			{/if}
 
 			<!-- survey -->
 			{#if id === "survey-basic"}
@@ -116,6 +123,15 @@
 	.full-panel {
 		height: 100%;
 		max-width: none;
+	}
+	.overlay {
+		position: absolute;
+		top: 0;
+		opacity: 0;
+		transition: opacity 2.5s 1s;
+	}
+	.overlay.visible {
+		opacity: 1;
 	}
 	img.simple-wheel {
 		position: absolute;

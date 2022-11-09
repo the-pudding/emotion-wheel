@@ -100,6 +100,7 @@
 		.everything {
 			font-size: 24px;
 			overflow-x: hidden;
+			height: 100vh;
 		}
 		.world {
 			overflow-x: visible;

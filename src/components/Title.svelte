@@ -18,7 +18,7 @@
 		.clamp(true);
 
 	const enter = () => {
-		scrolled = 400;
+		scrolled = scrollMax;
 	};
 </script>
 
@@ -38,9 +38,9 @@
 				<div>{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 				<div class="scroll">Scroll to continue -></div>
-				<a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a>
+				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->
 
-				<button on:click={enter}>enter</button>
+				<!-- <button on:click={enter}>enter (mobile only)</button> -->
 			</div>
 		{/if}
 	</div>
