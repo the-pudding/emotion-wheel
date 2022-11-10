@@ -54,7 +54,11 @@
 
 <Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
 	{#each visibleSteps as { id, text }, i}
-		{@const panelBg = noBg.includes(id) ? "ground" : id}
+		{@const panelBg = noBg.includes(id)
+			? "ground"
+			: id === "survey-basic"
+			? `${id}-${surveyNeeded === "survey-basic" ? "pre" : "post"}`
+			: id}
 		<div class="step" class:visible={$entered} {id}>
 			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
