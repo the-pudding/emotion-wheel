@@ -99,7 +99,7 @@
 
 		<div class="color-picker">
 			<ColorPicker bind:color />
-			<button on:click={clear}>clear</button>
+			<button class="skip" on:click={clear}>clear</button>
 		</div>
 	</div>
 </div>
@@ -125,6 +125,9 @@
 	}
 	.word {
 		font-weight: bold;
+	}
+	button.skip {
+		margin-top: 1em;
 	}
 	:global(span#body-word) {
 		font-weight: bold;
