@@ -6,6 +6,8 @@
 	import { words, colors } from "$stores/misc.js";
 	import _ from "lodash";
 
+	export let text;
+
 	let canvas;
 	let ctx;
 	let painting = false;
@@ -52,20 +54,24 @@
 	};
 
 	onMount(() => {
+		document.querySelector("span#body-word").innerHTML = word;
 		ctx = canvas.getContext("2d");
 	});
 </script>
 
 <div class="container">
 	<div class="words">
-		<p>
+		{#each text as t}
+			<p>{@html t}</p>
+		{/each}
+		<!-- <p>
 			How does <span class="word">{word}</span> show up in your body?
 		</p>
 		<p>
 			Take a breath– scan from the top of your head down through your chest,
 			down into your toes. Make a mark on the diagram on the right based on what
 			you notice.
-		</p>
+		</p> -->
 	</div>
 
 	<div class="interactive">
@@ -119,6 +125,10 @@
 	}
 	.word {
 		font-weight: bold;
+	}
+	:global(span#body-word) {
+		font-weight: bold;
+		text-decoration: underline;
 	}
 	.canvas {
 		position: relative;

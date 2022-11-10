@@ -68,13 +68,13 @@
 
 			<!-- survey -->
 			{#if id === "survey-basic"}
-				<Basic />
+				<Basic {text} />
 			{:else if id === "survey-words"}
-				<Words />
+				<Words {text} />
 			{:else if id === "survey-color"}
-				<Color />
+				<Color {text} />
 			{:else if id === "survey-body"}
-				<Body />
+				<Body {text} />
 			{:else if id === "gallery"}
 				<Gallery />
 			{:else}

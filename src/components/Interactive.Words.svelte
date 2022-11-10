@@ -3,8 +3,10 @@
 	import { basicFeeling, words, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
-	import { onDestroy } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import slices from "$svg/grey-wheel-slices.svg";
+
+	export let text;
 
 	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
@@ -24,6 +26,10 @@
 		$words = ["ok"];
 	};
 
+	onMount(() => {
+		document.querySelector("span#basic-word").innerHTML = $basicFeeling;
+	});
+
 	onDestroy(() => {
 		sound.unload();
 	});
@@ -31,12 +37,9 @@
 
 <div class="words">
 	{#if editing}
-		<div>
-			Here, you try... what do you mean by <span class="basic-feeling"
-				>{$basicFeeling}</span
-			>?
-		</div>
-		<div>You can choose up to 3.</div>
+		{#each text as t}
+			<div>{@html t}</div>
+		{/each}
 
 		<ClickableWheel
 			{slices}
@@ -65,7 +68,11 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.basic-feeling {
+	.words div:nth-child(2) {
+		font-size: 16px;
+		margin: 0.5em 0;
+	}
+	:global(span#basic-word) {
 		font-weight: bold;
 		text-decoration: underline;
 	}

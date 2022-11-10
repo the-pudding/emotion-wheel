@@ -2,7 +2,7 @@
 	import { words, colors, worldBg, soundOn } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
 	import { Howl } from "howler";
-	import { onDestroy } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import _ from "lodash";
 	import variables from "$data/variables.json";

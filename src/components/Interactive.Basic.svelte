@@ -4,6 +4,8 @@
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 
+	export let text;
+
 	const options = ["ok", "good", "busy"];
 
 	$: if (!$soundOn) sound.mute(true);
@@ -29,7 +31,9 @@
 </script>
 
 <div class="words">
-	<p>Hi, how are you doing?</p>
+	{#each text as t}
+		<p>{@html t}</p>
+	{/each}
 	<div class="options">
 		{#each options as d}
 			{@const selected = d === $basicFeeling}
