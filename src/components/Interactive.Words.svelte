@@ -4,9 +4,19 @@
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy, onMount } from "svelte";
-	import slices from "$svg/grey-wheel-slices.svg";
+	import okSlices from "$svg/ok-slices.svg";
+	import goodSlices from "$svg/good-slices.svg";
+	import notGreatSlices from "$svg/not-great-slices.svg";
+	import busySlices from "$svg/busy-slices.svg";
 
 	export let text;
+
+	const slices = {
+		ok: okSlices,
+		good: goodSlices,
+		"not great": notGreatSlices,
+		busy: busySlices
+	};
 
 	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
@@ -41,13 +51,17 @@
 			<div>{@html t}</div>
 		{/each}
 
-		<ClickableWheel
-			{slices}
-			imgSrc={`assets/img/grey_wheel.png`}
-			wheelId="grey-wheel"
-			bind:selected={$words}
-			limit={3}
-		/>
+		{#key $basicFeeling}
+			<ClickableWheel
+				slices={slices[$basicFeeling]}
+				imgSrc={`assets/img/simple-interactive-wheels/${_.kebabCase(
+					$basicFeeling
+				)}.png`}
+				wheelId={`${_.kebabCase($basicFeeling)}-grey`}
+				bind:selected={$words}
+				limit={3}
+			/>
+		{/key}
 
 		<div class="buttons">
 			<button class="skip" on:click={skip}>skip</button>

@@ -1,12 +1,12 @@
 <script>
-	import { basicFeeling, soundOn } from "$stores/misc.js";
+	import { basicFeeling, words, colors, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 
 	export let text;
 
-	const options = ["ok", "good", "busy"];
+	const options = ["ok", "good", "not great", "busy"];
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -19,6 +19,8 @@
 		sound.play();
 		const response = e.target.id;
 		$basicFeeling = response;
+		$words = [];
+		$colors = [];
 	};
 
 	const skip = () => {
