@@ -19,6 +19,10 @@
 		$basicFeeling = response;
 	};
 
+	const skip = () => {
+		$basicFeeling = "ok";
+	};
+
 	onDestroy(() => {
 		sound.unload();
 	});
@@ -26,27 +30,26 @@
 
 <div class="words">
 	<p>Hi, how are you doing?</p>
-	{#each options as d}
-		{@const selected = d === $basicFeeling}
-		<button on:click={submit} id={d} class:selected>{d}</button>
-	{/each}
+	<div class="options">
+		{#each options as d}
+			{@const selected = d === $basicFeeling}
+			<button on:click={submit} id={d} class="option" class:selected>{d}</button
+			>
+		{/each}
+	</div>
+	<button class="skip" on:click={skip}>skip</button>
 </div>
 
 <style>
-	/* .container {
-		position: absolute;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		height: 100%;
-	} */
 	.words {
 		position: absolute;
 		left: 50%;
 		transform: translate(-50%, 0);
 	}
-	button {
+	.options {
+		margin-bottom: 1em;
+	}
+	button.option {
 		background: none;
 		font-size: 1.6em;
 		padding: 0;

@@ -100,3 +100,14 @@ button {
 a:hover {
 	color: var(--color-gray-700);
 }
+
+button.skip {
+	background: var(--color-gray-200);
+	font-size: var(--16px);
+	border-radius: 0;
+	color: var(--color-gray-700);
+}
+button.confirm {
+	background: #aa9f9f;
+	border-radius: 0;
+}

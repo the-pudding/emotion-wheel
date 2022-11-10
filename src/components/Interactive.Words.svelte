@@ -20,6 +20,10 @@
 		editing = true;
 	};
 
+	const skip = () => {
+		$words = ["ok"];
+	};
+
 	onDestroy(() => {
 		sound.unload();
 	});
@@ -27,9 +31,12 @@
 
 <div class="words">
 	{#if editing}
-		<p>Here, you try...</p>
-		<p>What do you mean by <strong>{$basicFeeling}</strong>?</p>
-		<p>You can choose up to 3.</p>
+		<div>
+			Here, you try... what do you mean by <span class="basic-feeling"
+				>{$basicFeeling}</span
+			>?
+		</div>
+		<div>You can choose up to 3.</div>
 
 		<ClickableWheel
 			{slices}
@@ -38,7 +45,11 @@
 			bind:selected={$words}
 			limit={3}
 		/>
-		<button on:click={confirm}>Confirm</button>
+
+		<div class="buttons">
+			<button class="skip" on:click={skip}>skip</button>
+			<button class="confirm" on:click={confirm}>Confirm</button>
+		</div>
 	{:else}
 		<p>Nice work!</p>
 		<button on:click={edit}>Edit my words</button>
@@ -53,36 +64,21 @@
 		width: 20%;
 		display: flex;
 		flex-direction: column;
+	}
+	.basic-feeling {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	.buttons {
+		display: flex;
+		justify-content: center;
 		align-items: center;
 	}
-
-	button.continue {
-		display: block;
-	}
-	.emotions {
-		z-index: 1;
-	}
-	.emotions p {
-		margin: 0;
-	}
-	.emotions p:hover {
-		cursor: pointer;
-		font-size: 1.6em;
-		text-decoration: underline;
-	}
-	.emotions p.selected {
-		font-size: 1.6em;
-		text-decoration: underline;
+	button.skip {
+		position: absolute;
+		left: 0;
 	}
 
-	.wheel {
-		position: relative;
-		max-width: 800px;
-		margin: 0 auto;
-	}
-	img {
-		width: 100%;
-	}
 	:global(svg#grey-wheel) {
 		position: absolute;
 		top: 0;

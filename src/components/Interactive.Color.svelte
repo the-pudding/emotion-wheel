@@ -5,13 +5,13 @@
 	import { onDestroy } from "svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import _ from "lodash";
+	import variables from "$data/variables.json";
 
 	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
-	const initialColor = "#b5bbbb";
+	const initialColor = variables.color["grey-balloon"];
 	let color = initialColor;
 	let i = 0;
 	let editing = true;
-	let data;
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
@@ -51,6 +51,10 @@
 		$worldBg = color;
 	};
 
+	const skip = () => {
+		$colors = [initialColor];
+	};
+
 	onDestroy(() => {
 		sound.unload();
 	});
@@ -64,7 +68,10 @@
 		</p>
 		<ColorPicker bind:color />
 
-		<button on:click={confirm}>That's it</button>
+		<div class="buttons">
+			<button class="skip" on:click={skip}>skip</button>
+			<button class="confirm" on:click={confirm}>That's it</button>
+		</div>
 	{:else}
 		<p>Nice work!</p>
 		<button on:click={edit}>Edit my colors</button>
@@ -80,11 +87,16 @@
 		flex-direction: column;
 		align-items: center;
 	}
-
-	button {
-		display: block;
+	.buttons {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		z-index: 1;
 		margin-top: 1em;
+	}
+	button.skip {
+		position: absolute;
+		left: 0;
 	}
 	.word {
 		font-size: 1.6em;

@@ -20,12 +20,14 @@
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { fade } from "svelte/transition";
 	import scrollX from "$stores/scrollX.js";
+	import _ from "lodash";
 
 	let svg;
 	const r = $isMobile ? 12 : 20;
 	const fx = $isMobile ? 65 : 98;
 	const fy = $isMobile ? 350 : 278;
 	const stringLength = $isMobile ? 75 : 150;
+	const formatLabel = (str) => _.startCase(str).toLowerCase();
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -178,7 +180,7 @@
 				/>
 
 				{#if label !== ""}
-					<text class="label" transition:fade>{label}</text>
+					<text class="label" transition:fade>{formatLabel(label)}</text>
 				{/if}
 			</g>
 		{/each}
