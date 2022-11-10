@@ -6,7 +6,6 @@
 	import { onDestroy } from "svelte";
 	import slices from "$svg/grey-wheel-slices.svg";
 
-	let data;
 	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
@@ -92,6 +91,9 @@
 	}
 	:global(#grey-wheel #slices path) {
 		opacity: 0;
+	}
+	:global(#grey-wheel #slices path):hover {
+		cursor: pointer;
 	}
 	:global(#grey-wheel #slices path.highlighted) {
 		opacity: 0.4;

@@ -16,3 +16,9 @@
 <div>
 	<hex-color-picker {color} on:color-changed={colorChange} />
 </div>
+
+<style>
+	hex-color-picker:hover {
+		cursor: pointer !important;
+	}
+</style>
