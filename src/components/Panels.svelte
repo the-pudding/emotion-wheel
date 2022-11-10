@@ -42,15 +42,12 @@
 		"survey-color",
 		"survey-body",
 		"try-wheel",
-		"granularity",
 		"color",
 		"body",
-		"fascinating",
 		"brene",
 		"final-wheel",
-		"visual-language",
-		"gallery",
-		"closing"
+		"gallery-intro",
+		"gallery"
 	];
 	const hasOverlay = ["core", "body-color"];
 </script>
@@ -93,7 +90,15 @@
 			{:else if id === "color"}
 				<RollingWheel img={"simple_wheel_color.png"} {i} />
 			{:else if id === "body"}
-				<img class="body-diagram" src={`assets/img/blank_body.png`} />
+				<img
+					class="body-diagram visible"
+					src={`assets/img/blank_body_cloud.png`}
+				/>
+				<img
+					class="body-diagram"
+					class:visible={$currentPanel === i}
+					src={`assets/img/abby_body_drawing.png`}
+				/>
 			{:else if id === "final-wheel"}
 				<RollingWheel img={"final_wheel.png"} {i} />
 			{/if}
@@ -144,5 +149,11 @@
 		position: absolute;
 		height: 50vh;
 		left: 40%;
+		opacity: 0;
+		transition: opacity 2s;
+		transition-delay: 2s;
+	}
+	.body-diagram.visible {
+		opacity: 1;
 	}
 </style>

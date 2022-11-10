@@ -1,6 +1,5 @@
 <script>
 	import Card from "$components/Gallery.Card.svelte";
-	import Modal from "$components/Gallery.Modal.svelte";
 	import { selectedGalleryImage } from "$stores/misc.js";
 </script>
 
@@ -16,8 +15,6 @@
 		<Card img="the_things_color.png" title="Life audit" />
 	</div>
 </div>
-
-<Modal />
 
 <style>
 	.container {

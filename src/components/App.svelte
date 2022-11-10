@@ -6,6 +6,7 @@
 	import Panels from "$components/Panels.svelte";
 	import Character from "$components/Character.svelte";
 	import Footer from "$components/Footer.svelte";
+	import Modal from "$components/Gallery.Modal.svelte";
 	import {
 		entered,
 		basicFeeling,
@@ -66,6 +67,8 @@
 			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 			<Panels />
 		</div>
+
+		<Modal />
 
 		{#if showFooter}
 			<Footer />
