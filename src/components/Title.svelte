@@ -35,6 +35,8 @@
 					<img class="logo" src="assets/img/logo_full.png" />
 				</a>
 
+				<button on:click={enter}>enter (mobile only)</button>
+
 				<h1>{@html copy.title}</h1>
 				<div>{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
@@ -47,7 +49,6 @@
 				<div class="audio">This story contains audio.</div>
 
 				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->
-				<!-- <button on:click={enter}>enter (mobile only)</button> -->
 			</div>
 		{/if}
 	</div>

@@ -22,6 +22,7 @@
 	let scrolled = 0;
 	const scrollMax = 400;
 	let innerHeight;
+	let outerHeight; // test
 
 	$: $entered = scrolled >= scrollMax;
 	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
@@ -57,11 +58,16 @@
 {:else}
 	<div
 		class="everything"
+		class:entered={$entered}
 		bind:this={containerEl}
 		on:mousewheel|preventDefault={onMouseWheel}
 		style={`--height: ${innerHeight}px; --backgroundColor: ${$worldBg}; background-image: url(${bgImage})`}
 	>
 		<Title bind:scrolled {scrollMax} />
+
+		<div style={`position: fixed; top: 10vh; left: 0; z-index: 1000`}>
+			{innerHeight}, {outerHeight}
+		</div>
 
 		<div class="world">
 			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
@@ -75,18 +81,21 @@
 		{/if}
 	</div>
 {/if}
-<svelte:window bind:innerHeight />
+<svelte:window bind:innerHeight bind:outerHeight />
 
 <style>
 	.everything {
 		position: relative;
-		overflow-x: scroll;
+		overflow-x: hidden;
 		display: flex;
 		align-items: flex-end;
 		height: var(--height);
 		transition: background-color 1s;
 		background-color: var(--backgroundColor);
 		font-size: 14px;
+	}
+	.everything.entered {
+		overflow-x: scroll;
 	}
 
 	.world {

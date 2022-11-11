@@ -142,7 +142,7 @@
 <svg
 	id="character-balloon-area"
 	width={$visibleWidth}
-	height={400}
+	height={200}
 	bind:this={svg}
 	class:visible={$entered}
 >

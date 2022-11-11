@@ -69,6 +69,14 @@
 				/>
 			{/if}
 
+			<!-- extra ground -->
+			{#if id === "survey-basic"}
+				<img
+					src={`assets/img/panels/ground.png`}
+					class="full-panel extra-ground"
+				/>
+			{/if}
+
 			<!-- survey -->
 			{#if id === "survey-basic"}
 				<Basic {text} />
@@ -125,9 +133,17 @@
 		display: flex;
 		align-items: center;
 		flex-shrink: 0;
-		min-width: 100vw;
 		transition: opacity 1s;
 		opacity: 0;
+		min-width: none;
+	}
+	.step:first-of-type {
+		width: 100vw;
+	}
+	.extra-ground {
+		position: absolute;
+		right: 0;
+		display: block;
 	}
 
 	.full-panel {
@@ -160,5 +176,14 @@
 	}
 	.body-diagram.visible {
 		opacity: 1;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.step {
+			min-width: 100vw;
+		}
+		.extra-ground {
+			display: none;
+		}
 	}
 </style>

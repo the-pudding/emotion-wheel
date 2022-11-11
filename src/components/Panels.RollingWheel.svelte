@@ -21,7 +21,7 @@
 		position: absolute;
 		bottom: 3em;
 		left: 40vw;
-		width: 30%;
+		width: 200px;
 		opacity: 0;
 	}
 
@@ -38,6 +38,12 @@
 		100% {
 			left: 40vw;
 			transform: rotate(360deg);
+		}
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		img {
+			width: 30%;
 		}
 	}
 </style>

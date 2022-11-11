@@ -70,7 +70,7 @@
 		position: absolute;
 		left: 50%;
 		transform: translate(-50%, 0);
-		width: 20%;
+		width: 100px;
 		display: flex;
 		flex-direction: column;
 	}
@@ -106,5 +106,11 @@
 	}
 	:global(#grey-wheel #slices path.highlighted) {
 		opacity: 0.4;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.words {
+			width: 20%;
+		}
 	}
 </style>
