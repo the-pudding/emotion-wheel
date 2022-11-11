@@ -1,40 +1,4 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="content-security-policy" content="">
-		<link href="/emotion-wheel/_app/immutable/assets/_layout-e6d59670.css" rel="stylesheet">
-		<link href="/emotion-wheel/_app/immutable/assets/_page-f7ca95eb.css" rel="stylesheet">
-		<link href="/emotion-wheel/_app/immutable/assets/ClickableWheel-941b01e9.css" rel="stylesheet">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/start-cf28794a.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/preload-helper-aa6bc0ce.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/paths-e8110537.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/singletons-ab3b5c08.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/_layout.svelte-17777d6c.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/misc-5919d482.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/_layout-8d2a742b.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/wheel/_page.svelte-20d03462.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/ClickableWheel-9fa48cc8.js">
-</head>
-
-<body>
-	<a href="#content" class="skip-to-main">Skip to main content</a>
-	<div>
-
-
-<header class="svelte-1pnnv6w"><a href="https://pudding.cool" aria-label="The Pudding" target="_blank"><img src="/emotion-wheel/assets/img/logo_small.png" class="svelte-1pnnv6w"></a>
-</header>
-<main id="content"><div class="container svelte-12hs9pv"><a href="../" class="svelte-12hs9pv">Back to the story</a>
-	<h1 class="svelte-12hs9pv">Hi, how are you feeling?</h1>
-	<a class="download svelte-12hs9pv" download="" alt="download your emotion wheel"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download svelte-drta2n" style="width: 1em; height: 1em; transform: rotate(0deg);"><g><!-- HTML_TAG_START --><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line><!-- HTML_TAG_END --></g></svg></a>
-
-	<div class="wheel svelte-159rlrw"><img src="/emotion-wheel/assets/wheel/wheel.png" alt="watercolor illustrated emotion wheel by abby" class="svelte-159rlrw">
-
-	<!-- HTML_TAG_START --><svg id="the-wheel" viewBox="0 0 1150 1121" fill="none" xmlns="http://www.w3.org/2000/svg">
+import{S,i as W,s as j,k,q as A,a as g,v as w,l as M,m as Z,r as B,h as o,c as v,w as $,n as p,b as D,F as h,x as _,G as q,f as y,t as H,y as x,H as O,I as F,o as G,X as P}from"../../../chunks/paths-e8110537.js";import{I as X,C as z,h as J,k as K,s as C}from"../../../chunks/ClickableWheel-9fa48cc8.js";import{s as N}from"../../../chunks/misc-5919d482.js";const Q=`<svg id="the-wheel" viewBox="0 0 1150 1121" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="slices">
 <path id="seen" d="M385 134.5L339 157.5L424 299.5L453 284L385 134.5Z" fill="black"/>
 <path id="grounded" d="M444 114L391.5 133L457 282.5L490.5 270.5L444 114Z" fill="black"/>
@@ -134,31 +98,4 @@
 <path id="tense" d="M661.5 675L651 681L739 828L770 807.5L661.5 675Z" fill="black"/>
 </g>
 </svg>
-<!-- HTML_TAG_END -->
-</div>
-</div></main>
-
-
-		<script type="module" data-sveltekit-hydrate="i7ixm7">
-			import { start } from "/emotion-wheel/_app/immutable/start-cf28794a.js";
-
-			start({
-				env: {},
-				hydrate: {
-					status: 200,
-					error: null,
-					node_ids: [0, 3],
-					params: {},
-					routeId: "wheel",
-					data: (function(a){return [a,a]}(null)),
-					form: null
-				},
-				paths: {"base":"/emotion-wheel","assets":"/emotion-wheel"},
-				target: document.querySelector('[data-sveltekit-hydrate="i7ixm7"]').parentNode,
-				trailing_slash: "always"
-			});
-		</script>
-	</div>
-</body>
-
-</html>
+`;function R(c){let l,L,a,e,i,r,u,s,n,m,f,b;return n=new X({props:{name:"download"}}),f=new z({props:{slices:Q,imgSrc:"assets/wheel/wheel.png",wheelId:"the-wheel"}}),{c(){l=k("div"),L=k("a"),a=A("Back to the story"),e=g(),i=k("h1"),r=A("Hi, how are you feeling?"),u=g(),s=k("a"),w(n.$$.fragment),m=g(),w(f.$$.fragment),this.h()},l(t){l=M(t,"DIV",{class:!0});var d=Z(l);L=M(d,"A",{href:!0,class:!0});var I=Z(L);a=B(I,"Back to the story"),I.forEach(o),e=v(d),i=M(d,"H1",{class:!0});var V=Z(i);r=B(V,"Hi, how are you feeling?"),V.forEach(o),u=v(d),s=M(d,"A",{class:!0,download:!0,alt:!0});var E=Z(s);$(n.$$.fragment,E),E.forEach(o),m=v(d),$(f.$$.fragment,d),d.forEach(o),this.h()},h(){p(L,"href","../"),p(L,"class","svelte-12hs9pv"),p(i,"class","svelte-12hs9pv"),p(s,"class","download svelte-12hs9pv"),p(s,"download",""),p(s,"alt","download your emotion wheel"),p(l,"class","container svelte-12hs9pv")},m(t,d){D(t,l,d),h(l,L),h(L,a),h(l,e),h(l,i),h(i,r),h(l,u),h(l,s),_(n,s,null),h(l,m),_(f,l,null),b=!0},p:q,i(t){b||(y(n.$$.fragment,t),y(f.$$.fragment,t),b=!0)},o(t){H(n.$$.fragment,t),H(f.$$.fragment,t),b=!1},d(t){t&&o(l),x(n),x(f)}}}function T(c,l,L){let a;O(c,N,i=>L(0,a=i));const e=new J.Howl({src:[`${F}/assets/wheel/select.wav`]});return G(()=>{K("#the-wheel #slices path").on("click",i=>{e.play();let r=C(`#the-wheel #slices path#${i.target.id}`).node().classList.contains("highlighted");C(`#the-wheel #slices path#${i.target.id}`).classed("highlighted",!r)})}),P(()=>{e.unload()}),c.$$.update=()=>{c.$$.dirty&1&&(a||e.mute(!0)),c.$$.dirty&1&&a&&e.mute(!1)},[a]}class U extends S{constructor(l){super(),W(this,l,T,R,j,{})}}function Y(c){let l,L;return l=new U({}),{c(){w(l.$$.fragment)},l(a){$(l.$$.fragment,a)},m(a,e){_(l,a,e),L=!0},p:q,i(a){L||(y(l.$$.fragment,a),L=!0)},o(a){H(l.$$.fragment,a),L=!1},d(a){x(l,a)}}}class i5 extends S{constructor(l){super(),W(this,l,null,Y,j,{})}}export{i5 as default};
