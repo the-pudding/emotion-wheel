@@ -5,6 +5,7 @@
 	import { entered } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
 	import Icon from "$components/helpers/Icon.svelte";
+	import mq from "$stores/mq.js";
 
 	export let scrolled;
 	export let scrollMax;
@@ -35,7 +36,9 @@
 					<img class="logo" src="assets/img/logo_full.png" />
 				</a>
 
-				<button on:click={enter}>enter (mobile only)</button>
+				{#if !$mq.desktop}
+					<button on:click={enter}>enter</button>
+				{/if}
 
 				<h1>{@html copy.title}</h1>
 				<div>{@html copy.description}</div>

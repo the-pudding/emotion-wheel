@@ -13,20 +13,22 @@
 		words,
 		basicFeeling,
 		entered,
-		visibleWidth,
-		isMobile
+		visibleWidth
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { fade } from "svelte/transition";
 	import scrollX from "$stores/scrollX.js";
 	import _ from "lodash";
+	import mq from "$stores/mq.js";
 
 	let svg;
-	const r = $isMobile ? 12 : 20;
-	const fx = $isMobile ? 65 : 98;
-	const fy = $isMobile ? 350 : 278;
-	const stringLength = $isMobile ? 75 : 150;
+	const r = $mq.desktop ? 20 : 12;
+	const fx = $mq.desktop ? 98 : 65;
+	const fy = $mq.desktop ? 278 : 350;
+	const stringLength = $mq.desktop ? 150 : 75;
+
+	$: console.log({ r, fx, fy });
 	const formatLabel = (str) => _.startCase(str).toLowerCase();
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;

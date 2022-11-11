@@ -22,7 +22,6 @@
 	let scrolled = 0;
 	const scrollMax = 400;
 	let innerHeight;
-	let outerHeight; // test
 
 	$: $entered = scrolled >= scrollMax;
 	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
@@ -65,10 +64,6 @@
 	>
 		<Title bind:scrolled {scrollMax} />
 
-		<div style={`position: fixed; top: 10vh; left: 0; z-index: 1000`}>
-			{innerHeight}, {outerHeight}
-		</div>
-
 		<div class="world">
 			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
 			<Panels />
@@ -81,7 +76,7 @@
 		{/if}
 	</div>
 {/if}
-<svelte:window bind:innerHeight bind:outerHeight />
+<svelte:window bind:innerHeight />
 
 <style>
 	.everything {
@@ -92,6 +87,8 @@
 		height: var(--height);
 		transition: background-color 1s;
 		background-color: var(--backgroundColor);
+		background-position-x: center;
+		background-position-y: center;
 		font-size: 14px;
 	}
 	.everything.entered {
