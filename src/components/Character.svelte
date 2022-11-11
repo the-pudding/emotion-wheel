@@ -124,9 +124,20 @@
 				.distance((d) => stringLength)
 		)
 		.on("tick", ticked);
+
+	const testFly = () => {
+		// 	const source = nodes.find((d) => d.name === "source");
+		// 	source.fy = 0;
+		// 	simulation.velocityDecay(0).restart();
+	};
 </script>
 
-<img class="character" class:visible={$entered} src={`assets/img/wagon.png`} />
+<img
+	class="character"
+	class:visible={$entered}
+	src={`assets/img/wagon.png`}
+	on:click={testFly}
+/>
 
 <svg
 	id="character-balloon-area"
