@@ -18,6 +18,7 @@
 	$: textColor = determineFontColor($worldBg);
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
+	$: disabled = $colors.length > 0;
 
 	const onColorChange = () => {
 		if (color !== initialColor) $worldBg = color;
@@ -53,6 +54,8 @@
 
 	const skip = () => {
 		$colors = [initialColor];
+		editing = false;
+		initialize();
 	};
 
 	onDestroy(() => {
@@ -69,7 +72,7 @@
 		<ColorPicker bind:color />
 
 		<div class="buttons">
-			<button class="skip" on:click={skip}>skip</button>
+			<button class="skip" on:click={skip} {disabled}>skip</button>
 			<button class="confirm" on:click={confirm}>That's it</button>
 		</div>
 	{:else}

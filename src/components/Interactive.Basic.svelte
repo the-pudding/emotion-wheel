@@ -10,6 +10,7 @@
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
+	$: disabled = $basicFeeling;
 
 	const sound = new Howl({
 		src: ["assets/sound/after-basic.wav"]
@@ -43,7 +44,7 @@
 			>
 		{/each}
 	</div>
-	<button class="skip" on:click={skip}>skip</button>
+	<button class="skip" on:click={skip} {disabled}>skip</button>
 </div>
 
 <style>

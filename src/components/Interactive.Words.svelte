@@ -18,26 +18,24 @@
 		busy: busySlices
 	};
 
-	let editing = true;
 	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
-
-	const confirm = () => {
-		editing = false;
-	};
-
-	const edit = () => {
-		editing = true;
-	};
+	$: disabled = $words.length > 0;
+	$: $basicFeeling, updateBasicFeeling();
 
 	const skip = () => {
-		$words = ["ok"];
+		$words = [$basicFeeling];
+	};
+
+	const updateBasicFeeling = () => {
+		const span = document.querySelector("span#basic-word");
+		if (span) span.innerHTML = $basicFeeling;
 	};
 
 	onMount(() => {
-		document.querySelector("span#basic-word").innerHTML = $basicFeeling;
+		updateBasicFeeling();
 	});
 
 	onDestroy(() => {
@@ -46,31 +44,25 @@
 </script>
 
 <div class="words">
-	{#if editing}
-		{#each text as t}
-			<div>{@html t}</div>
-		{/each}
+	{#each text as t}
+		<div>{@html t}</div>
+	{/each}
 
-		{#key $basicFeeling}
-			<ClickableWheel
-				slices={slices[$basicFeeling]}
-				imgSrc={`assets/img/simple-interactive-wheels/${_.kebabCase(
-					$basicFeeling
-				)}.png`}
-				wheelId={`${_.kebabCase($basicFeeling)}-grey`}
-				bind:selected={$words}
-				limit={3}
-			/>
-		{/key}
+	{#key $basicFeeling}
+		<ClickableWheel
+			slices={slices[$basicFeeling]}
+			imgSrc={`assets/img/simple-interactive-wheels/${_.kebabCase(
+				$basicFeeling
+			)}.png`}
+			wheelId={`${_.kebabCase($basicFeeling)}-grey`}
+			bind:selected={$words}
+			limit={3}
+		/>
+	{/key}
 
-		<div class="buttons">
-			<button class="skip" on:click={skip}>skip</button>
-			<button class="confirm" on:click={confirm}>Confirm</button>
-		</div>
-	{:else}
-		<p>Nice work!</p>
-		<button on:click={edit}>Edit my words</button>
-	{/if}
+	<div class="buttons">
+		<button class="skip" on:click={skip} {disabled}>skip</button>
+	</div>
 </div>
 
 <style>
