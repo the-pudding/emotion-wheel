@@ -5,6 +5,7 @@
 	import Color from "$components/Interactive.Color.svelte";
 	import Body from "$components/Interactive.Body.svelte";
 	import Gallery from "$components/Gallery.svelte";
+	import Resources from "$components/Resources.svelte";
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
 	import Text from "$components/Panels.Text.svelte";
 	import {
@@ -16,6 +17,8 @@
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
+
+	$: console.log({ copy });
 
 	let scrollyEl;
 
@@ -47,7 +50,8 @@
 		"brene",
 		"final-wheel",
 		"gallery-intro",
-		"gallery"
+		"gallery",
+		"resources"
 	];
 	const hasOverlay = ["core", "body-color"];
 </script>
@@ -81,7 +85,9 @@
 				<Body {text} />
 			{:else if id === "gallery"}
 				<Gallery />
-			{:else}
+			{:else if id === "resources"}
+				<Resources {text} />
+			{:else if text && text.length}
 				<!-- or just words -->
 				<Text {i} {text} />
 			{/if}
