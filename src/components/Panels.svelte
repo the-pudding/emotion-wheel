@@ -18,8 +18,6 @@
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
 
-	$: console.log({ copy });
-
 	let scrollyEl;
 
 	$: surveyNeeded = !$basicFeeling
@@ -41,9 +39,6 @@
 	};
 
 	const noBg = [
-		"survey-words",
-		"survey-color",
-		"survey-body",
 		"try-wheel",
 		"color",
 		"body",
@@ -60,8 +55,8 @@
 	{#each visibleSteps as { id, text }, i}
 		{@const panelBg = noBg.includes(id)
 			? "ground"
-			: id === "survey-basic"
-			? `${id}-${surveyNeeded === "survey-basic" ? "pre" : "post"}`
+			: id.includes("survey")
+			? `${"survey-basic"}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
 		<div class="step" class:visible={$entered} {id}>
 			<!-- background -->
