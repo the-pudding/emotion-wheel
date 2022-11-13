@@ -1,5 +1,5 @@
 <script>
-	import { basicFeeling, words, colors, soundOn } from "$stores/misc.js";
+	import { basicFeeling, words, colors, needs, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
@@ -16,12 +16,13 @@
 		src: ["assets/sound/after-basic.wav"]
 	});
 
-	const submit = async (e) => {
+	const select = async (e) => {
 		sound.play();
 		const response = e.target.id;
 		$basicFeeling = response;
 		$words = [];
 		$colors = [];
+		$needs = [];
 	};
 
 	const skip = () => {
@@ -40,7 +41,7 @@
 	<div class="options">
 		{#each options as d}
 			{@const selected = d === $basicFeeling}
-			<button on:click={submit} id={d} class="option" class:selected>{d}</button
+			<button on:click={select} id={d} class="option" class:selected>{d}</button
 			>
 		{/each}
 	</div>

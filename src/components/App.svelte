@@ -12,6 +12,7 @@
 		basicFeeling,
 		words,
 		colors,
+		needs,
 		selectedGalleryImage,
 		worldBg,
 		soundOn
@@ -24,7 +25,11 @@
 	let innerHeight;
 
 	$: $entered = scrolled >= scrollMax;
-	$: showFooter = $basicFeeling && $words.length > 0 && $colors.length > 0;
+	$: showFooter =
+		$basicFeeling &&
+		$words.length > 0 &&
+		$colors.length > 0 &&
+		$needs.length > 0;
 	$: bgImage = `${base}/assets/img/bg.png`;
 
 	const onMouseWheel = (e) => {
@@ -39,6 +44,14 @@
 				scrolled += e.deltaY;
 		} else {
 			containerEl.scrollLeft += e.deltaY;
+		}
+	};
+
+	const keyDown = (e) => {
+		if (e.keyCode === 40) {
+			containerEl.scrollLeft += 70;
+		} else if (e.keyCode === 38) {
+			containerEl.scrollLeft -= 70;
 		}
 	};
 
@@ -76,7 +89,7 @@
 		{/if}
 	</div>
 {/if}
-<svelte:window bind:innerHeight />
+<svelte:window bind:innerHeight on:keydown={keyDown} />
 
 <style>
 	.everything {

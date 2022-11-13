@@ -27,8 +27,8 @@
 	const fx = $mq.desktop ? 98 : 65;
 	const fy = $mq.desktop ? 278 : 350;
 	const stringLength = $mq.desktop ? 150 : 75;
+	const svgHeight = $mq.desktop ? 400 : 200;
 
-	$: console.log({ r, fx, fy });
 	const formatLabel = (str) => _.startCase(str).toLowerCase();
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
@@ -144,7 +144,7 @@
 <svg
 	id="character-balloon-area"
 	width={$visibleWidth}
-	height={200}
+	height={svgHeight}
 	bind:this={svg}
 	class:visible={$entered}
 >

@@ -4,6 +4,7 @@
 	import Words from "$components/Interactive.Words.svelte";
 	import Color from "$components/Interactive.Color.svelte";
 	import Body from "$components/Interactive.Body.svelte";
+	import Needs from "$components/Interactive.Needs.svelte";
 	import Gallery from "$components/Gallery.svelte";
 	import Resources from "$components/Resources.svelte";
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
@@ -12,6 +13,7 @@
 		basicFeeling,
 		colors,
 		words,
+		needs,
 		currentPanel,
 		entered
 	} from "$stores/misc.js";
@@ -26,6 +28,8 @@
 		? "survey-words"
 		: $colors.length <= 0
 		? "survey-color"
+		: $needs.length <= 0
+		? "survey-needs"
 		: null;
 	$: stopIndex = !surveyNeeded
 		? copy.steps.length
@@ -86,6 +90,8 @@
 				<Color {text} />
 			{:else if id === "survey-body"}
 				<Body {text} />
+			{:else if id === "survey-needs"}
+				<Needs {text} />
 			{:else if id === "gallery"}
 				<Gallery />
 			{:else if id === "resources"}
@@ -179,11 +185,5 @@
 	}
 
 	@media (hover: hover) and (pointer: fine) {
-		.step {
-			min-width: 100vw;
-		}
-		.extra-ground {
-			display: none;
-		}
 	}
 </style>
