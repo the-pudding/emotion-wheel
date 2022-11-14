@@ -1,28 +1,29 @@
 <script>
 	import { selectedGalleryImage } from "$stores/misc.js";
 
-	export let img;
+	export let id;
 	export let title;
 
 	let hovering = false;
 
 	const onClick = () => {
-		$selectedGalleryImage = img;
+		$selectedGalleryImage = id;
 	};
 </script>
 
-<div
+<button
 	class="card"
+	{id}
 	on:mouseenter={() => (hovering = true)}
 	on:mouseleave={() => (hovering = false)}
 	on:click={onClick}
 >
-	<img src={`assets/img/gallery/${img}`} class:faded={hovering} />
+	<img src={`assets/img/gallery/${id}.png`} class:faded={hovering} />
 
 	{#if hovering}
 		<div class="title">{title}</div>
 	{/if}
-</div>
+</button>
 
 <style>
 	.card {
@@ -30,15 +31,15 @@
 		align-items: center;
 		justify-content: center;
 		display: flex;
+		background: none;
+		padding: 0;
+		margin: 0;
 	}
 	img {
 		transition: opacity 500ms;
 	}
 	img.faded {
 		opacity: 0.3;
-	}
-	.card:hover {
-		cursor: pointer;
 	}
 	.title {
 		position: absolute;

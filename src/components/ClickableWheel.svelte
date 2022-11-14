@@ -14,28 +14,40 @@
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 
-	const sound = new Howl({ src: [`${base}/assets/wheel/select.wav`] });
+	const sound = new Howl({ src: [`${base}/assets/activities/select.wav`] });
+
+	const onClick = (e) => {
+		let current = select(`#${wheelId} #slices path#${e.target.id}`)
+			.node()
+			.classList.contains("highlighted");
+
+		if (selected.length < limit || current) {
+			sound.play();
+
+			select(`#${wheelId} #slices path#${e.target.id}`).classed(
+				"highlighted",
+				!current
+			);
+			if (!current) {
+				selected = [...selected, e.target.id];
+			} else {
+				selected = selected.filter((d) => d !== e.target.id);
+			}
+		}
+	};
 
 	onMount(() => {
-		selectAll(`#${wheelId} #slices path`).on("click", (e) => {
-			let current = select(`#${wheelId} #slices path#${e.target.id}`)
-				.node()
-				.classList.contains("highlighted");
+		let allSlices = selectAll(`#${wheelId} #slices path`);
 
-			if (selected.length < limit || current) {
-				sound.play();
-
-				select(`#${wheelId} #slices path#${e.target.id}`).classed(
-					"highlighted",
-					!current
-				);
-				if (!current) {
-					selected = [...selected, e.target.id];
-				} else {
-					selected = selected.filter((d) => d !== e.target.id);
-				}
+		allSlices.attr("tabindex", "0");
+		allSlices.on("keydown", (e) => {
+			// space or enter
+			if (e.keyCode === 13 || e.keyCode === 32) {
+				onClick(e);
 			}
 		});
+
+		allSlices.on("click", onClick);
 
 		selected.forEach((id) => {
 			select(`#${wheelId} #slices path#${id}`).classed("highlighted", true);

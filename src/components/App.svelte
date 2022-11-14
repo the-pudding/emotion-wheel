@@ -48,10 +48,20 @@
 	};
 
 	const keyDown = (e) => {
-		if (e.keyCode === 40) {
-			containerEl.scrollLeft += 70;
-		} else if (e.keyCode === 38) {
-			containerEl.scrollLeft -= 70;
+		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
+		if ($selectedGalleryImage) return;
+
+		// up / down arrows
+		if (e.keyCode === 40 || e.keyCode === 38) {
+			const delta = e.keyCode === 40 ? 70 : -70;
+
+			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
+			if (!$entered || leaving) {
+				if ((delta > 0 && scrolled < scrollMax) || (delta < 0 && scrolled >= 0))
+					scrolled += delta;
+			} else {
+				containerEl.scrollLeft += delta;
+			}
 		}
 	};
 

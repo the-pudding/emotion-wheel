@@ -2,20 +2,60 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import ZoomableImage from "$components/ZoomableImage.svelte";
 	import { selectedGalleryImage } from "$stores/misc.js";
+	import { onMount } from "svelte";
 
 	let modal;
+
+	$: visible = $selectedGalleryImage;
+	$: if (visible && modal) modal.focus();
+
+	let numFocusableElements;
+	let firstFocusableElement;
+	let lastFocusableElement;
+
+	const trapFocus = (e) => {
+		if (!$selectedGalleryImage) return;
+
+		const tabPressed = e.key === "Tab" || e.keyCode === 9;
+		if (!tabPressed) return;
+
+		if (e.shiftKey) {
+			if (document.activeElement === firstFocusableElement) {
+				lastFocusableElement.focus();
+				e.preventDefault();
+			}
+		} else {
+			if (document.activeElement === lastFocusableElement) {
+				firstFocusableElement.focus();
+				e.preventDefault();
+			}
+		}
+	};
+
 	const close = () => {
+		document.querySelector(`button.card#${$selectedGalleryImage}`).focus();
 		$selectedGalleryImage = undefined;
 	};
+
+	onMount(() => {
+		numFocusableElements = modal.querySelectorAll("button").length;
+		firstFocusableElement = modal.querySelectorAll("button")[0];
+		lastFocusableElement =
+			modal.querySelectorAll("button")[numFocusableElements - 1];
+	});
 </script>
 
-<div class="modal" bind:this={modal} class:visible={$selectedGalleryImage}>
+<div
+	class="modal"
+	bind:this={modal}
+	tabindex="-1"
+	class:visible
+	on:keydown={trapFocus}
+>
 	<ZoomableImage
-		src={$selectedGalleryImage
-			? `assets/img/gallery/${$selectedGalleryImage}`
-			: ""}
+		src={visible ? `assets/img/gallery/${$selectedGalleryImage}.png` : ""}
 	/>
-	<div class="close" on:click={close}><Icon name="x" /></div>
+	<button class="close" on:click={close}><Icon name="x" /></button>
 </div>
 
 <style>
@@ -53,6 +93,7 @@
 		position: absolute;
 		top: 16px;
 		right: 16px;
+		padding-bottom: 0;
 		font-size: 24px;
 	}
 	.close:hover {

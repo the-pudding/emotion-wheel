@@ -5,14 +5,14 @@
 
 <div class="container" class:faded={$selectedGalleryImage}>
 	<div class="row">
-		<Card img="george_floyd_6.png" title="George Floyd protests" />
-		<Card img="dress.png" title="Dress" />
-		<Card img="suit.png" title="Suit" />
-		<Card img="family.png" title="Family" />
+		<Card id="george_floyd_6" title="George Floyd protests" />
+		<Card id="dress" title="Dress" />
+		<Card id="suit" title="Suit" />
+		<Card id="family" title="Family" />
 	</div>
 	<div class="row">
-		<Card img="pronouns.png" title="Pronouns" />
-		<Card img="the_things_color.png" title="Life audit" />
+		<Card id="pronouns" title="Pronouns" />
+		<Card id="the_things_color" title="Life audit" />
 	</div>
 </div>
 
