@@ -2,6 +2,8 @@
 	import copy from "$data/copy.json";
 
 	const steps = copy.steps.filter((d) => d.text);
+
+	$: console.log({ copy });
 </script>
 
 <div class="wrapper">
@@ -11,7 +13,16 @@
 
 	{#each steps as step}
 		{#each step.text as p}
-			<p>{@html p}</p>
+			{#if step.id === "resources"}
+				<h3>{@html p.title}</h3>
+				<ul>
+					{#each p.bullets as bullet}
+						<li>{@html bullet}</li>
+					{/each}
+				</ul>
+			{:else}
+				<p>{@html p}</p>
+			{/if}
 		{/each}
 	{/each}
 </div>

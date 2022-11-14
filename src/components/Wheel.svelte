@@ -40,17 +40,12 @@
 
 	<ClickableWheel
 		{slices}
-		imgSrc={`assets/wheel/wheel.png`}
+		imgSrc={`../assets/activities/wheel.png`}
 		wheelId="the-wheel"
 	/>
 </div>
 
 <style>
-	:global(body),
-	a {
-		background: rgb(2, 11, 41);
-		color: white;
-	}
 	.container {
 		display: flex;
 		flex-direction: column;
