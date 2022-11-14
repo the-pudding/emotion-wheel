@@ -3,12 +3,14 @@
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
-	import { words, colors } from "$stores/misc.js";
+	import { words, colors, bodyDrawing } from "$stores/misc.js";
 	import _ from "lodash";
+	import { toPng } from "html-to-image";
 
 	export let text;
 
 	let canvas;
+	let canvasWrapper;
 	let ctx;
 	let painting = false;
 	let mouseX;
@@ -53,6 +55,13 @@
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 	};
 
+	const screenshot = async () => {
+		let png = await toPng(canvasWrapper);
+		let img = new Image();
+		img.src = png;
+		$bodyDrawing = img;
+	};
+
 	onMount(() => {
 		document.querySelector("span#body-word").innerHTML = word;
 		ctx = canvas.getContext("2d");
@@ -64,18 +73,10 @@
 		{#each text as t}
 			<p>{@html t}</p>
 		{/each}
-		<!-- <p>
-			How does <span class="word">{word}</span> show up in your body?
-		</p>
-		<p>
-			Take a breath– scan from the top of your head down through your chest,
-			down into your toes. Make a mark on the diagram on the right based on what
-			you notice.
-		</p> -->
 	</div>
 
 	<div class="interactive">
-		<div class="canvas">
+		<div class="canvas" bind:this={canvasWrapper}>
 			<canvas
 				bind:this={canvas}
 				height={canvasHeight}
@@ -100,6 +101,7 @@
 		<div class="color-picker">
 			<ColorPicker bind:color />
 			<button class="skip" on:click={clear}>clear</button>
+			<button class="confirm" on:click={screenshot}>that's it</button>
 		</div>
 	</div>
 </div>

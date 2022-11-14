@@ -8,11 +8,13 @@
 	import Gallery from "$components/Gallery.svelte";
 	import Resources from "$components/Resources.svelte";
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
+	import Summary from "$components/Summary.svelte";
 	import Text from "$components/Panels.Text.svelte";
 	import {
 		basicFeeling,
 		colors,
 		words,
+		bodyDrawing,
 		needs,
 		currentPanel,
 		entered
@@ -28,6 +30,8 @@
 		? "survey-words"
 		: $colors.length <= 0
 		? "survey-color"
+		: !$bodyDrawing
+		? "survey-body"
 		: $needs.length <= 0
 		? "survey-needs"
 		: null;
@@ -48,7 +52,7 @@
 		"body",
 		"brene",
 		"final-wheel",
-		"gallery-intro",
+		"let-go",
 		"gallery",
 		"resources"
 	];
@@ -81,7 +85,7 @@
 				/>
 			{/if}
 
-			<!-- survey -->
+			<!-- text + content -->
 			{#if id === "survey-basic"}
 				<Basic {text} />
 			{:else if id === "survey-words"}
@@ -92,16 +96,18 @@
 				<Body {text} />
 			{:else if id === "survey-needs"}
 				<Needs {text} />
+			{:else if id === "let-go"}
+				<Summary {text} />
 			{:else if id === "gallery"}
 				<Gallery />
 			{:else if id === "resources"}
 				<Resources {text} />
 			{:else if text && text.length}
-				<!-- or just words -->
+				<!-- just words -->
 				<Text {i} {text} />
 			{/if}
 
-			<!-- extras -->
+			<!-- just content -->
 			{#if id === "try-wheel"}
 				<RollingWheel img={"grey_wheel_blank.png"} {i} />
 			{:else if id === "granularity"}

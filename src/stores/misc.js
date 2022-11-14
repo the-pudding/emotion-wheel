@@ -8,6 +8,7 @@ export const soundOn = writable(true);
 export const basicFeeling = writable(undefined);
 export const words = writable([]);
 export const colors = writable([]);
+export const bodyDrawing = writable(undefined);
 export const needs = writable([]);
 
 export const selectedGalleryImage = writable(undefined);
