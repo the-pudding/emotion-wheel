@@ -23,6 +23,9 @@
 	import { tick } from "svelte";
 
 	let scrollyEl;
+	let stepHeight;
+	const ratio = 1920 / 1080;
+	$: stepWidth = stepHeight * ratio;
 
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
@@ -66,7 +69,13 @@
 			: id.includes("survey") && id !== "survey-needs"
 			? `${"survey-basic"}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
-		<div class="step" class:visible={$entered} {id}>
+		<div
+			class="step"
+			class:visible={$entered}
+			{id}
+			bind:clientHeight={stepHeight}
+			style:width={`${stepWidth}px`}
+		>
 			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
 
@@ -133,36 +142,26 @@
 </Scrolly>
 
 <style>
-	.steps {
-		display: flex;
-		transform: translate(-235px, 0);
-	}
 	.step.visible {
 		opacity: 1;
 	}
 	.step {
 		position: relative;
 		margin: 0;
-		display: flex;
+		/* display: flex;
 		align-items: center;
-		flex-shrink: 0;
+		flex-shrink: 0; */
 		transition: opacity 1s;
 		opacity: 0;
-		/* background: lightblue;
-		border: 4px solid black; */
-	}
-	.step:first-of-type {
-		width: 100vw;
 	}
 	.extra-ground {
 		position: absolute;
 		right: 0;
-		display: block;
+		/* display: block; */
 	}
 
-	.full-panel {
+	img.full-panel {
 		height: 100%;
-		max-width: 100vw;
 	}
 	.overlay {
 		position: absolute;

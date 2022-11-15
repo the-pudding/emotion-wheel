@@ -77,6 +77,9 @@
 		width: 100%;
 		height: 100%;
 	}
+	:global(#needs-checks path):hover {
+		cursor: pointer;
+	}
 	:global(#needs-checks path) {
 		opacity: 0;
 	}

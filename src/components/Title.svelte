@@ -41,7 +41,7 @@
 				{/if}
 
 				<h1>{@html copy.title}</h1>
-				<div>{@html copy.description}</div>
+				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 
 				<div class="scroll">Scroll to begin</div>
@@ -69,6 +69,9 @@
 	.visible {
 		display: block;
 		z-index: 2;
+	}
+	.description {
+		margin: 0 0 1em 0;
 	}
 	.logo {
 		height: 2.3em;
@@ -113,10 +116,9 @@
 		opacity: 0.3;
 	}
 	.scroll {
-		margin-top: 4em;
+		margin-top: 3em;
 		margin-bottom: 10px;
 		font-size: var(--16px);
-		/* font-family: var(--sans); */
 	}
 	.mouse {
 		background: white;
