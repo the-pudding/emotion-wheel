@@ -1,48 +1,92 @@
 <script>
 	import { needs } from "$stores/misc.js";
 	import _ from "lodash";
+	import { base } from "$app/paths";
+	import needsChecks from "$svg/needs-checks.svg";
+	import { onMount } from "svelte";
+	import { select, selectAll } from "d3";
+	import { Howl } from "howler";
+	import { soundOn } from "$stores/misc.js";
 
 	export let text;
 
 	$: disabled = $needs.length > 0;
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
-	const options = ["a hug", "to talk to a friend", "to punch a pillow"];
+	const limit = 5;
+	const sound = new Howl({ src: [`${base}/assets/activities/select.wav`] });
 
 	const skip = () => {
 		$needs = [_.sample(options)];
 	};
 
-	const select = (e) => {
-		const need = e.target.id;
-		if ($needs.includes(need)) {
-			$needs = $needs.filter((d) => d !== need);
-		} else {
-			$needs = [...$needs, need];
+	const onClick = (e) => {
+		let current = select(`#needs-checks path#${e.target.id}`)
+			.node()
+			.classList.contains("highlighted");
+
+		if ($needs.length < limit || current) {
+			sound.play();
+
+			select(`#needs-checks path#${e.target.id}`).classed(
+				"highlighted",
+				!current
+			);
+			if (!current) {
+				$needs = [...$needs, e.target.id];
+			} else {
+				$needs = $needs.filter((d) => d !== e.target.id);
+			}
 		}
 	};
+
+	onMount(() => {
+		let allBoxes = selectAll(`#needs-checks path`);
+
+		allBoxes.attr("tabindex", "0");
+		allBoxes.on("keydown", (e) => {
+			// space or enter
+			if (e.keyCode === 13 || e.keyCode === 32) {
+				onClick(e);
+			}
+		});
+
+		allBoxes.on("click", onClick);
+
+		$needs.forEach((id) => {
+			select(`#needs-checks path#${id}`).classed("highlighted", true);
+		});
+	});
 </script>
+
+{@html needsChecks}
 
 <div class="words">
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
 
-	<div class="options">
-		{#each options as d}
-			{@const selected = $needs.includes(d)}
-			<button on:click={select} id={d} class="option" class:selected>{d}</button
-			>
-		{/each}
-	</div>
-
 	<button class="skip" on:click={skip} {disabled}>skip</button>
 </div>
 
 <style>
+	:global(div#survey-needs svg#needs-checks) {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+	}
+	:global(#needs-checks path) {
+		opacity: 0;
+	}
+	:global(#needs-checks path.highlighted) {
+		opacity: 0.9;
+	}
+
 	.words {
 		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
+		left: 1em;
 	}
 	.options {
 		margin-bottom: 1em;

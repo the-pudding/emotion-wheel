@@ -63,7 +63,7 @@
 	{#each visibleSteps as { id, text }, i}
 		{@const panelBg = noBg.includes(id)
 			? "ground"
-			: id.includes("survey")
+			: id.includes("survey") && id !== "survey-needs"
 			? `${"survey-basic"}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
 		<div class="step" class:visible={$entered} {id}>

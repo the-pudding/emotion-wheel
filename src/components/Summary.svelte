@@ -6,6 +6,24 @@
 
 	export let text;
 
+	const needsKey = {
+		"to-breathe-into-my-belly": "to breathe into my belly",
+		"to-talk-to-someone": "to talk to someone",
+		"to-take-a-deep-breath": "to take a deep breath",
+		"to-ground-in-the-present": "to ground in the present",
+		"to-rest-or-sleep": "to rest or sleep",
+		"to-cry": "to cry",
+		"a-hug-or-a-snuggle": "a hug or a snuggle",
+		"a-snack": "a snack",
+		"to-say-no": 'to say "no"',
+		"to-discharge-energy": "to discharge energy",
+		"to-learn-more": "to learn more",
+		"to-make-something": "to make something",
+		"savor-it": "savor it",
+		"share-it": "share it",
+		smile: "smile"
+	};
+
 	let summaryEl;
 
 	const save = async () => {
@@ -55,7 +73,7 @@
 			<h2>I need:</h2>
 			<ul class="needs">
 				{#each $needs as need}
-					<li>{need}</li>
+					<li>{needsKey[need]}</li>
 				{/each}
 			</ul>
 		</div>
