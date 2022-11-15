@@ -17,7 +17,7 @@
 		z-index: 1;
 	}
 	img {
-		height: 5em;
+		height: 3.5em;
 		margin: 1em 0 0 1em;
 		opacity: 0;
 		transition: opacity 1s;
@@ -44,5 +44,11 @@
 
 	:global(.wordmark svg path) {
 		fill: currentColor;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		img {
+			height: 5em;
+		}
 	}
 </style>

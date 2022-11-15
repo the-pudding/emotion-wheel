@@ -71,8 +71,9 @@
 
 		<div class="section">
 			<h2>I need:</h2>
+
 			<ul class="needs">
-				{#each $needs as need}
+				{#each $needs.filter((d) => d !== "") as need}
 					<li>{needsKey[need]}</li>
 				{/each}
 			</ul>

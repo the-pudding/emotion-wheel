@@ -51,8 +51,8 @@
 <style>
 	.words {
 		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
+		left: 12em;
+		top: 3em;
 	}
 	.options {
 		margin-bottom: 1em;
@@ -69,5 +69,14 @@
 	button:hover,
 	button.selected {
 		text-decoration: underline;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.words {
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			max-width: none;
+		}
 	}
 </style>

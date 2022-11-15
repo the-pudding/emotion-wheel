@@ -19,7 +19,7 @@
 <style>
 	img {
 		position: absolute;
-		bottom: 3em;
+		bottom: 1.7em;
 		left: 40vw;
 		width: 200px;
 		opacity: 0;
@@ -44,6 +44,7 @@
 	@media (hover: hover) and (pointer: fine) {
 		img {
 			width: 30%;
+			bottom: 3em;
 		}
 	}
 </style>

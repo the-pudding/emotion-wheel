@@ -18,7 +18,7 @@
 	const sound = new Howl({ src: [`${base}/assets/activities/select.wav`] });
 
 	const skip = () => {
-		$needs = [_.sample(options)];
+		$needs = [""];
 	};
 
 	const onClick = (e) => {

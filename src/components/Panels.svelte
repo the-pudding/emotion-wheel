@@ -69,6 +69,7 @@
 		<div class="step" class:visible={$entered} {id}>
 			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
+
 			{#if hasOverlay.includes(id)}
 				<img
 					src={`assets/img/panels/${panelBg}2.png`}
@@ -78,12 +79,12 @@
 			{/if}
 
 			<!-- extra ground -->
-			{#if id === "survey-basic"}
+			<!-- {#if id === "survey-basic"}
 				<img
 					src={`assets/img/panels/ground.png`}
 					class="full-panel extra-ground"
 				/>
-			{/if}
+			{/if} -->
 
 			<!-- text + content -->
 			{#if id === "survey-basic"}
@@ -147,7 +148,8 @@
 		flex-shrink: 0;
 		transition: opacity 1s;
 		opacity: 0;
-		min-width: none;
+		/* background: lightblue;
+		border: 4px solid black; */
 	}
 	.step:first-of-type {
 		width: 100vw;
@@ -160,7 +162,7 @@
 
 	.full-panel {
 		height: 100%;
-		max-width: none;
+		max-width: 100vw;
 	}
 	.overlay {
 		position: absolute;
@@ -173,15 +175,15 @@
 	}
 	img.simple-wheel {
 		position: absolute;
-		bottom: 3em;
-		left: 40vw;
-		width: 30%;
+		bottom: 1.7em;
+		left: 35vw;
+		width: 210px;
 	}
 
 	img.body-diagram {
 		position: absolute;
-		height: 50vh;
-		left: 40%;
+		left: 20em;
+		height: 200px;
 		opacity: 0;
 		transition: opacity 2s;
 		transition-delay: 2s;
@@ -191,5 +193,14 @@
 	}
 
 	@media (hover: hover) and (pointer: fine) {
+		img.simple-wheel {
+			bottom: 3em;
+			left: 40vw;
+			width: 480px;
+		}
+		img.body-diagram {
+			height: 50vh;
+			left: 40%;
+		}
 	}
 </style>

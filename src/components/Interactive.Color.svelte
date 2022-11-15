@@ -84,8 +84,7 @@
 <style>
 	.words {
 		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
+		left: 1em;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -107,5 +106,20 @@
 	}
 	.text {
 		transition: color 500ms;
+	}
+	:global(hex-color-picker) {
+		height: 150px;
+		width: 150px;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.words {
+			left: 50%;
+			transform: translate(-50%, 0);
+		}
+		:global(hex-color-picker) {
+			height: 200px;
+			width: 200px;
+		}
 	}
 </style>

@@ -68,8 +68,7 @@
 <style>
 	.words {
 		position: absolute;
-		left: 50%;
-		transform: translate(-50%, 0);
+		left: 1em;
 		width: 100px;
 		display: flex;
 		flex-direction: column;
@@ -111,6 +110,8 @@
 	@media (hover: hover) and (pointer: fine) {
 		.words {
 			width: 20%;
+			left: 50%;
+			transform: translate(-50%, 0);
 		}
 	}
 </style>

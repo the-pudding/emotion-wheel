@@ -213,7 +213,7 @@
 		height: 75px;
 		position: fixed;
 		left: 4em;
-		top: 77%; /*TODO*/
+		top: 70%;
 	}
 	.character {
 		z-index: 1;
@@ -239,6 +239,7 @@
 	@media (hover: hover) and (pointer: fine) {
 		.character {
 			height: 150px;
+			top: 77%;
 			position: sticky;
 		}
 	}
