@@ -53,7 +53,9 @@
 	style:background-color={$worldBg}
 	style:background-image={`url(${bgImage}`}
 >
-	<Title />
+	{#if innerHeight}
+		<Title />
+	{/if}
 
 	<div class="world">
 		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />

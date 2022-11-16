@@ -19,6 +19,7 @@
 	let innerHeight;
 	let isLandscape;
 
+	$: loading = !innerHeight;
 	$: askToRotate = innerHeight && !isLandscape && !$mq.desktop;
 	$: $stepWidth = innerHeight * ratio;
 	$: $entered = $scrolled >= $scrollMax;
@@ -68,11 +69,10 @@
 	<Plain />
 {:else if askToRotate}
 	<Rotate />
-{:else if innerHeight}
-	<Story {innerHeight} />
-{:else}
-	<div>loading</div>
 {/if}
+<!-- TODO: loading -->
+
+<Story {innerHeight} />
 
 <svelte:window bind:innerHeight on:keydown={keyDown} />
 

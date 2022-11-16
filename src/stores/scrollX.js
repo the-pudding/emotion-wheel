@@ -11,7 +11,7 @@ export default readable(0, (set) => {
 	};
 
 	const onScroll = () => {
-		lastScrollX = document.querySelector("div.everything").scrollLeft;
+		lastScrollX = document.querySelector("div.story").scrollLeft;
 		if (!ticking) {
 			requestAnimationFrame(updateScrollX);
 			ticking = true;
@@ -19,7 +19,7 @@ export default readable(0, (set) => {
 	};
 
 	if (browser) {
-		const container = document.querySelector("div.everything");
+		const container = document.querySelector("div.story");
 		if (container) {
 			container.addEventListener("scroll", onScroll);
 		}
@@ -27,7 +27,7 @@ export default readable(0, (set) => {
 
 	return () => {
 		if (browser) {
-			const container = document.querySelector("div.everything");
+			const container = document.querySelector("div.story");
 			if (container) {
 				container.removeEventListener("scroll", onScroll);
 			}
