@@ -12,7 +12,6 @@
 	 * <Scrolly root={null} top={0} bottom={0} increments={100}>
 	 */
 	import { onMount } from "svelte";
-	import { visibleWidth } from "$stores/misc.js";
 
 	export let root;
 	export let top = 0;
@@ -82,7 +81,7 @@
 	});
 </script>
 
-<div id="panel-steps" bind:this={container} bind:clientWidth={$visibleWidth}>
+<div id="panel-steps" bind:this={container}>
 	<slot />
 </div>
 
@@ -90,11 +89,5 @@
 	div {
 		display: flex;
 		transform: none;
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		div {
-			transform: translate(-235px, 0);
-		}
 	}
 </style>

@@ -68,7 +68,7 @@
 	});
 </script>
 
-<div class="container">
+<div class="body">
 	<div class="words">
 		{#each text as t}
 			<p>{@html t}</p>
@@ -107,21 +107,19 @@
 </div>
 
 <style>
-	.container {
+	.body {
 		position: absolute;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		width: 100%;
-		height: 100%;
+		width: 70%;
+		top: 40%;
+		transform: translate(0, -50%);
 	}
-	.words {
-		width: 20%;
-		margin-left: 10%;
-	}
+
 	.interactive {
 		display: flex;
-		width: 70%;
+		flex-shrink: 0;
 		position: relative;
 		align-items: center;
 	}

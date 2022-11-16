@@ -13,4 +13,6 @@ export const needs = writable([]);
 
 export const selectedGalleryImage = writable(undefined);
 export const worldBg = writable("#b5bbbb");
+
 export const visibleWidth = writable(0);
+export const stepWidth = writable(0);

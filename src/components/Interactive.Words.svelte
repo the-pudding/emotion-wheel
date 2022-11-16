@@ -68,14 +68,20 @@
 <style>
 	.words {
 		position: absolute;
-		left: 1em;
-		width: 100px;
+		left: 15%;
+		top: 40%;
+		transform: translate(0, -50%);
+		width: 30%;
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 	}
 	.words div:nth-child(2) {
 		font-size: 16px;
 		margin: 0.5em 0;
+	}
+	.words div {
+		text-align: center;
 	}
 	:global(span#basic-word) {
 		font-weight: bold;
@@ -105,13 +111,5 @@
 	}
 	:global(#grey-wheel #slices path.highlighted) {
 		opacity: 0.4;
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		.words {
-			width: 20%;
-			left: 50%;
-			transform: translate(-50%, 0);
-		}
 	}
 </style>

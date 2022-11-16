@@ -3,34 +3,45 @@
 
 	export let i;
 	export let text;
+	export let id;
 </script>
 
-<div class="words" class:visible={i === $currentPanel}>
+<div
+	class="text"
+	class:fascinating={id === "fascinating"}
+	class:visible={i === $currentPanel}
+>
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
 </div>
 
 <style>
-	.words {
+	.text {
 		position: absolute;
-		top: 20%;
-		left: 1em;
-		max-width: 230px;
+		max-width: 450px;
+		left: 5%;
+		top: 40%;
+		transform: translate(0, -50%);
 		opacity: 0;
 		transition: transform 1s, opacity 1s;
 	}
 	.visible {
 		opacity: 1;
-		transform: translateX(0);
+	}
+	.fascinating {
+		top: 40%;
+		left: 40%;
+		transform: translate(-50%, -50%);
+		font-size: var(--48px);
 	}
 
-	@media (hover: hover) and (pointer: fine) {
-		.words {
-			top: 24%;
-			left: 5%;
-			max-width: 500px;
-			transform: translateX(100px);
+	@media (max-height: 600px) {
+		.text {
+			max-width: 250px;
+		}
+		.fascinating {
+			font-size: var(--32px);
 		}
 	}
 </style>

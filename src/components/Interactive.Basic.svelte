@@ -34,7 +34,7 @@
 	});
 </script>
 
-<div class="words">
+<div class="basic">
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
@@ -49,10 +49,11 @@
 </div>
 
 <style>
-	.words {
+	.basic {
 		position: absolute;
-		left: 12em;
-		top: 3em;
+		top: 40%;
+		left: 30%;
+		transform: translate(0, -50%);
 	}
 	.options {
 		margin-bottom: 1em;
@@ -71,12 +72,9 @@
 		text-decoration: underline;
 	}
 
-	@media (hover: hover) and (pointer: fine) {
-		.words {
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-			max-width: none;
+	@media (max-height: 600px) {
+		.basic {
+			max-width: 400px;
 		}
 	}
 </style>

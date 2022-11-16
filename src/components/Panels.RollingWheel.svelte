@@ -1,6 +1,9 @@
 <script>
 	import { currentPanel } from "$stores/misc.js";
 	import inView from "$actions/inView.js";
+	import mq from "$stores/mq.js";
+
+	export let animation = true;
 
 	export let i;
 	export let img;
@@ -9,7 +12,8 @@
 </script>
 
 <img
-	class:roll-in={$currentPanel === i || onScreen}
+	class:roll-in={$mq.desktop && animation && ($currentPanel === i || onScreen)}
+	class:visible={!$mq.desktop || !animation}
 	src={`assets/img/${img}`}
 	use:inView
 	on:enter={() => (onScreen = true)}
@@ -19,10 +23,13 @@
 <style>
 	img {
 		position: absolute;
-		bottom: 1.7em;
-		left: 40vw;
-		width: 200px;
+		left: 40%;
+		width: 400px;
+		bottom: 8%;
 		opacity: 0;
+	}
+	.visible {
+		opacity: 1;
 	}
 
 	img.roll-in {
@@ -36,15 +43,14 @@
 			transform: rotate(0deg);
 		}
 		100% {
-			left: 40vw;
+			left: 40%;
 			transform: rotate(360deg);
 		}
 	}
 
-	@media (hover: hover) and (pointer: fine) {
+	@media (max-height: 600px) {
 		img {
-			width: 30%;
-			bottom: 3em;
+			width: 200px;
 		}
 	}
 </style>

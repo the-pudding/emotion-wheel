@@ -62,7 +62,7 @@
 
 {@html needsChecks}
 
-<div class="words">
+<div class="needs">
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
@@ -87,9 +87,12 @@
 		opacity: 0.9;
 	}
 
-	.words {
+	.needs {
 		position: absolute;
-		left: 1em;
+		left: 5%;
+		top: 40%;
+		transform: translate(0, -50%);
+		max-width: 450px;
 	}
 	.options {
 		margin-bottom: 1em;
@@ -106,5 +109,11 @@
 	button:hover,
 	button.selected {
 		text-decoration: underline;
+	}
+
+	@media (max-height: 600px) {
+		.needs {
+			max-width: 250px;
+		}
 	}
 </style>

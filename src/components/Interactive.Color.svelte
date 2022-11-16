@@ -63,7 +63,7 @@
 	});
 </script>
 
-<div class="words">
+<div class="colors">
 	{#if editing}
 		<p class="text" style:color={textColor}>
 			You're feeling <strong class="word">{currentWord}</strong> - what color is
@@ -82,9 +82,12 @@
 </div>
 
 <style>
-	.words {
+	.colors {
 		position: absolute;
-		left: 1em;
+		top: 40%;
+		left: 15%;
+		transform: translate(0, -50%);
+		width: 30%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -106,20 +109,24 @@
 	}
 	.text {
 		transition: color 500ms;
+		text-align: center;
 	}
 	:global(hex-color-picker) {
-		height: 150px;
-		width: 150px;
+		height: 200px;
+		width: 200px;
 	}
 
-	@media (hover: hover) and (pointer: fine) {
-		.words {
-			left: 50%;
-			transform: translate(-50%, 0);
+	@media (max-height: 600px) {
+		.buttons {
+			width: 100%;
+			justify-content: space-between;
+		}
+		button.skip {
+			position: static;
 		}
 		:global(hex-color-picker) {
-			height: 200px;
-			width: 200px;
+			height: 150px;
+			width: 150px;
 		}
 	}
 </style>

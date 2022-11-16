@@ -23,11 +23,12 @@
 	import mq from "$stores/mq.js";
 
 	let svg;
-	const r = $mq.desktop ? 20 : 12;
-	const fx = $mq.desktop ? 98 : 65;
-	const fy = $mq.desktop ? 278 : 350;
-	const stringLength = $mq.desktop ? 150 : 75;
-	const svgHeight = $mq.desktop ? 400 : 200;
+	const r = $mq.sm ? 12 : 20;
+	const fx = $mq.sm ? 57 : 98;
+	const fy = $mq.sm ? 146 : 278;
+	const stringLength = $mq.sm ? 100 : 150;
+	$: svgHeight = $mq.sm ? 200 : 400;
+	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 
 	const formatLabel = (str) => _.startCase(str).toLowerCase();
 
@@ -143,7 +144,7 @@
 
 <svg
 	id="character-balloon-area"
-	width={$visibleWidth}
+	width={svgWidth}
 	height={svgHeight}
 	bind:this={svg}
 	class:visible={$entered}
@@ -210,10 +211,10 @@
 		opacity: 1;
 	}
 	.character {
-		height: 75px;
+		height: 150px;
 		position: fixed;
 		left: 4em;
-		top: 70%;
+		bottom: 8%;
 	}
 	.character {
 		z-index: 1;
@@ -236,11 +237,10 @@
 	:global(ellipse.balloon) {
 		opacity: 0.9;
 	}
-	@media (hover: hover) and (pointer: fine) {
+
+	@media (max-height: 600px) {
 		.character {
-			height: 150px;
-			top: 77%;
-			position: sticky;
+			height: 75px;
 		}
 	}
 </style>

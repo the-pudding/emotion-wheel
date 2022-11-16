@@ -7,7 +7,7 @@
 <div class="resources" bind:this={containerEl}>
 	{#each text as { title, bullets }}
 		<div class="section">
-			<h2>{@html title}</h2>
+			<h3>{@html title}</h3>
 			<ul>
 				{#each bullets as bullet}
 					<li>{@html bullet}</li>
@@ -21,13 +21,31 @@
 	.resources {
 		position: absolute;
 		font-size: var(--16px);
-		width: 500px;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
-		height: 70%;
+		top: 10%;
+		left: 0;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		height: 65%;
+		padding: 0 2em;
 	}
 	.section {
 		margin: 0 0.5em;
+		width: 40%;
+	}
+
+	@media (max-height: 600px) {
+		h3 {
+			font-size: var(--18px);
+		}
+		.resources {
+			font-size: var(--12px);
+			flex-wrap: nowrap;
+		}
+		.section {
+			width: auto;
+		}
 	}
 </style>

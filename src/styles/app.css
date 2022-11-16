@@ -111,3 +111,9 @@ button.confirm {
 	background: #aa9f9f;
 	border-radius: 0;
 }
+
+@media (max-height: 600px) {
+	button.skip {
+		font-size: var(--12px);
+	}
+}

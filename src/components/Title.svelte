@@ -44,11 +44,14 @@
 				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 
-				<div class="scroll">Scroll to begin</div>
+				{#if $mq.desktop}
+					<div class="scroll">Scroll to begin</div>
 
-				<div class="mouse">
-					<span class="icon"><Icon name="arrow-down" /></span>
-				</div>
+					<div class="mouse">
+						<span class="icon"><Icon name="arrow-down" /></span>
+					</div>
+				{/if}
+
 				<div class="audio">This story contains audio.</div>
 
 				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->

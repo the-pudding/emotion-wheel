@@ -1,6 +1,7 @@
 const THRESHOLD = 120;
 
 const determineFontColor = (backgroundColor) => {
+	if (!backgroundColor) return "black";
 	let rgbStr;
 
 	if (backgroundColor.substring(0, 1) === "#") {

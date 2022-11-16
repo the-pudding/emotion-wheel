@@ -7,6 +7,7 @@
 	import Needs from "$components/Interactive.Needs.svelte";
 	import Gallery from "$components/Gallery.svelte";
 	import Resources from "$components/Resources.svelte";
+	import BodyDemo from "$components/Panels.BodyDemo.svelte";
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
 	import Summary from "$components/Summary.svelte";
 	import Text from "$components/Panels.Text.svelte";
@@ -17,15 +18,14 @@
 		bodyDrawing,
 		needs,
 		currentPanel,
-		entered
+		entered,
+		stepWidth,
+		visibleWidth
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
 
 	let scrollyEl;
-	let stepHeight;
-	const ratio = 1920 / 1080;
-	$: stepWidth = stepHeight * ratio;
 
 	$: surveyNeeded = !$basicFeeling
 		? "survey-basic"
@@ -42,6 +42,7 @@
 		? copy.steps.length
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
+	$: $visibleWidth = visibleSteps.length * $stepWidth;
 	$: if (scrollyEl) refreshNodes(visibleSteps);
 
 	const refreshNodes = async () => {
@@ -73,10 +74,8 @@
 			class="step"
 			class:visible={$entered}
 			{id}
-			bind:clientHeight={stepHeight}
-			style:width={`${stepWidth}px`}
+			style:width={`${$stepWidth}px`}
 		>
-			<!-- background -->
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
 
 			{#if hasOverlay.includes(id)}
@@ -87,81 +86,77 @@
 				/>
 			{/if}
 
-			<!-- extra ground -->
-			<!-- {#if id === "survey-basic"}
+			{#if id === "survey-basic"}
 				<img
 					src={`assets/img/panels/ground.png`}
 					class="full-panel extra-ground"
 				/>
-			{/if} -->
-
-			<!-- text + content -->
-			{#if id === "survey-basic"}
-				<Basic {text} />
-			{:else if id === "survey-words"}
-				<Words {text} />
-			{:else if id === "survey-color"}
-				<Color {text} />
-			{:else if id === "survey-body"}
-				<Body {text} />
-			{:else if id === "survey-needs"}
-				<Needs {text} />
-			{:else if id === "let-go"}
-				<Summary {text} />
-			{:else if id === "gallery"}
-				<Gallery />
-			{:else if id === "resources"}
-				<Resources {text} />
-			{:else if text && text.length}
-				<!-- just words -->
-				<Text {i} {text} />
 			{/if}
 
-			<!-- just content -->
-			{#if id === "try-wheel"}
-				<RollingWheel img={"grey_wheel_blank.png"} {i} />
-			{:else if id === "granularity"}
-				<img class="simple-wheel" src={`assets/img/grey_wheel.png`} />
-			{:else if id === "color"}
-				<RollingWheel img={"simple_wheel_color.png"} {i} />
-			{:else if id === "body"}
-				<img
-					class="body-diagram visible"
-					src={`assets/img/blank_body_cloud.png`}
-				/>
-				<img
-					class="body-diagram"
-					class:visible={$currentPanel === i}
-					src={`assets/img/abby_body_drawing.png`}
-				/>
-			{:else if id === "final-wheel"}
-				<RollingWheel img={"final_wheel.png"} {i} />
-			{/if}
+			<div class="content">
+				{#if id === "survey-basic"}
+					<Basic {text} />
+				{:else if id === "survey-words"}
+					<Words {text} />
+				{:else if id === "survey-color"}
+					<Color {text} />
+				{:else if id === "survey-body"}
+					<Body {text} />
+				{:else if id === "survey-needs"}
+					<Needs {text} />
+				{:else if id === "gallery"}
+					<Gallery />
+				{:else if id === "resources"}
+					<Resources {text} />
+				{:else if text && text.length}
+					<Text {i} {text} {id} />
+				{/if}
+
+				{#if id === "try-wheel"}
+					<RollingWheel img={"grey_wheel_blank.png"} {i} />
+				{:else if id === "granularity"}
+					<RollingWheel img={"grey_wheel.png"} {i} animation={false} />
+				{:else if id === "color"}
+					<RollingWheel img={"simple_wheel_color.png"} {i} />
+				{:else if id === "body"}
+					<BodyDemo {i} />
+				{:else if id === "final-wheel"}
+					<RollingWheel img={"final_wheel.png"} {i} />
+				{:else if id === "let-go"}
+					<Summary {text} />
+				{/if}
+			</div>
 		</div>
 	{/each}
 </Scrolly>
 
 <style>
-	.step.visible {
-		opacity: 1;
-	}
 	.step {
 		position: relative;
 		margin: 0;
-		/* display: flex;
-		align-items: center;
-		flex-shrink: 0; */
 		transition: opacity 1s;
 		opacity: 0;
+	}
+	.step.visible {
+		opacity: 1;
+	}
+	.step:first-of-type {
+		min-width: 100vw;
 	}
 	.extra-ground {
 		position: absolute;
 		right: 0;
-		/* display: block; */
+		top: 0;
 	}
-
+	.content {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		top: 0;
+	}
 	img.full-panel {
 		height: 100%;
+		max-width: none;
 	}
 	.overlay {
 		position: absolute;
@@ -171,35 +166,5 @@
 	}
 	.overlay.visible {
 		opacity: 1;
-	}
-	img.simple-wheel {
-		position: absolute;
-		bottom: 1.7em;
-		left: 35vw;
-		width: 210px;
-	}
-
-	img.body-diagram {
-		position: absolute;
-		left: 20em;
-		height: 200px;
-		opacity: 0;
-		transition: opacity 2s;
-		transition-delay: 2s;
-	}
-	.body-diagram.visible {
-		opacity: 1;
-	}
-
-	@media (hover: hover) and (pointer: fine) {
-		img.simple-wheel {
-			bottom: 3em;
-			left: 40vw;
-			width: 480px;
-		}
-		img.body-diagram {
-			height: 50vh;
-			left: 40%;
-		}
 	}
 </style>

@@ -38,20 +38,18 @@
 		let child = document
 			.querySelector("div#body-summary")
 			.appendChild($bodyDrawing);
-		child.setAttribute("style", "height: 300px");
+
+		child.style["max-height"] = "68%";
+		child.style.margin = "0 -5em";
+		// child.style("max-height", "68%");
+		// child.style("margin", "0 -5em");
 	});
 </script>
 
-<div class="container">
-	<div class="text">
-		{#each text as t}
-			<p>{@html t}</p>
-		{/each}
-	</div>
-
-	<div class="summary" bind:this={summaryEl}>
+<div class="summary">
+	<div class="box" bind:this={summaryEl}>
 		<div class="section">
-			<h2>I feel:</h2>
+			<h3>I feel:</h3>
 			<ul class="words">
 				{#each $words as word, i}
 					<li
@@ -66,11 +64,11 @@
 		</div>
 
 		<div class="section" id="body-summary">
-			<h2>I notice:</h2>
+			<h3>I notice:</h3>
 		</div>
 
 		<div class="section">
-			<h2>I need:</h2>
+			<h3>I need:</h3>
 
 			<ul class="needs">
 				{#each $needs.filter((d) => d !== "") as need}
@@ -84,25 +82,18 @@
 </div>
 
 <style>
-	.container {
-		position: absolute;
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-	}
-	.text {
-		width: 20%;
-		margin-left: 10%;
-	}
-
 	.summary {
-		position: relative;
-		margin-left: 4em;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(0, -50%);
+	}
+	.box {
+		max-width: 700px;
 		border: 3px solid var(--color-fg);
 		display: flex;
 		justify-content: space-between;
-		padding-bottom: 1em;
+		position: relative;
 		background-color: var(--color-grey-balloon);
 	}
 	.section {
@@ -111,7 +102,7 @@
 		align-items: center;
 		margin: 0 1.3em;
 	}
-	h2 {
+	h3 {
 		text-decoration: underline;
 	}
 	.word {
@@ -130,5 +121,14 @@
 		position: absolute;
 		right: 0;
 		bottom: 0;
+	}
+
+	@media (max-height: 600px) {
+		h3 {
+			font-size: var(--20px);
+		}
+		.section {
+			margin: 0 1em;
+		}
 	}
 </style>
