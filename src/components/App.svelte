@@ -1,54 +1,27 @@
 <script>
-	import { base } from "$app/paths";
 	import Toggle from "$components/helpers/Toggle.svelte";
 	import Plain from "$components/Plain.svelte";
-	import Title from "$components/Title.svelte";
-	import Panels from "$components/Panels.svelte";
-	import Character from "$components/Character.svelte";
-	import Footer from "$components/Footer.svelte";
-	import Modal from "$components/Gallery.Modal.svelte";
+	import Story from "$components/Story.svelte";
+	import Rotate from "$components/Rotate.svelte";
 	import {
 		entered,
-		basicFeeling,
-		words,
-		colors,
-		needs,
 		selectedGalleryImage,
-		worldBg,
+		scrolled,
+		scrollMax,
 		soundOn,
 		stepWidth
 	} from "$stores/misc.js";
+	import mq from "$stores/mq.js";
+	import { onMount } from "svelte";
 
-	let containerEl;
 	let toggleValue = "off";
-	let scrolled = 0;
-	const scrollMax = 400;
 	const ratio = 1920 / 1080;
 	let innerHeight;
+	let isLandscape;
 
+	$: askToRotate = innerHeight && !isLandscape && !$mq.desktop;
 	$: $stepWidth = innerHeight * ratio;
-	$: $entered = scrolled >= scrollMax;
-	$: showFooter =
-		$basicFeeling &&
-		$words.length > 0 &&
-		$colors.length > 0 &&
-		$needs.length > 0;
-	$: bgImage = `${base}/assets/img/bg.png`;
-
-	const onMouseWheel = (e) => {
-		if ($selectedGalleryImage) return;
-
-		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
-		if (!$entered || leaving) {
-			if (
-				(e.deltaY > 0 && scrolled < scrollMax) ||
-				(e.deltaY < 0 && scrolled >= 0)
-			)
-				scrolled += e.deltaY;
-		} else {
-			containerEl.scrollLeft += e.deltaY;
-		}
-	};
+	$: $entered = $scrolled >= $scrollMax;
 
 	const keyDown = (e) => {
 		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
@@ -60,8 +33,11 @@
 
 			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
 			if (!$entered || leaving) {
-				if ((delta > 0 && scrolled < scrollMax) || (delta < 0 && scrolled >= 0))
-					scrolled += delta;
+				if (
+					(delta > 0 && $scrolled < $scrollMax) ||
+					(delta < 0 && $scrolled >= 0)
+				)
+					$scrolled += delta;
 			} else {
 				containerEl.scrollLeft += delta;
 			}
@@ -71,6 +47,16 @@
 	const mute = () => {
 		$soundOn = !$soundOn;
 	};
+
+	onMount(() => {
+		isLandscape = window.matchMedia("(orientation: landscape)").matches;
+
+		window
+			.matchMedia("(orientation: landscape)")
+			.addEventListener("change", (e) => {
+				isLandscape = e.matches;
+			});
+	});
 </script>
 
 <div class="top-bar">
@@ -80,55 +66,17 @@
 
 {#if toggleValue === "on"}
 	<Plain />
+{:else if askToRotate}
+	<Rotate />
+{:else if innerHeight}
+	<Story {innerHeight} />
 {:else}
-	<div
-		class="everything"
-		class:entered={$entered}
-		bind:this={containerEl}
-		on:mousewheel|preventDefault={onMouseWheel}
-		style={`--height: ${innerHeight}px; --backgroundColor: ${$worldBg}; background-image: url(${bgImage})`}
-	>
-		<Title bind:scrolled {scrollMax} />
-
-		<div class="world">
-			<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
-			<Panels {innerHeight} />
-		</div>
-
-		<Modal />
-
-		{#if showFooter}
-			<Footer />
-		{/if}
-	</div>
+	<div>loading</div>
 {/if}
+
 <svelte:window bind:innerHeight on:keydown={keyDown} />
 
 <style>
-	.everything {
-		position: relative;
-		overflow-y: hidden;
-		overflow-x: hidden;
-		display: flex;
-		align-items: flex-end;
-		height: var(--height);
-		transition: background-color 1s;
-		background-color: var(--backgroundColor);
-		background-position-x: center;
-		background-position-y: center;
-		font-size: 24px;
-	}
-	.everything.entered {
-		overflow-x: scroll;
-	}
-
-	.world {
-		display: flex;
-		height: 100%;
-		overflow-x: visible;
-		flex-shrink: inherit;
-	}
-
 	.top-bar {
 		display: flex;
 		align-items: center;
@@ -152,9 +100,6 @@
 	}
 
 	@media (max-height: 600px) {
-		.everything {
-			font-size: var(--14px);
-		}
 		.top-bar {
 			font-size: var(--12px);
 		}

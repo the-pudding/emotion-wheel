@@ -2,25 +2,22 @@
 	import { base } from "$app/paths";
 	import copy from "$data/copy.json";
 	import { fade } from "svelte/transition";
-	import { entered } from "$stores/misc.js";
+	import { entered, scrolled, scrollMax } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
 	import Icon from "$components/helpers/Icon.svelte";
 	import mq from "$stores/mq.js";
 
-	export let scrolled;
-	export let scrollMax;
-
-	$: zoom = zoomScale(scrolled);
-	$: showText = scrolled < 80;
+	$: zoom = zoomScale($scrolled);
+	$: showText = $scrolled < 80;
 	$: bgImage = `${base}/assets/img/notebook.jpeg`;
 
 	const zoomScale = scaleLinear()
-		.domain([0, scrollMax])
+		.domain([0, $scrollMax])
 		.range([1, 2.5])
 		.clamp(true);
 
 	const enter = () => {
-		scrolled = scrollMax;
+		$scrolled = $scrollMax;
 	};
 </script>
 
@@ -36,10 +33,6 @@
 					<img class="logo" src="assets/img/logo_full.png" />
 				</a>
 
-				{#if !$mq.desktop}
-					<button on:click={enter}>enter</button>
-				{/if}
-
 				<h1>{@html copy.title}</h1>
 				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
@@ -53,6 +46,10 @@
 				{/if}
 
 				<div class="audio">This story contains audio.</div>
+
+				{#if !$mq.desktop}
+					<button class="confirm" on:click={enter}>Begin</button>
+				{/if}
 
 				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->
 			</div>
@@ -143,7 +140,7 @@
 	}
 	.audio {
 		font-size: var(--16px);
-		margin-top: 1em;
+		margin: 1em 0;
 	}
 
 	@keyframes moveArrow {
@@ -160,6 +157,12 @@
 		100% {
 			opacity: 0;
 			top: 70%;
+		}
+	}
+
+	@media (max-height: 600px) {
+		.audio {
+			font-size: var(--12px);
 		}
 	}
 </style>
