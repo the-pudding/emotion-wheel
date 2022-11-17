@@ -22,11 +22,6 @@
 	let containerEl;
 
 	$: bgImage = `${base}/assets/img/bg.png`;
-	$: showFooter =
-		$basicFeeling &&
-		$words.length > 0 &&
-		$colors.length > 0 &&
-		$needs.length > 0;
 
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;
@@ -63,10 +58,6 @@
 	</div>
 
 	<Modal />
-
-	{#if showFooter}
-		<Footer />
-	{/if}
 </div>
 
 <style>

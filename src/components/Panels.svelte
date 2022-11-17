@@ -11,6 +11,7 @@
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
 	import Summary from "$components/Summary.svelte";
 	import Text from "$components/Panels.Text.svelte";
+	import Footer from "$components/Footer.svelte";
 	import {
 		basicFeeling,
 		colors,
@@ -43,6 +44,11 @@
 		: copy.steps.findIndex((d) => d.id === surveyNeeded) + 1;
 	$: visibleSteps = copy.steps.map((d, i) => ({ ...d, i })).slice(0, stopIndex);
 	$: $visibleWidth = visibleSteps.length * $stepWidth;
+	$: showFooter =
+		$basicFeeling &&
+		$words.length > 0 &&
+		$colors.length > 0 &&
+		$needs.length > 0;
 	$: if (scrollyEl) refreshNodes(visibleSteps);
 
 	const refreshNodes = async () => {
@@ -128,6 +134,21 @@
 			</div>
 		</div>
 	{/each}
+
+	{#if showFooter}
+		<div
+			class="step"
+			id="footer"
+			class:visible={$entered}
+			style:width={`${$stepWidth}px`}
+		>
+			<img src={`assets/img/panels/ground.png`} class="full-panel" />
+			<Footer />
+		</div>
+		<div class="step" class:visible={$entered} style:width={`${$stepWidth}px`}>
+			<img src={`assets/img/panels/ground.png`} class="full-panel" />
+		</div>
+	{/if}
 </Scrolly>
 
 <style>

@@ -46,9 +46,9 @@
 	</section>
 
 	<section class="about">
-		<div class="wordmark">
+		<!-- <div class="wordmark">
 			{@html wordmark}
-		</div>
+		</div> -->
 		<p>
 			<a href="https://pudding.cool">The Pudding</a>
 			is a digital publication that explains ideas debated in culture with visual
@@ -72,26 +72,26 @@
 <style>
 	footer {
 		color: var(--color-fg);
-		font-family: var(--sans);
-		padding: 3em 1em;
-		margin-top: 3em;
-		flex-shrink: 0;
-		width: 90vw;
+		margin-top: 6em;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 90%;
 	}
 
 	.stories {
 		margin: 0 auto;
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		max-width: 70em;
+		max-height: 50%;
 	}
 
 	.story {
 		display: block;
-		width: 100%;
+		height: 100%;
 		border: none;
 		margin-bottom: 3rem;
+		margin-right: 0.5em;
+		margin-left: 0.5em;
 	}
 
 	.story a {
@@ -104,6 +104,7 @@
 		display: block;
 		margin-top: 1em;
 		line-height: 1.2;
+		text-align: center;
 	}
 
 	.wordmark {
@@ -139,17 +140,15 @@
 		margin-left: 0.5em;
 	}
 
-	@media only screen and (min-width: 30em) {
-		.story {
-			width: 50%;
-			padding: 0 1em;
+	@media (max-height: 600px) {
+		footer {
+			margin-top: 3em;
 		}
-	}
-
-	@media only screen and (min-width: 50em) {
 		.story {
-			width: 25%;
-			padding: 0 1em;
+			margin-bottom: 1rem;
+		}
+		.about {
+			margin: 1rem auto;
 		}
 	}
 </style>

@@ -70,7 +70,6 @@
 {:else if askToRotate}
 	<Rotate />
 {/if}
-<!-- TODO: loading -->
 
 <Story {innerHeight} />
 
