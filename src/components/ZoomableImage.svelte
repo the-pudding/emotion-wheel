@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 	import loadImage from "$utils/loadImage.js";
 	import viewport from "$stores/viewport.js";
+	import Comment from "$components/Comment.svelte";
 
 	export let src;
 
@@ -62,6 +63,10 @@
 
 <div class="outer" bind:this={outer} bind:clientWidth={zoomableWidth}>
 	<div class="image-wrapper" bind:this={imageWrapper}>
+		{#each [1, 2, 3] as i}
+			<Comment />
+		{/each}
+
 		<img {src} />
 	</div>
 </div>

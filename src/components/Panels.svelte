@@ -111,7 +111,7 @@
 				{:else if id === "survey-needs"}
 					<Needs {text} />
 				{:else if id === "gallery"}
-					<Gallery />
+					<Gallery images={copy.gallery} />
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}

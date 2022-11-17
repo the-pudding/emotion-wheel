@@ -1,19 +1,14 @@
 <script>
 	import Card from "$components/Gallery.Card.svelte";
 	import { selectedGalleryImage } from "$stores/misc.js";
+
+	export let images;
 </script>
 
 <div class="container" class:faded={$selectedGalleryImage}>
-	<div class="row">
-		<Card id="george_floyd_6" title="George Floyd protests" />
-		<Card id="dress" title="Dress" />
-		<Card id="suit" title="Suit" />
-		<Card id="family" title="Family" />
-	</div>
-	<div class="row">
-		<Card id="pronouns" title="Pronouns" />
-		<Card id="the_things_color" title="Life audit" />
-	</div>
+	{#each images as { id, title }}
+		<Card {id} {title} />
+	{/each}
 </div>
 
 <style>
@@ -21,8 +16,9 @@
 		position: absolute;
 		visibility: visible;
 		height: 75vh;
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-rows: 50% 50%;
+		grid-template-columns: auto auto auto;
 	}
 	.container.faded {
 		opacity: 0.3;
