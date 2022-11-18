@@ -7,10 +7,6 @@
 	import { base } from "$app/paths";
 	import {
 		entered,
-		basicFeeling,
-		words,
-		colors,
-		needs,
 		scrolled,
 		selectedGalleryImage,
 		worldBg,

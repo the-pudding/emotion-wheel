@@ -18,7 +18,7 @@
 		height: 75vh;
 		display: grid;
 		grid-template-rows: 50% 50%;
-		grid-template-columns: auto auto auto;
+		grid-template-columns: auto auto auto auto;
 	}
 	.container.faded {
 		opacity: 0.3;

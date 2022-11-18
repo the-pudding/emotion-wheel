@@ -6,6 +6,7 @@
 	import Comment from "$components/Comment.svelte";
 
 	export let src;
+	export let comments;
 
 	let outer;
 	let imageWrapper;
@@ -63,8 +64,8 @@
 
 <div class="outer" bind:this={outer} bind:clientWidth={zoomableWidth}>
 	<div class="image-wrapper" bind:this={imageWrapper}>
-		{#each [1, 2, 3] as i}
-			<Comment />
+		{#each comments as { text, location }}
+			<Comment {text} {location} />
 		{/each}
 
 		<img {src} />

@@ -1,16 +1,19 @@
 <script>
-	let location = [Math.random() * 100, Math.random() * 100];
-	let comment =
-		"This is a thought about this spot in the piece. It's a very good thought and I'm glad you're reading it.";
+	export let text;
+	export let location = "[50, 50]";
+
+	$: cleaned = location
+		.replace("[", "")
+		.replace("]", "")
+		.split(",")
+		.map((d) => +d);
+	$: left = `${cleaned[0]}%`;
+	$: top = `${cleaned[1]}%`;
 </script>
 
-<div
-	class="comment"
-	style:left={`${location[0]}%`}
-	style:top={`${location[1]}%`}
->
+<div class="comment" style:left style:top>
 	<span class="circle">AV</span>
-	<span class="text">{comment}</span>
+	<span class="text">{@html text}</span>
 </div>
 
 <style>
@@ -34,7 +37,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: rgb(150, 197, 173);
+		background: orange;
 		width: 24px;
 		height: 24px;
 		border-radius: 12px;
@@ -48,7 +51,7 @@
 		cursor: pointer;
 		min-width: 200px;
 		height: auto;
-		transform: translate(0, -50%);
+		transform: translate(0, -20%);
 	}
 	.comment:hover span.circle {
 		margin-left: 1em;

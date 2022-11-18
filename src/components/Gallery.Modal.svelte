@@ -3,10 +3,14 @@
 	import ZoomableImage from "$components/ZoomableImage.svelte";
 	import { selectedGalleryImage } from "$stores/misc.js";
 	import { onMount } from "svelte";
+	import copy from "$data/copy.json";
 
 	let modal;
 
 	$: visible = $selectedGalleryImage;
+	$: comments = copy.gallery.filter((d) => d.id === $selectedGalleryImage)[0]
+		? copy.gallery.filter((d) => d.id === $selectedGalleryImage)[0].comments
+		: [];
 	$: if (visible && modal) modal.focus();
 
 	let numFocusableElements;
@@ -54,6 +58,7 @@
 >
 	<ZoomableImage
 		src={visible ? `assets/img/gallery/${$selectedGalleryImage}.png` : ""}
+		{comments}
 	/>
 	<button class="close" on:click={close}><Icon name="x" /></button>
 </div>
