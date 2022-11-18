@@ -27,7 +27,8 @@
     "green": "#34a29e",
     "red": "#ff533d",
     "yellow": "#e5e338",
-    "grey-balloon": "#d8d8d8"
+    "grey-balloon": "#d8d8d8",
+    "sky-blue": "#bed2d4"
   },
   "": {
     "12px": "0.75rem",

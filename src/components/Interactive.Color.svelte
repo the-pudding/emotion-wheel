@@ -30,7 +30,8 @@
 		} else {
 			color = initialColor;
 		}
-		$worldBg = initialColor;
+
+		$worldBg = variables.color["sky-blue"];
 	};
 
 	const confirm = async () => {

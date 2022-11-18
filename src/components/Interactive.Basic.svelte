@@ -6,7 +6,7 @@
 
 	export let text;
 
-	const options = ["ok", "good", "not great", "busy"];
+	const options = ["okay", "good", "not great", "busy"];
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -26,7 +26,7 @@
 	};
 
 	const skip = () => {
-		$basicFeeling = "ok";
+		$basicFeeling = "okay";
 	};
 
 	onDestroy(() => {

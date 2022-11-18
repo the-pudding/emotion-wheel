@@ -4,7 +4,7 @@
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy, onMount } from "svelte";
-	import okSlices from "$svg/ok-slices.svg";
+	import okaySlices from "$svg/okay-slices.svg";
 	import goodSlices from "$svg/good-slices.svg";
 	import notGreatSlices from "$svg/not-great-slices.svg";
 	import busySlices from "$svg/busy-slices.svg";
@@ -12,7 +12,7 @@
 	export let text;
 
 	const slices = {
-		ok: okSlices,
+		okay: okaySlices,
 		good: goodSlices,
 		"not great": notGreatSlices,
 		busy: busySlices

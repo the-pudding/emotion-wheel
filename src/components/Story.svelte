@@ -12,12 +12,15 @@
 		worldBg,
 		scrollMax
 	} from "$stores/misc.js";
+	import variables from "$data/variables.json";
 
 	export let innerHeight;
 
 	let containerEl;
 
-	$: bgImage = `${base}/assets/img/bg.png`;
+	$: bgImage = `${base}/assets/img/bg${
+		$worldBg === variables.color["sky-blue"] ? "-color" : ""
+	}.png`;
 
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;

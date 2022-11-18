@@ -74,7 +74,7 @@
 		{@const panelBg = noBg.includes(id)
 			? "ground"
 			: id.includes("survey") && id !== "survey-needs"
-			? `${"survey-basic"}-${surveyNeeded === id ? "pre" : "post"}`
+			? `${id}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
 		<div
 			class="step"
