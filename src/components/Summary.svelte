@@ -4,8 +4,7 @@
 	import { onMount } from "svelte";
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
-
-	export let text;
+	import Icon from "$components/helpers/Icon.svelte";
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
 
@@ -80,7 +79,7 @@
 			</ul>
 		</div>
 
-		<button class="download" on:click={save}>download</button>
+		<button class="download" on:click={save}><Icon name="download" /></button>
 	</div>
 </div>
 
@@ -90,10 +89,15 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(0, -50%);
+		border-radius: 6px;
 	}
 	.box {
 		max-width: 700px;
-		border: 3px solid var(--color-fg);
+		border: 2px solid var(--color-fg);
+		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
+			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+		background: white;
+		border-radius: 6px;
 		display: flex;
 		justify-content: space-between;
 		position: relative;

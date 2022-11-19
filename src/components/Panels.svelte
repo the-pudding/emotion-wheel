@@ -131,7 +131,7 @@
 				{:else if id === "final-wheel"}
 					<RollingWheel img={"final_wheel.png"} {i} />
 				{:else if id === "let-go"}
-					<Summary {text} />
+					<Summary />
 				{/if}
 			</div>
 		</div>
