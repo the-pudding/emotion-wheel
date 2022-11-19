@@ -58,6 +58,8 @@
 
 	const noBg = [
 		"try-wheel",
+		"granularity",
+		"fascinating",
 		"color",
 		"body",
 		"brene",

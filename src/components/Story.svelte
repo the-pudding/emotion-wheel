@@ -45,7 +45,7 @@
 	on:mousewheel|preventDefault={onMouseWheel}
 	style:height={`${innerHeight}px`}
 	style:background-color={$worldBg}
-	style:background-image={`url(${bgImage}`}
+	style:background-image={`url(${bgImage})`}
 >
 	{#if innerHeight}
 		<Title />
@@ -66,7 +66,7 @@
 		overflow-x: hidden;
 		display: flex;
 		align-items: flex-end;
-		transition: background-color 1s;
+		transition: background-color 2s, background-image 2s;
 		background-position-x: center;
 		background-position-y: center;
 		font-size: 24px;

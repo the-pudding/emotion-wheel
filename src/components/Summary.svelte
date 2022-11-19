@@ -3,8 +3,11 @@
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { onMount } from "svelte";
 	import { toPng } from "html-to-image";
+	import _ from "lodash";
 
 	export let text;
+
+	const formatWord = (str) => _.startCase(str).toLowerCase();
 
 	const needsKey = {
 		"to-breathe-into-my-belly": "to breathe into my belly",
@@ -57,7 +60,7 @@
 						style:color={determineFontColor($colors[i])}
 						class="word"
 					>
-						{word}
+						{formatWord(word)}
 					</li>
 				{/each}
 			</ul>

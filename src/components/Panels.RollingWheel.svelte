@@ -39,10 +39,12 @@
 
 	@keyframes spin {
 		0% {
+			opacity: 0;
 			left: 100%;
 			transform: rotate(0deg);
 		}
 		100% {
+			opacity: 1;
 			left: 40%;
 			transform: rotate(360deg);
 		}

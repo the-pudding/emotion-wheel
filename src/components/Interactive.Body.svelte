@@ -3,9 +3,11 @@
 	import viewport from "$stores/viewport.js";
 	import { onMount } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing } from "$stores/misc.js";
 	import _ from "lodash";
 	import { toPng } from "html-to-image";
+	import variables from "$data/variables.json";
 
 	export let text;
 
@@ -16,8 +18,9 @@
 	let mouseX;
 	let mouseY;
 	let showCursor = false;
-	let word = _.sample($words);
-	let color = _.sample($colors);
+	let i = Math.floor(Math.random() * $words.length);
+	let word = $words[i];
+	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
@@ -62,8 +65,23 @@
 		$bodyDrawing = img;
 	};
 
+	const newWord = (e) => {
+		const w = e.target.id.replace("body-interactive-", "");
+		word = w;
+		let i = $words.findIndex((d) => d === w);
+		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+		updateWord();
+	};
+
+	const updateWord = () => {
+		let wordSpan = document.querySelector("span#body-word");
+		wordSpan.innerHTML = word;
+		wordSpan.style.backgroundColor = color;
+		wordSpan.style.color = determineFontColor(color);
+	};
+
 	onMount(() => {
-		document.querySelector("span#body-word").innerHTML = word;
+		updateWord();
 		ctx = canvas.getContext("2d");
 	});
 </script>
@@ -73,6 +91,23 @@
 		{#each text as t}
 			<p>{@html t}</p>
 		{/each}
+
+		{#if $words.length > 1}
+			<span>Use other colors:</span>
+			{#each $words.filter((d) => d !== word) as w, i}
+				{@const bg = $colors.filter((d) => d !== color)[i]
+					? $colors.filter((d) => d !== color)[i]
+					: variables.color["grey-balloon"]}
+				{@const textColor = determineFontColor(bg)}
+				<button
+					on:click={newWord}
+					class="other-word"
+					id={`body-interactive-${w}`}
+					style:color={textColor}
+					style:background-color={bg}>{w}</button
+				>
+			{/each}
+		{/if}
 	</div>
 
 	<div class="interactive">
@@ -130,8 +165,14 @@
 		margin-top: 1em;
 	}
 	:global(span#body-word) {
-		font-weight: bold;
-		text-decoration: underline;
+		font-size: 1.6em;
+		padding: 4px;
+		border-radius: 10px;
+	}
+	.other-word {
+		padding: 2px;
+		border-radius: 8px;
+		margin-right: 10px;
 	}
 	.canvas {
 		position: relative;

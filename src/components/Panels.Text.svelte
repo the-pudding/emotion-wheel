@@ -22,12 +22,13 @@
 		max-width: 450px;
 		left: 5%;
 		top: 40%;
-		transform: translate(0, -50%);
+		transform: translateX(100px);
 		opacity: 0;
 		transition: transform 1s, opacity 1s;
 	}
 	.visible {
 		opacity: 1;
+		transform: translateX(0);
 	}
 	.fascinating {
 		top: 40%;

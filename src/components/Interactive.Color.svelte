@@ -12,6 +12,7 @@
 	let color = initialColor;
 	let i = 0;
 	let editing = true;
+	const formatWord = (str) => _.startCase(str).toLowerCase();
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
@@ -27,11 +28,11 @@
 	const initialize = () => {
 		if ($colors[i]) {
 			color = $colors[i];
+			$worldBg = variables.color["sky-blue"];
 		} else {
 			color = initialColor;
+			$worldBg = initialColor;
 		}
-
-		$worldBg = variables.color["sky-blue"];
 	};
 
 	const confirm = async () => {
@@ -67,8 +68,8 @@
 <div class="colors">
 	{#if editing}
 		<p class="text" style:color={textColor}>
-			You're feeling <strong class="word">{currentWord}</strong> - what color is
-			it?
+			You're feeling <strong class="word">{formatWord(currentWord)}</strong> - what
+			color is it?
 		</p>
 		<ColorPicker bind:color />
 
