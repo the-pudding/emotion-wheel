@@ -22,14 +22,14 @@
 	};
 
 	const onClick = (e) => {
-		let current = select(`#needs-checks path#${e.target.id}`)
+		let current = select(`#needs-checks path#${e.target.id}-box`)
 			.node()
 			.classList.contains("highlighted");
 
 		if ($needs.length < limit || current) {
 			sound.play();
 
-			select(`#needs-checks path#${e.target.id}`).classed(
+			select(`#needs-checks path#${e.target.id}-box`).classed(
 				"highlighted",
 				!current
 			);
@@ -42,7 +42,7 @@
 	};
 
 	onMount(() => {
-		let allBoxes = selectAll(`#needs-checks path`);
+		let allBoxes = selectAll(`#needs-checks rect`);
 
 		allBoxes.attr("tabindex", "0");
 		allBoxes.on("keydown", (e) => {
@@ -55,7 +55,7 @@
 		allBoxes.on("click", onClick);
 
 		$needs.forEach((id) => {
-			select(`#needs-checks path#${id}`).classed("highlighted", true);
+			select(`#needs-checks path#${id}-box`).classed("highlighted", true);
 		});
 	});
 </script>
@@ -77,8 +77,11 @@
 		width: 100%;
 		height: 100%;
 	}
-	:global(#needs-checks path):hover {
+	:global(#needs-checks rect):hover {
 		cursor: pointer;
+	}
+	:global(#needs-checks rect) {
+		opacity: 0;
 	}
 	:global(#needs-checks path) {
 		opacity: 0;
@@ -86,7 +89,6 @@
 	:global(#needs-checks path.highlighted) {
 		opacity: 0.9;
 	}
-
 	.needs {
 		position: absolute;
 		left: 5%;

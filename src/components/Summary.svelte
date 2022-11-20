@@ -9,20 +9,21 @@
 	const formatWord = (str) => _.startCase(str).toLowerCase();
 
 	const needsKey = {
-		"to-breathe-into-my-belly": "to breathe into my belly",
-		"to-talk-to-someone": "to talk to someone",
-		"to-take-a-deep-breath": "to take a deep breath",
-		"to-ground-in-the-present": "to ground in the present",
-		"to-rest-or-sleep": "to rest or sleep",
-		"to-cry": "to cry",
-		"a-hug-or-a-snuggle": "a hug or a snuggle",
-		"a-snack": "a snack",
-		"to-say-no": 'to say "no"',
-		"to-discharge-energy": "to discharge energy",
-		"to-learn-more": "to learn more",
-		"to-make-something": "to make something",
-		"savor-it": "savor it",
-		"share-it": "share it",
+		belly: "to breathe into my belly",
+		talk: "to talk to someone",
+		breathing: "to take a deep breath",
+		ground: "to ground in the present",
+		sleep: "to rest or sleep",
+		cry: "to cry",
+		hug: "a hug or a snuggle",
+		snack: "a snack",
+		no: 'to say "no"',
+		discharge: "to discharge energy",
+		learn: "to learn more",
+		make: "to make something",
+		savor: "savor it",
+		smile: "smile",
+		celebrate: "celebrate",
 		smile: "smile"
 	};
 
