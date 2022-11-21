@@ -1,12 +1,9 @@
 <script>
 	import { words, colors, needs, bodyDrawing } from "$stores/misc.js";
 	import determineFontColor from "$utils/determineFontColor.js";
-	import { onMount } from "svelte";
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
 	import { annotate } from "svelte-rough-notation";
-
-	$: $bodyDrawing, updateBodyImage();
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
 
@@ -38,23 +35,6 @@
 		link.href = img;
 		link.click();
 	};
-
-	const updateBodyImage = () => {
-		let summary = document.querySelector("div#body-summary");
-		if (summary) {
-			while (summary.lastChild && summary.lastChild.nodeName !== "H3") {
-				summary.removeChild(summary.lastChild);
-			}
-			let bodyImg = summary.appendChild($bodyDrawing);
-
-			bodyImg.style["max-height"] = "68%";
-			bodyImg.style.margin = "0 -5em";
-		}
-	};
-
-	onMount(() => {
-		updateBodyImage();
-	});
 </script>
 
 <div class="summary">
@@ -83,6 +63,7 @@
 
 		<div class="section" id="body-summary">
 			<h3>I notice:</h3>
+			<img class="body" src={$bodyDrawing.src} />
 		</div>
 
 		<div class="section">
@@ -115,6 +96,10 @@
 		display: flex;
 		justify-content: space-between;
 		position: relative;
+	}
+	img.body {
+		max-height: 68%;
+		margin: 0 -5em;
 	}
 	.section {
 		display: flex;

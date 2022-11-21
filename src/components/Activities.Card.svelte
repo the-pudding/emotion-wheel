@@ -3,8 +3,6 @@
 	export let title;
 	export let currentActivity;
 
-	$: console.log({ currentActivity });
-
 	const onClick = () => {
 		currentActivity = imageSrc;
 	};

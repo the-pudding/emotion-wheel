@@ -38,7 +38,7 @@
 				<div>{@html copy.byline}</div>
 
 				{#if $mq.desktop}
-					<div class="scroll">Scroll to begin</div>
+					<div class="scroll">Scroll down to begin</div>
 
 					<div class="mouse">
 						<span class="icon"><Icon name="arrow-down" /></span>

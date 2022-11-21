@@ -1,8 +1,16 @@
 <script>
 	import Card from "$components/Activities.Card.svelte";
 	import Modal from "$components/Activities.Modal.svelte";
+	import _ from "lodash";
 
 	let currentActivity;
+	let words = [];
+	let bodyImage;
+
+	const formatWord = (str) =>
+		str === "somethings-wrong"
+			? "something's wrong"
+			: _.startCase(str).toLowerCase();
 
 	const cards = [
 		{ imageSrc: "wheel", title: "Emotion Wheel" },
@@ -23,7 +31,22 @@
 		{/each}
 	</div>
 
-	<Modal bind:currentActivity />
+	<div class="results">
+		<div class="wheel-results">
+			<ul>
+				{#each words as word}
+					<li>{formatWord(word)}</li>
+				{/each}
+			</ul>
+		</div>
+		<div class="body-results">
+			{#if bodyImage}
+				<img src={bodyImage.src} />
+			{/if}
+		</div>
+	</div>
+
+	<Modal bind:currentActivity bind:words bind:bodyImage />
 </div>
 
 <style>
@@ -50,14 +73,13 @@
 		display: flex;
 		width: 100%;
 	}
-	.section {
-		flex-basis: 33%;
-		height: 500px;
+	.results {
+		width: 100%;
 		display: flex;
-		flex-direction: column;
-		align-items: center;
 	}
-	img {
-		max-height: 100%;
+	.results div {
+		width: 33%;
+	}
+	.wheel-results {
 	}
 </style>

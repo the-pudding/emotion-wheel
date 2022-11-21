@@ -1,8 +1,6 @@
 <script>
-	import { base } from "$app/paths";
-	import viewport from "$stores/viewport.js";
-	import { onMount } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import BodyDraw from "$components/BodyDraw.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing } from "$stores/misc.js";
 	import _ from "lodash";
@@ -12,13 +10,7 @@
 
 	export let text;
 
-	let canvas;
-	let canvasWrapper;
-	let ctx;
-	let painting = false;
-	let mouseX;
-	let mouseY;
-	let showCursor = false;
+	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
 	let word = $words[i];
 	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
@@ -27,44 +19,8 @@
 			? "something's wrong"
 			: _.startCase(str).toLowerCase();
 
-	$: canvasHeight = $viewport.height * 0.5;
-	$: canvasWidth = canvasHeight * 0.6;
-	$: bgImage = `${base}/assets/img/blank_body.png`;
-
-	const onMouseDown = (e) => {
-		painting = true;
-		onMouseMove(e);
-	};
-	const onMouseUp = () => {
-		painting = false;
-		ctx.beginPath();
-	};
-	const onMouseMove = (e) => {
-		mouseX = e.offsetX;
-		mouseY = e.offsetY;
-
-		if (!painting) return;
-
-		ctx.lineWidth = 4;
-		ctx.lineCap = "round";
-		ctx.lineTo(mouseX, mouseY);
-		ctx.strokeStyle = color;
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.moveTo(mouseX, mouseY);
-	};
-	const onMouseEnter = () => {
-		showCursor = true;
-	};
-	const onMouseLeave = () => {
-		showCursor = false;
-	};
-	const clear = () => {
-		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-	};
-
 	const screenshot = async () => {
-		let png = await toPng(canvasWrapper);
+		let png = await toPng(screenshotEl);
 		let img = new Image();
 		img.src = png;
 		$bodyDrawing = img;
@@ -76,10 +32,6 @@
 		let i = $words.findIndex((d) => d === w);
 		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
 	};
-
-	onMount(() => {
-		ctx = canvas.getContext("2d");
-	});
 </script>
 
 <div class="body">
@@ -127,36 +79,9 @@
 	</div>
 
 	<div class="interactive">
-		<div class="canvas" bind:this={canvasWrapper}>
-			<canvas
-				bind:this={canvas}
-				height={canvasHeight}
-				width={canvasWidth}
-				on:mousedown={onMouseDown}
-				on:mouseup={onMouseUp}
-				on:mousemove={onMouseMove}
-				on:mouseenter={onMouseEnter}
-				on:mouseleave={onMouseLeave}
-				style={`background-image: url(${bgImage})`}
-			/>
+		<BodyDraw {color} bind:screenshotEl />
 
-			<div
-				class="cursor"
-				class:visible={showCursor}
-				style:left={`${mouseX}px`}
-				style:top={`${mouseY}px`}
-				style={`--color: ${color}`}
-			/>
-		</div>
-
-		<div class="color-picker">
-			<ColorPicker bind:color />
-
-			<div class="buttons">
-				<button class="skip" on:click={clear}>clear</button>
-				<button class="confirm" on:click={screenshot}>That's it</button>
-			</div>
-		</div>
+		<button class="confirm" on:click={screenshot}>All done</button>
 	</div>
 </div>
 
@@ -175,9 +100,8 @@
 	}
 	.interactive {
 		display: flex;
-		flex-shrink: 0;
-		position: relative;
 		align-items: center;
+		flex-direction: column;
 	}
 	.word {
 		font-weight: bold;
@@ -196,47 +120,5 @@
 	}
 	.other-word span {
 		pointer-events: none;
-	}
-	.buttons {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: relative;
-		width: 100%;
-		justify-content: space-between;
-		margin-top: 1em;
-	}
-	button.skip {
-		margin: 0;
-	}
-	.canvas {
-		position: relative;
-	}
-	.color-picker {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-left: 3em;
-	}
-	canvas {
-		background-size: contain;
-		background-position: center center;
-		background-repeat: no-repeat;
-	}
-	canvas:hover {
-		cursor: none;
-	}
-	.cursor {
-		height: 10px;
-		width: 10px;
-		transform: translate(-50%, -50%);
-		border-radius: 5px;
-		background-color: var(--color);
-		position: absolute;
-		pointer-events: none;
-		visibility: hidden;
-	}
-	.cursor.visible {
-		visibility: visible;
 	}
 </style>
