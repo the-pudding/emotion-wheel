@@ -1,4 +1,14 @@
 <script>
+	import Card from "$components/Activities.Card.svelte";
+	import Modal from "$components/Activities.Modal.svelte";
+
+	let currentActivity;
+
+	const cards = [
+		{ imageSrc: "wheel", title: "Emotion Wheel" },
+		{ imageSrc: "body", title: "Body mapping" },
+		{ imageSrc: "needs", title: "Needs checklist" }
+	];
 </script>
 
 <div class="container">
@@ -7,20 +17,13 @@
 		<a href={`../`}>Go back to story</a>
 	</div>
 
-	<div class="sections">
-		<div class="section">
-			<h3>Emotion wheel</h3>
-			<img src="../assets/activities/wheel.png" />
-		</div>
-		<div class="section">
-			<h3>Body mapping</h3>
-			<img src="../assets/activities/blank_body.png" />
-		</div>
-		<div class="section">
-			<h3>Needs checklist</h3>
-			<img src="../assets/activities/checklist_placeholder.png" />
-		</div>
+	<div class="cards">
+		{#each cards as { imageSrc, title }}
+			<Card {imageSrc} {title} bind:currentActivity />
+		{/each}
 	</div>
+
+	<Modal bind:currentActivity />
 </div>
 
 <style>
@@ -43,8 +46,9 @@
 	.top h1 {
 		margin-bottom: 0;
 	}
-	.sections {
+	.cards {
 		display: flex;
+		width: 100%;
 	}
 	.section {
 		flex-basis: 33%;

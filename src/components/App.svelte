@@ -1,4 +1,5 @@
 <script>
+	import Loading from "$components/Loading.svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 	import Plain from "$components/Plain.svelte";
 	import Story from "$components/Story.svelte";
@@ -71,7 +72,11 @@
 	<Rotate />
 {/if}
 
+<!-- {#if loading}
+	<Loading />
+{:else} -->
 <Story {innerHeight} />
+<!-- {/if} -->
 
 <svelte:window bind:innerHeight on:keydown={keyDown} />
 
