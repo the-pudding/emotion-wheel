@@ -7,6 +7,8 @@
 	import goodSlices from "$svg/good-slices.svg";
 	import notGreatSlices from "$svg/not-great-slices.svg";
 	import busySlices from "$svg/busy-slices.svg";
+	import { annotate } from "rough-notation";
+	import variables from "$data/variables.json";
 
 	export let text;
 
@@ -26,7 +28,17 @@
 
 	const updateBasicFeeling = () => {
 		const span = document.querySelector("span#basic-word");
-		if (span) span.innerHTML = $basicFeeling;
+		console.log({ span });
+
+		if (span) {
+			const annotation = annotate(span, {
+				type: "highlight",
+				animate: false,
+				color: variables.color["grey-balloon"]
+			});
+			annotation.show();
+			span.innerHTML = $basicFeeling;
+		}
 	};
 
 	onMount(() => {
@@ -74,10 +86,6 @@
 	}
 	.words div {
 		text-align: center;
-	}
-	:global(span#basic-word) {
-		font-weight: bold;
-		text-decoration: underline;
 	}
 	.buttons {
 		display: flex;

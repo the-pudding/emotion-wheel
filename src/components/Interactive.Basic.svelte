@@ -3,6 +3,8 @@
 	import _ from "lodash";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
+	import { annotate } from "svelte-rough-notation";
+	import variables from "$data/variables.json";
 
 	export let text;
 
@@ -41,8 +43,16 @@
 	<div class="options">
 		{#each options as d}
 			{@const selected = d === $basicFeeling}
-			<button on:click={select} id={d} class="option" class:selected>{d}</button
-			>
+			<button on:click={select} id={d} class="option">
+				<span
+					use:annotate={{
+						type: "highlight",
+						animate: true,
+						visible: selected,
+						color: variables.color["grey-balloon"]
+					}}>{d}</span
+				>
+			</button>
 		{/each}
 	</div>
 	<button class="skip" on:click={skip} {disabled}>skip</button>
@@ -67,9 +77,12 @@
 	button:first-of-type {
 		margin-left: 0;
 	}
-	button:hover,
-	button.selected {
-		text-decoration: underline;
+	button:hover {
+		color: var(--color-gray-700);
+	}
+
+	span {
+		pointer-events: none;
 	}
 
 	@media (max-height: 600px) {

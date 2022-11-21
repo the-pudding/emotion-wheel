@@ -21,7 +21,7 @@
 		position: absolute;
 		max-width: 450px;
 		left: 5%;
-		top: 40%;
+		top: 30%;
 		transform: translateX(100px);
 		opacity: 0;
 		transition: transform 1s, opacity 1s;

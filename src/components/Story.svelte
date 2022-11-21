@@ -2,7 +2,6 @@
 	import Title from "$components/Title.svelte";
 	import Panels from "$components/Panels.svelte";
 	import Character from "$components/Character.svelte";
-	import Footer from "$components/Footer.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
 	import { base } from "$app/paths";
 	import {

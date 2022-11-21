@@ -75,7 +75,9 @@
 <!-- {#if loading}
 	<Loading />
 {:else} -->
-<Story {innerHeight} />
+{#if innerHeight}
+	<Story {innerHeight} />
+{/if}
 <!-- {/if} -->
 
 <svelte:window bind:innerHeight on:keydown={keyDown} />

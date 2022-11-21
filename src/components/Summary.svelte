@@ -51,6 +51,8 @@
 
 <div class="summary">
 	<div class="box" bind:this={summaryEl}>
+		<div tabindex="0" class="download">download</div>
+
 		<div class="section">
 			<h3>I feel:</h3>
 			<ul class="words">
@@ -80,7 +82,7 @@
 			</ul>
 		</div>
 
-		<button class="download" on:click={save}><Icon name="download" /></button>
+		<!-- <button class="download" on:click={save}><Icon name="download" /></button> -->
 	</div>
 </div>
 
@@ -94,15 +96,14 @@
 	}
 	.box {
 		max-width: 700px;
-		border: 2px solid var(--color-fg);
+		border-radius: 8px;
+		background: white;
+		padding: 1em 1em 0 1em;
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
 			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
-		background: white;
-		border-radius: 6px;
 		display: flex;
 		justify-content: space-between;
 		position: relative;
-		background-color: var(--color-grey-balloon);
 	}
 	.section {
 		display: flex;
@@ -111,7 +112,8 @@
 		margin: 0 1.3em;
 	}
 	h3 {
-		text-decoration: underline;
+		margin-top: 0;
+		text-align: center;
 	}
 	.word {
 		padding: 4px;
@@ -124,11 +126,19 @@
 	}
 	ul.needs {
 		list-style-type: circle;
+		font-size: var(--18px);
 	}
-	button.download {
+	.download {
 		position: absolute;
+		bottom: -2em;
 		right: 0;
-		bottom: 0;
+		font-family: var(--sans);
+		font-size: var(--14px);
+		text-decoration: underline;
+	}
+	.download:hover {
+		cursor: pointer;
+		color: var(--color-gray-700);
 	}
 
 	@media (max-height: 600px) {
