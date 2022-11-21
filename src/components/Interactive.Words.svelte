@@ -1,9 +1,8 @@
 <script>
 	import ClickableWheel from "$components/ClickableWheel.svelte";
-	import { basicFeeling, words, soundOn } from "$stores/misc.js";
+	import { basicFeeling, words } from "$stores/misc.js";
 	import _ from "lodash";
-	import { Howl } from "howler";
-	import { onDestroy, onMount } from "svelte";
+	import { onMount } from "svelte";
 	import okaySlices from "$svg/okay-slices.svg";
 	import goodSlices from "$svg/good-slices.svg";
 	import notGreatSlices from "$svg/not-great-slices.svg";
@@ -18,10 +17,6 @@
 		busy: busySlices
 	};
 
-	const sound = new Howl({ src: ["assets/sound/after-word.wav"] });
-
-	$: if (!$soundOn) sound.mute(true);
-	$: if ($soundOn) sound.mute(false);
 	$: disabled = $words.length > 0;
 	$: $basicFeeling, updateBasicFeeling();
 
@@ -36,10 +31,6 @@
 
 	onMount(() => {
 		updateBasicFeeling();
-	});
-
-	onDestroy(() => {
-		sound.unload();
 	});
 </script>
 
@@ -57,6 +48,7 @@
 			wheelId={`${_.kebabCase($basicFeeling)}-grey`}
 			bind:selected={$words}
 			limit={3}
+			soundId={"pop"}
 		/>
 	{/key}
 

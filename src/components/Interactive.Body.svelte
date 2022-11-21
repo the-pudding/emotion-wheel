@@ -21,6 +21,10 @@
 	let i = Math.floor(Math.random() * $words.length);
 	let word = $words[i];
 	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+	const formatWord = (str) =>
+		str === "somethings-wrong"
+			? "something's wrong"
+			: _.startCase(str).toLowerCase();
 
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight;
@@ -75,7 +79,7 @@
 
 	const updateWord = () => {
 		let wordSpan = document.querySelector("span#body-word");
-		wordSpan.innerHTML = word;
+		wordSpan.innerHTML = formatWord(word);
 		wordSpan.style.backgroundColor = color;
 		wordSpan.style.color = determineFontColor(color);
 	};
@@ -104,7 +108,7 @@
 					class="other-word"
 					id={`body-interactive-${w}`}
 					style:color={textColor}
-					style:background-color={bg}>{w}</button
+					style:background-color={bg}>{formatWord(w)}</button
 				>
 			{/each}
 		{/if}
@@ -135,8 +139,11 @@
 
 		<div class="color-picker">
 			<ColorPicker bind:color />
-			<button class="skip" on:click={clear}>clear</button>
-			<button class="confirm" on:click={screenshot}>that's it</button>
+
+			<div class="buttons">
+				<button class="skip" on:click={clear}>clear</button>
+				<button class="confirm" on:click={screenshot}>That's it</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -168,6 +175,18 @@
 		font-size: 1.6em;
 		padding: 4px;
 		border-radius: 10px;
+	}
+	.buttons {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		width: 100%;
+		justify-content: space-between;
+		margin-top: 1em;
+	}
+	button.skip {
+		margin: 0;
 	}
 	.other-word {
 		padding: 2px;

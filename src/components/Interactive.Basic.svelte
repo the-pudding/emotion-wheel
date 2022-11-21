@@ -13,7 +13,7 @@
 	$: disabled = $basicFeeling;
 
 	const sound = new Howl({
-		src: ["assets/sound/after-basic.wav"]
+		src: ["assets/sound/magic.wav"]
 	});
 
 	const select = async (e) => {

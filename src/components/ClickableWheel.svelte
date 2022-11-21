@@ -1,6 +1,6 @@
 <script>
 	import { base } from "$app/paths";
-	import { onMount } from "svelte";
+	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
 	import { soundOn } from "$stores/misc.js";
@@ -10,11 +10,12 @@
 	export let wheelId;
 	export let selected = [];
 	export let limit = 1000;
+	export let soundId = "select";
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 
-	const sound = new Howl({ src: [`${base}/assets/activities/select.wav`] });
+	const sound = new Howl({ src: [`${base}/assets/sound/${soundId}.wav`] });
 
 	const onClick = (e) => {
 		let current = select(`#${wheelId} #slices path#${e.target.id}`)
@@ -52,6 +53,10 @@
 		selected.forEach((id) => {
 			select(`#${wheelId} #slices path#${id}`).classed("highlighted", true);
 		});
+	});
+
+	onDestroy(() => {
+		sound.unload();
 	});
 </script>
 

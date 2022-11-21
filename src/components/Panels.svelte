@@ -147,9 +147,6 @@
 			<img src={`assets/img/panels/ground.png`} class="full-panel" />
 			<Footer />
 		</div>
-		<div class="step" class:visible={$entered} style:width={`${$stepWidth}px`}>
-			<img src={`assets/img/panels/ground.png`} class="full-panel" />
-		</div>
 	{/if}
 </Scrolly>
 

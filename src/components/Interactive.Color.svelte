@@ -7,18 +7,29 @@
 	import _ from "lodash";
 	import variables from "$data/variables.json";
 
-	const sound = new Howl({ src: ["assets/sound/after-color.wav"] });
+	const selectSound = new Howl({ src: ["assets/sound/select.wav"] });
+	const doneSound = new Howl({ src: ["assets/sound/after-color.wav"] });
+
 	const initialColor = variables.color["grey-balloon"];
 	let color = initialColor;
 	let i = 0;
 	let editing = true;
-	const formatWord = (str) => _.startCase(str).toLowerCase();
+	const formatWord = (str) =>
+		str === "somethings-wrong"
+			? "something's wrong"
+			: _.startCase(str).toLowerCase();
 
 	$: currentWord = $words[i];
 	$: color, onColorChange();
 	$: textColor = determineFontColor($worldBg);
-	$: if (!$soundOn) sound.mute(true);
-	$: if ($soundOn) sound.mute(false);
+	$: if (!$soundOn) {
+		selectSound.mute(true);
+		doneSound.mute(true);
+	}
+	$: if ($soundOn) {
+		selectSound.mute(false);
+		doneSound.mute(false);
+	}
 	$: disabled = $colors.length > 0;
 
 	const onColorChange = () => {
@@ -36,11 +47,13 @@
 	};
 
 	const confirm = async () => {
-		sound.play();
 		$colors[i] = color;
 
-		if (i + 1 < $words.length) i += 1;
-		else {
+		if (i + 1 < $words.length) {
+			selectSound.play();
+			i += 1;
+		} else {
+			doneSound.play();
 			editing = false;
 		}
 
@@ -61,7 +74,8 @@
 	};
 
 	onDestroy(() => {
-		sound.unload();
+		selectSound.unload();
+		doneSound.unload();
 	});
 </script>
 

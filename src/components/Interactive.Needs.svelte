@@ -62,12 +62,12 @@
 
 {@html needsChecks}
 
+<button class="skip" on:click={skip} {disabled}>skip</button>
+
 <div class="needs">
 	{#each text as t}
 		<p>{@html t}</p>
 	{/each}
-
-	<button class="skip" on:click={skip} {disabled}>skip</button>
 </div>
 
 <style>
@@ -96,6 +96,10 @@
 		transform: translate(0, -50%);
 		max-width: 450px;
 	}
+	.needs p:nth-child(3) {
+		font-size: 16px;
+		margin: 0.5em 0;
+	}
 	.options {
 		margin-bottom: 1em;
 	}
@@ -104,6 +108,11 @@
 		font-size: 1.6em;
 		padding: 0;
 		margin: 0 20px;
+	}
+	button.skip {
+		position: absolute;
+		bottom: 18%;
+		left: 80%;
 	}
 	button:first-of-type {
 		margin-left: 0;

@@ -30,7 +30,10 @@
 	$: svgHeight = $mq.sm ? 200 : 400;
 	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 
-	const formatLabel = (str) => _.startCase(str).toLowerCase();
+	const formatLabel = (str) =>
+		str === "somethings-wrong"
+			? "something's wrong"
+			: _.startCase(str).toLowerCase();
 
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
