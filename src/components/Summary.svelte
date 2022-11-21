@@ -4,7 +4,9 @@
 	import { onMount } from "svelte";
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
-	import Icon from "$components/helpers/Icon.svelte";
+	import { annotate } from "svelte-rough-notation";
+
+	$: $bodyDrawing, updateBodyImage();
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
 
@@ -37,28 +39,39 @@
 		link.click();
 	};
 
-	onMount(() => {
-		let child = document
-			.querySelector("div#body-summary")
-			.appendChild($bodyDrawing);
+	const updateBodyImage = () => {
+		let summary = document.querySelector("div#body-summary");
+		if (summary) {
+			while (summary.lastChild && summary.lastChild.nodeName !== "H3") {
+				summary.removeChild(summary.lastChild);
+			}
+			let bodyImg = summary.appendChild($bodyDrawing);
 
-		child.style["max-height"] = "68%";
-		child.style.margin = "0 -5em";
-		// child.style("max-height", "68%");
-		// child.style("margin", "0 -5em");
+			bodyImg.style["max-height"] = "68%";
+			bodyImg.style.margin = "0 -5em";
+		}
+	};
+
+	onMount(() => {
+		updateBodyImage();
 	});
 </script>
 
 <div class="summary">
 	<div class="box" bind:this={summaryEl}>
-		<div tabindex="0" class="download">download</div>
+		<div tabindex="0" class="download" on:click={save}>download</div>
 
 		<div class="section">
 			<h3>I feel:</h3>
 			<ul class="words">
 				{#each $words as word, i}
 					<li
-						style:background-color={$colors[i]}
+						use:annotate={{
+							type: "highlight",
+							animate: false,
+							visible: true,
+							color: $colors[i]
+						}}
 						style:color={determineFontColor($colors[i])}
 						class="word"
 					>
@@ -81,8 +94,6 @@
 				{/each}
 			</ul>
 		</div>
-
-		<!-- <button class="download" on:click={save}><Icon name="download" /></button> -->
 	</div>
 </div>
 
@@ -115,18 +126,15 @@
 		margin-top: 0;
 		text-align: center;
 	}
-	.word {
-		padding: 4px;
-		text-align: center;
-		border-radius: 6px;
-		margin: 0.5em 0;
-	}
 	ul.words {
 		list-style-type: none;
 	}
 	ul.needs {
 		list-style-type: circle;
 		font-size: var(--18px);
+	}
+	li.word {
+		width: fit-content;
 	}
 	.download {
 		position: absolute;

@@ -6,6 +6,7 @@
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing } from "$stores/misc.js";
 	import _ from "lodash";
+	import { annotate } from "svelte-rough-notation";
 	import { toPng } from "html-to-image";
 	import variables from "$data/variables.json";
 
@@ -27,7 +28,7 @@
 			: _.startCase(str).toLowerCase();
 
 	$: canvasHeight = $viewport.height * 0.5;
-	$: canvasWidth = canvasHeight;
+	$: canvasWidth = canvasHeight * 0.6;
 	$: bgImage = `${base}/assets/img/blank_body.png`;
 
 	const onMouseDown = (e) => {
@@ -46,11 +47,11 @@
 
 		ctx.lineWidth = 4;
 		ctx.lineCap = "round";
-		ctx.lineTo(e.offsetX, e.offsetY);
+		ctx.lineTo(mouseX, mouseY);
 		ctx.strokeStyle = color;
 		ctx.stroke();
 		ctx.beginPath();
-		ctx.moveTo(e.offsetX, e.offsetY);
+		ctx.moveTo(mouseX, mouseY);
 	};
 	const onMouseEnter = () => {
 		showCursor = true;
@@ -74,25 +75,28 @@
 		word = w;
 		let i = $words.findIndex((d) => d === w);
 		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
-		updateWord();
-	};
-
-	const updateWord = () => {
-		let wordSpan = document.querySelector("span#body-word");
-		wordSpan.innerHTML = formatWord(word);
-		wordSpan.style.backgroundColor = color;
-		wordSpan.style.color = determineFontColor(color);
 	};
 
 	onMount(() => {
-		updateWord();
 		ctx = canvas.getContext("2d");
 	});
 </script>
 
 <div class="body">
 	<div class="words">
-		{#each text as t}
+		<p>
+			How does <span
+				class="main-word"
+				use:annotate={{
+					type: "highlight",
+					animate: false,
+					visible: true,
+					color
+				}}
+				style:color={determineFontColor(color)}>{formatWord(word)}</span
+			> show up in your body?
+		</p>
+		{#each text as t, i}
 			<p>{@html t}</p>
 		{/each}
 
@@ -107,9 +111,17 @@
 					on:click={newWord}
 					class="other-word"
 					id={`body-interactive-${w}`}
-					style:color={textColor}
-					style:background-color={bg}>{formatWord(w)}</button
 				>
+					<span
+						use:annotate={{
+							type: "highlight",
+							animate: false,
+							visible: true,
+							color: bg
+						}}
+						style:color={textColor}>{formatWord(w)}</span
+					>
+				</button>
 			{/each}
 		{/if}
 	</div>
@@ -158,7 +170,9 @@
 		top: 40%;
 		transform: translate(0, -50%);
 	}
-
+	.words {
+		margin-right: 3em;
+	}
 	.interactive {
 		display: flex;
 		flex-shrink: 0;
@@ -171,10 +185,17 @@
 	button.skip {
 		margin-top: 1em;
 	}
-	:global(span#body-word) {
+	span.main-word {
 		font-size: 1.6em;
-		padding: 4px;
-		border-radius: 10px;
+		font-weight: bold;
+		pointer-events: none;
+	}
+	.other-word {
+		background: none;
+		position: relative;
+	}
+	.other-word span {
+		pointer-events: none;
 	}
 	.buttons {
 		display: flex;
@@ -188,11 +209,6 @@
 	button.skip {
 		margin: 0;
 	}
-	.other-word {
-		padding: 2px;
-		border-radius: 8px;
-		margin-right: 10px;
-	}
 	.canvas {
 		position: relative;
 	}
@@ -200,6 +216,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		margin-left: 3em;
 	}
 	canvas {
 		background-size: contain;

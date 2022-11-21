@@ -2,12 +2,11 @@
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import { basicFeeling, words } from "$stores/misc.js";
 	import _ from "lodash";
-	import { onMount } from "svelte";
 	import okaySlices from "$svg/okay-slices.svg";
 	import goodSlices from "$svg/good-slices.svg";
 	import notGreatSlices from "$svg/not-great-slices.svg";
 	import busySlices from "$svg/busy-slices.svg";
-	import { annotate } from "rough-notation";
+	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
 
 	export let text;
@@ -20,34 +19,24 @@
 	};
 
 	$: disabled = $words.length > 0;
-	$: $basicFeeling, updateBasicFeeling();
 
 	const skip = () => {
 		$words = [$basicFeeling];
 	};
-
-	const updateBasicFeeling = () => {
-		const span = document.querySelector("span#basic-word");
-		console.log({ span });
-
-		if (span) {
-			const annotation = annotate(span, {
-				type: "highlight",
-				animate: false,
-				color: variables.color["grey-balloon"]
-			});
-			annotation.show();
-			span.innerHTML = $basicFeeling;
-		}
-	};
-
-	onMount(() => {
-		updateBasicFeeling();
-	});
 </script>
 
 <div class="words">
-	{#each text as t}
+	<div>
+		Here you try... what do you mean by<br /><span
+			use:annotate={{
+				type: "highlight",
+				animate: false,
+				visible: true,
+				color: variables.color["grey-balloon"]
+			}}>{$basicFeeling}?</span
+		>
+	</div>
+	{#each text as t, i}
 		<div>{@html t}</div>
 	{/each}
 
@@ -96,7 +85,10 @@
 		position: absolute;
 		left: 0;
 	}
-
+	span {
+		font-size: 1.6em;
+		font-weight: bold;
+	}
 	:global(svg#grey-wheel) {
 		position: absolute;
 		top: 0;

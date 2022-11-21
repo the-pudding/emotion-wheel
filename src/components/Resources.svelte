@@ -41,7 +41,8 @@
 		width: 40%;
 	}
 	h2 {
-		text-decoration: underline;
+		width: fit-content;
+		font-weight: bold;
 	}
 
 	@media (max-height: 600px) {

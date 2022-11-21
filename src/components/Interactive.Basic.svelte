@@ -66,16 +66,18 @@
 		transform: translate(0, -50%);
 	}
 	.options {
-		margin-bottom: 1em;
+		display: grid;
+		grid-template-columns: auto auto;
+		column-gap: 3em;
+		row-gap: 1em;
+		margin: 1em 0;
 	}
 	button.option {
 		background: none;
 		font-size: 1.6em;
+		font-weight: bold;
 		padding: 0;
-		margin: 0 20px;
-	}
-	button:first-of-type {
-		margin-left: 0;
+		text-align: left;
 	}
 	button:hover {
 		color: var(--color-gray-700);

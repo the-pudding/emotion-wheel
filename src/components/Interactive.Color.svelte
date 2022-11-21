@@ -82,8 +82,8 @@
 <div class="colors">
 	{#if editing}
 		<p class="text" style:color={textColor}>
-			You're feeling <strong class="word">{formatWord(currentWord)}</strong> - what
-			color is it?
+			You're feeling <span class="word">{formatWord(currentWord)}</span> - what color
+			is it?
 		</p>
 		<ColorPicker bind:color />
 
@@ -122,6 +122,7 @@
 	.word {
 		font-size: 1.6em;
 		margin: 0 3px;
+		font-weight: bold;
 	}
 	.text {
 		transition: color 500ms;
