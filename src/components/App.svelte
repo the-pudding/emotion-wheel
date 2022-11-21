@@ -31,7 +31,7 @@
 
 		// up / down arrows
 		if (e.keyCode === 40 || e.keyCode === 38) {
-			const delta = e.keyCode === 40 ? 70 : -70;
+			const delta = e.keyCode === 40 ? 100 : -100;
 
 			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
 			if (!$entered || leaving) {
