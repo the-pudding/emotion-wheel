@@ -1,14 +1,12 @@
 <script>
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import BodyDraw from "$components/BodyDraw.svelte";
-	import ColorPicker from "$components/ColorPicker.svelte";
 	import slices from "$svg/slices.svg";
 	import { toPng } from "html-to-image";
 
 	export let currentActivity;
 	export let words;
 	export let bodyImage;
-	let color;
 	let screenshotEl;
 
 	const screenshot = async () => {
@@ -39,6 +37,11 @@
 		</div>
 	{:else if currentActivity === "body"}
 		<div class="body">
+			<div class="description">
+				Take a breath– scan from the top of your head down through your chest,
+				down into your toes. Make a mark on the diagram on the right based on
+				what you notice.
+			</div>
 			<BodyDraw bind:screenshotEl />
 		</div>
 	{/if}
@@ -66,6 +69,11 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	}
+	.body .description {
+		text-align: center;
+		max-width: 600px;
+		margin-bottom: 4em;
 	}
 	.close {
 		position: absolute;

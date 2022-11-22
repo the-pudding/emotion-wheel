@@ -2,7 +2,10 @@
 	import Card from "$components/Activities.Card.svelte";
 	import Modal from "$components/Activities.Modal.svelte";
 	import _ from "lodash";
+	import { toPng } from "html-to-image";
+	import { annotate } from "svelte-rough-notation";
 
+	let summaryEl;
 	let currentActivity;
 	let words = [];
 	let bodyImage;
@@ -17,6 +20,14 @@
 		{ imageSrc: "body", title: "Body mapping" },
 		{ imageSrc: "needs", title: "Needs checklist" }
 	];
+
+	const save = async () => {
+		const img = await toPng(summaryEl, { backgroundColor: "white" });
+		const link = document.createElement("a");
+		link.download = "screenshot.png";
+		link.href = img;
+		link.click();
+	};
 </script>
 
 <div class="container">
@@ -31,11 +42,20 @@
 		{/each}
 	</div>
 
-	<div class="results">
+	<div class="results" bind:this={summaryEl}>
 		<div class="wheel-results">
 			<ul>
 				{#each words as word}
-					<li>{formatWord(word)}</li>
+					<li
+						use:annotate={{
+							type: "highlight",
+							animate: false,
+							visible: true,
+							color: "red"
+						}}
+					>
+						{formatWord(word)}
+					</li>
 				{/each}
 			</ul>
 		</div>
@@ -49,13 +69,17 @@
 	<Modal bind:currentActivity bind:words bind:bodyImage />
 </div>
 
+<div tabindex="0" class="download" on:click={save}>download</div>
+
 <style>
+	:global(body) {
+		background: white;
+	}
 	.container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		width: 100%;
-		height: 100vh;
 		padding: 2em;
 		background: white;
 	}
@@ -72,6 +96,7 @@
 	.cards {
 		display: flex;
 		width: 100%;
+		margin-bottom: 3em;
 	}
 	.results {
 		width: 100%;
@@ -81,5 +106,22 @@
 		width: 33%;
 	}
 	.wheel-results {
+		font-size: var(--32px);
+		padding-top: 2em;
+	}
+	ul {
+		list-style-type: none;
+	}
+	li {
+		width: fit-content;
+	}
+	.download {
+		font-family: var(--sans);
+		font-size: var(--14px);
+		text-decoration: underline;
+	}
+	.download:hover {
+		cursor: pointer;
+		color: var(--color-gray-700);
 	}
 </style>
