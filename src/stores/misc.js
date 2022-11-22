@@ -2,6 +2,7 @@ import { writable, readable } from "svelte/store";
 
 export const scrollMax = readable(400);
 export const scrolled = writable(0);
+export const isScrolling = writable(false);
 export const entered = writable(false);
 
 export const userId = writable(undefined); // TODO: delete

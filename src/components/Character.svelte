@@ -1,4 +1,5 @@
 <script>
+	import WalkingSprite from "$components/Character.WalkingSprite.svelte";
 	import {
 		forceSimulation,
 		select,
@@ -13,7 +14,8 @@
 		words,
 		basicFeeling,
 		entered,
-		visibleWidth
+		visibleWidth,
+		isScrolling
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
@@ -24,9 +26,9 @@
 
 	let svg;
 	const r = $mq.sm ? 12 : 20;
-	const fx = $mq.sm ? 57 : 98;
-	const fy = $mq.sm ? 146 : 278;
-	const stringLength = $mq.sm ? 100 : 150;
+	const fx = $mq.sm ? 63 : 110;
+	const fy = $mq.sm ? 135 : 260;
+	const stringLength = $mq.sm ? 90 : 150;
 	$: svgHeight = $mq.sm ? 200 : 400;
 	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 
@@ -130,20 +132,9 @@
 				.distance((d) => stringLength)
 		)
 		.on("tick", ticked);
-
-	const testFly = () => {
-		// 	const source = nodes.find((d) => d.name === "source");
-		// 	source.fy = 0;
-		// 	simulation.velocityDecay(0).restart();
-	};
 </script>
 
-<img
-	class="character"
-	class:visible={$entered}
-	src={`assets/img/wagon.png`}
-	on:click={testFly}
-/>
+<WalkingSprite />
 
 <svg
 	id="character-balloon-area"
@@ -213,15 +204,6 @@
 	.visible {
 		opacity: 1;
 	}
-	.character {
-		height: 150px;
-		position: fixed;
-		left: 4em;
-		bottom: 8%;
-	}
-	.character {
-		z-index: 1;
-	}
 	.balloon-container {
 		margin: 20px;
 		text-align: center;
@@ -239,11 +221,5 @@
 	}
 	:global(ellipse.balloon) {
 		opacity: 0.9;
-	}
-
-	@media (max-height: 600px) {
-		.character {
-			height: 75px;
-		}
 	}
 </style>

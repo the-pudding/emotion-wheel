@@ -9,18 +9,31 @@
 		scrolled,
 		selectedGalleryImage,
 		worldBg,
-		scrollMax
+		scrollMax,
+		isScrolling
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 
 	export let innerHeight;
 
+	let t;
 	let containerEl;
 
 	$: bgImage = `${base}/assets/img/bg${
 		$worldBg === variables.color["sky-blue"] ? "-color" : ""
 	}.png`;
 
+	/* polling to tell if user is scrolling */
+	const onScroll = (e) => {
+		$isScrolling = true;
+		if (t) clearTimeout(t);
+		t = setTimeout(stoppedScrolling, 100);
+	};
+	const stoppedScrolling = () => {
+		$isScrolling = false;
+	};
+
+	/* horizontal scroll */
 	const onMouseWheel = (e) => {
 		if ($selectedGalleryImage) return;
 
@@ -35,6 +48,8 @@
 			containerEl.scrollLeft += e.deltaY;
 		}
 	};
+
+	/* keyboard version */
 	const keyDown = (e) => {
 		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
 		if ($selectedGalleryImage) return;
@@ -61,6 +76,7 @@
 	class="story"
 	class:entered={$entered}
 	bind:this={containerEl}
+	on:scroll={onScroll}
 	on:mousewheel|preventDefault={onMouseWheel}
 	style:height={`${innerHeight}px`}
 	style:background-color={$worldBg}
