@@ -213,6 +213,8 @@
 	svg {
 		position: absolute;
 		bottom: 0;
+		z-index: 1;
+		pointer-events: none;
 	}
 	text.label {
 		alignment-baseline: central;

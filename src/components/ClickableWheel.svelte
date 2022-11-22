@@ -94,6 +94,9 @@
 	:global(.interactive-wheel svg #slices path) {
 		opacity: 0;
 	}
+	:global(.interactive-wheel svg #slices path):hover {
+		cursor: pointer;
+	}
 	:global(.interactive-wheel svg #slices path.highlighted) {
 		opacity: 0.4;
 	}
