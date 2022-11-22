@@ -35,6 +35,26 @@
 			containerEl.scrollLeft += e.deltaY;
 		}
 	};
+	const keyDown = (e) => {
+		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
+		if ($selectedGalleryImage) return;
+
+		// left / right arrows
+		if (e.keyCode === 37 || e.keyCode === 39) {
+			const delta = e.keyCode === 39 ? 100 : -100;
+
+			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
+			if (!$entered || leaving) {
+				if (
+					(delta > 0 && $scrolled < $scrollMax) ||
+					(delta < 0 && $scrolled >= 0)
+				)
+					$scrolled += delta;
+			} else {
+				containerEl.scrollLeft += delta;
+			}
+		}
+	};
 </script>
 
 <div
@@ -46,7 +66,9 @@
 	style:background-color={$worldBg}
 	style:background-image={`url(${bgImage})`}
 >
-	<Title />
+	{#if innerHeight}
+		<Title />
+	{/if}
 
 	<div class="world">
 		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
@@ -55,6 +77,8 @@
 
 	<Modal />
 </div>
+
+<svelte:window on:keydown={keyDown} />
 
 <style>
 	.story {

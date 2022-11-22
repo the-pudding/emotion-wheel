@@ -25,27 +25,6 @@
 	$: $stepWidth = innerHeight * ratio;
 	$: $entered = $scrolled >= $scrollMax;
 
-	const keyDown = (e) => {
-		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
-		if ($selectedGalleryImage) return;
-
-		// up / down arrows
-		if (e.keyCode === 40 || e.keyCode === 38) {
-			const delta = e.keyCode === 40 ? 100 : -100;
-
-			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
-			if (!$entered || leaving) {
-				if (
-					(delta > 0 && $scrolled < $scrollMax) ||
-					(delta < 0 && $scrolled >= 0)
-				)
-					$scrolled += delta;
-			} else {
-				containerEl.scrollLeft += delta;
-			}
-		}
-	};
-
 	const mute = () => {
 		$soundOn = !$soundOn;
 	};
@@ -76,12 +55,13 @@
 <!-- {#if loading}
 	<Loading />
 {:else} -->
-{#if innerHeight}
-	<Story {innerHeight} />
-{/if}
+
+<!-- remember, story always has to be rendering -->
+<Story {innerHeight} />
+
 <!-- {/if} -->
 
-<svelte:window bind:innerHeight on:keydown={keyDown} />
+<svelte:window bind:innerHeight />
 
 <style>
 	.top-bar {

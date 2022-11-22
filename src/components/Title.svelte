@@ -17,6 +17,7 @@
 		.clamp(true);
 
 	const enter = () => {
+		// TODO: tween it there
 		$scrolled = $scrollMax;
 	};
 </script>
@@ -26,7 +27,11 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<div class="title" style={`background-image: url(${bgImage})`}>
+	<div
+		class="title"
+		style={`background-image: url(${bgImage})`}
+		on:click={enter}
+	>
 		{#if showText}
 			<div class="words" transition:fade>
 				<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
@@ -37,21 +42,21 @@
 				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 
-				{#if $mq.desktop}
+				<!-- {#if $mq.desktop}
 					<div class="scroll">Scroll down to begin</div>
 
 					<div class="mouse">
 						<span class="icon"><Icon name="arrow-down" /></span>
 					</div>
-				{/if}
+				{/if} -->
 
-				<div class="audio">This story contains audio.</div>
+				<div style="margin-top: 2em">Click anywhere to continue</div>
 
-				{#if !$mq.desktop}
+				<div class="audio">FYI, this story contains audio.</div>
+
+				<!-- {#if !$mq.desktop}
 					<button class="confirm" on:click={enter}>Begin</button>
-				{/if}
-
-				<!-- <a class="wheel" href={`${base}/wheel`}>Go to the emotion wheel</a> -->
+				{/if} -->
 			</div>
 		{/if}
 	</div>
@@ -92,6 +97,9 @@
 		align-items: center;
 		justify-content: center;
 		text-align: center;
+	}
+	.title:hover {
+		cursor: pointer;
 	}
 	.words {
 		display: flex;
