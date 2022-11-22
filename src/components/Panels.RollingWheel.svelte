@@ -14,6 +14,7 @@
 <img
 	class:roll-in={$mq.desktop && animation && ($currentPanel === i || onScreen)}
 	class:visible={!$mq.desktop || !animation}
+	class:big={img === "final_wheel.png"}
 	src={`assets/img/${img}`}
 	use:inView
 	on:enter={() => (onScreen = true)}
@@ -23,10 +24,13 @@
 <style>
 	img {
 		position: absolute;
-		left: 40%;
+		left: 45%;
 		width: 400px;
 		bottom: 8%;
 		opacity: 0;
+	}
+	img.big {
+		width: 500px;
 	}
 	.visible {
 		opacity: 1;
@@ -45,7 +49,7 @@
 		}
 		100% {
 			opacity: 1;
-			left: 40%;
+			left: 45%;
 			transform: rotate(360deg);
 		}
 	}
@@ -53,6 +57,9 @@
 	@media (max-height: 600px) {
 		img {
 			width: 200px;
+		}
+		img.big {
+			width: 250px;
 		}
 	}
 </style>

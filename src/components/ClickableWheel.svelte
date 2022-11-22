@@ -31,10 +31,12 @@
 				!current
 			);
 			if (!current) {
-				selected = [
-					...selected,
-					{ word: e.target.id, color: e.srcElement.parentNode.id }
-				];
+				let newEntry;
+				if (withColor)
+					newEntry = { word: e.target.id, color: e.srcElement.parentNode.id };
+				else newEntry = e.target.id;
+
+				selected = [...selected, newEntry];
 			} else {
 				selected = selected.filter((d) => d !== e.target.id);
 			}
