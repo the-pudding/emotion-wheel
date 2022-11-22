@@ -4,27 +4,9 @@
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
 	import { annotate } from "svelte-rough-notation";
+	import needsKey from "$utils/needsKey";
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
-
-	const needsKey = {
-		belly: "to breathe into my belly",
-		talk: "to talk to someone",
-		breathing: "to take a deep breath",
-		ground: "to ground in the present",
-		sleep: "to rest or sleep",
-		cry: "to cry",
-		hug: "a hug or a snuggle",
-		snack: "a snack",
-		no: 'to say "no"',
-		discharge: "to discharge energy",
-		learn: "to learn more",
-		make: "to make something",
-		savor: "savor it",
-		smile: "smile",
-		celebrate: "celebrate",
-		smile: "smile"
-	};
 
 	let summaryEl;
 

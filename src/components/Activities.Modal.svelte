@@ -1,12 +1,16 @@
 <script>
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import BodyDraw from "$components/BodyDraw.svelte";
+	import NeedsChecklist from "$components/NeedsChecklist.svelte";
 	import slices from "$svg/slices.svg";
+	import checks from "$svg/needs-activities.svg";
 	import { toPng } from "html-to-image";
 
 	export let currentActivity;
 	export let words;
 	export let bodyImage;
+	export let needs;
+
 	let screenshotEl;
 
 	const screenshot = async () => {
@@ -14,6 +18,10 @@
 		let img = new Image();
 		img.src = png;
 		bodyImage = img;
+	};
+
+	const clearNeeds = () => {
+		needs = [];
 	};
 
 	const close = async () => {
@@ -45,6 +53,17 @@
 			</div>
 			<BodyDraw bind:screenshotEl />
 		</div>
+	{:else if currentActivity === "needs"}
+		<div class="needs">
+			<h1>What do you need?</h1>
+			<button on:click={clearNeeds} class="skip">clear</button>
+			<NeedsChecklist
+				{checks}
+				imgSrc={"../assets/activities/needs.png"}
+				wheelId={"needs-activities"}
+				bind:selected={needs}
+			/>
+		</div>
 	{/if}
 </div>
 
@@ -75,6 +94,11 @@
 		text-align: center;
 		max-width: 600px;
 		margin-bottom: 4em;
+	}
+	.needs {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.close {
 		position: absolute;

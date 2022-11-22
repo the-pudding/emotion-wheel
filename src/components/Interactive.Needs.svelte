@@ -1,66 +1,23 @@
 <script>
+	import NeedsChecklist from "$components/NeedsChecklist.svelte";
 	import { needs } from "$stores/misc.js";
-	import _ from "lodash";
-	import { base } from "$app/paths";
 	import needsChecks from "$svg/needs-checks.svg";
-	import { onMount } from "svelte";
-	import { select, selectAll } from "d3";
-	import { Howl } from "howler";
-	import { soundOn } from "$stores/misc.js";
 
 	export let text;
 
 	$: disabled = $needs.length > 0;
-	$: if (!$soundOn) sound.mute(true);
-	$: if ($soundOn) sound.mute(false);
-
-	const limit = 5;
-	const sound = new Howl({ src: [`${base}/assets/activities/select.wav`] });
 
 	const skip = () => {
 		$needs = [""];
 	};
-
-	const onClick = (e) => {
-		let current = select(`#needs-checks path#${e.target.id}-box`)
-			.node()
-			.classList.contains("highlighted");
-
-		if ($needs.length < limit || current) {
-			sound.play();
-
-			select(`#needs-checks path#${e.target.id}-box`).classed(
-				"highlighted",
-				!current
-			);
-			if (!current) {
-				$needs = [...$needs, e.target.id];
-			} else {
-				$needs = $needs.filter((d) => d !== e.target.id);
-			}
-		}
-	};
-
-	onMount(() => {
-		let allBoxes = selectAll(`#needs-checks rect`);
-
-		allBoxes.attr("tabindex", "0");
-		allBoxes.on("keydown", (e) => {
-			// space or enter
-			if (e.keyCode === 13 || e.keyCode === 32) {
-				onClick(e);
-			}
-		});
-
-		allBoxes.on("click", onClick);
-
-		$needs.forEach((id) => {
-			select(`#needs-checks path#${id}-box`).classed("highlighted", true);
-		});
-	});
 </script>
 
-{@html needsChecks}
+<NeedsChecklist
+	checks={needsChecks}
+	wheelId={"needs-checks"}
+	bind:selected={$needs}
+	limit={5}
+/>
 
 <button class="skip" on:click={skip} {disabled}>skip</button>
 

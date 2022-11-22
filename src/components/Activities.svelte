@@ -6,10 +6,12 @@
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
+	import needsKey from "$utils/needsKey.js";
 
 	let summaryEl;
 	let currentActivity;
 	let words = [];
+	let needs = [];
 	let bodyImage;
 
 	const formatWord = (str) =>
@@ -67,9 +69,16 @@
 				<img src={bodyImage.src} />
 			{/if}
 		</div>
+		<div class="needs-results">
+			<ul>
+				{#each needs as need}
+					<li>{needsKey[need]}</li>
+				{/each}
+			</ul>
+		</div>
 	</div>
 
-	<Modal bind:currentActivity bind:words bind:bodyImage />
+	<Modal bind:currentActivity bind:words bind:bodyImage bind:needs />
 </div>
 
 <div tabindex="0" class="download" on:click={save}>download</div>
@@ -115,8 +124,11 @@
 		font-size: var(--32px);
 		padding-top: 2em;
 	}
-	ul {
+	.wheel-results ul {
 		list-style-type: none;
+	}
+	.needs-results ul {
+		list-style-type: circle;
 	}
 	li {
 		width: fit-content;

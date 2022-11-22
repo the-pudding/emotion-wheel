@@ -66,7 +66,7 @@
 	});
 </script>
 
-<div class="wheel">
+<div class="interactive-wheel">
 	<img
 		src={`${base}/${imgSrc}`}
 		alt="watercolor illustrated emotion wheel by abby"
@@ -76,7 +76,7 @@
 </div>
 
 <style>
-	.wheel {
+	.interactive-wheel {
 		position: relative;
 		max-width: 800px;
 		margin: 0 auto;
@@ -85,16 +85,16 @@
 		width: 100%;
 	}
 
-	:global(.wheel svg) {
+	:global(.interactive-wheel svg) {
 		position: absolute;
 		top: 0;
 		width: 100%;
 		height: 100%;
 	}
-	:global(.wheel svg #slices path) {
+	:global(.interactive-wheel svg #slices path) {
 		opacity: 0;
 	}
-	:global(.wheel svg #slices path.highlighted) {
+	:global(.interactive-wheel svg #slices path.highlighted) {
 		opacity: 0.4;
 	}
 </style>

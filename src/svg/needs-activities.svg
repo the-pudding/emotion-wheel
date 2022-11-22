@@ -1,0 +1,80 @@
+<svg viewBox="0 0 1186 961" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="needs-activities">
+<path id="bite-box" d="M78 832L66.5 833.5L68 845L79.5 843L78 832Z" fill="black" stroke="black"/>
+<path id="belly-box" d="M84.5 869L70 870L70.5 885.5L85 885L84.5 869Z" fill="black" stroke="black"/>
+<path id="savor-box" d="M455.5 650L445 652L446.5 664H458L455.5 650Z" fill="black" stroke="black"/>
+<path id="celebrate-box" d="M456 692.5H444.5L445.5 707L457 705.5L456 692.5Z" fill="black" stroke="black"/>
+<path id="rest-box" d="M455.5 737H446.5L447.5 749.5H457L455.5 737Z" fill="black" stroke="black"/>
+<path id="smile-box" d="M456 779L448.5 779.5V790.5H457L456 779Z" fill="black" stroke="black"/>
+<path id="make-box" d="M817.5 614L801.5 615V631H819L817.5 614Z" fill="black" stroke="black"/>
+<path id="sing-box" d="M807 654L795 656L796 670H808.5L807 654Z" fill="black" stroke="black"/>
+<path id="play-box" d="M814 695L803.5 696.5L805.5 709.5H816.5L814 695Z" fill="black" stroke="black"/>
+<path id="act-box" d="M809.5 738.5L798 741L800 757L812.5 756L809.5 738.5Z" fill="black" stroke="black"/>
+<path id="learn-box" d="M811 788.5L798.5 789L801.5 801L814.5 800.5L811 788.5Z" fill="black" stroke="black"/>
+<path id="wiggle-box" d="M813.5 827L799.5 827.5L798 846.5L816 845.5L813.5 827Z" fill="black" stroke="black"/>
+<path id="dance-box" d="M963.5 651.5H955L956 660.5H965L963.5 651.5Z" fill="black" stroke="black"/>
+<path id="explore-box" d="M965.5 692.5L956.5 693.5V701.5L966 702.5L965.5 692.5Z" fill="black" stroke="black"/>
+<path id="write-box" d="M974.5 737.5L962.5 738.5L964 749H975.5L974.5 737.5Z" fill="black" stroke="black"/>
+<path id="breathing-box" d="M69 165.5L59 167.5V177L69 175V165.5Z" fill="black" stroke="black"/>
+<path id="discharge-purple-box" d="M68 216.5L60.5 218.5V230L69.5 229L68 216.5Z" fill="black" stroke="black"/>
+<path id="leave-box" d="M71 267L61.5 268L62.5 278.5H72.5L71 267Z" fill="black" stroke="black"/>
+<path id="slow-box" d="M74 303H62.5V313H74V303Z" fill="black" stroke="black"/>
+<path id="ground-box" d="M72.5 333L63.5 334.5V344H74L72.5 333Z" fill="black" stroke="black"/>
+<path id="exit-box" d="M76 392L67 393L68.5 403H78L76 392Z" fill="black" stroke="black"/>
+<path id="information-box" d="M459.5 161L448.5 163L450.5 173.5H461L459.5 161Z" fill="black" stroke="black"/>
+<path id="heard-box" d="M459.5 214L447.5 216.5L449 225L461.5 223.5L459.5 214Z" fill="black" stroke="black"/>
+<path id="no-box" d="M460.5 246.5L452.5 247.5L453.5 258.5L462 257L460.5 246.5Z" fill="black" stroke="black"/>
+<path id="boundary-box" d="M460 278L451 280L452.5 290.5H463.5L460 278Z" fill="black" stroke="black"/>
+<path id="discharge-red-box" d="M463 326L453.5 327L454 336.5H464L463 326Z" fill="black" stroke="black"/>
+<path id="glucose-box" d="M460.5 375.5L449.5 377L450.5 385H461L460.5 375.5Z" fill="black" stroke="black"/>
+<path id="sleep-box" d="M819.5 174.5L808 176L809 187.5H821L819.5 174.5Z" fill="black" stroke="black"/>
+<path id="break-box" d="M818 206.5L810.5 208L811.5 220H820L818 206.5Z" fill="black" stroke="black"/>
+<path id="attention-box" d="M819 243H810.5L812.5 255L821 253.5L819 243Z" fill="black" stroke="black"/>
+<path id="touch-box" d="M819 270.5L811 271.5L812.5 283H820.5L819 270.5Z" fill="black" stroke="black"/>
+<path id="cry-box" d="M818 320.5H812L813 332L820 331L818 320.5Z" fill="black" stroke="black"/>
+<path id="remember-box" d="M825 356.5L815 357.5L817 369L826.5 367.5L825 356.5Z" fill="black" stroke="black"/>
+<path id="friendship-box" d="M830.5 389L823 390.5L824 399H831L830.5 389Z" fill="black" stroke="black"/>
+<path id="stomach-box" d="M81 619L70.5 620.5L71.5 631.5H82.5L81 619Z" fill="black" stroke="black"/>
+<path id="discomfort-box" d="M75 670.5L65 672L66 684.5H77.5L75 670.5Z" fill="black" stroke="black"/>
+<path id="investigate-box" d="M77.5 726L64.5 728.5L66.5 741.5H79.5L77.5 726Z" fill="black" stroke="black"/>
+<path id="judgement-box" d="M72 782L63 782.5L64.5 794.5H74L72 782Z" fill="black" stroke="black"/>
+<rect id="breathing" x="42.5" y="151.5" width="363" height="50" fill="black" stroke="black"/>
+<rect id="information" x="423.5" y="148.5" width="336" height="49" fill="black" stroke="black"/>
+<rect id="sleep" x="780.5" y="163.5" width="352" height="33" fill="black" stroke="black"/>
+<rect id="break" x="780.5" y="196.5" width="352" height="29" fill="black" stroke="black"/>
+<rect id="attention" x="780.5" y="225.5" width="352" height="34" fill="black" stroke="black"/>
+<rect id="touch" x="780.5" y="259.5" width="352" height="52" fill="black" stroke="black"/>
+<rect id="cry" x="780.5" y="311.5" width="352" height="31" fill="black" stroke="black"/>
+<rect id="remember" x="780.5" y="342.5" width="347" height="34" fill="black" stroke="black"/>
+<rect id="friendship" x="780.5" y="376.5" width="347" height="46" fill="black" stroke="black"/>
+<rect id="heard" x="423.5" y="197.5" width="336" height="36" fill="black" stroke="black"/>
+<rect id="no" x="423.5" y="233.5" width="336" height="31" fill="black" stroke="black"/>
+<rect id="boundary" x="423.5" y="264.5" width="333" height="38" fill="black" stroke="black"/>
+<rect id="discharge-red" x="426.5" y="302.5" width="330" height="61" fill="black" stroke="black"/>
+<rect id="glucose" x="426.5" y="363.5" width="330" height="39" fill="black" stroke="black"/>
+<rect id="discharge-purple" x="42.5" y="201.5" width="363" height="54" fill="black" stroke="black"/>
+<rect id="leave" x="44.5" y="255.5" width="361" height="33" fill="black" stroke="black"/>
+<rect id="slow" x="44.5" y="288.5" width="361" height="34" fill="black" stroke="black"/>
+<rect id="ground" x="47.5" y="322.5" width="358" height="52" fill="black" stroke="black"/>
+<rect id="exit" x="47.5" y="374.5" width="354" height="52" fill="black" stroke="black"/>
+<rect id="stomach" x="47.5" y="606.5" width="347" height="55" fill="black" stroke="black"/>
+<rect id="savor" x="410.5" y="626.5" width="333" height="49" fill="black" stroke="black"/>
+<rect id="make" x="764.5" y="594.5" width="378" height="43" fill="black" stroke="black"/>
+<rect id="wiggle" x="765.5" y="815.5" width="366" height="43" fill="black" stroke="black"/>
+<rect id="learn" x="765.5" y="768.5" width="366" height="47" fill="black" stroke="black"/>
+<rect id="sing" x="764.5" y="637.5" width="175" height="43" fill="black" stroke="black"/>
+<rect id="dance" x="939.5" y="637.5" width="182" height="43" fill="black" stroke="black"/>
+<rect id="play" x="764.5" y="680.5" width="181" height="43" fill="black" stroke="black"/>
+<rect id="act" x="764.5" y="723.5" width="181" height="44" fill="black" stroke="black"/>
+<rect id="write" x="945.5" y="723.5" width="181" height="44" fill="black" stroke="black"/>
+<rect id="explore" x="946.5" y="680.5" width="182" height="43" fill="black" stroke="black"/>
+<rect id="celebrate" x="410.5" y="675.5" width="333" height="42" fill="black" stroke="black"/>
+<rect id="rest" x="410.5" y="717.5" width="333" height="42" fill="black" stroke="black"/>
+<rect id="smile" x="410.5" y="759.5" width="333" height="42" fill="black" stroke="black"/>
+<rect id="discomfort" x="47.5" y="661.5" width="347" height="56" fill="black" stroke="black"/>
+<rect id="investigate" x="47.5" y="717.5" width="347" height="51" fill="black" stroke="black"/>
+<rect id="judgement" x="47.5" y="768.5" width="347" height="58" fill="black" stroke="black"/>
+<rect id="bite" x="47.5" y="826.5" width="347" height="28" fill="black" stroke="black"/>
+<rect id="belly" x="51.5" y="854.5" width="344" height="53" fill="black" stroke="black"/>
+</g>
+</svg>

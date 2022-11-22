@@ -56,7 +56,7 @@
 		background-size: 100%;
 	}
 	#needs:before {
-		background-position: left;
+		background-position: right;
 		background-size: 200%;
 	}
 </style>
