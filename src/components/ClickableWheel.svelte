@@ -11,6 +11,7 @@
 	export let selected = [];
 	export let limit = 1000;
 	export let soundId = "select";
+	export let withColor = false;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -30,7 +31,10 @@
 				!current
 			);
 			if (!current) {
-				selected = [...selected, e.target.id];
+				selected = [
+					...selected,
+					{ word: e.target.id, color: e.srcElement.parentNode.id }
+				];
 			} else {
 				selected = selected.filter((d) => d !== e.target.id);
 			}

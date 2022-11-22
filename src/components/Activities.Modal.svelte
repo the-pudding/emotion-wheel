@@ -33,6 +33,7 @@
 				imgSrc={`../assets/activities/wheel.png`}
 				wheelId="the-wheel"
 				bind:selected={words}
+				withColor={true}
 			/>
 		</div>
 	{:else if currentActivity === "body"}

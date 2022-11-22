@@ -4,6 +4,8 @@
 	import _ from "lodash";
 	import { toPng } from "html-to-image";
 	import { annotate } from "svelte-rough-notation";
+	import variables from "$data/variables.json";
+	import determineFontColor from "$utils/determineFontColor.js";
 
 	let summaryEl;
 	let currentActivity;
@@ -45,14 +47,15 @@
 	<div class="results" bind:this={summaryEl}>
 		<div class="wheel-results">
 			<ul>
-				{#each words as word}
+				{#each words as { word, color }}
 					<li
 						use:annotate={{
 							type: "highlight",
 							animate: false,
 							visible: true,
-							color: "red"
+							color: variables.color[color]
 						}}
+						style:color={determineFontColor(variables.color[color])}
 					>
 						{formatWord(word)}
 					</li>

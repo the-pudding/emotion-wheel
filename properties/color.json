@@ -40,19 +40,22 @@
 			"value": "rgb(25, 25, 25)"
 		},
 		"purple": {
-			"value": "#a239ca"
+			"value": "#893248"
 		},
 		"blue": {
-			"value": "#4717f6"
+			"value": "#4862ad"
 		},
 		"green": {
-			"value": "#34a29e"
+			"value": "#51a03a"
 		},
 		"red": {
-			"value": "#ff533d"
+			"value": "#aa0015"
 		},
 		"yellow": {
-			"value": "#e5e338"
+			"value": "#ffb316"
+		},
+		"orange": {
+			"value": "#fc5132"
 		},
 		"grey-balloon": {
 			"value": "#d8d8d8"
