@@ -62,6 +62,7 @@
 </script>
 
 <div class="top-bar">
+	<a href="/activities">Go to activities page</a>
 	<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
 	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 </div>
@@ -91,23 +92,27 @@
 		right: 1em;
 		z-index: 10;
 		font-size: var(--14px);
+		line-height: 22px;
 		font-family: var(--sans);
 		letter-spacing: normal;
 	}
 
 	.mute {
 		background: none;
-		text-decoration: underline;
+		border-bottom: 1px solid currentColor;
 		font-family: var(--sans);
-		margin-right: 1em;
+		padding: 0;
+		margin: 0 1em;
+		line-height: inherit;
 	}
 	.mute:hover {
-		font-weight: bold;
+		color: var(--color-gray-700);
 	}
 
 	@media (max-height: 600px) {
 		.top-bar {
 			font-size: var(--12px);
+			line-height: 14px;
 		}
 	}
 </style>

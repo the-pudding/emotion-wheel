@@ -75,7 +75,6 @@
 	button.option {
 		background: none;
 		font-size: 1.6em;
-		font-weight: bold;
 		padding: 0;
 		text-align: left;
 	}

@@ -33,7 +33,7 @@
 <div class="container">
 	<div class="top">
 		<h1>Activities</h1>
-		<a href={`../`}>Go back to story</a>
+		<a href={`../`} class="to-story">Go back to story</a>
 	</div>
 
 	<div class="cards">
@@ -74,6 +74,9 @@
 <style>
 	:global(body) {
 		background: white;
+	}
+	a.to-story {
+		font-family: var(--sans);
 	}
 	.container {
 		display: flex;
