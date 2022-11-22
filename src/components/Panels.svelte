@@ -68,6 +68,7 @@
 		"gallery",
 		"resources"
 	];
+	const longText = ["brene", "gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color"];
 </script>
 
@@ -78,6 +79,7 @@
 			: id.includes("survey") && id !== "survey-needs"
 			? `${id}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
+		{@const long = longText.includes(id)}
 		<div
 			class="step"
 			class:visible={$entered}
@@ -117,7 +119,7 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text {i} {text} {id} />
+					<Text {i} {text} {id} {long} />
 				{/if}
 
 				{#if id === "try-wheel"}

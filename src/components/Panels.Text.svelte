@@ -4,12 +4,14 @@
 	export let i;
 	export let text;
 	export let id;
+	export let long = false;
 </script>
 
 <div
 	class="text"
 	class:fascinating={id === "fascinating"}
 	class:visible={i === $currentPanel}
+	class:long
 >
 	{#each text as t}
 		<p>{@html t}</p>
@@ -26,6 +28,9 @@
 		opacity: 0;
 		transition: transform 1s, opacity 1s;
 	}
+	.text.long {
+		max-width: 600px;
+	}
 	.visible {
 		opacity: 1;
 		transform: translateX(0);
@@ -40,6 +45,9 @@
 	@media (max-height: 600px) {
 		.text {
 			max-width: 250px;
+		}
+		.text.long {
+			max-width: 400px;
 		}
 		.fascinating {
 			font-size: var(--32px);
