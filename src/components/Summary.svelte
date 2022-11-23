@@ -19,7 +19,16 @@
 	};
 </script>
 
-<div class="summary">
+<div
+	class="summary"
+	use:annotate={{
+		type: "box",
+		animate: false,
+		visible: true,
+		color: "black",
+		padding: 0
+	}}
+>
 	<div class="box" bind:this={summaryEl}>
 		<div tabindex="0" class="download" on:click={save}>download</div>
 

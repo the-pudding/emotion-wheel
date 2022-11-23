@@ -53,7 +53,7 @@
 
 	const refreshNodes = async () => {
 		await tick();
-		scrollyEl.refreshNodes(visibleSteps);
+		if (scrollyEl) scrollyEl.refreshNodes(visibleSteps);
 	};
 
 	const noBg = [
