@@ -51,7 +51,7 @@
 		100% {
 			opacity: 1;
 			left: 45%;
-			transform: rotate(360deg);
+			transform: rotate(-360deg);
 		}
 	}
 
