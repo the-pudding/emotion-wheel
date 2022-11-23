@@ -15,8 +15,7 @@
 		.clamp(true);
 
 	const enter = () => {
-		// TODO: tween it there
-		$scrolled = $scrollMax;
+		scrolled.set($scrollMax, { duration: 1000 });
 	};
 </script>
 
@@ -32,14 +31,7 @@
 	>
 		{#if showText}
 			<div class="words" transition:fade>
-				<a
-					href="https://pudding.cool"
-					aria-label="The Pudding"
-					target="_blank"
-					class="logo-link"
-				>
-					<img class="logo" src="assets/img/logo_full.png" />
-				</a>
+				<img class="logo" src="assets/img/logo_full.png" />
 
 				<h1>{@html copy.title}</h1>
 				<div class="description">{@html copy.description}</div>
