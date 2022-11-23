@@ -41,12 +41,9 @@
 	"subdirectory": "emotion-wheel",
 	"dependencies": {
 		"@supabase/supabase-js": "^2.0.0",
-		"d3-voronoi-treemap": "^1.1.2",
-		"download": "^8.0.0",
 		"howler": "^2.2.3",
 		"html-to-image": "^1.10.8",
 		"rough-notation": "^0.5.1",
-		"svelte-color-select": "^0.0.4",
 		"svelte-rough-notation": "^0.1.4",
 		"vanilla-colorful": "^0.7.1"
 	}
