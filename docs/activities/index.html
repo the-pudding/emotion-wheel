@@ -6,18 +6,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="content-security-policy" content="">
-		<link href="/emotion-wheel/_app/immutable/assets/_layout-9c7197c9.css" rel="stylesheet">
-		<link href="/emotion-wheel/_app/immutable/assets/_page-fd652ef4.css" rel="stylesheet">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/start-fa74dcf9.js">
+		<link href="/emotion-wheel/_app/immutable/assets/_layout-8b8308e8.css" rel="stylesheet">
+		<link href="/emotion-wheel/_app/immutable/assets/_page-d096d83d.css" rel="stylesheet">
+		<link href="/emotion-wheel/_app/immutable/assets/needsKey-27228744.css" rel="stylesheet">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/start-b1ef0834.js">
 		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/preload-helper-aa6bc0ce.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/index-0202f02a.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/singletons-4199e8a9.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/paths-be47c445.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/_layout.svelte-6f7333a0.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/misc-deeb6e62.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/paths-b99c000d.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/singletons-bbe7ed38.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/_layout.svelte-f893909d.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/misc-47c858a4.js">
 		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/modules/pages/_layout.js-7b9cbfbc.js">
 		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/_layout-8d2a742b.js">
-		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/activities/_page.svelte-9f9e2e7c.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/components/pages/activities/_page.svelte-0b59882c.js">
+		<link rel="modulepreload" href="/emotion-wheel/_app/immutable/chunks/needsKey-18e5a32e.js">
 </head>
 
 <body>
@@ -27,22 +28,27 @@
 
 <header class="svelte-1p1q42"><a href="https://pudding.cool" aria-label="The Pudding" target="_blank"><img src="/emotion-wheel/assets/img/logo_small.png" class="svelte-1p1q42"></a>
 </header>
-<main id="content"><div class="container svelte-pa2w55"><div class="top svelte-pa2w55"><h1 class="svelte-pa2w55">Activities</h1>
-		<a href="../">Go back to story</a></div>
+<main id="content"><div class="container svelte-zlinh1"><div class="top svelte-zlinh1"><h1 class="svelte-zlinh1">Activities</h1>
+		<a href="../" class="to-story svelte-zlinh1">Go back to story</a></div>
 
-	<div class="cards svelte-pa2w55"><div class="card svelte-1i5xef3" id="wheel" style="--background: url(../assets/activities/wheel.png"><h3 class="svelte-1i5xef3">Emotion Wheel</h3>
-</div><div class="card svelte-1i5xef3" id="body" style="--background: url(../assets/activities/body.png"><h3 class="svelte-1i5xef3">Body mapping</h3>
-</div><div class="card svelte-1i5xef3" id="needs" style="--background: url(../assets/activities/needs.png"><h3 class="svelte-1i5xef3">Needs checklist</h3>
+	<div class="cards svelte-zlinh1"><div class="card svelte-j49yrw" id="wheel" style="--background: url(../assets/activities/wheel.png"><h3 class="svelte-j49yrw">Emotion Wheel</h3>
+</div><div class="card svelte-j49yrw" id="body" style="--background: url(../assets/activities/body.png"><h3 class="svelte-j49yrw">Body mapping</h3>
+</div><div class="card svelte-j49yrw" id="needs" style="--background: url(../assets/activities/needs.png"><h3 class="svelte-j49yrw">Needs checklist</h3>
 </div></div>
 
-	<div class="modal svelte-4n5n1z">undefined
-	<button>close</button>
-</div>
-</div></main>
+	<div class="results svelte-zlinh1"><div class="wheel-results svelte-zlinh1"><ul class="svelte-zlinh1"></ul></div>
+		<div class="body-results svelte-zlinh1"></div>
+		<div class="needs-results svelte-zlinh1"><ul class="svelte-zlinh1"></ul></div></div>
+
+	<div class="modal svelte-7cmdg5"><button class="close svelte-7cmdg5">close</button>
+	
+</div></div>
+
+<div tabindex="0" class="download svelte-zlinh1">download</div></main>
 
 
-		<script type="module" data-sveltekit-hydrate="dlu6r9">
-			import { start } from "/emotion-wheel/_app/immutable/start-fa74dcf9.js";
+		<script type="module" data-sveltekit-hydrate="1gdugai">
+			import { start } from "/emotion-wheel/_app/immutable/start-b1ef0834.js";
 
 			start({
 				env: {},
@@ -56,7 +62,7 @@
 					form: null
 				},
 				paths: {"base":"/emotion-wheel","assets":"/emotion-wheel"},
-				target: document.querySelector('[data-sveltekit-hydrate="dlu6r9"]').parentNode,
+				target: document.querySelector('[data-sveltekit-hydrate="1gdugai"]').parentNode,
 				trailing_slash: "always"
 			});
 		</script>

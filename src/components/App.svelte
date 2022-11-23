@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import Loading from "$components/Loading.svelte";
 	import Toggle from "$components/helpers/Toggle.svelte";
 	import Plain from "$components/Plain.svelte";
@@ -40,7 +41,7 @@
 </script>
 
 <div class="top-bar">
-	<a href="/activities">Go to activities page</a>
+	<a href={`${base}/activities`}>Go to activities page</a>
 	<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
 	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 </div>
