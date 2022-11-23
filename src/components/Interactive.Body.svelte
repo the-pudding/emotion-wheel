@@ -1,5 +1,4 @@
 <script>
-	import ColorPicker from "$components/ColorPicker.svelte";
 	import BodyDraw from "$components/BodyDraw.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing } from "$stores/misc.js";

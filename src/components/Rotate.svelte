@@ -1,7 +1,7 @@
 <div class="container">
 	<h3>Please rotate your device.</h3>
 	<img src="assets/img/rotate.png" />
-	<p>This immersive experience is designed to be seen in landscape mode.</p>
+	<p>This immersive experience is designed to be viewed in landscape mode.</p>
 </div>
 
 <style>

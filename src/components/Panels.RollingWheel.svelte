@@ -19,6 +19,7 @@
 	use:inView
 	on:enter={() => (onScreen = true)}
 	on:exit={() => (onScreen = false)}
+	alt="rolling emotion wheel"
 />
 
 <style>
@@ -32,7 +33,7 @@
 	img.big {
 		width: 500px;
 	}
-	.visible {
+	img.visible {
 		opacity: 1;
 	}
 

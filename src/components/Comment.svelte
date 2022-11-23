@@ -59,7 +59,7 @@
 	.comment:hover span.text {
 		display: block;
 	}
-	span {
+	span.text {
 		display: none;
 	}
 </style>

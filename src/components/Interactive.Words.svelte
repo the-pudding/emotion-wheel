@@ -89,19 +89,4 @@
 		font-size: 1.6em;
 		font-weight: bold;
 	}
-	:global(svg#grey-wheel) {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 100%;
-	}
-	:global(#grey-wheel #slices path) {
-		opacity: 0;
-	}
-	:global(#grey-wheel #slices path):hover {
-		cursor: pointer;
-	}
-	:global(#grey-wheel #slices path.highlighted) {
-		opacity: 0.4;
-	}
 </style>

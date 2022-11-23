@@ -4,8 +4,6 @@
 	import { fade } from "svelte/transition";
 	import { entered, scrolled, scrollMax } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
-	import Icon from "$components/helpers/Icon.svelte";
-	import mq from "$stores/mq.js";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
@@ -34,7 +32,12 @@
 	>
 		{#if showText}
 			<div class="words" transition:fade>
-				<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
+				<a
+					href="https://pudding.cool"
+					aria-label="The Pudding"
+					target="_blank"
+					class="logo-link"
+				>
 					<img class="logo" src="assets/img/logo_full.png" />
 				</a>
 
@@ -42,28 +45,16 @@
 				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 
-				<!-- {#if $mq.desktop}
-					<div class="scroll">Scroll down to begin</div>
-
-					<div class="mouse">
-						<span class="icon"><Icon name="arrow-down" /></span>
-					</div>
-				{/if} -->
-
 				<div style="margin-top: 2em">Click anywhere to continue</div>
 
 				<div class="audio">FYI, this story contains audio.</div>
-
-				<!-- {#if !$mq.desktop}
-					<button class="confirm" on:click={enter}>Begin</button>
-				{/if} -->
 			</div>
 		{/if}
 	</div>
 </div>
 
 <style>
-	a:not(.wheel) {
+	a.logo-link {
 		border-bottom: none;
 	}
 	.title-wrapper {
@@ -114,58 +105,9 @@
 		font-family: var(--font-titles);
 		font-weight: bold;
 	}
-	.spacer {
-		height: 100%;
-		flex-shrink: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
-		background: grey;
-		opacity: 0.3;
-	}
-	.scroll {
-		margin-top: 3em;
-		margin-bottom: 10px;
-		font-size: var(--16px);
-	}
-	.mouse {
-		background: white;
-		border: 1px solid rgb(15 15 15 / 20%);
-		border-radius: 15px;
-		width: 30px;
-		height: 46px;
-		box-shadow: 0 2px 4px rgb(15 15 15 / 20%);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		font-size: 18px;
-		position: relative;
-		color: var(--color-gray-600);
-	}
-	.icon {
-		position: absolute;
-		animation: moveArrow 1.5s linear infinite;
-	}
 	.audio {
 		font-size: var(--16px);
 		margin: 1em 0;
-	}
-
-	@keyframes moveArrow {
-		0% {
-			opacity: 0;
-			top: -10%;
-		}
-
-		50% {
-			opacity: 1;
-			top: 30%;
-		}
-
-		100% {
-			opacity: 0;
-			top: 70%;
-		}
 	}
 
 	@media (max-height: 600px) {

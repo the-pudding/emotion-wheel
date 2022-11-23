@@ -55,7 +55,6 @@
 		.resources {
 			font-size: var(--12px);
 		}
-
 		.sections {
 			font-size: var(--12px);
 		}

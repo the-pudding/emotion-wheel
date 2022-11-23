@@ -2,8 +2,6 @@
 	import copy from "$data/copy.json";
 
 	const steps = copy.steps.filter((d) => d.text);
-
-	$: console.log({ copy });
 </script>
 
 <div class="wrapper">

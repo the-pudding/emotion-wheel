@@ -6,7 +6,6 @@
 	import Rotate from "$components/Rotate.svelte";
 	import {
 		entered,
-		selectedGalleryImage,
 		scrolled,
 		scrollMax,
 		soundOn,

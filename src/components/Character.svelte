@@ -14,8 +14,7 @@
 		words,
 		basicFeeling,
 		entered,
-		visibleWidth,
-		isScrolling
+		visibleWidth
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
@@ -29,22 +28,23 @@
 	const fx = $mq.sm ? 63 : 110;
 	const fy = $mq.sm ? 135 : 260;
 	const stringLength = $mq.sm ? 90 : 150;
-	$: svgHeight = $mq.sm ? 200 : 400;
-	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
-
 	const formatLabel = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
 			: _.startCase(str).toLowerCase();
 
+	$: svgHeight = $mq.sm ? 200 : 400;
+	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
 		{ name: "source", fx, fy },
 		...range(numBalloons).map((d) => ({ name: d }))
 	];
 	$: links = range(numBalloons).map((d) => ({ source: 0, target: d + 1 }));
-
 	$: numBalloons, newBalloons();
+	$: $colors, colorChange();
+	$: $scrollX, scrollChange();
+
 	const newBalloons = async () => {
 		if (simulation) {
 			const source = nodes.find((d) => d.name === "source");
@@ -52,7 +52,6 @@
 		}
 	};
 
-	$: $colors, colorChange();
 	const colorChange = () => {
 		if ($colors.length) {
 			select(svg)
@@ -88,7 +87,6 @@
 		}
 	};
 
-	$: $scrollX, scrollChange();
 	const scrollChange = () => {
 		if ($scrollX && simulation) {
 			const source = nodes.find((d) => d.name === "source");
@@ -196,14 +194,6 @@
 </svg>
 
 <style>
-	.character,
-	svg {
-		opacity: 0;
-		transition: opacity 1s;
-	}
-	.visible {
-		opacity: 1;
-	}
 	.balloon-container {
 		margin: 20px;
 		text-align: center;
@@ -215,6 +205,11 @@
 		bottom: 0;
 		z-index: 1;
 		pointer-events: none;
+		opacity: 0;
+		transition: opacity 1s;
+	}
+	svg.visible {
+		opacity: 1;
 	}
 	text.label {
 		alignment-baseline: central;

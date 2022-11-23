@@ -23,9 +23,4 @@
 	.container.faded {
 		opacity: 0.3;
 	}
-	.row {
-		display: flex;
-		justify-content: space-between;
-		height: 50%;
-	}
 </style>
