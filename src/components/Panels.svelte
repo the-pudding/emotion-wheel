@@ -62,14 +62,13 @@
 		"fascinating",
 		"color",
 		"body",
-		"brene",
 		"final-wheel",
 		"let-go",
 		"gallery",
 		"resources"
 	];
 	const longText = ["brene", "gallery-intro", "closing"];
-	const hasOverlay = ["core", "body-color"];
+	const hasOverlay = ["core", "body-color", "same-way"];
 </script>
 
 <Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
