@@ -24,8 +24,9 @@
 		padding: 1em;
 		position: absolute;
 		max-width: 450px;
-		left: 57%;
-		top: 30%;
+		top: 40%;
+		left: 70%;
+		transform: translate(-50%, -50%);
 		background: white;
 		text-align: center;
 	}

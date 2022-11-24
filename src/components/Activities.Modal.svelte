@@ -38,7 +38,7 @@
 
 			<ClickableWheel
 				{slices}
-				imgSrc={`../assets/activities/wheel.png`}
+				imgSrc={`assets/activities/wheel.png`}
 				wheelId="the-wheel"
 				bind:selected={words}
 				withColor={true}
@@ -59,7 +59,7 @@
 			<button on:click={clearNeeds} class="skip">clear</button>
 			<NeedsChecklist
 				{checks}
-				imgSrc={"../assets/activities/needs.png"}
+				imgSrc={"assets/activities/needs.png"}
 				wheelId={"needs-activities"}
 				bind:selected={needs}
 			/>

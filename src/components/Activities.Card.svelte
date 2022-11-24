@@ -1,4 +1,6 @@
 <script>
+	import { base } from "$app/paths";
+
 	export let imageSrc;
 	export let title;
 	export let currentActivity;
@@ -11,7 +13,7 @@
 <div
 	class="card"
 	id={imageSrc}
-	style={`--background: url(../assets/activities/${imageSrc}.png`}
+	style={`--background: url(${base}/assets/activities/${imageSrc}.png`}
 	on:click={onClick}
 >
 	<h3>{title}</h3>

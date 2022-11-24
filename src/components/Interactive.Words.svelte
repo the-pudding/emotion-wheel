@@ -59,7 +59,9 @@
 	</div>
 </div>
 
-<Callout />
+{#if $words.length}
+	<Callout />
+{/if}
 
 <style>
 	.words {

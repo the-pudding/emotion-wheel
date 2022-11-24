@@ -41,6 +41,10 @@
 	<Plain />
 {:else if askToRotate}
 	<Rotate />
+	<!-- {:else if loading}
+	<Loading /> -->
+{:else}
+	<Story {innerHeight} />
 {/if}
 
 <!-- {#if loading}
@@ -48,7 +52,7 @@
 {:else} -->
 
 <!-- remember, story always has to be rendering -->
-<Story {innerHeight} />
+<!-- <Story {innerHeight} /> -->
 
 <!-- {/if} -->
 

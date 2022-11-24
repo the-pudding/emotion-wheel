@@ -78,10 +78,11 @@
 		border-radius: 6px;
 	}
 	.box {
-		max-width: 700px;
+		min-width: 350px;
+		max-width: 800px;
 		border-radius: 8px;
 		background: white;
-		padding: 1em 1em 0 1em;
+		padding: 1em;
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
 			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
 		display: flex;
@@ -89,7 +90,7 @@
 		position: relative;
 	}
 	img.body {
-		max-height: 68%;
+		min-width: 200px;
 		margin: 0 -5em;
 	}
 	.section {
@@ -104,10 +105,12 @@
 	}
 	ul.words {
 		list-style-type: none;
+		flex-shrink: 0;
 	}
 	ul.needs {
 		list-style-type: circle;
 		font-size: var(--18px);
+		flex-shrink: 0;
 	}
 	li.word {
 		width: fit-content;
@@ -127,10 +130,13 @@
 
 	@media (max-height: 600px) {
 		h3 {
-			font-size: var(--20px);
+			font-size: var(--16px);
 		}
 		.section {
 			margin: 0 1em;
+		}
+		img.body {
+			min-width: 80px;
 		}
 	}
 </style>

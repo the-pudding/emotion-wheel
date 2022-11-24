@@ -79,10 +79,9 @@
 
 	<div class="interactive">
 		<BodyDraw {color} bind:screenshotEl />
-
-		<button class="confirm" on:click={screenshot}>All done</button>
 	</div>
 </div>
+<button class="confirm" on:click={screenshot}>Done</button>
 
 <style>
 	.body {
@@ -93,6 +92,12 @@
 		width: 70%;
 		top: 40%;
 		transform: translate(0, -50%);
+	}
+	button.confirm {
+		position: absolute;
+		top: 56%;
+		left: 75%;
+		transform: translate(-50%, -50%);
 	}
 	.words {
 		margin-right: 3em;
