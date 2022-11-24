@@ -44,6 +44,7 @@
 
 	@media (max-height: 600px) {
 		.text {
+			top: 20%;
 			max-width: 250px;
 		}
 		.text.long {

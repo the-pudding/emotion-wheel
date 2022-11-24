@@ -1,5 +1,6 @@
 <script>
 	import ClickableWheel from "$components/ClickableWheel.svelte";
+	import Callout from "$components/Callout.svelte";
 	import { basicFeeling, words } from "$stores/misc.js";
 	import _ from "lodash";
 	import okaySlices from "$svg/okay-slices.svg";
@@ -57,6 +58,8 @@
 		<button class="skip" on:click={skip} {disabled}>skip</button>
 	</div>
 </div>
+
+<Callout />
 
 <style>
 	.words {

@@ -1,0 +1,36 @@
+<script>
+	import { annotate } from "svelte-rough-notation";
+	import { base } from "$app/paths";
+</script>
+
+<a
+	class="callout"
+	use:annotate={{
+		type: "box",
+		animate: false,
+		visible: true,
+		color: "black",
+		padding: 0
+	}}
+	href={`${base}/activities`}
+	target="_blank"
+>
+	If you find these activities useful, you can come back to them on the
+	activities page. Click here to open it in a new tab.
+</a>
+
+<style>
+	.callout {
+		padding: 1em;
+		position: absolute;
+		max-width: 450px;
+		left: 57%;
+		top: 30%;
+		background: white;
+		text-align: center;
+	}
+	.callout:hover {
+		background: var(--color-gray-100);
+		cursor: pointer;
+	}
+</style>

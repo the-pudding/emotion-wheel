@@ -24,7 +24,7 @@
 			padding: 0
 		}}
 	>
-		<a href={`${base}/activities`}>Go to activities page</a>
+		<a href={`${base}/activities`} target="_blank">Go to activities page</a>
 		<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
 		<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 	</div>
