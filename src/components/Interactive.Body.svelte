@@ -13,6 +13,8 @@
 	let i = Math.floor(Math.random() * $words.length);
 	let word = $words[i];
 	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+
+	$: console.log($words, $colors);
 	const formatWord = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
