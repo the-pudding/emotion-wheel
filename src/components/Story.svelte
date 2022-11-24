@@ -4,21 +4,31 @@
 	import Character from "$components/Character.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
 	import { base } from "$app/paths";
+	import { Howl } from "howler";
 	import {
 		entered,
 		scrolled,
 		selectedGalleryImage,
 		worldBg,
 		scrollMax,
-		isScrolling
+		isScrolling,
+		soundOn
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
+	import { onMount, onDestroy } from "svelte";
 
 	export let innerHeight;
 
 	let t;
 	let containerEl;
+	const sound = new Howl({
+		src: [`${base}/assets/sound/bg-music.mp3`],
+		volume: 0.3
+	});
 
+	$: if ($entered) sound.play();
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 	$: bgImage = `${base}/assets/img/bg${
 		$worldBg === variables.color["sky-blue"] ? "-color" : ""
 	}.png`;
@@ -70,6 +80,10 @@
 			}
 		}
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <div
