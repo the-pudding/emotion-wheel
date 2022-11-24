@@ -101,6 +101,14 @@
 					src={`assets/img/panels/ground.png`}
 					class="full-panel extra-ground"
 				/>
+			{:else if id === "survey-needs"}
+				<img
+					src={`assets/img/panels/survey-needs-${
+						surveyNeeded === "survey-needs" ? "pre" : "post"
+					}.png`}
+					class="full-panel"
+					style="position: absolute; top: 0; left: 0"
+				/>
 			{/if}
 
 			<div class="content">
