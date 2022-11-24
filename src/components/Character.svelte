@@ -22,18 +22,24 @@
 	import scrollX from "$stores/scrollX.js";
 	import _ from "lodash";
 	import mq from "$stores/mq.js";
+	import { tweened } from "svelte/motion";
+
+	export let innerHeight;
 
 	let svg;
 	const r = $mq.sm ? 12 : 20;
-	const fx = $mq.sm ? 63 : 110;
-	const fy = $mq.sm ? 135 : 260;
-	const stringLength = $mq.sm ? 90 : 150;
+	const fx = $mq.sm ? 63 : 115;
+	// const fy = $mq.sm ? 335 : 860;
+	$: fy = innerHeight ? innerHeight * 0.87 : 100;
+	$: stringLength = 58;
+	//const stringLength = $mq.sm ? 90 : 80;
+
 	const formatLabel = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
 			: _.startCase(str).toLowerCase();
 
-	$: svgHeight = $mq.sm ? 200 : 400;
+	$: svgHeight = innerHeight;
 	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -130,10 +136,29 @@
 				.distance((d) => stringLength)
 		)
 		.on("tick", ticked);
+
+	const offScreen = 0;
+	$: yTween = tweened(fy, { duration: 3000 });
+	$: $yTween, updateSource();
+	// $: if ($yTween === offScreen) re-render the balloons
+	// new component
+
+	const updateSource = () => {
+		const source = nodes.find((d) => d.name === "source");
+		source.fy = $yTween;
+	};
+	const fly = () => {
+		$yTween = offScreen;
+		simulation.alpha(1).restart();
+	};
 </script>
 
 <WalkingSprite />
 
+<!-- <button
+	on:click={fly}
+	style="position: absolute; top: 50%; left: 30%; z-index: 1000">fly</button
+> -->
 <svg
 	id="character-balloon-area"
 	width={svgWidth}

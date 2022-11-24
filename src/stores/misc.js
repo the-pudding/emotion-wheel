@@ -5,6 +5,7 @@ export const scrollMax = readable(400);
 export const scrolled = tweened(0, { duration: 0 });
 export const isScrolling = writable(false);
 export const entered = writable(false);
+export const showPlain = writable(false);
 
 export const currentPanel = writable(undefined);
 export const soundOn = writable(true);

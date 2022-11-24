@@ -84,12 +84,15 @@
 >
 	{#if innerHeight}
 		<Title />
-	{/if}
 
-	<div class="world">
-		<Character scrollLeft={containerEl ? containerEl.scrollLeft : 0} />
-		<Panels {innerHeight} />
-	</div>
+		<div class="world">
+			<Character
+				scrollLeft={containerEl ? containerEl.scrollLeft : 0}
+				{innerHeight}
+			/>
+			<Panels {innerHeight} />
+		</div>
+	{/if}
 
 	<Modal />
 </div>

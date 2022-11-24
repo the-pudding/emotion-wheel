@@ -25,6 +25,7 @@
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
+	import { annotate } from "svelte-rough-notation";
 
 	let scrollyEl;
 
@@ -129,6 +130,19 @@
 					<RollingWheel img={"simple_wheel_color.png"} {i} />
 				{:else if id === "body"}
 					<BodyDemo {i} />
+				{:else if id === "body-color"}
+					<div
+						class="genius"
+						use:annotate={{
+							type: "box",
+							animate: false,
+							visible: true,
+							color: "black",
+							padding: 0
+						}}
+					>
+						I added a new category! More on that later.
+					</div>
 				{:else if id === "final-wheel"}
 					<RollingWheel img={"final_wheel.png"} {i} />
 				{:else if id === "let-go"}
@@ -187,5 +201,15 @@
 	}
 	.overlay.visible {
 		opacity: 1;
+	}
+	.genius {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		left: 87%;
+		top: 70%;
+		background: rgb(247, 203, 122);
+		padding: 0.5em;
+		font-size: var(--14px);
+		text-align: center;
 	}
 </style>

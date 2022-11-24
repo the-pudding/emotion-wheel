@@ -78,7 +78,7 @@
 		text-align: center;
 		background: white;
 		max-width: 220px;
-		padding: 0.5em;
+		padding: 1em;
 		position: absolute;
 		top: 0;
 		transform: translate(0, -120%);
