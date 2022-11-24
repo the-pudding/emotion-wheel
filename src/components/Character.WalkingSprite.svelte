@@ -81,7 +81,7 @@
 		padding: 1em;
 		position: absolute;
 		top: 0;
-		transform: translate(0, -120%);
+		transform: translate(30%, -120%);
 	}
 	.visible {
 		opacity: 1;
