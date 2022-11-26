@@ -60,7 +60,9 @@
 		src={visible ? `assets/img/gallery/${$selectedGalleryImage}.png` : ""}
 		{comments}
 	/>
-	<button class="close" on:click={close}><Icon name="x" /></button>
+	<button class="close" aria-label="close" on:click={close}
+		><Icon name="x" /></button
+	>
 </div>
 
 <style>

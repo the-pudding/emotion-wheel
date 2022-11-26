@@ -31,7 +31,7 @@
 	>
 		{#if showText}
 			<div class="words" transition:fade>
-				<img class="logo" src="assets/img/logo_full.png" />
+				<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
 
 				<h1>{@html copy.title}</h1>
 				<div class="description">{@html copy.description}</div>

@@ -5,6 +5,7 @@
 	import slices from "$svg/slices.svg";
 	import checks from "$svg/needs-activities.svg";
 	import { toPng } from "html-to-image";
+	import { onMount, tick } from "svelte";
 
 	export let currentActivity;
 	export let words;
@@ -12,6 +13,12 @@
 	export let needs;
 
 	let screenshotEl;
+	let modal;
+	let numFocusableElements;
+	let firstFocusableElement;
+	let lastFocusableElement;
+
+	$: if (modal && currentActivity) focusModal();
 
 	const screenshot = async () => {
 		let png = await toPng(screenshotEl);
@@ -28,13 +35,50 @@
 		if (currentActivity === "body") await screenshot();
 		currentActivity = undefined;
 	};
+
+	const trapFocus = (e) => {
+		// if (!$selectedGalleryImage) return;
+
+		const tabPressed = e.key === "Tab" || e.keyCode === 9;
+		if (!tabPressed) return;
+
+		console.log("trap");
+
+		if (e.shiftKey) {
+			if (document.activeElement === firstFocusableElement) {
+				lastFocusableElement.focus();
+				e.preventDefault();
+			}
+		} else {
+			if (document.activeElement === lastFocusableElement) {
+				firstFocusableElement.focus();
+				e.preventDefault();
+			}
+		}
+	};
+
+	const focusModal = async () => {
+		await tick();
+		modal.focus();
+		const selectables = "path, rect, button";
+		numFocusableElements = modal.querySelectorAll(selectables).length;
+		firstFocusableElement = modal.querySelectorAll(selectables)[0];
+		lastFocusableElement =
+			modal.querySelectorAll(selectables)[numFocusableElements - 1];
+	};
 </script>
 
-<div class="modal" class:visible={currentActivity}>
-	<button on:click={close} class="close">close</button>
+<div
+	class="modal"
+	tabindex="-1"
+	bind:this={modal}
+	class:visible={currentActivity}
+	on:keydown={trapFocus}
+>
+	<button on:click={close} class="close" aria-label="close">close</button>
 	{#if currentActivity === "wheel"}
 		<div class="wheel">
-			<h1>Hi, how are you feeling?</h1>
+			<h2>Hi, how are you feeling?</h2>
 
 			<ClickableWheel
 				{slices}
@@ -55,7 +99,7 @@
 		</div>
 	{:else if currentActivity === "needs"}
 		<div class="needs">
-			<h1>What do you need?</h1>
+			<h2>What do you need?</h2>
 			<button on:click={clearNeeds} class="skip">clear</button>
 			<NeedsChecklist
 				{checks}

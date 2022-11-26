@@ -66,7 +66,7 @@
 		</div>
 		<div class="body-results">
 			{#if bodyImage}
-				<img src={bodyImage.src} />
+				<img src={bodyImage.src} alt="your body scan drawing" />
 			{/if}
 		</div>
 		<div class="needs-results">

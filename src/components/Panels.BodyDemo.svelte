@@ -8,6 +8,7 @@
 	class="body-diagram"
 	class:visible={$currentPanel === i}
 	src={`assets/img/body_demo_annotated.png`}
+	alt="abby body scan drawing"
 />
 
 <style>

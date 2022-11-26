@@ -62,7 +62,7 @@
 </script>
 
 <div class="interactive-needs-checklist">
-	{#if imgSrc} <img src={`${base}/${imgSrc}`} /> {/if}
+	{#if imgSrc} <img src={`${base}/${imgSrc}`} alt="needs checklist" /> {/if}
 	{@html checks}
 </div>
 

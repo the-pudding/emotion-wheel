@@ -54,7 +54,7 @@
 
 		<div class="section" id="body-summary">
 			<h3>I notice:</h3>
-			<img class="body" src={$bodyDrawing.src} />
+			<img class="body" src={$bodyDrawing.src} alt="your body scan drawing" />
 		</div>
 
 		<div class="section">

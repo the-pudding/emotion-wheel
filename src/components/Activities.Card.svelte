@@ -10,17 +10,18 @@
 	};
 </script>
 
-<div
+<button
 	class="card"
 	id={imageSrc}
 	style={`--background: url(${base}/assets/activities/${imageSrc}.png`}
 	on:click={onClick}
 >
 	<h3>{title}</h3>
-</div>
+</button>
 
 <style>
 	.card {
+		background: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
