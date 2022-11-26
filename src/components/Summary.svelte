@@ -3,17 +3,19 @@
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
+	import { timeFormat } from "d3";
 	import { annotate } from "svelte-rough-notation";
 	import needsKey from "$utils/needsKey";
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
+	const formatTime = timeFormat("%m-%d-%Y");
 
 	let summaryEl;
 
 	const save = async () => {
 		const img = await toPng(summaryEl, { backgroundColor: "white" });
 		const link = document.createElement("a");
-		link.download = "screenshot.png";
+		link.download = `${formatTime(new Date())}.png`;
 		link.href = img;
 		link.click();
 	};

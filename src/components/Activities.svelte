@@ -7,6 +7,7 @@
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import needsKey from "$utils/needsKey.js";
+	import { timeFormat } from "d3";
 
 	let summaryEl;
 	let currentActivity;
@@ -14,6 +15,7 @@
 	let needs = [];
 	let bodyImage;
 
+	const formatTime = timeFormat("%m-%d-%Y");
 	const formatWord = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
@@ -28,7 +30,7 @@
 	const save = async () => {
 		const img = await toPng(summaryEl, { backgroundColor: "white" });
 		const link = document.createElement("a");
-		link.download = "screenshot.png";
+		link.download = `${formatTime(new Date())}.png`;
 		link.href = img;
 		link.click();
 	};
