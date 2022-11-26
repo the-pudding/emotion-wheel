@@ -78,10 +78,12 @@
 		</div>
 	</div>
 
+	<div tabindex="0" class="download" class:visible={bodyImage} on:click={save}>
+		download
+	</div>
+
 	<Modal bind:currentActivity bind:words bind:bodyImage bind:needs />
 </div>
-
-<div tabindex="0" class="download" on:click={save}>download</div>
 
 <style>
 	:global(body) {
@@ -96,6 +98,7 @@
 		align-items: center;
 		width: 100%;
 		padding: 2em;
+		margin-bottom: 4em;
 		background: white;
 	}
 	.top {
@@ -128,6 +131,7 @@
 		list-style-type: none;
 	}
 	.needs-results ul {
+		font-size: var(--32px);
 		list-style-type: circle;
 	}
 	li {
@@ -135,8 +139,13 @@
 	}
 	.download {
 		font-family: var(--sans);
-		font-size: var(--14px);
+		font-size: var(--18px);
 		text-decoration: underline;
+		visibility: hidden;
+		margin-top: 1em;
+	}
+	.download.visible {
+		visibility: visible;
 	}
 	.download:hover {
 		cursor: pointer;

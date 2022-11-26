@@ -37,7 +37,9 @@
 				<div class="description">{@html copy.description}</div>
 				<div>{@html copy.byline}</div>
 
-				<div style="margin-top: 2em">Click anywhere to continue</div>
+				<button style="margin-top: 2em" class="click-anywhere" on:click={enter}>
+					Click anywhere to continue
+				</button>
 
 				<div class="audio">FYI, this story contains audio.</div>
 			</div>
@@ -100,6 +102,9 @@
 	.audio {
 		font-size: var(--16px);
 		margin: 1em 0;
+	}
+	.click-anywhere {
+		background: none;
 	}
 
 	@media (max-height: 600px) {
