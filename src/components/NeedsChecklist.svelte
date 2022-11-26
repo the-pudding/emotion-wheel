@@ -61,7 +61,10 @@
 	});
 </script>
 
-<div class="interactive-needs-checklist">
+<div
+	class="interactive-needs-checklist"
+	class:activities={wheelId === "needs-activities"}
+>
 	{#if imgSrc} <img src={`${base}/${imgSrc}`} alt="needs checklist" /> {/if}
 	{@html checks}
 </div>
@@ -70,13 +73,17 @@
 	.interactive-needs-checklist {
 		width: 100%;
 		height: 100%;
+		max-width: none;
 		position: relative;
 	}
+	.interactive-needs-checklist.activities {
+		max-width: 900px;
+	}
 	img {
-		position: absolute;
+		/* position: absolute;
 		top: 0;
 		z-index: -1;
-		width: 100%;
+		width: 100%; */
 	}
 	:global(.interactive-needs-checklist svg) {
 		position: absolute;
