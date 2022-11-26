@@ -97,7 +97,7 @@
 	}
 	button.confirm {
 		position: absolute;
-		top: 56%;
+		top: 53%;
 		left: 75%;
 		transform: translate(-50%, -50%);
 	}

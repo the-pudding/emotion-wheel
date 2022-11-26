@@ -41,8 +41,9 @@
 	}
 	button.skip {
 		position: absolute;
-		bottom: 18%;
-		left: 80%;
+		top: 53%;
+		left: 75%;
+		transform: translate(-50%, -50%);
 	}
 
 	@media (max-height: 600px) {

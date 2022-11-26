@@ -55,8 +55,10 @@
 			</button>
 		{/each}
 	</div>
-	<button class="skip" on:click={skip} {disabled}>skip</button>
 </div>
+
+<!-- left: min(95vw, 75.5%), top some % -->
+<button class="skip" on:click={skip} {disabled}>skip</button>
 
 <style>
 	.basic {
@@ -80,6 +82,12 @@
 	}
 	button:hover {
 		color: var(--color-gray-700);
+	}
+	button.skip {
+		position: absolute;
+		top: 56%;
+		left: 76%;
+		transform: translate(-50%, -50%);
 	}
 
 	span {

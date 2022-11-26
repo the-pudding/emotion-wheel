@@ -88,7 +88,6 @@
 		<ColorPicker bind:color />
 
 		<div class="buttons">
-			<button class="skip" on:click={skip} {disabled}>skip</button>
 			<button class="confirm" on:click={confirm}>That's it</button>
 		</div>
 	{:else}
@@ -96,6 +95,7 @@
 		<button on:click={edit}>Edit my colors</button>
 	{/if}
 </div>
+<button class="skip" on:click={skip} {disabled}>skip</button>
 
 <style>
 	.colors {
@@ -117,7 +117,9 @@
 	}
 	button.skip {
 		position: absolute;
-		left: 0;
+		top: 53%;
+		left: 67.5%;
+		transform: translate(-50%, -50%);
 	}
 	.word {
 		font-size: 1.6em;
@@ -134,13 +136,6 @@
 	}
 
 	@media (max-height: 600px) {
-		.buttons {
-			width: 100%;
-			justify-content: space-between;
-		}
-		button.skip {
-			position: static;
-		}
 		:global(hex-color-picker) {
 			height: 150px;
 			width: 150px;

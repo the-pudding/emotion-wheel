@@ -53,11 +53,9 @@
 			soundId={"pop"}
 		/>
 	{/key}
-
-	<div class="buttons">
-		<button class="skip" on:click={skip} {disabled}>skip</button>
-	</div>
 </div>
+
+<button class="skip" on:click={skip} {disabled}>skip</button>
 
 {#if $words.length}
 	<Callout />
@@ -81,14 +79,11 @@
 	.words div {
 		text-align: center;
 	}
-	.buttons {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
 	button.skip {
 		position: absolute;
-		left: 0;
+		top: 53%;
+		left: 67.5%;
+		transform: translate(-50%, -50%);
 	}
 	span {
 		font-size: 1.6em;
