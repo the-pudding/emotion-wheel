@@ -39,7 +39,7 @@
 
 	img.roll-in {
 		opacity: 1;
-		animation: spin 3s ease-out;
+		animation: spin calc(var(--1s) * 3) ease-out;
 	}
 
 	@keyframes spin {

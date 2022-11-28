@@ -18,8 +18,8 @@
 
 	let i = 0;
 
-	$: if ($isScrolling) cycle();
-	$: if (!$isScrolling) stop();
+	$: if ($isScrolling && !$mq.reducedMotion) cycle();
+	$: if (!$isScrolling && !$mq.reducedMotion) stop();
 
 	const cycle = () => {
 		cycleInterval = setInterval(() => {
@@ -72,7 +72,7 @@
 	}
 	.instructions {
 		opacity: 0;
-		transition: opacity 1s;
+		transition: opacity var(--1s);
 		font-family: var(--sans);
 		font-size: var(--14px);
 		text-align: center;

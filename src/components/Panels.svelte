@@ -177,7 +177,7 @@
 	.step {
 		position: relative;
 		margin: 0;
-		transition: opacity 1s;
+		transition: opacity var(--1s);
 		opacity: 0;
 	}
 	.step.visible {
@@ -205,7 +205,7 @@
 		position: absolute;
 		top: 0;
 		opacity: 0;
-		transition: opacity 2.5s 1s;
+		transition: opacity calc(var(--1s) * 2.5) var(--1s);
 	}
 	.overlay.visible {
 		opacity: 1;

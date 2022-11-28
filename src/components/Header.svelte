@@ -20,7 +20,7 @@
 		height: 3.5em;
 		margin: 1em 0 0 1em;
 		opacity: 0;
-		transition: opacity 1s;
+		transition: opacity var(--1s);
 	}
 	img.visible {
 		opacity: 1;

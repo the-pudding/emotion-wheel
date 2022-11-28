@@ -77,7 +77,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		opacity: 0;
-		transition: opacity 1s;
+		transition: opacity var(--1s);
 		background: var(--color-bg);
 		visibility: visible;
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,

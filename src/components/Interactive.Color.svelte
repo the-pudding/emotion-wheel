@@ -127,7 +127,7 @@
 		font-weight: bold;
 	}
 	.text {
-		transition: color 500ms;
+		transition: color calc(var(--1s) * 0.5);
 		text-align: center;
 	}
 	:global(hex-color-picker) {

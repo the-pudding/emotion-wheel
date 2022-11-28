@@ -1,5 +1,6 @@
 <script>
 	import { currentPanel } from "$stores/misc.js";
+	import mq from "$stores/mq.js";
 
 	export let i;
 	export let text;
@@ -10,7 +11,7 @@
 <div
 	class="text"
 	class:fascinating={id === "fascinating"}
-	class:visible={i === $currentPanel}
+	class:visible={i === $currentPanel || $mq.reducedMotion}
 	class:long
 >
 	{#each text as t}
@@ -26,7 +27,7 @@
 		top: 30%;
 		transform: translateX(100px);
 		opacity: 0;
-		transition: transform 1s, opacity 1s;
+		transition: transform var(--1s), opacity var(--1s);
 	}
 	.text.long {
 		max-width: 600px;

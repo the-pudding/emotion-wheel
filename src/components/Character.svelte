@@ -18,13 +18,14 @@
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
-	import { fade } from "svelte/transition";
 	import scrollX from "$stores/scrollX.js";
 	import _ from "lodash";
 	import mq from "$stores/mq.js";
 	import { tweened } from "svelte/motion";
 
 	export let innerHeight;
+
+	// TODO: no animation if reducedmotion
 
 	let svg;
 	const r = $mq.sm ? 12 : 20;
@@ -211,7 +212,7 @@
 				/>
 
 				{#if label !== ""}
-					<text class="label" transition:fade>{formatLabel(label)}</text>
+					<text class="label">{formatLabel(label)}</text>
 				{/if}
 			</g>
 		{/each}
@@ -231,7 +232,7 @@
 		z-index: 1;
 		pointer-events: none;
 		opacity: 0;
-		transition: opacity 1s;
+		transition: opacity var(--1s);
 	}
 	svg.visible {
 		opacity: 1;

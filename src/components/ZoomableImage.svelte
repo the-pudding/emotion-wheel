@@ -4,6 +4,7 @@
 	import loadImage from "$utils/loadImage.js";
 	import viewport from "$stores/viewport.js";
 	import Comment from "$components/Comment.svelte";
+	import mq from "$stores/mq.js";
 
 	export let src;
 	export let comments;
@@ -24,10 +25,20 @@
 	};
 
 	const zoomIn = () => {
-		z.scaleBy(select(outer).transition(), 1.3);
+		z.scaleBy(
+			select(outer)
+				.transition()
+				.duration($mq.reducedMotion ? 0 : 250),
+			1.3
+		);
 	};
 	const zoomOut = () => {
-		z.scaleBy(select(outer).transition(), 1 / 1.3);
+		z.scaleBy(
+			select(outer)
+				.transition()
+				.duration($mq.reducedMotion ? 0 : 250),
+			1 / 1.3
+		);
 	};
 
 	const imageUpdate = async () => {

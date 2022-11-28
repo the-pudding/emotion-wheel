@@ -30,7 +30,7 @@
 		position: relative;
 		padding: 1em;
 		opacity: 1;
-		transition: all 500ms;
+		transition: all calc(var(--1s) * 0.5);
 	}
 	.card:before {
 		content: "";

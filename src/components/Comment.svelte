@@ -29,7 +29,7 @@
 		border-top-left-radius: 18px;
 		border-bottom-right-radius: 18px;
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
-		transition: all 400ms;
+		transition: all calc(var(--1s) * 0.4);
 		font-size: var(--12px);
 		display: flex;
 		justify-content: center;

@@ -120,7 +120,8 @@
 		overflow-x: hidden;
 		display: flex;
 		align-items: flex-end;
-		transition: background-color 2s, background-image 2s;
+		transition: background-color calc(var(--1s) * 2),
+			background-image calc(var(--1s) * 2);
 		background-position-x: center;
 		background-position-y: center;
 		font-size: 24px;

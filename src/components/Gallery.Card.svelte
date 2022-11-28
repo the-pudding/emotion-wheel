@@ -40,7 +40,7 @@
 		margin: 0;
 	}
 	img {
-		transition: opacity 500ms;
+		transition: opacity calc(var(--1s) * 0.5);
 	}
 	img.faded {
 		opacity: 0.3;

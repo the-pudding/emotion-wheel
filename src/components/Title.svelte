@@ -1,9 +1,9 @@
 <script>
 	import { base } from "$app/paths";
 	import copy from "$data/copy.json";
-	import { fade } from "svelte/transition";
 	import { entered, scrolled, scrollMax } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
+	import mq from "$stores/mq.js";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
@@ -15,7 +15,7 @@
 		.clamp(true);
 
 	const enter = () => {
-		scrolled.set($scrollMax, { duration: 1000 });
+		scrolled.set($scrollMax, { duration: $mq.reducedMotion ? 0 : 1000 });
 	};
 </script>
 
@@ -29,21 +29,19 @@
 		style={`background-image: url(${bgImage})`}
 		on:click={enter}
 	>
-		{#if showText}
-			<div class="words" transition:fade>
-				<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
+		<div class="words" class:visible={showText}>
+			<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
 
-				<h1>{@html copy.title}</h1>
-				<div class="description">{@html copy.description}</div>
-				<div>{@html copy.byline}</div>
+			<h1>{@html copy.title}</h1>
+			<div class="description">{@html copy.description}</div>
+			<div>{@html copy.byline}</div>
 
-				<button style="margin-top: 2em" class="click-anywhere" on:click={enter}>
-					Click anywhere to continue
-				</button>
+			<button style="margin-top: 2em" class="click-anywhere" on:click={enter}>
+				Click anywhere to continue
+			</button>
 
-				<div class="audio">FYI, this story contains audio.</div>
-			</div>
-		{/if}
+			<div class="audio">FYI, this story contains audio.</div>
+		</div>
 	</div>
 </div>
 
@@ -93,6 +91,11 @@
 		position: fixed;
 		top: 55%;
 		transform: translate(0, -50%);
+		opacity: 0;
+		transition: opacity var(--1s);
+	}
+	.words.visible {
+		opacity: 1;
 	}
 	h1 {
 		font-size: 3em;
