@@ -12,6 +12,7 @@
 	export let bodyImage;
 	export let needs;
 
+	let closeBtn;
 	let screenshotEl;
 	let modal;
 	let numFocusableElements;
@@ -37,12 +38,8 @@
 	};
 
 	const trapFocus = (e) => {
-		// if (!$selectedGalleryImage) return;
-
 		const tabPressed = e.key === "Tab" || e.keyCode === 9;
 		if (!tabPressed) return;
-
-		console.log("trap");
 
 		if (e.shiftKey) {
 			if (document.activeElement === firstFocusableElement) {
@@ -75,7 +72,9 @@
 	class:visible={currentActivity}
 	on:keydown={trapFocus}
 >
-	<button on:click={close} class="close" aria-label="close">close</button>
+	<button bind:this={closeBtn} on:click={close} class="close" aria-label="close"
+		>close</button
+	>
 	{#if currentActivity === "wheel"}
 		<div class="wheel">
 			<h2>Hi, how are you feeling?</h2>
@@ -86,6 +85,7 @@
 				wheelId="the-wheel"
 				bind:selected={words}
 				withColor={true}
+				nextSelectable={closeBtn}
 			/>
 		</div>
 	{:else if currentActivity === "body"}
@@ -106,6 +106,7 @@
 				imgSrc={"assets/activities/needs.png"}
 				wheelId={"needs-activities"}
 				bind:selected={needs}
+				nextSelectable={closeBtn}
 			/>
 		</div>
 	{/if}

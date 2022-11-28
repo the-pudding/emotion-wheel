@@ -11,6 +11,11 @@
 	export let selected;
 	export let soundId = "select";
 	export let limit = 1000;
+	export let nextSelectable;
+
+	let numFocusableElements;
+	let firstFocusableElement;
+	let lastFocusableElement;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -42,8 +47,35 @@
 		}
 	};
 
+	const trapFocus = (e) => {
+		const escapePressed = e.key === "Escape" || e.keyCode === 27;
+		if (escapePressed) {
+			if (nextSelectable) nextSelectable.focus();
+			return;
+		}
+
+		const tabPressed = e.key === "Tab" || e.keyCode === 9;
+		if (!tabPressed) return;
+
+		if (e.shiftKey) {
+			if (document.activeElement === firstFocusableElement) {
+				lastFocusableElement.focus();
+				e.preventDefault();
+			}
+		} else {
+			if (document.activeElement === lastFocusableElement) {
+				firstFocusableElement.focus();
+				e.preventDefault();
+			}
+		}
+	};
+
 	onMount(() => {
 		let allBoxes = selectAll(`#${wheelId} rect`);
+
+		numFocusableElements = allBoxes.nodes().length;
+		firstFocusableElement = allBoxes.nodes()[0];
+		lastFocusableElement = allBoxes.nodes()[numFocusableElements - 1];
 
 		allBoxes.attr("tabindex", "0");
 		allBoxes.on("keydown", (e) => {
@@ -64,6 +96,7 @@
 <div
 	class="interactive-needs-checklist"
 	class:activities={wheelId === "needs-activities"}
+	on:keydown={trapFocus}
 >
 	{#if imgSrc} <img src={`${base}/${imgSrc}`} alt="needs checklist" /> {/if}
 	{@html checks}

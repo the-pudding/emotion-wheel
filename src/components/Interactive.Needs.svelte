@@ -5,6 +5,8 @@
 
 	export let text;
 
+	let skipBtn;
+
 	$: disabled = $needs.length > 0;
 
 	const skip = () => {
@@ -17,9 +19,11 @@
 	wheelId={"needs-checks"}
 	bind:selected={$needs}
 	limit={5}
+	nextSelectable={skipBtn}
 />
 
-<button class="skip" on:click={skip} {disabled}>skip</button>
+<button bind:this={skipBtn} class="skip" on:click={skip} {disabled}>skip</button
+>
 
 <div class="needs">
 	{#each text as t}

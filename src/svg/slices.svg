@@ -37,6 +37,7 @@
 <path id="challenged" d="M888 538L708.5 552.5V566L889.5 572L888 538Z" fill="black" stroke="black"/>
 </g>
 <g id="red">
+<path id="loyal" d="M889.5 610L893.5 576.5L1057 581L1050 635.5L889.5 610Z" fill="black" stroke="black"/>
 <path id="frustrated" d="M1032 701L878 652L888.5 615L1049 640.5L1032 701Z" fill="black" stroke="black"/>
 <path id="resistance" d="M877 656.5L862 693L1006 764L1030 706L877 656.5Z" fill="black" stroke="black"/>
 <path id="distrust" d="M841 727L859 698.5L1003.5 768.5L976 812L841 727Z" fill="black" stroke="black"/>
@@ -52,7 +53,6 @@
 <path id="mad" d="M813 758.5L798.5 774L674.5 653.5L680.5 644.5L813 758.5Z" fill="black" stroke="black"/>
 <path id="aggressive" d="M795 778.5L671.5 656.5L661 668L771 799.5L795 778.5Z" fill="black" stroke="black"/>
 <path id="resentful" d="M658 670.5L648.5 677L736.5 823.5L767.5 803L658 670.5Z" fill="black" stroke="black"/>
-<path id="loyal" d="M889.5 610L893.5 576.5L1057 581L1050 635.5L889.5 610Z" fill="black" stroke="black"/>
 </g>
 <g id="blue">
 <path id="hurt" d="M732.5 831.5L706.5 845.5L771 981L810.5 961L732.5 831.5Z" fill="black" stroke="black"/>

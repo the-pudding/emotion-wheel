@@ -12,6 +12,8 @@
 
 	export let text;
 
+	let skipBtn;
+
 	const slices = {
 		okay: okaySlices,
 		good: goodSlices,
@@ -51,11 +53,13 @@
 			bind:selected={$words}
 			limit={3}
 			soundId={"pop"}
+			nextSelectable={skipBtn}
 		/>
 	{/key}
 </div>
 
-<button class="skip" on:click={skip} {disabled}>skip</button>
+<button bind:this={skipBtn} class="skip" on:click={skip} {disabled}>skip</button
+>
 
 {#if $words.length}
 	<Callout />

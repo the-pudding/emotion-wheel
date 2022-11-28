@@ -12,6 +12,11 @@
 	export let limit = 1000;
 	export let soundId = "select";
 	export let withColor = false;
+	export let nextSelectable;
+
+	let numFocusableElements;
+	let firstFocusableElement;
+	let lastFocusableElement;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -43,8 +48,35 @@
 		}
 	};
 
+	const trapFocus = (e) => {
+		const escapePressed = e.key === "Escape" || e.keyCode === 27;
+		if (escapePressed) {
+			if (nextSelectable) nextSelectable.focus();
+			return;
+		}
+
+		const tabPressed = e.key === "Tab" || e.keyCode === 9;
+		if (!tabPressed) return;
+
+		if (e.shiftKey) {
+			if (document.activeElement === firstFocusableElement) {
+				lastFocusableElement.focus();
+				e.preventDefault();
+			}
+		} else {
+			if (document.activeElement === lastFocusableElement) {
+				firstFocusableElement.focus();
+				e.preventDefault();
+			}
+		}
+	};
+
 	onMount(() => {
 		let allSlices = selectAll(`#${wheelId} #slices path`);
+
+		numFocusableElements = allSlices.nodes().length;
+		firstFocusableElement = allSlices.nodes()[0];
+		lastFocusableElement = allSlices.nodes()[numFocusableElements - 1];
 
 		allSlices.attr("tabindex", "0");
 		allSlices.on("keydown", (e) => {
@@ -53,7 +85,6 @@
 				onClick(e);
 			}
 		});
-
 		allSlices.on("click", onClick);
 
 		selected.forEach((id) => {
@@ -66,7 +97,7 @@
 	});
 </script>
 
-<div class="interactive-wheel">
+<div class="interactive-wheel" on:keydown={trapFocus}>
 	<img
 		src={`${base}/${imgSrc}`}
 		alt="watercolor illustrated emotion wheel by abby"
