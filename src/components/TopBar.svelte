@@ -3,8 +3,10 @@
 	import { soundOn, showPlain } from "$stores/misc.js";
 	import { annotate } from "svelte-rough-notation";
 	import Toggle from "$components/helpers/Toggle.svelte";
+	import Icon from "$components/helpers/Icon.svelte";
 
 	let toggleValue = "off";
+	let modalVisible = false;
 
 	$: toggleValue, ($showPlain = toggleValue === "on");
 
@@ -13,41 +15,65 @@
 	};
 </script>
 
-<div id="top-bar-wrapper">
-	<div
-		class="top-bar"
-		use:annotate={{
-			type: "box",
-			animate: false,
-			visible: true,
-			color: "black",
-			padding: 0
-		}}
-	>
-		<a href={`${base}/activities`} target="_blank">Go to activities page</a>
+<div class="top-bar">
+	<span class="mute-wrapper" on:click={mute}>
+		<Icon
+			name={$soundOn ? "volume-2" : "volume-x"}
+			strokeWidth={3}
+			height={"100%"}
+			width={"100%"}
+		/>
+	</span>
+	<span class="info-wrapper" on:mouseenter={() => (modalVisible = true)}>
+		<Icon name="info" strokeWidth={3} height={"100%"} width={"100%"} />
+	</span>
+	<!-- <a href={`${base}/activities`} target="_blank">Go to activities page</a>
 		<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
-		<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
-	</div>
+		<Toggle label="Text Version" style="inner" bind:value={toggleValue} /> -->
+</div>
+
+<div
+	id="top-bar-modal"
+	class:visible={modalVisible}
+	on:mouseleave={() => (modalVisible = false)}
+>
+	<div>A little about this project.</div>
+	<div>Authors</div>
+	<a href={`${base}/activities`} target="_blank">Go to activities page</a>
+	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
 </div>
 
 <style>
 	.top-bar {
 		display: flex;
 		align-items: center;
-		position: absolute;
+		position: fixed;
 		top: 1em;
 		right: 1em;
 		z-index: 10;
 		font-size: var(--14px);
-		line-height: 22px;
 		font-family: var(--sans);
 		letter-spacing: normal;
-		background: white;
-		padding: 0.8em 1.2em;
+		height: 50px;
 	}
 
-	:global(#top-bar-wrapper svg) {
-		z-index: 10;
+	span {
+		margin: 5px;
+	}
+	span:hover {
+		cursor: pointer;
+	}
+
+	#top-bar-modal {
+		visibility: hidden;
+		position: fixed;
+		right: 1.5em;
+		top: 1.5em;
+		background: white;
+		z-index: 100;
+	}
+	#top-bar-modal.visible {
+		visibility: visible;
 	}
 
 	.mute {

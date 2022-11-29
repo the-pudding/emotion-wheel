@@ -3,8 +3,6 @@
 
 	<h3>Please rotate your device.</h3>
 
-	<!-- <img src="assets/img/rotate.png" alt="phone rotating" /> -->
-
 	<p>This immersive experience is designed to be viewed in landscape mode.</p>
 </div>
 

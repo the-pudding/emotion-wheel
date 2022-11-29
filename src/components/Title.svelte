@@ -103,16 +103,16 @@
 		font-weight: bold;
 	}
 	.audio {
-		font-size: var(--16px);
 		margin: 1em 0;
+		font-size: 0.7em;
 	}
 	.click-anywhere {
 		background: none;
 	}
 
-	@media (max-height: 600px) {
-		.audio {
-			font-size: var(--12px);
+	@media (max-height: 800px) {
+		.words {
+			font-size: 0.8em;
 		}
 	}
 </style>

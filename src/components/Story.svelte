@@ -1,5 +1,6 @@
 <script>
 	import Title from "$components/Title.svelte";
+	import TopBar from "$components/TopBar.svelte";
 	import Panels from "$components/Panels.svelte";
 	import Character from "$components/Character.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
@@ -99,6 +100,10 @@
 >
 	{#if innerHeight}
 		<Title />
+
+		{#if $entered}
+			<TopBar />
+		{/if}
 
 		<div class="world">
 			<Character

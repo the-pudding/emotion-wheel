@@ -1,5 +1,4 @@
 <script>
-	import TopBar from "$components/TopBar.svelte";
 	import Loading from "$components/Loading.svelte";
 	import Plain from "$components/Plain.svelte";
 	import Story from "$components/Story.svelte";
@@ -34,8 +33,6 @@
 			});
 	});
 </script>
-
-<TopBar />
 
 {#if $showPlain}
 	<Plain />
