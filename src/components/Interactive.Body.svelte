@@ -27,6 +27,7 @@
 			: _.startCase(str).toLowerCase();
 
 	const screenshot = async () => {
+		console.log("screenshot");
 		sound.play();
 		let png = await toPng(screenshotEl);
 		let img = new Image();

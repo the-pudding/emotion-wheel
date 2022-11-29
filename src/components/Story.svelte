@@ -15,7 +15,7 @@
 		soundOn
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
-	import { onMount, onDestroy } from "svelte";
+	import { onDestroy } from "svelte";
 
 	export let innerHeight;
 
@@ -92,7 +92,7 @@
 	class:entered={$entered}
 	bind:this={containerEl}
 	on:scroll={onScroll}
-	on:mousewheel|preventDefault={onMouseWheel}
+	on:wheel|preventDefault={onMouseWheel}
 	style:height={`${innerHeight}px`}
 	style:background-color={$worldBg}
 	style:background-image={`url(${bgImage})`}
