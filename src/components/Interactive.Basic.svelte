@@ -81,9 +81,6 @@
 		padding: 0;
 		text-align: left;
 	}
-	button:hover {
-		color: var(--color-gray-700);
-	}
 	button.skip {
 		position: absolute;
 		top: 56%;

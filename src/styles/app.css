@@ -82,10 +82,16 @@ a:hover {
 
 button.skip {
 	background: var(--color-gray-200);
+	border: 2px solid var(--color-fg);
+	font-family: var(--sans);
 	font-size: var(--16px);
 	border-radius: 0;
 	color: var(--color-gray-700);
 }
+button.skip:hover {
+	background: var(--color-gray-300);
+}
+
 button.confirm {
 	background: #aa9f9f;
 	border-radius: 0;
