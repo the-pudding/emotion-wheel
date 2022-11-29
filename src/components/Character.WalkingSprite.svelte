@@ -11,8 +11,8 @@
 	let cycleInterval;
 	const imageW = 568;
 	const imageH = 353;
-	const width = $mq.sm ? imageW / 4 : imageW / 2;
-	const height = $mq.sm ? imageH / 4 : imageH / 2;
+	$: width = $mq.sm ? imageW / 4 : imageW / 2;
+	$: height = $mq.sm ? imageH / 4 : imageH / 2;
 	const numFrames = 9;
 	const frameRate = 100;
 

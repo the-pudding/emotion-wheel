@@ -22,25 +22,25 @@
 	import _ from "lodash";
 	import mq from "$stores/mq.js";
 	import { tweened } from "svelte/motion";
+	import { tick } from "svelte";
 
 	export let innerHeight;
 
 	// TODO: no animation if reducedmotion
 
 	let svg;
+	let simulation;
 	const r = $mq.sm ? 12 : 20;
 	const fx = $mq.sm ? 63 : 115;
-	// const fy = $mq.sm ? 335 : 860;
-	$: fy = innerHeight ? innerHeight * 0.87 : 100;
-	$: stringLength = 58;
-	//const stringLength = $mq.sm ? 90 : 80;
+	$: fy = innerHeight ? innerHeight * 0.34 : 100;
+	$: stringLength = svgHeight * 0.35;
 
 	const formatLabel = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
 			: _.startCase(str).toLowerCase();
 
-	$: svgHeight = innerHeight;
+	$: svgHeight = innerHeight * 0.5;
 	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
 	$: numBalloons = $words.length > 0 ? $words.length : 1;
 	$: nodes = [
@@ -52,11 +52,33 @@
 	$: $colors, colorChange();
 	$: $scrollX, scrollChange();
 
+	const setUpSimulation = () => {
+		simulation = forceSimulation(nodes)
+			.force("charge", forceManyBody().strength(5))
+			.force(
+				"collision",
+				forceCollide().radius((d) => r)
+			)
+			.force(
+				"y",
+				forceY().y((d) => {
+					if (d.name === "source") return 500;
+					return 0;
+				})
+			)
+			.force(
+				"link",
+				forceLink()
+					.links(links)
+					.distance((d) => stringLength)
+			)
+			.on("tick", ticked);
+	};
+
 	const newBalloons = async () => {
-		if (simulation) {
-			const source = nodes.find((d) => d.name === "source");
-			source.fx = $scrollX + fx;
-		}
+		setUpSimulation();
+		const source = nodes.find((d) => d.name === "source");
+		source.fx = $scrollX + fx;
 	};
 
 	const colorChange = () => {
@@ -94,6 +116,19 @@
 		}
 	};
 
+	$: console.log({ nodes });
+
+	$: svgHeight, svgWidth, screenSizeChange();
+	const screenSizeChange = () => {
+		setUpSimulation();
+
+		simulation.alpha(0.5).restart();
+
+		// const source = nodes.find((d) => d.name === "source");
+		// source.fx = fx;
+		// source.fy = fy;
+	};
+
 	const scrollChange = () => {
 		if ($scrollX && simulation) {
 			const source = nodes.find((d) => d.name === "source");
@@ -103,6 +138,7 @@
 	};
 
 	const ticked = () => {
+		console.log("tick");
 		select(svg)
 			.selectAll("line")
 			.data(links)
@@ -116,50 +152,10 @@
 			.data(nodes)
 			.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 	};
-
-	$: simulation = forceSimulation(nodes)
-		.force("charge", forceManyBody().strength(5))
-		.force(
-			"collision",
-			forceCollide().radius((d) => r)
-		)
-		.force(
-			"y",
-			forceY().y((d) => {
-				if (d.name === "source") return 500;
-				return 0;
-			})
-		)
-		.force(
-			"link",
-			forceLink()
-				.links(links)
-				.distance((d) => stringLength)
-		)
-		.on("tick", ticked);
-
-	const offScreen = 0;
-	$: yTween = tweened(fy, { duration: 3000 });
-	$: $yTween, updateSource();
-	// $: if ($yTween === offScreen) re-render the balloons
-	// new component
-
-	const updateSource = () => {
-		const source = nodes.find((d) => d.name === "source");
-		source.fy = $yTween;
-	};
-	const fly = () => {
-		$yTween = offScreen;
-		simulation.alpha(1).restart();
-	};
 </script>
 
 <WalkingSprite />
 
-<!-- <button
-	on:click={fly}
-	style="position: absolute; top: 50%; left: 30%; z-index: 1000">fly</button
-> -->
 <svg
 	id="character-balloon-area"
 	width={svgWidth}
