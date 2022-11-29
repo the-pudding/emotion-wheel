@@ -3,7 +3,7 @@
 	import { onMount, onDestroy } from "svelte";
 	import { select, selectAll } from "d3";
 	import { Howl } from "howler";
-	import { soundOn } from "$stores/misc.js";
+	import { soundOn, basicFeeling } from "$stores/misc.js";
 
 	export let imgSrc;
 	export let slices;
@@ -41,7 +41,8 @@
 					newEntry = { word: e.target.id, color: e.srcElement.parentNode.id };
 				else newEntry = e.target.id;
 
-				selected = [...selected, newEntry];
+				if (selected[0] === $basicFeeling) selected = [newEntry];
+				else selected = [...selected, newEntry];
 			} else {
 				selected = selected.filter((d) => d !== e.target.id);
 			}
