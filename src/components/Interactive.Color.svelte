@@ -68,6 +68,7 @@
 	};
 
 	const skip = () => {
+		selectSound.play();
 		$colors = [initialColor];
 		editing = false;
 		initialize();

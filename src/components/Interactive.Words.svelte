@@ -1,8 +1,11 @@
 <script>
+	import { base } from "$app/paths";
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import Callout from "$components/Callout.svelte";
-	import { basicFeeling, words } from "$stores/misc.js";
+	import { basicFeeling, words, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
+	import { onDestroy } from "svelte";
+	import { Howl } from "howler";
 	import okaySlices from "$svg/okay-slices.svg";
 	import goodSlices from "$svg/good-slices.svg";
 	import notGreatSlices from "$svg/not-great-slices.svg";
@@ -14,6 +17,11 @@
 
 	let skipBtn;
 
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
+
+	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+
 	const slices = {
 		okay: okaySlices,
 		good: goodSlices,
@@ -24,8 +32,13 @@
 	$: disabled = $words.length > 0;
 
 	const skip = () => {
+		sound.play();
 		$words = [$basicFeeling];
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <div class="words">

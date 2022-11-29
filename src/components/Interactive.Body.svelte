@@ -1,26 +1,33 @@
 <script>
+	import { base } from "$app/paths";
 	import BodyDraw from "$components/BodyDraw.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
-	import { words, colors, bodyDrawing } from "$stores/misc.js";
+	import { words, colors, bodyDrawing, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
+	import { Howl } from "howler";
 	import { annotate } from "svelte-rough-notation";
 	import { toPng } from "html-to-image";
 	import variables from "$data/variables.json";
+	import { onDestroy } from "svelte";
 
 	export let text;
+
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
 	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
 	let word = $words[i];
 	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
 
-	$: console.log($words, $colors);
 	const formatWord = (str) =>
 		str === "somethings-wrong"
 			? "something's wrong"
 			: _.startCase(str).toLowerCase();
 
 	const screenshot = async () => {
+		sound.play();
 		let png = await toPng(screenshotEl);
 		let img = new Image();
 		img.src = png;
@@ -33,6 +40,10 @@
 		let i = $words.findIndex((d) => d === w);
 		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
 	};
+
+	onDestroy(() => {
+		sound.unload();
+	});
 </script>
 
 <div class="body">

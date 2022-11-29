@@ -1,15 +1,21 @@
 <script>
+	import { base } from "$app/paths";
+	import { Howl } from "howler";
 	import NeedsChecklist from "$components/NeedsChecklist.svelte";
-	import { needs } from "$stores/misc.js";
+	import { needs, soundOn } from "$stores/misc.js";
 	import needsChecks from "$svg/needs-checks.svg";
 
 	export let text;
 
 	let skipBtn;
+	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
 
 	$: disabled = $needs.length > 0;
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
 	const skip = () => {
+		sound.play();
 		$needs = [""];
 	};
 </script>

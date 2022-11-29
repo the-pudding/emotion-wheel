@@ -15,7 +15,7 @@
 	$: disabled = $basicFeeling;
 
 	const sound = new Howl({
-		src: ["assets/sound/magic.wav"]
+		src: ["assets/sound/select.wav"]
 	});
 
 	const select = async (e) => {
@@ -28,6 +28,7 @@
 	};
 
 	const skip = () => {
+		sound.play();
 		$basicFeeling = "okay";
 	};
 

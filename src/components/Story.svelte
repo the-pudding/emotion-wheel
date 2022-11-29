@@ -23,7 +23,8 @@
 	let containerEl;
 	const sound = new Howl({
 		src: [`${base}/assets/sound/bg-music.mp3`],
-		volume: 0.3
+		volume: 0.3,
+		loop: true
 	});
 
 	$: if ($entered) sound.play();

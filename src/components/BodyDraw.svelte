@@ -1,7 +1,8 @@
 <script>
 	import viewport from "$stores/viewport.js";
+	import { soundOn } from "$stores/misc.js";
 	import { base } from "$app/paths";
-	import { onMount } from "svelte";
+	import { onMount, onDestroy } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
 
 	export let screenshotEl;
@@ -10,6 +11,8 @@
 	$: bgImage = `${base}/assets/img/blank_body.png`;
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight * 0.6;
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
 
 	let canvas;
 	let ctx;
@@ -17,6 +20,7 @@
 	let mouseX;
 	let mouseY;
 	let showCursor = false;
+	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
 
 	const onMouseDown = (e) => {
 		painting = true;
@@ -47,11 +51,15 @@
 		showCursor = false;
 	};
 	const clear = () => {
+		sound.play();
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 	};
 
 	onMount(() => {
 		ctx = canvas.getContext("2d");
+	});
+	onDestroy(() => {
+		sound.unload();
 	});
 </script>
 

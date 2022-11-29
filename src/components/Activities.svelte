@@ -132,6 +132,10 @@
 	.wheel-results ul {
 		list-style-type: none;
 	}
+	.body-results {
+		display: flex;
+		justify-content: center;
+	}
 	.needs-results ul {
 		font-size: var(--32px);
 		list-style-type: circle;
