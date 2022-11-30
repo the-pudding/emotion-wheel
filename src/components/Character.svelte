@@ -116,8 +116,6 @@
 		}
 	};
 
-	$: console.log({ nodes });
-
 	$: svgHeight, svgWidth, screenSizeChange();
 	const screenSizeChange = () => {
 		setUpSimulation();
@@ -138,7 +136,6 @@
 	};
 
 	const ticked = () => {
-		console.log("tick");
 		select(svg)
 			.selectAll("line")
 			.data(links)

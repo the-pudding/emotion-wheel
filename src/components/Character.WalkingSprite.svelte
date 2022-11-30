@@ -1,12 +1,17 @@
 <script>
-	import { entered, isScrolling, basicFeeling } from "$stores/misc.js";
+	import {
+		entered,
+		isScrolling,
+		basicFeeling,
+		currentPanel
+	} from "$stores/misc.js";
 	import { base } from "$app/paths";
 	import mq from "$stores/mq.js";
 	import scrollX from "$stores/scrollX.js";
 	import { annotate } from "svelte-rough-notation";
 
 	$: bgImage = `url(${base}/assets/img/walk_cycle.png)`;
-	$: showInstructions = $scrollX < 500 || !$basicFeeling;
+	$: showInstructions = $currentPanel === 0 || !$basicFeeling;
 
 	let cycleInterval;
 	const imageW = 568;
@@ -48,8 +53,12 @@
 			padding: 0
 		}}
 	>
-		<strong>Scroll up + down</strong> to move me (or use the keyboard
-		<span class="key">{"<"}</span><span class="key">{">"}</span>)
+		{#if $mq.desktop}
+			<strong>Scroll up + down</strong> to move me (or use the keyboard
+			<span class="key">{"<"}</span><span class="key">{">"}</span>)
+		{:else}
+			<strong>Swipe left + right</strong> to move me.
+		{/if}
 	</div>
 	<div
 		class="image"
