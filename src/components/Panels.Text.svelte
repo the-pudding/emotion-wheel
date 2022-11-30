@@ -10,7 +10,8 @@
 
 <div
 	class="text"
-	class:fascinating={id === "fascinating"}
+	class:center={id === "fascinating" || id === "entry"}
+	class:big={id === "fascinating"}
 	class:visible={i === $currentPanel || $mq.reducedMotion}
 	class:long
 >
@@ -36,10 +37,12 @@
 		opacity: 1;
 		transform: translateX(0);
 	}
-	.fascinating {
+	.center {
 		top: 40%;
 		left: 40%;
 		transform: translate(-50%, -50%);
+	}
+	.big {
 		font-size: var(--48px);
 	}
 

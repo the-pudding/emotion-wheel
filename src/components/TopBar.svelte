@@ -1,6 +1,6 @@
 <script>
 	import { base } from "$app/paths";
-	import { soundOn, showPlain } from "$stores/misc.js";
+	import { soundOn, showPlain, showPause } from "$stores/misc.js";
 	import { annotate } from "svelte-rough-notation";
 	import Toggle from "$components/helpers/Toggle.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
@@ -13,20 +13,31 @@
 	const mute = () => {
 		$soundOn = !$soundOn;
 	};
+	const pause = () => {
+		$showPause = !$showPause;
+	};
 </script>
 
 <div class="top-bar">
-	<span class="mute-wrapper" on:click={mute}>
+	<button class="exit-btn" on:click={pause}>
+		<Icon
+			name={$showPause ? "play" : "pause"}
+			strokeWidth={3}
+			height={"100%"}
+			width={"100%"}
+		/>
+	</button>
+	<button class="mute-btn" on:click={mute}>
 		<Icon
 			name={$soundOn ? "volume-2" : "volume-x"}
 			strokeWidth={3}
 			height={"100%"}
 			width={"100%"}
 		/>
-	</span>
-	<span class="info-wrapper" on:mouseenter={() => (modalVisible = true)}>
+	</button>
+	<button class="info-btn" on:mouseenter={() => (modalVisible = true)}>
 		<Icon name="info" strokeWidth={3} height={"100%"} width={"100%"} />
-	</span>
+	</button>
 	<!-- <a href={`${base}/activities`} target="_blank">Go to activities page</a>
 		<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
 		<Toggle label="Text Version" style="inner" bind:value={toggleValue} /> -->
@@ -57,13 +68,9 @@
 		height: 50px;
 	}
 
-	span {
-		margin: 5px;
+	button {
+		background: none;
 	}
-	span:hover {
-		cursor: pointer;
-	}
-
 	#top-bar-modal {
 		visibility: hidden;
 		position: fixed;

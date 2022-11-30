@@ -1,5 +1,6 @@
 <script>
 	import Loading from "$components/Loading.svelte";
+	import TopBar from "$components/TopBar.svelte";
 	import Plain from "$components/Plain.svelte";
 	import Story from "$components/Story.svelte";
 	import Rotate from "$components/Rotate.svelte";
@@ -42,6 +43,10 @@
 	<Loading /> -->
 {:else}
 	<Story {innerHeight} />
+{/if}
+
+{#if $entered}
+	<TopBar />
 {/if}
 
 <!-- {#if loading}

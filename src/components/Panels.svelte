@@ -58,6 +58,7 @@
 	};
 
 	const noBg = [
+		"entry",
 		"try-wheel",
 		"granularity",
 		"fascinating",
@@ -68,7 +69,7 @@
 		"gallery",
 		"resources"
 	];
-	const longText = ["brene", "gallery-intro", "closing"];
+	const longText = ["entry", "brene", "gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color", "same-way"];
 </script>
 
@@ -96,12 +97,7 @@
 				/>
 			{/if}
 
-			{#if id === "survey-basic"}
-				<img
-					src={`assets/img/panels/ground.png`}
-					class="full-panel extra-ground"
-				/>
-			{:else if id === "survey-needs"}
+			{#if id === "survey-needs"}
 				<img
 					src={`assets/img/panels/survey-needs-${
 						surveyNeeded === "survey-needs" ? "pre" : "post"
@@ -182,14 +178,6 @@
 	}
 	.step.visible {
 		opacity: 1;
-	}
-	.step:first-of-type {
-		min-width: 100vw;
-	}
-	.extra-ground {
-		position: absolute;
-		right: 0;
-		top: 0;
 	}
 	.content {
 		position: absolute;

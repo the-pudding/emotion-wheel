@@ -38,6 +38,7 @@
 		background: none;
 		padding: 0;
 		margin: 0;
+		min-width: 400px;
 	}
 	img {
 		transition: opacity calc(var(--1s) * 0.5);

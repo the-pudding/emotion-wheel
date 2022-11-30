@@ -1,17 +1,11 @@
 <script>
-	import {
-		entered,
-		isScrolling,
-		basicFeeling,
-		currentPanel
-	} from "$stores/misc.js";
+	import { entered, isScrolling, currentPanel } from "$stores/misc.js";
 	import { base } from "$app/paths";
 	import mq from "$stores/mq.js";
-	import scrollX from "$stores/scrollX.js";
 	import { annotate } from "svelte-rough-notation";
 
 	$: bgImage = `url(${base}/assets/img/walk_cycle.png)`;
-	$: showInstructions = $currentPanel === 0 || !$basicFeeling;
+	$: showInstructions = $currentPanel === 0;
 
 	let cycleInterval;
 	const imageW = 568;

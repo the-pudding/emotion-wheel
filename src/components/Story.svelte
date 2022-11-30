@@ -1,6 +1,5 @@
 <script>
 	import Title from "$components/Title.svelte";
-	import TopBar from "$components/TopBar.svelte";
 	import Panels from "$components/Panels.svelte";
 	import Character from "$components/Character.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
@@ -13,10 +12,12 @@
 		worldBg,
 		scrollMax,
 		isScrolling,
-		soundOn
+		soundOn,
+		showPause
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import { onDestroy } from "svelte";
+	import copy from "$data/copy.json";
 
 	export let innerHeight;
 
@@ -47,7 +48,7 @@
 
 	/* horizontal scroll */
 	const onMouseWheel = (e) => {
-		if ($selectedGalleryImage) return;
+		if ($selectedGalleryImage || $showPause) return;
 
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
@@ -64,7 +65,7 @@
 	/* keyboard version */
 	const keyDown = (e) => {
 		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
-		if ($selectedGalleryImage) return;
+		if ($selectedGalleryImage || $showPause) return;
 
 		// left / right arrows
 		if (e.keyCode === 37 || e.keyCode === 39) {
@@ -98,23 +99,27 @@
 	style:background-color={$worldBg}
 	style:background-image={`url(${bgImage})`}
 >
-	{#if innerHeight}
-		<Title />
+	<div class="play" class:visible={!$showPause}>
+		{#if innerHeight}
+			<Title />
 
-		{#if $entered}
-			<TopBar />
+			<div class="world">
+				<Character
+					scrollLeft={containerEl ? containerEl.scrollLeft : 0}
+					{innerHeight}
+				/>
+				<Panels {innerHeight} />
+			</div>
 		{/if}
 
-		<div class="world">
-			<Character
-				scrollLeft={containerEl ? containerEl.scrollLeft : 0}
-				{innerHeight}
-			/>
-			<Panels {innerHeight} />
-		</div>
-	{/if}
+		<Modal />
+	</div>
 
-	<Modal />
+	<div class="pause" class:visible={$showPause}>
+		{#each copy.pausePage as text}
+			<p>{@html text}</p>
+		{/each}
+	</div>
 </div>
 
 <svelte:window on:keydown={keyDown} />
@@ -140,6 +145,24 @@
 		height: 100%;
 		overflow-x: visible;
 		flex-shrink: inherit;
+	}
+
+	.play {
+		opacity: 0;
+		transition: opacity 1s;
+		height: 100%;
+		width: 100%;
+	}
+	.pause {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		opacity: 0;
+		transition: opacity 1s;
+	}
+	.visible {
+		opacity: 1;
 	}
 
 	@media (max-height: 600px) {
