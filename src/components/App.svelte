@@ -4,14 +4,7 @@
 	import Plain from "$components/Plain.svelte";
 	import Story from "$components/Story.svelte";
 	import Rotate from "$components/Rotate.svelte";
-	import {
-		entered,
-		scrolled,
-		scrollMax,
-		soundOn,
-		stepWidth,
-		showPlain
-	} from "$stores/misc.js";
+	import { stepWidth, showPlain, entered } from "$stores/misc.js";
 	import mq from "$stores/mq.js";
 	import { onMount } from "svelte";
 
@@ -19,10 +12,13 @@
 	let innerHeight;
 	let isLandscape;
 
-	$: loading = !innerHeight;
-	$: askToRotate = innerHeight && !isLandscape && !$mq.desktop;
 	$: $stepWidth = innerHeight * ratio;
-	$: $entered = $scrolled >= $scrollMax;
+
+	$: loadingVisible = !innerHeight;
+	$: rotateVisible = !loadingVisible && !isLandscape && !$mq.desktop;
+	$: plainVisible = !loadingVisible && !rotateVisible && $showPlain;
+	$: storyVisible = !loadingVisible && !rotateVisible && !plainVisible;
+	$: topBarVisible = $entered && storyVisible;
 
 	onMount(() => {
 		isLandscape = window.matchMedia("(orientation: landscape)").matches;
@@ -35,28 +31,15 @@
 	});
 </script>
 
-{#if $showPlain}
-	<Plain />
-{:else if askToRotate}
-	<Rotate />
-	<!-- {:else if loading}
-	<Loading /> -->
-{:else}
-	<Story {innerHeight} />
-{/if}
+<Loading visible={loadingVisible} />
 
-{#if $entered}
-	<TopBar />
-{/if}
+<Rotate visible={rotateVisible} />
 
-<!-- {#if loading}
-	<Loading />
-{:else} -->
+<Story {innerHeight} visible={storyVisible} />
 
-<!-- remember, story always has to be rendering -->
-<!-- <Story {innerHeight} /> -->
+<Plain visible={plainVisible} />
 
-<!-- {/if} -->
+<TopBar visible={topBarVisible} />
 
 <svelte:window bind:innerHeight />
 

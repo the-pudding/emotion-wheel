@@ -102,6 +102,7 @@
 		right: 16px;
 		padding-bottom: 0;
 		font-size: 24px;
+		background: none;
 	}
 	.close:hover {
 		cursor: pointer;

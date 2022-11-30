@@ -1,13 +1,21 @@
 <script>
+	import { showPlain } from "$stores/misc.js";
 	import copy from "$data/copy.json";
 
+	export let visible;
+
 	const steps = copy.steps.filter((d) => d.text);
+
+	const toStory = () => {
+		$showPlain = false;
+	};
 </script>
 
-<div class="wrapper">
+<div class="plain" class:visible>
+	<button on:click={toStory}>Return to story</button>
 	<h1>{@html copy.title}</h1>
-	<div>{@html copy.description}</div>
-	<div>{@html copy.byline}</div>
+	<p>{@html copy.description}</p>
+	<p>{@html copy.byline}</p>
 
 	{#each steps as step}
 		{#each step.text as p}
@@ -26,14 +34,21 @@
 </div>
 
 <style>
-	.wrapper {
+	.plain {
 		max-width: 700px;
 		margin: 0 auto;
 		font-size: var(--18px);
 		font-family: var(--sans);
 		letter-spacing: normal;
+		display: none;
+	}
+	.plain.visible {
+		display: block;
 	}
 	:global(body) {
 		background-color: white;
+	}
+	button {
+		font-family: var(--sans);
 	}
 </style>

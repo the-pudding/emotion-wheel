@@ -1,4 +1,8 @@
-<div class="container">
+<script>
+	export let visible;
+</script>
+
+<div class="rotate" class:visible>
 	<img src="assets/img/simple_wheel_color.png" />
 
 	<h3>Please rotate your device.</h3>
@@ -7,18 +11,21 @@
 </div>
 
 <style>
-	.container {
+	.rotate {
 		z-index: 100;
 		height: 100%;
 		width: 100%;
 		position: fixed;
 		padding: 5em 2em;
-		display: flex;
 		flex-direction: column;
 		align-items: center;
 		font-family: var(--sans);
 		background-color: var(--color-fg);
 		color: white;
+		display: none;
+	}
+	.rotate.visible {
+		display: flex;
 	}
 	h3,
 	p {

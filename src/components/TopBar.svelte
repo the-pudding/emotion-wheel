@@ -1,14 +1,9 @@
 <script>
-	import { base } from "$app/paths";
-	import { soundOn, showPlain, showPause } from "$stores/misc.js";
-	import { annotate } from "svelte-rough-notation";
-	import Toggle from "$components/helpers/Toggle.svelte";
+	import { soundOn, showPause, showInfo } from "$stores/misc.js";
 	import Icon from "$components/helpers/Icon.svelte";
+	import Modal from "$components/TopBar.Modal.svelte";
 
-	let toggleValue = "off";
-	let modalVisible = false;
-
-	$: toggleValue, ($showPlain = toggleValue === "on");
+	export let visible;
 
 	const mute = () => {
 		$soundOn = !$soundOn;
@@ -16,9 +11,12 @@
 	const pause = () => {
 		$showPause = !$showPause;
 	};
+	const info = () => {
+		$showInfo = true;
+	};
 </script>
 
-<div class="top-bar">
+<div class="top-bar" class:visible>
 	<button class="exit-btn" on:click={pause}>
 		<Icon
 			name={$showPause ? "play" : "pause"}
@@ -35,28 +33,16 @@
 			width={"100%"}
 		/>
 	</button>
-	<button class="info-btn" on:mouseenter={() => (modalVisible = true)}>
+	<button class="info-btn" on:click={info}>
 		<Icon name="info" strokeWidth={3} height={"100%"} width={"100%"} />
 	</button>
-	<!-- <a href={`${base}/activities`} target="_blank">Go to activities page</a>
-		<button class="mute" on:click={mute}>{$soundOn ? "Mute" : "Unmute"}</button>
-		<Toggle label="Text Version" style="inner" bind:value={toggleValue} /> -->
 </div>
 
-<div
-	id="top-bar-modal"
-	class:visible={modalVisible}
-	on:mouseleave={() => (modalVisible = false)}
->
-	<div>A little about this project.</div>
-	<div>Authors</div>
-	<a href={`${base}/activities`} target="_blank">Go to activities page</a>
-	<Toggle label="Text Version" style="inner" bind:value={toggleValue} />
-</div>
+<Modal />
 
 <style>
 	.top-bar {
-		display: flex;
+		display: none;
 		align-items: center;
 		position: fixed;
 		top: 1em;
@@ -67,32 +53,12 @@
 		letter-spacing: normal;
 		height: 50px;
 	}
+	.top-bar.visible {
+		display: flex;
+	}
 
 	button {
 		background: none;
-	}
-	#top-bar-modal {
-		visibility: hidden;
-		position: fixed;
-		right: 1.5em;
-		top: 1.5em;
-		background: white;
-		z-index: 100;
-	}
-	#top-bar-modal.visible {
-		visibility: visible;
-	}
-
-	.mute {
-		background: none;
-		border-bottom: 1px solid currentColor;
-		font-family: var(--sans);
-		padding: 0;
-		margin: 0 1em;
-		line-height: inherit;
-	}
-	.mute:hover {
-		color: var(--color-gray-700);
 	}
 
 	@media (max-height: 600px) {

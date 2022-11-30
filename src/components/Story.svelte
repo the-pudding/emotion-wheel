@@ -13,12 +13,14 @@
 		scrollMax,
 		isScrolling,
 		soundOn,
-		showPause
+		showPause,
+		showInfo
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import { onDestroy } from "svelte";
 	import copy from "$data/copy.json";
 
+	export let visible;
 	export let innerHeight;
 
 	let t;
@@ -29,6 +31,7 @@
 		loop: true
 	});
 
+	$: $entered = $scrolled >= $scrollMax;
 	$: if ($entered) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -91,12 +94,14 @@
 
 <div
 	class="story"
+	class:visible
 	class:entered={$entered}
+	class:info-open={$showInfo}
 	bind:this={containerEl}
 	on:scroll={onScroll}
 	on:wheel|preventDefault={onMouseWheel}
 	style:height={`${innerHeight}px`}
-	style:background-color={$worldBg}
+	style:background-color={$showInfo ? "var(--color-gray-500)" : $worldBg}
 	style:background-image={`url(${bgImage})`}
 >
 	<div class="play" class:visible={!$showPause}>
@@ -129,17 +134,24 @@
 		position: relative;
 		overflow-y: hidden;
 		overflow-x: hidden;
-		display: flex;
 		align-items: flex-end;
 		transition: background-color calc(var(--1s) * 2),
-			background-image calc(var(--1s) * 2);
+			background-image calc(var(--1s) * 2), opacity var(--1s);
 		background-position-x: center;
 		background-position-y: center;
 		font-size: 24px;
+		display: none;
+	}
+	.story.visible {
+		display: flex;
 	}
 	.story.entered {
 		overflow-x: scroll;
 	}
+	.story.info-open {
+		opacity: 0.2;
+	}
+
 	.world {
 		display: flex;
 		height: 100%;
@@ -154,7 +166,7 @@
 		width: 100%;
 	}
 	.pause {
-		position: absolute;
+		position: fixed;
 		top: 40%;
 		left: 50%;
 		transform: translate(-50%, -50%);

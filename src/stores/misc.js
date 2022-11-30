@@ -8,6 +8,7 @@ export const isScrolling = writable(false);
 export const entered = writable(false);
 export const showPlain = writable(false);
 export const showPause = writable(false);
+export const showInfo = writable(false);
 
 export const currentPanel = writable(undefined);
 export const soundOn = writable(true);
