@@ -20,6 +20,8 @@
 		flex-direction: column;
 		align-items: center;
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 		background-color: var(--color-fg);
 		color: white;
 		display: none;

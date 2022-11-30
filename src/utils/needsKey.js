@@ -1,7 +1,7 @@
 const needsKey = {
 	belly: "to breathe into my belly",
 	talk: "to talk to someone",
-	breathing: "to take a deep breath",
+	breathing: "to focus on my breathing",
 	ground: "to ground in the present",
 	sleep: "to rest or sleep",
 	cry: "to cry",
@@ -41,7 +41,8 @@ const needsKey = {
 	dance: "to dance",
 	explore: "to explore",
 	write: "to write",
-	wiggle: "to wiggle!"
+	wiggle: "to wiggle!",
+	remember: "remember this for later"
 };
 
 export default needsKey;

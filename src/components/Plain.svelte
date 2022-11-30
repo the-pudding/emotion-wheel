@@ -42,6 +42,7 @@
 		font-size: var(--18px);
 		font-family: var(--sans);
 		letter-spacing: normal;
+		word-spacing: normal;
 		display: none;
 	}
 	.plain.visible {
@@ -52,6 +53,8 @@
 	}
 	button {
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 		border: none;
 		margin-bottom: 3em;
 	}

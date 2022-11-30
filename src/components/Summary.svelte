@@ -122,6 +122,8 @@
 		bottom: -2em;
 		right: 0;
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 		font-size: var(--14px);
 		text-decoration: underline;
 	}

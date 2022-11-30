@@ -8,7 +8,7 @@
 	/* font */
 	--sans: "Avenir", "National 2 Web", -apple-system, BlinkMacSystemFont,
 		Helvetica, Arial, sans-serif;
-	--serif: "Abby Lowercase", "Tiempos Text Web", Iowan Old Style,
+	--serif: "Abby Handwriting", "Tiempos Text Web", Iowan Old Style,
 		Times New Roman, Times, serif;
 	--mono: Menlo, Consolas, Monaco, monospace;
 
@@ -21,7 +21,6 @@
 	/* presets (used in reset.css) */
 	--border-radius: 2px;
 	--font-body: var(--serif);
-	--font-titles: "Abby Uppercase";
 	--font-form: var(--serif);
 	--color-bg: #b5bbbb;
 	--color-fg: var(--color-gray-900);
@@ -46,6 +45,12 @@
 	:root {
 		--1s: 1s;
 	}
+}
+
+body,
+button {
+	letter-spacing: -1.5px;
+	word-spacing: 3px;
 }
 
 h1 {
@@ -84,6 +89,8 @@ button.skip {
 	background: var(--color-gray-200);
 	border: 2px solid var(--color-fg);
 	font-family: var(--sans);
+	letter-spacing: normal;
+	word-spacing: normal;
 	font-size: var(--16px);
 	border-radius: 0;
 	color: var(--color-gray-700);

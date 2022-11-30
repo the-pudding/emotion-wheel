@@ -46,6 +46,8 @@
 		border-radius: 14px;
 		flex-shrink: 0;
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 	}
 	span.text {
 		margin: 1em;

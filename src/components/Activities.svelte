@@ -93,6 +93,8 @@
 	}
 	a.to-story {
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 	}
 	.container {
 		display: flex;
@@ -145,6 +147,8 @@
 	}
 	.download {
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 		font-size: var(--18px);
 		text-decoration: underline;
 		visibility: hidden;

@@ -63,6 +63,7 @@
 	}
 	.logo {
 		height: 2.3em;
+		margin-bottom: 1.5em;
 	}
 	.title {
 		width: 100vw;
@@ -89,7 +90,7 @@
 		flex-direction: column;
 		align-items: center;
 		position: fixed;
-		top: 55%;
+		top: 52%;
 		transform: translate(0, -50%);
 		opacity: 0;
 		transition: opacity var(--1s);
@@ -98,9 +99,10 @@
 		opacity: 1;
 	}
 	h1 {
-		font-size: 3em;
-		font-family: var(--font-titles);
+		font-size: 2.8em;
 		font-weight: bold;
+		text-transform: uppercase;
+		letter-spacing: -8px;
 	}
 	.audio {
 		margin: 1em 0;

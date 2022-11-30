@@ -77,6 +77,8 @@
 		opacity: 0;
 		transition: opacity var(--1s);
 		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
 		font-size: var(--14px);
 		text-align: center;
 		background: white;

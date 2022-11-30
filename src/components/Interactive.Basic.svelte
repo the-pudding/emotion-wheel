@@ -83,7 +83,7 @@
 	}
 	button.skip {
 		position: absolute;
-		top: 56%;
+		top: 50%;
 		left: 76%;
 		transform: translate(-50%, -50%);
 	}
