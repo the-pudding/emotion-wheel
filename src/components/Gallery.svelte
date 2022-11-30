@@ -6,9 +6,17 @@
 </script>
 
 <div class="container" class:faded={$selectedGalleryImage}>
-	{#each images as { id, title }}
-		<Card {id} {title} />
-	{/each}
+	<div class="row">
+		{#each images.slice(0, 4) as { id, title }}
+			<Card {id} {title} />
+		{/each}
+	</div>
+
+	<div class="row">
+		{#each images.slice(4) as { id, title }}
+			<Card {id} {title} />
+		{/each}
+	</div>
 </div>
 
 <style>
@@ -16,9 +24,11 @@
 		position: absolute;
 		visibility: visible;
 		height: 75vh;
-		display: grid;
-		grid-template-rows: 50% 50%;
-		grid-template-columns: auto auto auto auto auto;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	.row {
+		display: flex;
 	}
 	.container.faded {
 		opacity: 0.3;
