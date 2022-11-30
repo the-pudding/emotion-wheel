@@ -15,8 +15,9 @@
 	$: $stepWidth = innerHeight * ratio;
 
 	$: loadingVisible = !innerHeight;
-	$: rotateVisible = !loadingVisible && !isLandscape && !$mq.desktop;
-	$: plainVisible = !loadingVisible && !rotateVisible && $showPlain;
+	$: plainVisible = !loadingVisible && $showPlain;
+	$: rotateVisible =
+		!loadingVisible && !plainVisible && !isLandscape && !$mq.desktop;
 	$: storyVisible = !loadingVisible && !rotateVisible && !plainVisible;
 	$: topBarVisible = $entered && storyVisible;
 

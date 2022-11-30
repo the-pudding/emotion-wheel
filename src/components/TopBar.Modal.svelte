@@ -56,11 +56,12 @@
 	{/each}
 
 	<div>
-		If you'd like to read a text version of the piece, <button on:click={plain}
-			>click here</button
+		If you'd like to read a text version of the piece, <button
+			class="skip"
+			on:click={plain}>click here</button
 		>.
 	</div>
-	<button class="close" aria-label="close" on:click={close}
+	<button class="close " aria-label="close" on:click={close}
 		><Icon name="x" /></button
 	>
 </div>
@@ -88,6 +89,10 @@
 	}
 	.visible {
 		visibility: visible;
+	}
+	button.skip {
+		border: none;
+		font-family: var(--serif);
 	}
 
 	.close {

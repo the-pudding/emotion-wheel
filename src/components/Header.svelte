@@ -1,11 +1,11 @@
 <script>
 	import { base } from "$app/paths";
-	import { entered } from "$stores/misc.js";
+	import { entered, showPlain } from "$stores/misc.js";
 
 	let src = `${base}/assets/img/logo_small.png`;
 </script>
 
-<header>
+<header class:plain={$showPlain} class="wordmark">
 	<a href="https://pudding.cool" aria-label="The Pudding" target="_blank">
 		<img {src} class:visible={$entered} alt="pudding logo" />
 	</a>
@@ -16,6 +16,12 @@
 		position: fixed;
 		z-index: 1;
 	}
+	header.plain {
+		position: static;
+		display: flex;
+		justify-content: center;
+	}
+
 	img {
 		height: 3.5em;
 		margin: 1em 0 0 1em;
