@@ -6,6 +6,7 @@
 	import checks from "$svg/needs-activities.svg";
 	import { toPng } from "html-to-image";
 	import { onMount, tick } from "svelte";
+	import { base } from "$app/paths";
 
 	export let currentActivity;
 	export let words;

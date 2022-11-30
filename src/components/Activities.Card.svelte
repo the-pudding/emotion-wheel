@@ -13,7 +13,7 @@
 <button
 	class="card"
 	id={imageSrc}
-	style={`--background: url(${base}/assets/activities/${imageSrc}.png`}
+	style={`--background: url(${base}/assets/activities/${imageSrc}.png)`}
 	on:click={onClick}
 >
 	<h3>{title}</h3>
