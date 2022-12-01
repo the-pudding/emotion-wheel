@@ -19,6 +19,7 @@
 	import variables from "$data/variables.json";
 	import { onDestroy } from "svelte";
 	import copy from "$data/copy.json";
+	import { scaleLinear } from "d3-scale";
 
 	export let visible;
 	export let innerHeight;
@@ -30,6 +31,8 @@
 		volume: 0.3,
 		loop: true
 	});
+
+	const progressScale = scaleLinear();
 
 	$: $entered = $scrolled >= $scrollMax;
 	$: if ($entered) sound.play();
@@ -117,6 +120,8 @@
 			</div>
 		{/if}
 
+		<!-- <div class="progress" /> -->
+
 		<Modal />
 	</div>
 
@@ -149,7 +154,16 @@
 		overflow-x: scroll;
 	}
 	.story.info-open {
-		opacity: 0.2;
+		opacity: 0.6;
+	}
+
+	.progress {
+		height: 20px;
+		width: 100px;
+		background: red;
+		position: fixed;
+		bottom: 0;
+		left: 0;
 	}
 
 	.world {
@@ -167,6 +181,7 @@
 	}
 	.pause {
 		position: fixed;
+		z-index: -1;
 		top: 40%;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -175,6 +190,9 @@
 	}
 	.visible {
 		opacity: 1;
+	}
+	.pause.visible {
+		z-index: 1;
 	}
 
 	@media (max-height: 600px) {

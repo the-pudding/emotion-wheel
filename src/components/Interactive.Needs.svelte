@@ -3,7 +3,7 @@
 	import { Howl } from "howler";
 	import NeedsChecklist from "$components/NeedsChecklist.svelte";
 	import { needs, soundOn } from "$stores/misc.js";
-	import needsChecks from "$svg/needs-checks.svg";
+	import needsChecks from "$svg/needs.svg";
 
 	export let text;
 
@@ -22,7 +22,7 @@
 
 <NeedsChecklist
 	checks={needsChecks}
-	wheelId={"needs-checks"}
+	wheelId={"needs"}
 	bind:selected={$needs}
 	limit={5}
 	nextSelectable={skipBtn}
@@ -52,7 +52,7 @@
 	button.skip {
 		position: absolute;
 		top: 53%;
-		left: 75%;
+		left: 88.5%;
 		transform: translate(-50%, -50%);
 	}
 

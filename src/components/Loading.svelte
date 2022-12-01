@@ -3,7 +3,10 @@
 </script>
 
 <div class="loading" class:visible>
-	<img src="assets/img/simple_wheel_color.png" />
+	<img
+		src="assets/img/simple_wheel_color.png"
+		alt="rotating emotion wheel to indicate loading"
+	/>
 
 	<h3>Loading...</h3>
 </div>

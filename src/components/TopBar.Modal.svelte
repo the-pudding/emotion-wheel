@@ -1,5 +1,5 @@
 <script>
-	import { showPlain, showInfo } from "$stores/misc.js";
+	import { showPlain, showInfo, soundOn } from "$stores/misc.js";
 	import Icon from "$components/helpers/Icon.svelte";
 	import copy from "$data/copy.json";
 	import { onMount } from "svelte";
@@ -17,6 +17,7 @@
 	const plain = () => {
 		$showPlain = true;
 		$showInfo = false;
+		$soundOn = false;
 	};
 
 	const trapFocus = (e) => {

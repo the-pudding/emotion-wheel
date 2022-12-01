@@ -14,6 +14,7 @@
 	};
 	const exit = () => {
 		$showPause = !$showPause;
+		if ($showPause) $soundOn = false;
 	};
 	const openInfo = () => {
 		$showInfo = true;

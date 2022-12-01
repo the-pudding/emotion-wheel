@@ -4,6 +4,8 @@
 	import mq from "$stores/mq.js";
 	import { annotate } from "svelte-rough-notation";
 
+	export let width;
+
 	$: bgImage = `url(${base}/assets/img/walk_cycle.png)`;
 	$: showInstructions = $currentPanel === 0;
 
@@ -65,8 +67,9 @@
 <style>
 	.container {
 		position: fixed;
-		left: 4em;
+		left: 0;
 		bottom: 6%;
+		transform: translate(35%, 0);
 		z-index: 1;
 		opacity: 0;
 		display: flex;

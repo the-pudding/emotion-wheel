@@ -77,7 +77,7 @@
 	{#each visibleSteps as { id, text }, i}
 		{@const panelBg = noBg.includes(id)
 			? "ground"
-			: id.includes("survey") && id !== "survey-needs"
+			: id.includes("survey")
 			? `${id}-${surveyNeeded === id ? "pre" : "post"}`
 			: id}
 		{@const long = longText.includes(id)}
@@ -94,16 +94,6 @@
 					src={`assets/img/panels/${panelBg}2.png`}
 					class="full-panel overlay"
 					class:visible={$currentPanel === i}
-				/>
-			{/if}
-
-			{#if id === "survey-needs"}
-				<img
-					src={`assets/img/panels/survey-needs-${
-						surveyNeeded === "survey-needs" ? "pre" : "post"
-					}.png`}
-					class="full-panel"
-					style="position: absolute; top: 0; left: 0"
 				/>
 			{/if}
 
