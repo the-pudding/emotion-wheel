@@ -114,7 +114,7 @@
 
 	@media (max-height: 800px) {
 		.words {
-			font-size: 0.8em;
+			font-size: 1em;
 		}
 	}
 </style>

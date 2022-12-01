@@ -82,7 +82,7 @@
 	.words {
 		position: absolute;
 		left: 15%;
-		top: 40%;
+		top: 43%;
 		transform: translate(0, -50%);
 		width: 30%;
 		display: flex;

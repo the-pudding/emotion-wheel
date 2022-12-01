@@ -56,9 +56,14 @@
 		transform: translate(-50%, -50%);
 	}
 
+	@media (max-height: 800px) {
+		.needs {
+			max-width: 380px;
+		}
+	}
 	@media (max-height: 600px) {
 		.needs {
-			max-width: 250px;
+			max-width: 200px;
 		}
 	}
 </style>

@@ -144,7 +144,7 @@
 			background-image calc(var(--1s) * 2), opacity var(--1s);
 		background-position-x: center;
 		background-position-y: center;
-		font-size: 24px;
+		font-size: var(--24px);
 		display: none;
 	}
 	.story.visible {
@@ -195,6 +195,11 @@
 		z-index: 1;
 	}
 
+	@media (max-height: 800px) {
+		.story {
+			font-size: var(--18px);
+		}
+	}
 	@media (max-height: 600px) {
 		.story {
 			font-size: var(--14px);

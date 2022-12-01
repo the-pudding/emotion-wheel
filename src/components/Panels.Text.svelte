@@ -46,16 +46,28 @@
 		font-size: var(--48px);
 	}
 
+	@media (max-height: 800px) {
+		.text {
+			max-width: 350px;
+		}
+		.text.long,
+		.text.big {
+			max-width: 500px;
+		}
+	}
 	@media (max-height: 600px) {
 		.text {
-			top: 20%;
-			max-width: 250px;
+			top: 10%;
+			max-width: 200px;
 		}
 		.text.long {
-			max-width: 400px;
+			max-width: 300px;
+			transform: translate(0, 0);
 		}
-		.fascinating {
+		.big {
 			font-size: var(--32px);
+			max-width: none;
+			transform: translate(0, 0);
 		}
 	}
 </style>

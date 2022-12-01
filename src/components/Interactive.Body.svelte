@@ -139,4 +139,10 @@
 	.other-word span {
 		pointer-events: none;
 	}
+
+	@media (max-height: 600px) {
+		.words {
+			margin-right: 0;
+		}
+	}
 </style>

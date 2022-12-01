@@ -52,4 +52,15 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
+
+	@media (max-height: 800px) {
+		.card {
+			min-width: 200px;
+		}
+	}
+	@media (max-height: 600px) {
+		.card {
+			min-width: 100px;
+		}
+	}
 </style>

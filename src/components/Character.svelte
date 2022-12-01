@@ -34,7 +34,7 @@
 	let svg;
 	let simulation;
 	let imageWidth = 0;
-	$: r = $mq.sm ? 12 : 20;
+	$: r = $mq.sm ? 12 : $mq.md ? 15 : 20;
 	$: fx = imageWidth * 0.4;
 	$: fy = innerHeight ? innerHeight * 0.37 : 100;
 	$: stringLength = svgHeight * 0.35;

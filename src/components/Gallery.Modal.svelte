@@ -87,7 +87,7 @@
 	}
 	.modal.visible {
 		opacity: 1;
-		z-index: 2;
+		z-index: 100;
 	}
 	.modal:hover {
 		cursor: grab;

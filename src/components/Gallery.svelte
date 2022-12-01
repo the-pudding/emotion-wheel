@@ -24,11 +24,13 @@
 		position: absolute;
 		visibility: visible;
 		height: 75vh;
+		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 	}
 	.row {
 		display: flex;
+		height: 50%;
 	}
 	.container.faded {
 		opacity: 0.3;

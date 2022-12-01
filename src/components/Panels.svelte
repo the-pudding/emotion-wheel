@@ -69,7 +69,7 @@
 		"gallery",
 		"resources"
 	];
-	const longText = ["entry", "brene", "gallery-intro", "closing"];
+	const longText = ["entry", "gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color", "same-way"];
 </script>
 
