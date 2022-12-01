@@ -15,8 +15,8 @@
 	href={`${base}/activities`}
 	target="_blank"
 >
-	If you find these activities useful, you can come back to them on the
-	activities page. Click here to open it in a new tab.
+	If you like these activities, you can come back to them on the activities
+	page. Click here to open it in a new tab.
 </a>
 
 <style>
@@ -24,8 +24,8 @@
 		padding: 1em;
 		position: absolute;
 		max-width: 450px;
-		top: 40%;
-		left: 70%;
+		top: 30%;
+		left: 67.5%;
 		transform: translate(-50%, -50%);
 		background: white;
 		text-align: center;

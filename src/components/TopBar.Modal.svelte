@@ -57,7 +57,7 @@
 	{/each}
 
 	<div>
-		If you'd like to read a text version of the piece, <button
+		If you prefer a text-only version of the story, <button
 			class="skip"
 			on:click={plain}>click here</button
 		>.
@@ -108,5 +108,11 @@
 	.close:hover {
 		cursor: pointer;
 		color: rgb(50 50 93 / 100%);
+	}
+
+	@media (max-height: 600px) {
+		.modal {
+			padding: 1em;
+		}
 	}
 </style>

@@ -112,9 +112,23 @@
 		background: none;
 	}
 
-	@media (max-height: 800px) {
+	@media (max-height: 400px) {
+		.logo {
+			margin-bottom: 0;
+			margin-top: 2em;
+		}
+		h1 {
+			margin-top: 0.2em;
+			font-size: 2.5em;
+			letter-spacing: -4px;
+		}
 		.words {
-			font-size: 1em;
+			font-size: 0.9em;
+		}
+	}
+	@media (max-height: 300px) {
+		h1 {
+			font-size: 2em;
 		}
 	}
 </style>

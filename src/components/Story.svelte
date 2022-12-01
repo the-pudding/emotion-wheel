@@ -144,6 +144,7 @@
 			background-image calc(var(--1s) * 2), opacity var(--1s);
 		background-position-x: center;
 		background-position-y: center;
+		background-size: cover;
 		font-size: var(--24px);
 		display: none;
 	}
@@ -197,12 +198,12 @@
 
 	@media (max-height: 800px) {
 		.story {
-			font-size: var(--18px);
+			font-size: 1.3em;
 		}
 	}
 	@media (max-height: 600px) {
 		.story {
-			font-size: var(--14px);
+			font-size: 1.1em;
 		}
 	}
 </style>
