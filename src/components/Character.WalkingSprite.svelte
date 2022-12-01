@@ -77,8 +77,7 @@
 		align-items: center;
 	}
 	.instructions {
-		opacity: 0;
-		transition: opacity var(--1s);
+		display: none;
 		font-family: var(--sans);
 		letter-spacing: normal;
 		word-spacing: normal;
@@ -90,6 +89,9 @@
 		position: absolute;
 		top: 0;
 		transform: translate(30%, -120%);
+	}
+	.instructions.visible {
+		display: block;
 	}
 	.visible {
 		opacity: 1;

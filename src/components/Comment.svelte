@@ -14,7 +14,7 @@
 </script>
 
 <div class="comment" style:left style:top>
-	<span class="circle"><Icon name="message-square" /></span>
+	<span class="circle" />
 	<span class="text">{@html text}</span>
 </div>
 
@@ -24,13 +24,13 @@
 		z-index: 10;
 		width: 36px;
 		height: 36px;
-		background: white;
+		background: red;
 		border-top-right-radius: 18px;
 		border-top-left-radius: 18px;
 		border-bottom-right-radius: 18px;
-		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
-		transition: all calc(var(--1s) * 0.4);
-		font-size: var(--12px);
+		box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px;
+		transition: transform calc(var(--1s) * 0.4);
+		font-size: var(--16px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -39,11 +39,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: black;
-		color: white;
-		width: 27px;
-		height: 27px;
-		border-radius: 14px;
+		background: white;
+		width: 26px;
+		height: 26px;
+		border-radius: 13px;
 		flex-shrink: 0;
 		font-family: var(--sans);
 		letter-spacing: normal;
@@ -57,9 +56,11 @@
 		min-width: 200px;
 		height: auto;
 		transform: translate(0, -20%);
+		justify-content: flex-start;
+		background: white;
 	}
 	.comment:hover span.circle {
-		margin-left: 1em;
+		display: none;
 	}
 	.comment:hover span.text {
 		display: block;

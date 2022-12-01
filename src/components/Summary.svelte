@@ -81,7 +81,7 @@
 	}
 	.box {
 		min-width: 350px;
-		max-width: 800px;
+		max-width: 600px;
 		border-radius: 8px;
 		background: white;
 		padding: 1em;
