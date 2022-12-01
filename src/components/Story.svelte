@@ -204,6 +204,10 @@
 		z-index: 1;
 	}
 
+	:global(span#pause-text) {
+		border-bottom: 3px solid var(--color-pause);
+	}
+
 	@media (max-height: 800px) {
 		.story {
 			font-size: 1.3em;

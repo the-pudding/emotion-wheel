@@ -1,6 +1,8 @@
 <script>
 	import { annotate } from "svelte-rough-notation";
 	import { base } from "$app/paths";
+
+	export let calloutEl;
 </script>
 
 <a
@@ -14,6 +16,7 @@
 	}}
 	href={`${base}/activities`}
 	target="_blank"
+	bind:this={calloutEl}
 >
 	If you like these activities, you can come back to them on the activities
 	page. Click here to open it in a new tab.

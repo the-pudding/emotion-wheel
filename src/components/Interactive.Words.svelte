@@ -16,6 +16,7 @@
 	export let text;
 
 	let skipBtn;
+	let calloutEl;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -66,7 +67,7 @@
 			bind:selected={$words}
 			limit={3}
 			soundId={"pop"}
-			nextSelectable={skipBtn}
+			nextSelectable={!skipBtn || skipBtn.disabled ? calloutEl : skipBtn}
 		/>
 	{/key}
 </div>
@@ -75,7 +76,7 @@
 >
 
 {#if $words.length}
-	<Callout />
+	<Callout bind:calloutEl />
 {/if}
 
 <style>
