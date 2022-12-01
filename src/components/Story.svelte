@@ -41,12 +41,11 @@
 
 	$: $entered = $scrolled >= $scrollMax;
 	$: progress = progressScale($currentPanel);
+	$: worldInColor = $worldBg === variables.color["sky-blue"];
 	$: if ($entered) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
-	$: bgImage = `${base}/assets/img/bg${
-		$worldBg === variables.color["sky-blue"] ? "-color" : ""
-	}.png`;
+	$: bgImage = `${base}/assets/img/bg${worldInColor ? "-color" : ""}.png`;
 
 	/* polling to tell if user is scrolling */
 	const onScroll = (e) => {
@@ -126,7 +125,11 @@
 			</div>
 		{/if}
 
-		<div class="progress" style:width={`${progress}px`} />
+		<div
+			class="progress"
+			class:color={worldInColor}
+			style:width={`${progress}px`}
+		/>
 
 		<Modal />
 	</div>
@@ -167,12 +170,15 @@
 	.progress {
 		height: 4vh;
 		max-height: 30px;
-		background: var(--color-pause);
+		background: var(--color-gray-300);
 		opacity: 0.8;
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		transition: width 1s;
+	}
+	.progress.color {
+		background: var(--color-pause);
 	}
 
 	.world {
