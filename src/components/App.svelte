@@ -9,6 +9,7 @@
 	import { onMount } from "svelte";
 
 	const ratio = 1920 / 1080;
+	let innerWidth;
 	let innerHeight;
 	let isLandscape;
 
@@ -36,13 +37,13 @@
 
 <Rotate visible={rotateVisible} />
 
-<Story {innerHeight} visible={storyVisible} />
+<Story {innerWidth} {innerHeight} visible={storyVisible} />
 
 <Plain visible={plainVisible} />
 
 <TopBar visible={topBarVisible} />
 
-<svelte:window bind:innerHeight />
+<svelte:window bind:innerHeight bind:innerWidth />
 
 <style>
 </style>

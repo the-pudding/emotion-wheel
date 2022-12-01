@@ -29,7 +29,8 @@
     "yellow": "#ffb316",
     "orange": "#fc5132",
     "grey-balloon": "#d8d8d8",
-    "sky-blue": "#bed2d4"
+    "sky-blue": "#bed2d4",
+    "pause": "#b5382f"
   },
   "": {
     "12px": "0.75rem",

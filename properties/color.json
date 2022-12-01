@@ -62,6 +62,9 @@
 		},
 		"sky-blue": {
 			"value": "#bed2d4"
+		},
+		"pause": {
+			"value": "#b5382f"
 		}
 	}
 }

@@ -14,7 +14,8 @@
 		isScrolling,
 		soundOn,
 		showPause,
-		showInfo
+		showInfo,
+		currentPanel
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
 	import { onDestroy } from "svelte";
@@ -22,6 +23,7 @@
 	import { scaleLinear } from "d3-scale";
 
 	export let visible;
+	export let innerWidth;
 	export let innerHeight;
 
 	let t;
@@ -32,9 +34,13 @@
 		loop: true
 	});
 
-	const progressScale = scaleLinear();
+	const numSteps = copy.steps.length;
+	$: progressScale = scaleLinear()
+		.domain([0, numSteps - 1])
+		.range([0, innerWidth]);
 
 	$: $entered = $scrolled >= $scrollMax;
+	$: progress = progressScale($currentPanel);
 	$: if ($entered) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -120,7 +126,7 @@
 			</div>
 		{/if}
 
-		<!-- <div class="progress" /> -->
+		<div class="progress" style:width={`${progress}px`} />
 
 		<Modal />
 	</div>
@@ -159,12 +165,14 @@
 	}
 
 	.progress {
-		height: 20px;
-		width: 100px;
-		background: red;
+		height: 4vh;
+		max-height: 30px;
+		background: var(--color-pause);
+		opacity: 0.8;
 		position: fixed;
 		bottom: 0;
 		left: 0;
+		transition: width 1s;
 	}
 
 	.world {
