@@ -92,8 +92,7 @@
 		visibility: visible;
 	}
 	button.skip {
-		border: none;
-		font-family: var(--serif);
+		background: white;
 	}
 
 	.close {

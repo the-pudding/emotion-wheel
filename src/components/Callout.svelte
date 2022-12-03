@@ -37,4 +37,12 @@
 		background: var(--color-gray-100);
 		cursor: pointer;
 	}
+
+	@media (max-height: 450px) {
+		.callout {
+			top: 23%;
+			left: 73%;
+			width: 300px;
+		}
+	}
 </style>

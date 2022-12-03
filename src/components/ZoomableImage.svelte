@@ -85,8 +85,8 @@
 
 <div class="buttons">
 	<div class="zoom-title">Zoom</div>
-	<button on:click={zoomIn}>+</button>
-	<button on:click={zoomOut}>-</button>
+	<button class="skip" on:click={zoomIn}>+</button>
+	<button class="skip" on:click={zoomOut}>-</button>
 </div>
 
 <style>
@@ -102,6 +102,10 @@
 	}
 	.zoom-title {
 		text-align: center;
+		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
+		margin-bottom: 6px;
 	}
 	.buttons {
 		position: absolute;
@@ -111,6 +115,7 @@
 	}
 	button {
 		font-size: 1.7em;
+		line-height: 0;
 		width: 1.6em;
 		height: 1.6em;
 	}

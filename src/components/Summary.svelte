@@ -32,7 +32,7 @@
 	}}
 >
 	<div class="box" bind:this={summaryEl}>
-		<div tabindex="0" class="download" on:click={save}>download</div>
+		<button class="download skip" on:click={save}>download</button>
 
 		<div class="section">
 			<h3>I feel:</h3>
@@ -119,13 +119,8 @@
 	}
 	.download {
 		position: absolute;
-		bottom: -2em;
+		bottom: -3em;
 		right: 0;
-		font-family: var(--sans);
-		letter-spacing: normal;
-		word-spacing: normal;
-		font-size: var(--14px);
-		text-decoration: underline;
 	}
 	.download:hover {
 		cursor: pointer;

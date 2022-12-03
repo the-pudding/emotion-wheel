@@ -99,7 +99,7 @@
 		</div>
 	{:else}
 		<p>Nice work!</p>
-		<button on:click={edit}>Edit my colors</button>
+		<button class="confirm" on:click={edit}>Edit my colors</button>
 	{/if}
 </div>
 <button class="skip" on:click={skip} {disabled}>skip</button>

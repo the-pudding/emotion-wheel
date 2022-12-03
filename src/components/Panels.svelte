@@ -198,4 +198,11 @@
 		font-size: var(--14px);
 		text-align: center;
 	}
+
+	@media (max-height: 450px) {
+		.genius {
+			font-size: var(--12px);
+			width: 150px;
+		}
+	}
 </style>

@@ -168,7 +168,7 @@
 	}
 
 	.progress {
-		height: 4vh;
+		height: 3vh;
 		max-height: 30px;
 		background: var(--color-gray-300);
 		opacity: 0.8;
