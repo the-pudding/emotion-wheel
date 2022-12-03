@@ -12,14 +12,14 @@
 
 	export let text;
 
-	$: if (!$soundOn) sound.mute(true);
-	$: if ($soundOn) sound.mute(false);
-
 	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
-	let word = $words[i];
-	let color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
 	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+
+	$: if (!$soundOn) sound.mute(true);
+	$: if ($soundOn) sound.mute(false);
+	$: word = $words[i];
+	$: color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
 
 	const formatWord = (str) =>
 		str === "somethings-wrong"
@@ -27,7 +27,6 @@
 			: _.startCase(str).toLowerCase();
 
 	const screenshot = async () => {
-		console.log("screenshot");
 		sound.play();
 		let png = await toPng(screenshotEl);
 		let img = new Image();
