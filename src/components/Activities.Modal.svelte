@@ -1,4 +1,5 @@
 <script>
+	import Icon from "$components/helpers/Icon.svelte";
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import BodyDraw from "$components/BodyDraw.svelte";
 	import NeedsChecklist from "$components/NeedsChecklist.svelte";
@@ -73,9 +74,10 @@
 	class:visible={currentActivity}
 	on:keydown={trapFocus}
 >
-	<button bind:this={closeBtn} on:click={close} class="close" aria-label="close"
-		>close</button
+	<button bind:this={closeBtn} class="close" aria-label="close" on:click={close}
+		><Icon name="x" /></button
 	>
+
 	{#if currentActivity === "wheel"}
 		<div class="wheel">
 			<h2>Hi, how are you feeling?</h2>
@@ -147,8 +149,12 @@
 		align-items: center;
 	}
 	.close {
+		color: rgb(50 50 93 / 60%);
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 16px;
+		right: 16px;
+		padding-bottom: 0;
+		font-size: 24px;
+		background: none;
 	}
 </style>

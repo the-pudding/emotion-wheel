@@ -80,9 +80,9 @@
 		</div>
 	</div>
 
-	<div tabindex="0" class="download" class:visible={bodyImage} on:click={save}>
+	<button class="download skip" class:visible={bodyImage} on:click={save}>
 		download
-	</div>
+	</button>
 
 	<Modal bind:currentActivity bind:words bind:bodyImage bind:needs />
 </div>
@@ -92,9 +92,17 @@
 		background: white;
 	}
 	a.to-story {
+		box-shadow: 5px 5px var(--color-fg);
+		border: 2px solid var(--color-fg);
+		background: var(--color-gray-200);
 		font-family: var(--sans);
 		letter-spacing: normal;
 		word-spacing: normal;
+		padding: 0.5em;
+		background: white;
+	}
+	a.to-story:hover {
+		background: var(--color-gray-300);
 	}
 	.container {
 		display: flex;
@@ -146,13 +154,10 @@
 		width: fit-content;
 	}
 	.download {
-		font-family: var(--sans);
-		letter-spacing: normal;
-		word-spacing: normal;
 		font-size: var(--18px);
-		text-decoration: underline;
 		visibility: hidden;
 		margin-top: 1em;
+		background: white;
 	}
 	.download.visible {
 		visibility: visible;

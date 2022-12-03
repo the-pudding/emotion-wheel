@@ -22,13 +22,21 @@
 </script>
 
 <div class="top-bar" class:visible>
-	<button class="exit-btn" on:click={exit}>
+	<button
+		class="exit-btn"
+		on:click={exit}
+		aria-label={$showPause ? "resume the story" : "pause the story"}
+	>
 		{@html $showPause ? play : pause}
 	</button>
-	<button class="mute-btn" on:click={mute}>
+	<button
+		class="mute-btn"
+		on:click={mute}
+		aria-label={$soundOn ? "turn volume off" : "turn volume on"}
+	>
 		{@html $soundOn ? volumeOn : volumeOff}
 	</button>
-	<button class="info-btn" on:click={openInfo}>
+	<button class="info-btn" on:click={openInfo} aria-label="info">
 		{@html info}
 	</button>
 </div>

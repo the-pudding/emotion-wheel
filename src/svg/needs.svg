@@ -1,20 +1,20 @@
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="needs">
-<path id="belly-box" d="M849.5 333H839.5V346H851.5L849.5 333Z" fill="black"/>
-<path id="talk-box" d="M860.5 400.5L845.5 403L847 415.5L862 414.5L860.5 400.5Z" fill="black"/>
-<path id="breathing-box" d="M829 617.5L818 621V632.5L830.5 631L829 617.5Z" fill="black"/>
-<path id="ground-box" d="M828.5 703L811 704.5V722.5H830.5L828.5 703Z" fill="black"/>
-<path id="sleep-box" d="M1111.5 737L1100.5 740L1101.5 751L1114.5 750L1111.5 737Z" fill="black"/>
-<path id="cry-box" d="M1108 799H1098L1099 812L1111 811.5L1108 799Z" fill="black"/>
-<path id="hug-box" d="M1110.5 841.5L1100.5 844L1103 854.5H1113.5L1110.5 841.5Z" fill="black"/>
-<path id="snack-box" d="M1362.5 605.5L1349 608L1351.5 622L1365 621L1362.5 605.5Z" fill="black"/>
-<path id="no-box" d="M1357.5 656L1346.5 657L1348 670H1360.5L1357.5 656Z" fill="black"/>
-<path id="discharge-box" d="M1362.5 697.5L1350.5 701L1353 712H1364L1362.5 697.5Z" fill="black"/>
-<path id="make-box" d="M1360 335L1348 337V351H1362.5L1360 335Z" fill="black"/>
-<path id="play-box" d="M1366 409H1353L1355 425H1369L1366 409Z" fill="black"/>
-<path id="savor-box" d="M1104 249L1089.5 250V263.5H1105L1104 249Z" fill="black"/>
-<path id="celebrate-box" d="M1102.5 298L1087.5 300.5L1089.5 314L1104.5 313L1102.5 298Z" fill="black"/>
-<path id="remember-box" d="M1102 342L1089.5 344L1091 358L1104 357L1102 342Z" fill="black"/>
+<path id="belly-box" aria-label="to breathe into my belly" d="M849.5 333H839.5V346H851.5L849.5 333Z" fill="black"/>
+<path id="talk-box" aria-label="to talk to someone" d="M860.5 400.5L845.5 403L847 415.5L862 414.5L860.5 400.5Z" fill="black"/>
+<path id="breathing-box" aria-label="to focus on my breathing" d="M829 617.5L818 621V632.5L830.5 631L829 617.5Z" fill="black"/>
+<path id="ground-box" aria-label="to ground in the present" d="M828.5 703L811 704.5V722.5H830.5L828.5 703Z" fill="black"/>
+<path id="sleep-box" aria-label="to rest or sleep" d="M1111.5 737L1100.5 740L1101.5 751L1114.5 750L1111.5 737Z" fill="black"/>
+<path id="cry-box" aria-label="to cry" d="M1108 799H1098L1099 812L1111 811.5L1108 799Z" fill="black"/>
+<path id="hug-box" aria-label="a hug or a snuggle" d="M1110.5 841.5L1100.5 844L1103 854.5H1113.5L1110.5 841.5Z" fill="black"/>
+<path id="snack-box" aria-label="a snack" d="M1362.5 605.5L1349 608L1351.5 622L1365 621L1362.5 605.5Z" fill="black"/>
+<path id="no-box" aria-label="to say no" d="M1357.5 656L1346.5 657L1348 670H1360.5L1357.5 656Z" fill="black"/>
+<path id="discharge-box" aria-label="to discharge energy" d="M1362.5 697.5L1350.5 701L1353 712H1364L1362.5 697.5Z" fill="black"/>
+<path id="make-box" aria-label="to make something" d="M1360 335L1348 337V351H1362.5L1360 335Z" fill="black"/>
+<path id="play-box" aria-label="to play" d="M1366 409H1353L1355 425H1369L1366 409Z" fill="black"/>
+<path id="savor-box" aria-label="savor it" d="M1104 249L1089.5 250V263.5H1105L1104 249Z" fill="black"/>
+<path id="celebrate-box" aria-label="celebrate" d="M1102.5 298L1087.5 300.5L1089.5 314L1104.5 313L1102.5 298Z" fill="black"/>
+<path id="remember-box" aria-label="remember this for later" d="M1102 342L1089.5 344L1091 358L1104 357L1102 342Z" fill="black"/>
 <rect id="belly" x="824" y="314" width="229" height="76" fill="black"/>
 <rect id="talk" x="824" y="389" width="229" height="79" fill="black"/>
 <rect id="savor" x="1077" y="230" width="226" height="49" fill="black"/>
