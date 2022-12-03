@@ -7,8 +7,14 @@
 	import _ from "lodash";
 	import variables from "$data/variables.json";
 
-	const selectSound = new Howl({ src: ["assets/sound/select.wav"] });
-	const doneSound = new Howl({ src: ["assets/sound/after-color.wav"] });
+	const selectSound = new Howl({
+		src: ["assets/sound/select.wav"],
+		volume: 0.3
+	});
+	const doneSound = new Howl({
+		src: ["assets/sound/after-color.wav"],
+		volume: 0.3
+	});
 
 	const initialColor = variables.color["grey-balloon"];
 	let color = initialColor;

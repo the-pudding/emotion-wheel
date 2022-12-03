@@ -21,7 +21,10 @@
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 
-	const sound = new Howl({ src: [`${base}/assets/sound/${soundId}.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/${soundId}.wav`],
+		volume: 0.3
+	});
 
 	const onClick = (e) => {
 		let current = select(`#${wheelId} #slices path#${e.target.id}`)

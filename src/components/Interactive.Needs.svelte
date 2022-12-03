@@ -8,7 +8,10 @@
 	export let text;
 
 	let skipBtn;
-	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/select.wav`],
+		volume: 0.3
+	});
 
 	$: disabled = $needs.length > 0;
 	$: if (!$soundOn) sound.mute(true);

@@ -21,7 +21,10 @@
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 
-	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/select.wav`],
+		volume: 0.3
+	});
 
 	const slices = {
 		okay: okaySlices,

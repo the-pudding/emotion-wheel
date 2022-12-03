@@ -14,7 +14,10 @@
 
 	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
-	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/select.wav`],
+		volume: 0.3
+	});
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);

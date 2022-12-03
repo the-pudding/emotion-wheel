@@ -21,7 +21,10 @@
 	$: if ($soundOn) sound.mute(false);
 	$: if (selected.length === 0) clear();
 
-	const sound = new Howl({ src: [`${base}/assets/sound/${soundId}.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/${soundId}.wav`],
+		volume: 0.3
+	});
 
 	const clear = () => {
 		selectAll(`#${wheelId} path`).classed("highlighted", false);

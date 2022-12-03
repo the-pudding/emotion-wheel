@@ -15,7 +15,8 @@
 	$: disabled = $basicFeeling;
 
 	const sound = new Howl({
-		src: ["assets/sound/select.wav"]
+		src: ["assets/sound/select.wav"],
+		volume: 0.3
 	});
 
 	const select = async (e) => {
@@ -58,7 +59,6 @@
 	</div>
 </div>
 
-<!-- left: min(95vw, 75.5%), top some % -->
 <button class="skip" on:click={skip} {disabled}>skip</button>
 
 <style>

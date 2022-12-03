@@ -20,7 +20,10 @@
 	let mouseX;
 	let mouseY;
 	let showCursor = false;
-	const sound = new Howl({ src: [`${base}/assets/sound/select.wav`] });
+	const sound = new Howl({
+		src: [`${base}/assets/sound/select.wav`],
+		volume: 0.3
+	});
 
 	const onMouseDown = (e) => {
 		painting = true;
