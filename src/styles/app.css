@@ -87,22 +87,17 @@ button.confirm {
 	word-spacing: normal;
 }
 
-a:hover {
-	color: var(--color-gray-700);
-}
-
 button.skip {
-	/* background: var(--color-gray-200);
-	border: 2px solid var(--color-fg);
-	font-family: var(--sans);
-	letter-spacing: normal;
-	word-spacing: normal; */
 	font-size: var(--16px);
 	border-radius: 0;
 	color: var(--color-gray-700);
 }
 button.skip:hover {
 	background: var(--color-gray-300);
+}
+
+a:hover {
+	color: var(--color-gray-700);
 }
 
 @media (max-height: 600px) {

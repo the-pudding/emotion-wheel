@@ -14,7 +14,7 @@
 </script>
 
 <div class="comment" style:left style:top>
-	<span class="circle" />
+	<span class="circle"><Icon name="menu" /></span>
 	<span class="text">{@html text}</span>
 </div>
 
@@ -24,7 +24,7 @@
 		z-index: 10;
 		width: 36px;
 		height: 36px;
-		background: red;
+		background: white;
 		border-top-right-radius: 18px;
 		border-top-left-radius: 18px;
 		border-bottom-right-radius: 18px;
@@ -34,6 +34,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		border: 4px solid var(--color-fg);
 	}
 	span.circle {
 		display: flex;
