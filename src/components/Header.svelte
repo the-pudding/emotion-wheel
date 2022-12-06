@@ -57,4 +57,10 @@
 			height: 5em;
 		}
 	}
+
+	@media (max-height: 400px) {
+		header {
+			display: none;
+		}
+	}
 </style>

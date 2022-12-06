@@ -78,4 +78,15 @@
 			line-height: 14px;
 		}
 	}
+
+	@media (max-height: 400px) {
+		.top-bar {
+			flex-direction: column;
+			top: 1em;
+			right: 2em;
+		}
+		button {
+			margin: 0.8em 0;
+		}
+	}
 </style>

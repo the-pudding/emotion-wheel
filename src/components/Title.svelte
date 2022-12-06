@@ -94,6 +94,7 @@
 		transform: translate(0, -50%);
 		opacity: 0;
 		transition: opacity var(--1s);
+		max-width: 60%;
 	}
 	.words.visible {
 		opacity: 1;
