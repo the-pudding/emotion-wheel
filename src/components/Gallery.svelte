@@ -1,11 +1,11 @@
 <script>
 	import Card from "$components/Gallery.Card.svelte";
-	import { selectedGalleryImage } from "$stores/misc.js";
+	import { zoomModalImage } from "$stores/misc.js";
 
 	export let images;
 </script>
 
-<div class="container" class:faded={$selectedGalleryImage}>
+<div class="container" class:faded={$zoomModalImage}>
 	<div class="row">
 		{#each images.slice(0, 4) as { id, title }}
 			<Card {id} {title} />

@@ -57,29 +57,32 @@
 		if (scrollyEl) scrollyEl.refreshNodes(visibleSteps);
 	};
 
-	const noBg = [
+	const noImg = [
 		"entry",
+		"overview",
 		"try-wheel",
 		"granularity",
 		"fascinating",
 		"color",
-		"body",
 		"final-wheel",
 		"let-go",
 		"gallery",
 		"resources"
 	];
+	const sign = ["gallery-intro", "closing"];
 	const longText = ["entry", "gallery-intro", "closing"];
-	const hasOverlay = ["core", "body-color", "same-way"];
+	const hasOverlay = ["core", "body-color", "same-way", "body"];
 </script>
 
 <Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
 	{#each visibleSteps as { id, text }, i}
-		{@const panelBg = noBg.includes(id)
-			? "ground"
-			: id.includes("survey")
+		{@const panelBg = id.includes("survey")
 			? `${id}-${surveyNeeded === id ? "pre" : "post"}`
-			: id}
+			: sign.includes(id)
+			? id
+			: "ground"}
+		{@const cloud = !noImg.includes(id) && !sign.includes(id)}
+		{@const overlay = hasOverlay.includes(id)}
 		{@const long = longText.includes(id)}
 		<div
 			class="step"
@@ -88,14 +91,6 @@
 			style:width={`${$stepWidth}px`}
 		>
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
-
-			{#if hasOverlay.includes(id)}
-				<img
-					src={`assets/img/panels/${panelBg}2.png`}
-					class="full-panel overlay"
-					class:visible={$currentPanel === i}
-				/>
-			{/if}
 
 			<div class="content">
 				{#if id === "survey-basic"}
@@ -113,7 +108,7 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text {i} {text} {id} {long} />
+					<Text {i} {text} {id} {cloud} {overlay} {long} />
 				{/if}
 
 				{#if id === "try-wheel"}
@@ -122,8 +117,6 @@
 					<RollingWheel img={"grey_wheel.png"} {i} animation={false} />
 				{:else if id === "color"}
 					<RollingWheel img={"simple_wheel_color.png"} {i} />
-				{:else if id === "body"}
-					<BodyDemo {i} />
 				{:else if id === "body-color"}
 					<div
 						class="genius"
@@ -174,19 +167,12 @@
 		height: 100%;
 		width: 100%;
 		top: 0;
+		display: flex;
+		align-items: center;
 	}
 	img.full-panel {
 		height: 100%;
 		max-width: none;
-	}
-	.overlay {
-		position: absolute;
-		top: 0;
-		opacity: 0;
-		transition: opacity calc(var(--1s) * 2.5) var(--1s);
-	}
-	.overlay.visible {
-		opacity: 1;
 	}
 	.genius {
 		position: absolute;

@@ -73,15 +73,10 @@
 
 <style>
 	.summary {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(0, -50%);
-		border-radius: 6px;
+		max-width: 60%;
 	}
 	.box {
-		min-width: 350px;
-		max-width: 600px;
+		width: 100%;
 		border-radius: 8px;
 		background: white;
 		padding: 1em;

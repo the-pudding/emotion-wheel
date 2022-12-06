@@ -1,5 +1,5 @@
 <script>
-	import { selectedGalleryImage } from "$stores/misc.js";
+	import { zoomModalImage } from "$stores/misc.js";
 
 	export let id;
 	export let title;
@@ -7,7 +7,7 @@
 	let hovering = false;
 
 	const onClick = () => {
-		$selectedGalleryImage = id;
+		$zoomModalImage = `gallery/${id}`;
 	};
 </script>
 

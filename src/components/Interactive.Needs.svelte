@@ -48,7 +48,7 @@
 		transform: translate(0, -50%);
 		max-width: 450px;
 	}
-	.needs p:nth-child(4) {
+	.needs p:nth-child(3) {
 		font-size: 16px;
 		margin: 0.5em 0;
 	}

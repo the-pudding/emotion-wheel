@@ -19,7 +19,7 @@ export const colors = writable([]);
 export const bodyDrawing = writable(undefined);
 export const needs = writable([]);
 
-export const selectedGalleryImage = writable(undefined);
+export const zoomModalImage = writable(undefined);
 export const worldBg = writable("#b5bbbb");
 
 export const visibleWidth = writable(0);

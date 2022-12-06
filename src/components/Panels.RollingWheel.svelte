@@ -25,7 +25,7 @@
 <style>
 	img {
 		position: absolute;
-		left: 45%;
+		left: 60%;
 		width: 400px;
 		bottom: 8%;
 		opacity: 0;
@@ -50,7 +50,7 @@
 		}
 		100% {
 			opacity: 1;
-			left: 45%;
+			left: 60%;
 			transform: rotate(-360deg);
 		}
 	}

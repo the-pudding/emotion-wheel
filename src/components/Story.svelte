@@ -8,7 +8,7 @@
 	import {
 		entered,
 		scrolled,
-		selectedGalleryImage,
+		zoomModalImage,
 		worldBg,
 		scrollMax,
 		isScrolling,
@@ -18,7 +18,7 @@
 		currentPanel
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
-	import { onDestroy } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import copy from "$data/copy.json";
 	import { scaleLinear } from "d3-scale";
 
@@ -59,7 +59,7 @@
 
 	/* horizontal scroll */
 	const onMouseWheel = (e) => {
-		if ($selectedGalleryImage || $showPause) return;
+		if ($zoomModalImage || $showPause) return;
 
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
@@ -76,7 +76,7 @@
 	/* keyboard version */
 	const keyDown = (e) => {
 		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
-		if ($selectedGalleryImage || $showPause) return;
+		if ($zoomModalImage || $showPause) return;
 
 		// left / right arrows
 		if (e.keyCode === 37 || e.keyCode === 39) {
@@ -146,7 +146,7 @@
 <style>
 	.story {
 		position: relative;
-		overflow-y: hidden;
+		/* overflow-y: hidden; */
 		overflow-x: hidden;
 		align-items: flex-end;
 		transition: background-color calc(var(--1s) * 2),
@@ -171,14 +171,15 @@
 		height: 3vh;
 		max-height: 30px;
 		background: var(--color-gray-300);
-		opacity: 0.8;
+		opacity: 0.6;
 		position: fixed;
 		bottom: 0;
 		left: 0;
-		transition: width 1s;
+		transition: all 1s;
 	}
 	.progress.color {
 		background: var(--color-pause);
+		opacity: 0.4;
 	}
 
 	.world {

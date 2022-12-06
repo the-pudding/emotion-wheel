@@ -1,17 +1,19 @@
 <script>
-	import { currentPanel } from "$stores/misc.js";
+	import { currentPanel, zoomModalImage } from "$stores/misc.js";
 	import mq from "$stores/mq.js";
 
 	export let i;
 	export let text;
 	export let id;
 	export let long = false;
+	export let cloud = false;
+	export let overlay = false;
 
-	$: center =
-		id === "fascinating" ||
-		id === "entry" ||
-		id === "closing" ||
-		id === "gallery-intro";
+	$: center = id === "fascinating" || id === "entry" || id === "overview";
+
+	const onClick = () => {
+		$zoomModalImage = `panels/${id}${overlay ? "2" : ""}`;
+	};
 </script>
 
 <div
@@ -27,65 +29,62 @@
 	{/each}
 </div>
 
+{#if cloud}
+	<div class="image" {id} on:click={onClick}>
+		<img src={`assets/img/panels/${id}.png`} class="cloud" />
+
+		{#if overlay}
+			<img
+				src={`assets/img/panels/${id}2.png`}
+				class="cloud overlay"
+				class:visible={$currentPanel === i}
+			/>
+		{/if}
+	</div>
+{/if}
+
 <style>
 	.text {
-		position: absolute;
-		max-width: 450px;
-		top: 40%;
-		left: 20%;
-		transform: translate(calc(-50% + 100px), -50%);
-		opacity: 0;
-		transition: transform var(--1s), opacity var(--1s);
+		width: 40%;
+		margin-left: 5%;
+		margin-right: 5%;
+		transform: translate(0, -20%);
 	}
-	.text.long {
-		max-width: 600px;
+	.image {
+		width: 60%;
+		max-width: 700px;
+		margin-right: 5%;
+		transition: transform calc(var(--1s) * 0.5);
+		position: relative;
 	}
-	.center {
-		top: 40%;
-		left: 40%;
-		transform: translate(calc(-50% + 100px), -50%);
+	.cloud {
+		width: 100%;
 	}
-	.visible {
-		opacity: 1;
-		transform: translate(-50%, -50%);
-	}
-	.big {
-		font-size: var(--48px);
-		max-width: none;
-	}
-	.first {
-		left: 60%;
+	.image:hover {
+		cursor: pointer;
+		transform: scale(1.03);
 	}
 
-	@media (max-height: 800px) {
-		.text {
-			max-width: 350px;
-		}
-		.text.long {
-			max-width: 500px;
-		}
-		.big {
-			max-width: none;
-		}
+	.overlay {
+		position: absolute;
+		top: 0;
+		opacity: 0;
+		transition: opacity calc(var(--1s) * 2.5) var(--1s);
 	}
-	@media (max-height: 600px) {
-		.text {
-			max-width: 250px;
-		}
-		.text.long {
-			max-width: 300px;
-		}
-		.big {
-			font-size: var(--32px);
-			max-width: none;
-		}
+	.overlay.visible {
+		opacity: 1;
 	}
+
+	.center {
+		transform: translate(50%, -20%);
+	}
+
 	@media (max-height: 400px) {
 		.text {
-			max-width: 200px;
+			width: 60%;
 		}
-		.big {
-			max-width: none;
+		.image {
+			width: 40%;
 		}
 	}
 </style>

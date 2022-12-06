@@ -68,6 +68,10 @@
 		left: 30%;
 		transform: translate(0, -50%);
 	}
+	.basic p:nth-child(2) {
+		font-size: 16px;
+		margin: 0.5em 0;
+	}
 	.options {
 		display: grid;
 		grid-template-columns: auto auto;

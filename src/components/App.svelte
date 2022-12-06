@@ -44,6 +44,3 @@
 <TopBar visible={topBarVisible} />
 
 <svelte:window bind:innerHeight bind:innerWidth />
-
-<style>
-</style>

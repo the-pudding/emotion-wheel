@@ -1,15 +1,15 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
 	import ZoomableImage from "$components/ZoomableImage.svelte";
-	import { selectedGalleryImage } from "$stores/misc.js";
+	import { zoomModalImage } from "$stores/misc.js";
 	import { onMount } from "svelte";
 	import copy from "$data/copy.json";
 
 	let modal;
 
-	$: visible = $selectedGalleryImage;
-	$: comments = copy.gallery.filter((d) => d.id === $selectedGalleryImage)[0]
-		? copy.gallery.filter((d) => d.id === $selectedGalleryImage)[0].comments
+	$: visible = $zoomModalImage;
+	$: comments = copy.gallery.filter((d) => d.id === $zoomModalImage)[0]
+		? copy.gallery.filter((d) => d.id === $zoomModalImage)[0].comments
 		: [];
 	$: if (visible && modal) modal.focus();
 
@@ -18,7 +18,7 @@
 	let lastFocusableElement;
 
 	const trapFocus = (e) => {
-		if (!$selectedGalleryImage) return;
+		if (!$zoomModalImage) return;
 
 		const tabPressed = e.key === "Tab" || e.keyCode === 9;
 		if (!tabPressed) return;
@@ -37,8 +37,10 @@
 	};
 
 	const close = () => {
-		document.querySelector(`button.card#${$selectedGalleryImage}`).focus();
-		$selectedGalleryImage = undefined;
+		let id = $zoomModalImage.split("/")[1];
+		if (id[id.length - 1] === "2") id = id.substring(0, id.length - 1);
+		document.querySelector(`#${id}`).focus();
+		$zoomModalImage = undefined;
 	};
 
 	onMount(() => {
@@ -57,7 +59,7 @@
 	on:keydown={trapFocus}
 >
 	<ZoomableImage
-		src={visible ? `assets/img/gallery/${$selectedGalleryImage}.png` : ""}
+		src={visible ? `assets/img/${$zoomModalImage}.png` : ""}
 		{comments}
 	/>
 	<button class="close" aria-label="close" on:click={close}
