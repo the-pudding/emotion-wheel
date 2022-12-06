@@ -7,7 +7,6 @@
 	import Needs from "$components/Interactive.Needs.svelte";
 	import Gallery from "$components/Gallery.svelte";
 	import Resources from "$components/Resources.svelte";
-	import BodyDemo from "$components/Panels.BodyDemo.svelte";
 	import RollingWheel from "$components/Panels.RollingWheel.svelte";
 	import Summary from "$components/Summary.svelte";
 	import Text from "$components/Panels.Text.svelte";

@@ -106,10 +106,7 @@
 
 <style>
 	.colors {
-		position: absolute;
-		top: 40%;
-		left: 15%;
-		transform: translate(0, -50%);
+		margin-left: 20%;
 		width: 30%;
 		display: flex;
 		flex-direction: column;
@@ -146,6 +143,12 @@
 		:global(hex-color-picker) {
 			height: 150px;
 			width: 150px;
+		}
+	}
+	@media (max-height: 400px) {
+		:global(hex-color-picker) {
+			height: 110px;
+			width: 110px;
 		}
 	}
 </style>

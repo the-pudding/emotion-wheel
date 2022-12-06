@@ -34,11 +34,7 @@
 		<img src={`assets/img/panels/${id}.png`} class="cloud" />
 
 		{#if overlay}
-			<img
-				src={`assets/img/panels/${id}2.png`}
-				class="cloud overlay"
-				class:visible={$currentPanel === i}
-			/>
+			<img src={`assets/img/panels/${id}2.png`} class="cloud overlay" />
 		{/if}
 	</div>
 {/if}
@@ -48,21 +44,34 @@
 		width: 40%;
 		margin-left: 5%;
 		margin-right: 5%;
-		transform: translate(0, -20%);
+		transform: translate(50px, -20%);
+		opacity: 0;
+		transition: all calc(var(--1s) * 1.5);
 	}
+	.text.visible {
+		opacity: 1;
+		transform: translate(0px, -20%);
+	}
+	.center {
+		transform: translate(calc(50% + 50px), -20%);
+	}
+	.center.visible {
+		transform: translate(50%, -20%);
+	}
+
 	.image {
+		position: relative;
 		width: 60%;
 		max-width: 700px;
 		margin-right: 5%;
 		transition: transform calc(var(--1s) * 0.5);
-		position: relative;
-	}
-	.cloud {
-		width: 100%;
 	}
 	.image:hover {
 		cursor: pointer;
 		transform: scale(1.03);
+	}
+	.cloud {
+		width: 100%;
 	}
 
 	.overlay {
@@ -75,8 +84,19 @@
 		opacity: 1;
 	}
 
-	.center {
-		transform: translate(50%, -20%);
+	@media (max-height: 600px) {
+		.text {
+			transform: translate(50px, 0);
+		}
+		.text.visible {
+			transform: translate(0, 0);
+		}
+		.center {
+			transform: translate(calc(50% + 50px), 0%);
+		}
+		.center.visible {
+			transform: translate(50%, 0%);
+		}
 	}
 
 	@media (max-height: 400px) {

@@ -37,7 +37,9 @@
 	};
 
 	const close = () => {
-		let id = $zoomModalImage.split("/")[1];
+		let id = $zoomModalImage.includes("/")
+			? $zoomModalImage.split("/")[1]
+			: $zoomModalImage;
 		if (id[id.length - 1] === "2") id = id.substring(0, id.length - 1);
 		document.querySelector(`#${id}`).focus();
 		$zoomModalImage = undefined;

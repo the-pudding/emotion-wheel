@@ -101,13 +101,11 @@
 
 <style>
 	.body {
-		position: absolute;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		width: 70%;
 		top: 40%;
-		transform: translate(0, -50%);
 	}
 	button.confirm {
 		position: absolute;

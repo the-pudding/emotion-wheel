@@ -146,7 +146,7 @@
 <style>
 	.story {
 		position: relative;
-		/* overflow-y: hidden; */
+		overflow-y: hidden;
 		overflow-x: hidden;
 		align-items: flex-end;
 		transition: background-color calc(var(--1s) * 2),

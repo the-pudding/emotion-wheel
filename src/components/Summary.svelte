@@ -4,6 +4,7 @@
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
 	import { timeFormat } from "d3";
+	import variables from "$data/variables.json";
 	import { annotate } from "svelte-rough-notation";
 	import needsKey from "$utils/needsKey";
 
@@ -43,7 +44,7 @@
 							type: "highlight",
 							animate: false,
 							visible: true,
-							color: $colors[i]
+							color: $colors[i] ? $colors[i] : variables.color["grey-balloon"]
 						}}
 						style:color={determineFontColor($colors[i])}
 						class="word"

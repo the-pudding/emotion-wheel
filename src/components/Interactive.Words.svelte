@@ -84,10 +84,7 @@
 
 <style>
 	.words {
-		position: absolute;
-		left: 15%;
-		top: 43%;
-		transform: translate(0, -50%);
+		margin-left: 20%;
 		width: 30%;
 		display: flex;
 		flex-direction: column;

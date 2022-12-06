@@ -65,7 +65,7 @@
 	.basic {
 		position: absolute;
 		top: 40%;
-		left: 30%;
+		left: 20%;
 		transform: translate(0, -50%);
 	}
 	.basic p:nth-child(2) {

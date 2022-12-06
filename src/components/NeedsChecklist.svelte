@@ -115,12 +115,6 @@
 	.interactive-needs-checklist.activities {
 		max-width: 900px;
 	}
-	img {
-		/* position: absolute;
-		top: 0;
-		z-index: -1;
-		width: 100%; */
-	}
 	:global(.interactive-needs-checklist svg) {
 		position: absolute;
 		top: 0;
