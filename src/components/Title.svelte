@@ -41,6 +41,10 @@
 			</button>
 
 			<div class="audio">FYI, this story contains audio.</div>
+
+			<a href="/activities" class="audio" target="_blank"
+				>Take me to the activities page</a
+			>
 		</div>
 	</div>
 </div>
@@ -63,7 +67,6 @@
 	}
 	.logo {
 		height: 2.3em;
-		margin-bottom: 1.5em;
 	}
 	.title {
 		width: 100vw;

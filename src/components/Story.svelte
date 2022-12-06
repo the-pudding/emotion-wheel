@@ -18,7 +18,7 @@
 		currentPanel
 	} from "$stores/misc.js";
 	import variables from "$data/variables.json";
-	import { onDestroy, onMount } from "svelte";
+	import { onDestroy } from "svelte";
 	import copy from "$data/copy.json";
 	import { scaleLinear } from "d3-scale";
 
@@ -42,7 +42,7 @@
 	$: $entered = $scrolled >= $scrollMax;
 	$: progress = progressScale($currentPanel);
 	$: worldInColor = $worldBg === variables.color["sky-blue"];
-	$: if ($entered) sound.play();
+	$: if ($entered && !sound.playing()) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 	$: bgImage = `${base}/assets/img/bg${worldInColor ? "-color" : ""}.png`;

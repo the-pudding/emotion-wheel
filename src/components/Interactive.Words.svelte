@@ -78,10 +78,6 @@
 <button bind:this={skipBtn} class="skip" on:click={skip} {disabled}>skip</button
 >
 
-{#if $words.length}
-	<Callout bind:calloutEl />
-{/if}
-
 <style>
 	.words {
 		margin-left: 20%;
