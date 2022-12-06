@@ -2,12 +2,14 @@
 	import Card from "$components/Activities.Card.svelte";
 	import Modal from "$components/Activities.Modal.svelte";
 	import _ from "lodash";
+	import wordmark from "$svg/wordmark.svg";
 	import { toPng } from "html-to-image";
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import needsKey from "$utils/needsKey.js";
 	import { timeFormat } from "d3";
+	import copy from "$data/copy.json";
 
 	let summaryEl;
 	let currentActivity;
@@ -37,9 +39,16 @@
 </script>
 
 <div class="container">
+	<div class="wordmark">
+		<a href="https://pudding.cool" aria-label="The Pudding" target="_blank"
+			>{@html wordmark}</a
+		>
+	</div>
+
 	<div class="top">
-		<h1>Activities</h1>
-		<a href={`../`} class="to-story">Go back to story</a>
+		<h1>{@html copy.activitiesPage.title}</h1>
+		<!-- <a href={`../`} class="to-story">Go back to story</a> -->
+		<p class="description">{@html copy.activitiesPage.main}</p>
 	</div>
 
 	<div class="cards">
@@ -113,6 +122,12 @@
 		margin-bottom: 4em;
 		background: white;
 	}
+	.description {
+		max-width: 600px;
+		text-align: center;
+		font-size: var(--20px);
+		margin: 2em 0;
+	}
 	.top {
 		display: flex;
 		flex-direction: column;
@@ -165,5 +180,23 @@
 	.download:hover {
 		cursor: pointer;
 		color: var(--color-gray-700);
+	}
+
+	.wordmark {
+		width: 100%;
+		max-width: 10em;
+		margin: 0 auto;
+		padding: 1em 0;
+	}
+	.wordmark a {
+		border: none;
+		display: block;
+		color: var(--color-fg);
+	}
+	.wordmark a:hover {
+		background-color: transparent;
+	}
+	:global(.wordmark svg path) {
+		fill: currentColor;
 	}
 </style>

@@ -7,7 +7,7 @@
 	import checks from "$svg/needs-activities.svg";
 	import { toPng } from "html-to-image";
 	import { onMount, tick } from "svelte";
-	import { base } from "$app/paths";
+	import copy from "$data/copy.json";
 
 	export let currentActivity;
 	export let words;
@@ -81,6 +81,10 @@
 	{#if currentActivity === "wheel"}
 		<div class="wheel">
 			<h2>Hi, how are you feeling?</h2>
+			<details class="description">
+				<summary>How to use this</summary>
+				<p>{@html copy.activitiesPage.wheel}</p>
+			</details>
 
 			<ClickableWheel
 				{slices}
@@ -93,16 +97,22 @@
 		</div>
 	{:else if currentActivity === "body"}
 		<div class="body">
-			<div class="description">
-				Take a breath– scan from the top of your head down through your chest,
-				down into your toes. Make a mark on the diagram on the right based on
-				what you notice.
-			</div>
+			<h2>Where do you feel it in your body?</h2>
+			<details class="description">
+				<summary>How to use this</summary>
+				<p>{@html copy.activitiesPage.body}</p>
+			</details>
+
 			<BodyDraw bind:screenshotEl />
 		</div>
 	{:else if currentActivity === "needs"}
 		<div class="needs">
 			<h2>What do you need?</h2>
+			<details class="description">
+				<summary>How to use this</summary>
+				<p>{@html copy.activitiesPage.needs}</p>
+			</details>
+
 			<button on:click={clearNeeds} class="skip">clear</button>
 			<NeedsChecklist
 				{checks}
@@ -138,10 +148,13 @@
 		align-items: center;
 		justify-content: center;
 	}
-	.body .description {
+	.description {
 		text-align: center;
 		max-width: 600px;
-		margin-bottom: 4em;
+		margin: 1em 0;
+	}
+	.description:hover {
+		cursor: pointer;
 	}
 	.needs {
 		display: flex;
