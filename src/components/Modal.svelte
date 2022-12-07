@@ -1,10 +1,10 @@
 <script>
-	import { showPlain, showInfo, soundOn } from "$stores/misc.js";
 	import Icon from "$components/helpers/Icon.svelte";
-	import copy from "$data/copy.json";
 	import { onMount } from "svelte";
 
-	$: if ($showInfo && modalEl) modalEl.focus();
+	export let visible;
+
+	$: if (visible && modalEl) modalEl.focus();
 
 	let modalEl;
 	let numFocusableElements;
@@ -12,12 +12,7 @@
 	let lastFocusableElement;
 
 	const close = () => {
-		$showInfo = false;
-	};
-	const plain = () => {
-		$showPlain = true;
-		$showInfo = false;
-		$soundOn = false;
+		visible = false;
 	};
 
 	const trapFocus = (e) => {
@@ -48,20 +43,11 @@
 <div
 	class="modal"
 	tabindex="-1"
-	class:visible={$showInfo}
+	class:visible
 	bind:this={modalEl}
 	on:keydown={trapFocus}
 >
-	{#each copy.info as text}
-		<div>{@html text}</div>
-	{/each}
-
-	<div>
-		If you prefer a text-only version of the story, <button
-			class="skip"
-			on:click={plain}>click here</button
-		>.
-	</div>
+	<slot />
 	<button class="close " aria-label="close" on:click={close}
 		><Icon name="x" /></button
 	>
@@ -80,21 +66,13 @@
 		flex-direction: column;
 		padding: 5em 3em;
 		justify-content: center;
-		font-size: var(--18px);
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
 			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
 		border: 1px solid rgb(50 50 93 / 15%);
 	}
-	.modal div {
-		margin: 0.5em 0;
-	}
 	.visible {
 		visibility: visible;
 	}
-	button.skip {
-		background: white;
-	}
-
 	.close {
 		color: rgb(50 50 93 / 60%);
 		position: absolute;

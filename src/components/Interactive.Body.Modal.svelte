@@ -1,23 +1,30 @@
 <script>
-	import { showPlain, showInfo, soundOn } from "$stores/misc.js";
+	import BodyDraw from "$components/BodyDraw.svelte";
 	import Icon from "$components/helpers/Icon.svelte";
-	import copy from "$data/copy.json";
+	import { colors, words } from "$stores/misc.js";
 	import { onMount } from "svelte";
 
-	$: if ($showInfo && modalEl) modalEl.focus();
+	export let screenshotEl;
+	export let showModal;
 
 	let modalEl;
 	let numFocusableElements;
 	let firstFocusableElement;
 	let lastFocusableElement;
+	let i = Math.floor(Math.random() * $words.length);
+
+	$: if (showModal && modalEl) modalEl.focus();
+	$: color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+
+	const newWord = (e) => {
+		const w = e.target.id.replace("body-interactive-", "");
+		word = w;
+		let i = $words.findIndex((d) => d === w);
+		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+	};
 
 	const close = () => {
-		$showInfo = false;
-	};
-	const plain = () => {
-		$showPlain = true;
-		$showInfo = false;
-		$soundOn = false;
+		showModal = false;
 	};
 
 	const trapFocus = (e) => {
@@ -47,21 +54,13 @@
 
 <div
 	class="modal"
-	tabindex="-1"
-	class:visible={$showInfo}
+	class:visible={showModal}
 	bind:this={modalEl}
+	tabindex="-1"
 	on:keydown={trapFocus}
 >
-	{#each copy.info as text}
-		<div>{@html text}</div>
-	{/each}
+	<BodyDraw {color} bind:screenshotEl />
 
-	<div>
-		If you prefer a text-only version of the story, <button
-			class="skip"
-			on:click={plain}>click here</button
-		>.
-	</div>
 	<button class="close " aria-label="close" on:click={close}
 		><Icon name="x" /></button
 	>
@@ -84,17 +83,11 @@
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
 			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
 		border: 1px solid rgb(50 50 93 / 15%);
-	}
-	.modal div {
-		margin: 0.5em 0;
+		height: 80vh;
 	}
 	.visible {
 		visibility: visible;
 	}
-	button.skip {
-		background: white;
-	}
-
 	.close {
 		color: rgb(50 50 93 / 60%);
 		position: absolute;
@@ -104,15 +97,8 @@
 		font-size: 24px;
 		background: none;
 	}
-	.close:hover {
-		cursor: pointer;
-		color: rgb(50 50 93 / 100%);
-	}
 
 	@media (max-height: 600px) {
-		.modal {
-			padding: 1em;
-		}
 		.close {
 			top: 0.1em;
 			right: 0.1em;

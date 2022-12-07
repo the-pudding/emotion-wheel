@@ -1,11 +1,12 @@
 <script>
-	import { soundOn, showPause, showInfo } from "$stores/misc.js";
-	import Modal from "$components/TopBar.Modal.svelte";
+	import { soundOn, showPause, showInfo, showPlain } from "$stores/misc.js";
+	import Modal from "$components/Modal.svelte";
 	import volumeOn from "$svg/icons/volume-on.svg";
 	import volumeOff from "$svg/icons/volume-off.svg";
 	import pause from "$svg/icons/pause.svg";
 	import play from "$svg/icons/play.svg";
 	import info from "$svg/icons/info.svg";
+	import copy from "$data/copy.json";
 
 	export let visible;
 
@@ -18,6 +19,11 @@
 	};
 	const openInfo = () => {
 		$showInfo = true;
+	};
+	const goToPlain = () => {
+		$showPlain = true;
+		$showInfo = false;
+		$soundOn = false;
 	};
 </script>
 
@@ -41,7 +47,18 @@
 	</button>
 </div>
 
-<Modal />
+<Modal bind:visible={$showInfo}>
+	{#each copy.info as text}
+		<div class="modal-text">{@html text}</div>
+	{/each}
+
+	<div>
+		If you prefer a text-only version of the story, <button
+			class="skip"
+			on:click={goToPlain}>click here</button
+		>.
+	</div>
+</Modal>
 
 <style>
 	:global(svg.icon:hover path) {
@@ -63,8 +80,14 @@
 	.top-bar.visible {
 		display: flex;
 	}
+	.modal-text {
+		margin: 0.5em 0;
+	}
+	button.skip {
+		background: white;
+	}
 
-	button {
+	button:not(.skip) {
 		background: none;
 		height: 30px;
 		width: 30px;
@@ -85,7 +108,7 @@
 			top: 1em;
 			right: 2em;
 		}
-		button {
+		button:not(.skip) {
 			margin: 0.8em 0;
 		}
 	}

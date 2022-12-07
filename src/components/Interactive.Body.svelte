@@ -1,6 +1,7 @@
 <script>
 	import { base } from "$app/paths";
 	import BodyDraw from "$components/BodyDraw.svelte";
+	import Modal from "$components/Interactive.Body.Modal.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
@@ -9,6 +10,7 @@
 	import { toPng } from "html-to-image";
 	import variables from "$data/variables.json";
 	import { onDestroy } from "svelte";
+	import mq from "$stores/mq.js";
 
 	export let text;
 
@@ -18,6 +20,7 @@
 		src: [`${base}/assets/sound/select.wav`],
 		volume: 0.3
 	});
+	let showModal = false;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -42,6 +45,10 @@
 		word = w;
 		let i = $words.findIndex((d) => d === w);
 		color = $colors[i] ? $colors[i] : variables.color["grey-balloon"];
+	};
+
+	const openModal = () => {
+		showModal = true;
 	};
 
 	onDestroy(() => {
@@ -93,9 +100,14 @@
 		{/if}
 	</div>
 
-	<div class="interactive">
-		<BodyDraw {color} bind:screenshotEl />
-	</div>
+	{#if $mq.sm}
+		<button class="confirm modal" on:click={openModal}>Do body scan</button>
+		<Modal {screenshotEl} bind:showModal />
+	{:else}
+		<div class="interactive">
+			<BodyDraw {color} bind:screenshotEl />
+		</div>
+	{/if}
 </div>
 <button class="confirm" on:click={screenshot}>Done</button>
 
@@ -107,11 +119,15 @@
 		width: 70%;
 		top: 40%;
 	}
-	button.confirm {
+	button.confirm:not(.modal) {
 		position: absolute;
 		top: 53%;
 		left: 75%;
 		transform: translate(-50%, -50%);
+	}
+	button.modal {
+		margin-left: 3em;
+		margin-right: 3em;
 	}
 	.words {
 		margin-right: 3em;
