@@ -34,8 +34,16 @@
 		ctx.beginPath();
 	};
 	const onMouseMove = (e) => {
-		mouseX = e.offsetX;
-		mouseY = e.offsetY;
+		mouseX = e.offsetX
+			? e.offsetX
+			: e.targetTouches[0]
+			? e.targetTouches[0].pageX - screenshotEl.getBoundingClientRect().left
+			: e.changedTouches[e.changedTouches.length - 1].pageX;
+		mouseY = e.offsetY
+			? e.offsetY
+			: e.targetTouches[0]
+			? e.targetTouches[0].pageY - screenshotEl.getBoundingClientRect().top
+			: e.changedTouches[e.changedTouches.length - 1].pageY;
 
 		if (!painting) return;
 
@@ -53,6 +61,18 @@
 	const onMouseLeave = () => {
 		showCursor = false;
 	};
+
+	const onTouchStart = (e) => {
+		painting = true;
+		onMouseMove(e);
+	};
+	const onTouchEnd = () => {
+		onMouseUp();
+	};
+	const onTouchMove = (e) => {
+		onMouseMove(e);
+	};
+
 	const clear = () => {
 		sound.play();
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -67,6 +87,12 @@
 </script>
 
 <div class="body-draw">
+	<div class="color-picker">
+		<ColorPicker bind:color />
+
+		<button class="skip" on:click={clear}>clear</button>
+	</div>
+
 	<div class="canvas" bind:this={screenshotEl}>
 		<canvas
 			bind:this={canvas}
@@ -77,6 +103,9 @@
 			on:mousemove={onMouseMove}
 			on:mouseenter={onMouseEnter}
 			on:mouseleave={onMouseLeave}
+			on:touchstart|preventDefault={onTouchStart}
+			on:touchend|preventDefault={onTouchEnd}
+			on:touchmove|preventDefault={onTouchMove}
 			style={`background-image: url(${bgImage})`}
 		/>
 
@@ -87,12 +116,6 @@
 			style:top={`${mouseY}px`}
 			style={`--color: ${color}`}
 		/>
-	</div>
-
-	<div class="color-picker">
-		<ColorPicker bind:color />
-
-		<button class="skip" on:click={clear}>clear</button>
 	</div>
 </div>
 

@@ -9,6 +9,7 @@
 		entered,
 		scrolled,
 		zoomModalImage,
+		inModal,
 		worldBg,
 		scrollMax,
 		isScrolling,
@@ -59,7 +60,7 @@
 
 	/* horizontal scroll */
 	const onMouseWheel = (e) => {
-		if ($zoomModalImage || $showPause) return;
+		if ($inModal) return;
 
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
@@ -76,7 +77,7 @@
 	/* keyboard version */
 	const keyDown = (e) => {
 		if (document.activeElement.nodeName === "HEX-COLOR-PICKER") return;
-		if ($zoomModalImage || $showPause) return;
+		if ($inModal) return;
 
 		// left / right arrows
 		if (e.keyCode === 37 || e.keyCode === 39) {

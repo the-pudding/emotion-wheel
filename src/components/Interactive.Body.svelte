@@ -1,7 +1,7 @@
 <script>
 	import { base } from "$app/paths";
 	import BodyDraw from "$components/BodyDraw.svelte";
-	import Modal from "$components/Interactive.Body.Modal.svelte";
+	import Modal from "$components/Modal.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
@@ -13,6 +13,8 @@
 	import mq from "$stores/mq.js";
 
 	export let text;
+
+	$: console.log($bodyDrawing);
 
 	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
@@ -33,6 +35,8 @@
 			: _.startCase(str).toLowerCase();
 
 	const screenshot = async () => {
+		if (showModal) showModal = false;
+
 		sound.play();
 		let png = await toPng(screenshotEl);
 		let img = new Image();
@@ -58,58 +62,78 @@
 
 <div class="body">
 	<div class="words">
-		<p>
-			How does <span
-				class="main-word"
-				use:annotate={{
-					type: "highlight",
-					animate: false,
-					visible: true,
-					color
-				}}
-				style:color={determineFontColor(color)}>{formatWord(word)}</span
-			> show up in your body?
-		</p>
-		{#each text as t, i}
+		{#each text as t}
 			<p>{@html t}</p>
 		{/each}
-
-		{#if $words.length > 1}
-			<span>Use other colors:</span>
-			{#each $words.filter((d) => d !== word) as w, i}
-				{@const bg = $colors.filter((d) => d !== color)[i]
-					? $colors.filter((d) => d !== color)[i]
-					: variables.color["grey-balloon"]}
-				{@const textColor = determineFontColor(bg)}
-				<button
-					on:click={newWord}
-					class="other-word"
-					id={`body-interactive-${w}`}
-				>
-					<span
-						use:annotate={{
-							type: "highlight",
-							animate: false,
-							visible: true,
-							color: bg
-						}}
-						style:color={textColor}>{formatWord(w)}</span
-					>
-				</button>
-			{/each}
-		{/if}
 	</div>
 
 	{#if $mq.sm}
-		<button class="confirm modal" on:click={openModal}>Do body scan</button>
-		<Modal {screenshotEl} bind:showModal />
+		<button class="confirm modal" on:click={openModal}>Draw</button>
+		<Modal bind:visible={showModal} maxHeight={true} closeBtn={false}>
+			<div class="interactive modal">
+				<div>Click a word to use that color</div>
+				<div class="other-words">
+					{#each $words as w, i}
+						{@const bg = $colors[i]
+							? $colors[i]
+							: variables.color["grey-balloon"]}
+						{@const textColor = determineFontColor(bg)}
+						<button
+							on:click={newWord}
+							class="other-word"
+							id={`body-interactive-${w}`}
+						>
+							<span
+								use:annotate={{
+									type: "highlight",
+									animate: false,
+									visible: true,
+									color: bg
+								}}
+								style:color={textColor}>{formatWord(w)}</span
+							>
+						</button>
+					{/each}
+				</div>
+
+				<BodyDraw {color} bind:screenshotEl />
+				<button class="confirm" on:click={screenshot}>Done</button>
+			</div>
+		</Modal>
 	{:else}
 		<div class="interactive">
+			<div class="other-words">
+				{#each $words as w, i}
+					{@const bg = $colors[i]
+						? $colors[i]
+						: variables.color["grey-balloon"]}
+					{@const textColor = determineFontColor(bg)}
+					<button
+						on:click={newWord}
+						class="other-word"
+						id={`body-interactive-${w}`}
+					>
+						<span
+							use:annotate={{
+								type: "highlight",
+								animate: false,
+								visible: true,
+								color: bg
+							}}
+							style:color={textColor}>{formatWord(w)}</span
+						>
+					</button>
+				{/each}
+			</div>
+			<div style={`font-size: var(--16px)`}>Click a word to use that color</div>
 			<BodyDraw {color} bind:screenshotEl />
 		</div>
 	{/if}
 </div>
-<button class="confirm" on:click={screenshot}>Done</button>
+
+{#if !$mq.sm}
+	<button class="confirm absolute" on:click={screenshot}>Done</button>
+{/if}
 
 <style>
 	.body {
@@ -119,7 +143,12 @@
 		width: 70%;
 		top: 40%;
 	}
-	button.confirm:not(.modal) {
+	.modal button.confirm {
+		position: absolute;
+		bottom: 1em;
+		right: 1em;
+	}
+	.confirm.absolute {
 		position: absolute;
 		top: 53%;
 		left: 75%;
@@ -136,6 +165,11 @@
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		height: 100%;
+	}
+	.interactive.modal {
+		padding: 0 4em;
+		justify-content: center;
 	}
 	.word {
 		font-weight: bold;
@@ -147,6 +181,11 @@
 		font-size: 1.6em;
 		font-weight: bold;
 		pointer-events: none;
+	}
+	.other-words {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 1.4em;
 	}
 	.other-word {
 		background: none;
