@@ -46,7 +46,7 @@
 	$: if ($entered && !sound.playing()) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
-	$: bgImage = `${base}/assets/img/bg${worldInColor ? "-color" : ""}.png`;
+	$: bgImage = `${base}/assets/img/bg/bg${worldInColor ? "-color" : ""}.png`;
 
 	/* polling to tell if user is scrolling */
 	const onScroll = (e) => {

@@ -4,7 +4,7 @@
 
 <div class="loading" class:visible>
 	<img
-		src="assets/img/simple_wheel_color.png"
+		src="assets/img/wheels/simple_wheel_color.png"
 		alt="rotating emotion wheel to indicate loading"
 	/>
 

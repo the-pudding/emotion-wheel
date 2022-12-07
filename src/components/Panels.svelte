@@ -60,7 +60,6 @@
 		"entry",
 		"overview",
 		"try-wheel",
-		"granularity",
 		"fascinating",
 		"color",
 		"final-wheel",
@@ -112,8 +111,6 @@
 
 				{#if id === "try-wheel"}
 					<RollingWheel img={"grey_wheel_blank.png"} {i} />
-				{:else if id === "granularity"}
-					<RollingWheel img={"grey_wheel.png"} {i} animation={false} />
 				{:else if id === "color"}
 					<RollingWheel img={"simple_wheel_color.png"} {i} />
 				{:else if id === "body-color"}

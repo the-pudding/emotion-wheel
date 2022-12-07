@@ -34,7 +34,11 @@
 		<img src={`assets/img/panels/${id}.png`} class="cloud" />
 
 		{#if overlay}
-			<img src={`assets/img/panels/${id}2.png`} class="cloud overlay" />
+			<img
+				src={`assets/img/panels/${id}2.png`}
+				class="cloud overlay"
+				class:visible={$currentPanel === i}
+			/>
 		{/if}
 	</div>
 {/if}

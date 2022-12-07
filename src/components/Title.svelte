@@ -7,7 +7,7 @@
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
-	$: bgImage = `${base}/assets/img/notebook.jpeg`;
+	$: bgImage = `${base}/assets/img/bg/notebook.jpeg`;
 
 	const zoomScale = scaleLinear()
 		.domain([0, $scrollMax])

@@ -3,7 +3,7 @@
 </script>
 
 <div class="rotate" class:visible>
-	<img src="assets/img/simple_wheel_color.png" />
+	<img src="assets/img/wheels/simple_wheel_color.png" />
 
 	<h3>Please rotate your device.</h3>
 

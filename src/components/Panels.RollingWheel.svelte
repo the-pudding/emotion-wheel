@@ -22,7 +22,7 @@
 	class:roll-in={$mq.desktop && animation && ($currentPanel === i || onScreen)}
 	class:visible={!$mq.desktop || !animation}
 	class:big={img === "final_wheel.png"}
-	src={`assets/img/${img}`}
+	src={`assets/img/wheels/${img}`}
 	use:inView
 	on:enter={() => (onScreen = true)}
 	on:exit={() => (onScreen = false)}
