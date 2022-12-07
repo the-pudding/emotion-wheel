@@ -4,7 +4,7 @@
 	import { onMount } from "svelte";
 
 	export let visible;
-	export let maxHeight;
+	export let big = false;
 	export let closeBtn = true;
 
 	$: if (visible && modalEl) modalEl.focus();
@@ -46,7 +46,7 @@
 
 <div
 	class="modal"
-	class:big={maxHeight}
+	class:big
 	tabindex="-1"
 	class:visible
 	bind:this={modalEl}
@@ -80,8 +80,10 @@
 		max-height: 80vh;
 	}
 	.modal.big {
-		max-height: 90vh;
-		height: 90vh;
+		width: 90vw;
+		padding: 1em;
+		/* max-height: 90vh;
+		height: 90vh; */
 	}
 	.visible {
 		visibility: visible;

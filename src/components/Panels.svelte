@@ -90,7 +90,7 @@
 		>
 			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
 
-			<div class="content">
+			<div class="content" class:float-right={id === "entry"}>
 				{#if id === "survey-basic"}
 					<Basic {text} />
 				{:else if id === "survey-words"}
@@ -165,6 +165,9 @@
 		top: 0;
 		display: flex;
 		align-items: center;
+	}
+	.content.float-right {
+		justify-content: flex-end;
 	}
 	img.full-panel {
 		height: 100%;

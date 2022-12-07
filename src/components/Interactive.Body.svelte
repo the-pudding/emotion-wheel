@@ -69,7 +69,7 @@
 
 	{#if $mq.sm}
 		<button class="confirm modal" on:click={openModal}>Draw</button>
-		<Modal bind:visible={showModal} maxHeight={true} closeBtn={false}>
+		<Modal bind:visible={showModal} big={true} closeBtn={false}>
 			<div class="interactive modal">
 				<div>Click a word to use that color</div>
 				<div class="other-words">

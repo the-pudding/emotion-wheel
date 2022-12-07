@@ -16,7 +16,7 @@
 		volume: 0.3
 	});
 
-	const initialColor = variables.color["grey-balloon"];
+	const initialColor = "#ffffff";
 	let color = initialColor;
 	let i = 0;
 	let editing = true;

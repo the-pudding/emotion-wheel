@@ -4,10 +4,14 @@
 	import { entered, scrolled, scrollMax } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
 	import mq from "$stores/mq.js";
+	import { annotate } from "svelte-rough-notation";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
 	$: bgImage = `${base}/assets/img/bg/notebook.jpeg`;
+
+	let hoverEnter = false;
+	let hoverActivities = false;
 
 	const zoomScale = scaleLinear()
 		.domain([0, $scrollMax])
@@ -24,11 +28,7 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<div
-		class="title"
-		style={`background-image: url(${bgImage})`}
-		on:click={enter}
-	>
+	<div class="title" style={`background-image: url(${bgImage})`}>
 		<div class="words" class:visible={showText}>
 			<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
 
@@ -36,21 +36,49 @@
 			<div class="description">{@html copy.description}</div>
 			<div>{@html copy.byline}</div>
 
-			<button style="margin-top: 2em" class="click-anywhere" on:click={enter}>
-				Click anywhere to continue
-			</button>
+			<div class="buttons">
+				<button
+					class="enter"
+					on:click={enter}
+					on:mouseenter={() => (hoverEnter = true)}
+					on:mouseleave={() => (hoverEnter = false)}
+					use:annotate={{
+						type: "box",
+						animate: !$mq.reducedMotion,
+						visible: hoverEnter,
+						color: "black",
+						padding: 0
+					}}
+				>
+					Enter the story
+				</button>
+
+				<span
+					use:annotate={{
+						type: "box",
+						animate: !$mq.reducedMotion,
+						visible: hoverActivities,
+						color: "black",
+						padding: 0
+					}}
+					on:mouseenter={() => (hoverActivities = true)}
+					on:mouseleave={() => (hoverActivities = false)}
+					class="activities"
+				>
+					<a class="activities" href="/activities" target="_blank"
+						>Activities page</a
+					>
+				</span>
+			</div>
 
 			<div class="audio">FYI, this story contains audio.</div>
-
-			<a href="/activities" class="audio" target="_blank"
-				>Take me to the activities page</a
-			>
 		</div>
 	</div>
 </div>
 
 <style>
-	a.logo-link {
+	a.logo-link,
+	a.activities {
 		border-bottom: none;
 	}
 	.title-wrapper {
@@ -85,9 +113,7 @@
 		justify-content: center;
 		text-align: center;
 	}
-	.title:hover {
-		cursor: pointer;
-	}
+
 	.words {
 		display: flex;
 		flex-direction: column;
@@ -97,23 +123,49 @@
 		transform: translate(0, -50%);
 		opacity: 0;
 		transition: opacity var(--1s);
-		max-width: 60%;
+		max-width: 47%;
 	}
 	.words.visible {
 		opacity: 1;
 	}
 	h1 {
-		font-size: 2.8em;
+		font-size: 2.3em;
 		font-weight: bold;
 		text-transform: uppercase;
-		letter-spacing: -8px;
+		letter-spacing: -4px;
 	}
 	.audio {
 		margin: 1em 0;
 		font-size: 0.7em;
 	}
-	.click-anywhere {
-		background: none;
+	button.enter {
+		background: #8bcc8b;
+		transition: all calc(var(--1s) * 0.5);
+		margin-right: 8px;
+	}
+	button.enter:hover {
+		background: #60a160;
+	}
+	span.activities {
+		background: var(--color-gray-300);
+		padding: 8px;
+		transition: all calc(var(--1s) * 0.5);
+		font-size: var(--16px);
+	}
+	span.activities:hover {
+		color: var(--color-fg);
+		background: var(--color-gray-400);
+	}
+	a.activities:hover {
+		color: var(--color-fg);
+	}
+
+	.buttons {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 1em;
 	}
 
 	@media (max-height: 400px) {
@@ -123,7 +175,8 @@
 		}
 		h1 {
 			margin-top: 0.2em;
-			font-size: 2.5em;
+			margin-bottom: 0.1em;
+			font-size: 2em;
 			letter-spacing: -4px;
 		}
 		.words {

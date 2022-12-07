@@ -64,11 +64,11 @@
 
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
-			if (
-				(e.deltaY > 0 && $scrolled < $scrollMax) ||
-				(e.deltaY < 0 && $scrolled >= 0)
-			)
-				$scrolled += e.deltaY;
+			// if (
+			// 	(e.deltaY > 0 && $scrolled < $scrollMax) ||
+			// 	(e.deltaY < 0 && $scrolled >= 0)
+			// )
+			// 	$scrolled += e.deltaY;
 		} else {
 			containerEl.scrollLeft += e.deltaY;
 		}
@@ -85,11 +85,11 @@
 
 			const leaving = $entered && containerEl.scrollLeft === 0 && delta < 0;
 			if (!$entered || leaving) {
-				if (
-					(delta > 0 && $scrolled < $scrollMax) ||
-					(delta < 0 && $scrolled >= 0)
-				)
-					$scrolled += delta;
+				// if (
+				// 	(delta > 0 && $scrolled < $scrollMax) ||
+				// 	(delta < 0 && $scrolled >= 0)
+				// )
+				// 	$scrolled += delta;
 			} else {
 				containerEl.scrollLeft += delta;
 			}

@@ -21,7 +21,7 @@ export const bodyDrawing = writable(undefined);
 export const needs = writable([]);
 
 export const zoomModalImage = writable(undefined);
-export const worldBg = writable("#b5bbbb");
+export const worldBg = writable("#ffffff");
 
 export const visibleWidth = writable(0);
 export const stepWidth = writable(0);
