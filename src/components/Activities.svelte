@@ -10,6 +10,7 @@
 	import needsKey from "$utils/needsKey.js";
 	import { timeFormat } from "d3";
 	import copy from "$data/copy.json";
+	import Footer from "$components/FooterStandard.svelte";
 
 	let summaryEl;
 	let currentActivity;
@@ -95,6 +96,8 @@
 
 	<Modal bind:currentActivity bind:words bind:bodyImage bind:needs />
 </div>
+
+<Footer />
 
 <style>
 	:global(body) {

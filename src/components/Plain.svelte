@@ -1,6 +1,7 @@
 <script>
 	import { showPlain } from "$stores/misc.js";
 	import copy from "$data/copy.json";
+	import Footer from "$components/FooterStandard.svelte";
 
 	export let visible;
 
@@ -57,6 +58,7 @@
 		{/if}
 	{/each}
 </div>
+<Footer />
 
 <style>
 	.plain {
