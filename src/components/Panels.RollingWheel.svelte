@@ -1,5 +1,5 @@
 <script>
-	import { currentPanel, zoomModalImage } from "$stores/misc.js";
+	import { currentPanel, zoomModalImage, modalAlt } from "$stores/misc.js";
 	import inView from "$actions/inView.js";
 	import mq from "$stores/mq.js";
 
@@ -13,7 +13,15 @@
 	let onScreen = false;
 
 	const onClick = () => {
-		$zoomModalImage = id;
+		$zoomModalImage = `wheels/${id}`;
+		$modalAlt =
+			id === "grey_wheel_blank"
+				? "grey emotion wheel with i'm fine in the center"
+				: id === "simple_wheel_color"
+				? "colorful emotion wheel with no words"
+				: id === "final_wheel"
+				? "Abby's emotion wheel, with 6 sections and around 100 words."
+				: null;
 	};
 </script>
 

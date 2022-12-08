@@ -1,5 +1,6 @@
 <script>
-	import { zoomModalImage } from "$stores/misc.js";
+	import { zoomModalImage, modalAlt } from "$stores/misc.js";
+	import copy from "$data/copy.json";
 
 	export let id;
 	export let title;
@@ -8,6 +9,7 @@
 
 	const onClick = () => {
 		$zoomModalImage = `gallery/${id}`;
+		$modalAlt = copy.gallery.find((d) => d.id === id).alt;
 	};
 </script>
 

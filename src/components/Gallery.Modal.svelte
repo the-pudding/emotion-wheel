@@ -1,12 +1,8 @@
 <script>
 	import Modal from "$components/Modal.svelte";
-	import Icon from "$components/helpers/Icon.svelte";
 	import ZoomableImage from "$components/ZoomableImage.svelte";
 	import { zoomModalImage } from "$stores/misc.js";
-	import { onMount } from "svelte";
 	import copy from "$data/copy.json";
-
-	let modal;
 
 	$: comments = copy.gallery.filter((d) => d.id === $zoomModalImage)[0]
 		? copy.gallery.filter((d) => d.id === $zoomModalImage)[0].comments

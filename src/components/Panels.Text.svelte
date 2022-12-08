@@ -1,9 +1,10 @@
 <script>
-	import { currentPanel, zoomModalImage } from "$stores/misc.js";
+	import { currentPanel, zoomModalImage, modalAlt } from "$stores/misc.js";
 	import mq from "$stores/mq.js";
 
 	export let i;
 	export let text;
+	export let alt;
 	export let id;
 	export let long = false;
 	export let cloud = false;
@@ -13,6 +14,7 @@
 
 	const onClick = () => {
 		$zoomModalImage = `panels/${id}${overlay ? "2" : ""}`;
+		$modalAlt = alt;
 	};
 </script>
 
@@ -31,13 +33,14 @@
 
 {#if cloud}
 	<div class="image" {id} on:click={onClick}>
-		<img src={`assets/img/panels/${id}.png`} class="cloud" />
+		<img src={`assets/img/panels/${id}.png`} class="cloud" {alt} />
 
 		{#if overlay}
 			<img
 				src={`assets/img/panels/${id}2.png`}
 				class="cloud overlay"
 				class:visible={$currentPanel === i}
+				{alt}
 			/>
 		{/if}
 	</div>

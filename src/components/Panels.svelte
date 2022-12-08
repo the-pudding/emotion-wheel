@@ -65,7 +65,8 @@
 		"final-wheel",
 		"let-go",
 		"gallery",
-		"resources"
+		"resources",
+		"data"
 	];
 	const sign = ["gallery-intro", "closing"];
 	const longText = ["entry", "gallery-intro", "closing"];
@@ -73,7 +74,7 @@
 </script>
 
 <Scrolly bind:value={$currentPanel} bind:this={scrollyEl}>
-	{#each visibleSteps as { id, text }, i}
+	{#each visibleSteps as { id, text, alt }, i}
 		{@const panelBg = id.includes("survey")
 			? `${id}-${surveyNeeded === id ? "pre" : "post"}`
 			: sign.includes(id)
@@ -82,6 +83,7 @@
 		{@const cloud = !noImg.includes(id) && !sign.includes(id)}
 		{@const overlay = hasOverlay.includes(id)}
 		{@const long = longText.includes(id)}
+
 		<div
 			class="step"
 			class:visible={$entered}
@@ -106,7 +108,7 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text {i} {text} {id} {cloud} {overlay} {long} />
+					<Text {i} {text} {alt} {id} {cloud} {overlay} {long} />
 				{/if}
 
 				{#if id === "try-wheel"}

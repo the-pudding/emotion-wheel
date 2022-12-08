@@ -5,6 +5,7 @@
 	import viewport from "$stores/viewport.js";
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
+	import { modalAlt } from "$stores/misc.js";
 
 	export let src;
 	export let comments;
@@ -79,7 +80,7 @@
 			<Comment {text} {location} />
 		{/each}
 
-		<img {src} />
+		<img {src} alt={$modalAlt ? $modalAlt : null} />
 	</div>
 </div>
 
