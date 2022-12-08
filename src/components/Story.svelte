@@ -212,7 +212,7 @@
 		z-index: 1;
 	}
 
-	:global(span#pause-text) {
+	:global(.story span#pause-text) {
 		border-bottom: 3px solid var(--color-pause);
 	}
 

@@ -90,7 +90,11 @@
 			{id}
 			style:width={`${$stepWidth}px`}
 		>
-			<img src={`assets/img/panels/${panelBg}.png`} class="full-panel" />
+			<img
+				src={`assets/img/panels/${panelBg}.png`}
+				class="full-panel"
+				alt="the ground"
+			/>
 
 			<div class="content" class:float-right={id === "entry"}>
 				{#if id === "survey-basic"}
