@@ -28,8 +28,8 @@
 	<div
 		class="title"
 		style={`background-image: -webkit-image-set(
-			url(${bgImage}-sm.jpeg) 1x,
-			url(${bgImage}-lg.jpeg) 2x); background-image: image-set(
+			url(${bgImage}-sm.jpeg) 2x,
+			url(${bgImage}-lg.jpeg) 1x); background-image: image-set(
 			url(${bgImage}-sm.jpeg) 1x,
 			url(${bgImage}-lg.jpeg) 2x)`}
 	>

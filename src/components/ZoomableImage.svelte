@@ -1,7 +1,6 @@
 <script>
 	import { zoom, select, zoomIdentity } from "d3";
 	import { onMount } from "svelte";
-	import loadImage from "$utils/loadImage.js";
 	import viewport from "$stores/viewport.js";
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
@@ -53,9 +52,7 @@
 
 	const setupZoom = async () => {
 		if (src !== "") {
-			const i = await loadImage(src);
-			let ratio = i.height / i.width;
-
+			const ratio = 1080 / 1920;
 			let actualHeight = ratio * zoomableWidth;
 			zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
 
@@ -81,7 +78,12 @@
 			<Comment {text} {location} />
 		{/each}
 
-		<img {src} alt={$modalAlt ? $modalAlt : null} />
+		<img
+			srcset={`${src}-sm.png 1000w, ${src}-lg.png 1920w`}
+			sizes={`(max-width: 600px) 1000px, 1920px`}
+			src={`${src}-lg.png`}
+			alt={$modalAlt ? $modalAlt : null}
+		/>
 	</div>
 </div>
 

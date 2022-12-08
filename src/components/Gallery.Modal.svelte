@@ -11,7 +11,7 @@
 
 <Modal visible={$zoomModalImage} big={true}>
 	<ZoomableImage
-		src={$zoomModalImage ? `assets/img/${$zoomModalImage}.png` : ""}
+		src={$zoomModalImage ? `assets/img/${$zoomModalImage}` : ""}
 		{comments}
 	/>
 </Modal>

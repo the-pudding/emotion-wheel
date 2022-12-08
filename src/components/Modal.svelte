@@ -2,6 +2,7 @@
 	import Icon from "$components/helpers/Icon.svelte";
 	import { inModal } from "$stores/misc.js";
 	import { onMount } from "svelte";
+	import { zoomModalImage } from "$stores/misc.js";
 
 	export let visible;
 	export let big = false;
@@ -16,6 +17,7 @@
 	let lastFocusableElement;
 
 	const close = () => {
+		$zoomModalImage = null;
 		visible = false;
 	};
 

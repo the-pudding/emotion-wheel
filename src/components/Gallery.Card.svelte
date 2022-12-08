@@ -21,7 +21,7 @@
 	on:click={onClick}
 >
 	<img
-		src={`assets/img/gallery/${id}.png`}
+		src={`assets/img/gallery/${id}-sm.png`}
 		class:faded={hovering}
 		alt={title}
 	/>
