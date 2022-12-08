@@ -1,0 +1,28 @@
+<svg id="not-great-grey" viewBox="0 0 1150 1121" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="slices">
+<path id="care" aria-label="care" d="M683 67.5L557 59L581 425.5L606.5 428.5L683 67.5Z" fill="black" stroke="black"/>
+<path id="energetic" aria-label="energetic" d="M812 108.5L690 69L613.5 430L648 442L812 108.5Z" fill="black" stroke="black"/>
+<path id="curious" aria-label="curious" d="M957 202.5L822.5 111L655 445L690 469.5L957 202.5Z" fill="black" stroke="black"/>
+<path id="challenged" aria-label="challenged" d="M1049 339.5L961 207.5L691.5 473.5L715 503L1049 339.5Z" fill="black" stroke="black"/>
+<path id="protective" aria-label="protective" d="M730.5 538L716.5 509L1051.5 343.5L1097 456.5L730.5 538Z" fill="black" stroke="black"/>
+<path id="tense" aria-label="tense" d="M734 572L730.5 544L1098.5 463.5L1107.5 583.5L734 572Z" fill="black" stroke="black"/>
+<path id="frustrated" aria-label="frustrated" d="M1080.5 717.5L1106 590L734 578L729.5 608.5L1080.5 717.5Z" fill="black" stroke="black"/>
+<path id="resistant" aria-label="resistant" d="M1077.5 723L1020 836L713.5 645L728 613L1077.5 723Z" fill="black" stroke="black"/>
+<path id="mad" aria-label="mad" d="M711 650L696 669L952.5 916.5L1016.5 841.5L711 650Z" fill="black" stroke="black"/>
+<path id="left-out" aria-label="left-out" d="M692.5 672L665.5 693.5L845.5 993.5L945.5 920.5L692.5 672Z" fill="black" stroke="black"/>
+<path id="disappointed" aria-label="disapointed" d="M660 697.5L629.5 707.5L733 1041.5L839 995.5L660 697.5Z" fill="black" stroke="black"/>
+<path id="heartbroken" aria-label="heartbroken" d="M625.5 709L599.5 713L629.5 1059.5L726.5 1043.5L625.5 709Z" fill="black" stroke="black"/>
+<path id="loss" aria-label="loss" d="M594 713L565 711.5L505 1052.5L623 1059.5L594 713Z" fill="black" stroke="black"/>
+<path id="exhausted" aria-label="exhausted" d="M500 1051L367.5 1014.5L526 700L561 710.5L500 1051Z" fill="black" stroke="black"/>
+<path id="overwhelmed" aria-label="overwhelmed" d="M364 1007L243.5 930.5L490 678.5L520 698.5L364 1007Z" fill="black" stroke="black"/>
+<path id="stressed" aria-label="stressed" d="M238 926L139 815.5L464 650L486.5 676L238 926Z" fill="black" stroke="black"/>
+<path id="somethings-wrong" aria-label="somethings-wrong" d="M445 612.5L93.5 704.5L139 809L461 646L445 612.5Z" fill="black" stroke="black"/>
+<path id="imposter-syndrome" aria-label="imposter-syndrome" d="M437 569.5L65 559L91.5 699.5L443 607.5L437 569.5Z" fill="black" stroke="black"/>
+<path id="anxious" aria-label="anxious" d="M65 551.5L83.5 426L440 534.5L436.5 564L65 551.5Z" fill="black" stroke="black"/>
+<path id="not-good-enough" aria-label="not-good-enough" d="M85.5 419.5L133 313L452.5 499.5L442 528.5L85.5 419.5Z" fill="black" stroke="black"/>
+<path id="embarassed" aria-label="embarassed" d="M136.5 306.5L211 212L472.5 470.5L454.5 496.5L136.5 306.5Z" fill="black" stroke="black"/>
+<path id="guilty" aria-label="guilty" d="M216 207L316.5 133L507 444.5L476.5 467L216 207Z" fill="black" stroke="black"/>
+<path id="unsettled" aria-label="unsettled" d="M324 128.5L438 80L541 432.5L514 440.5L324 128.5Z" fill="black" stroke="black"/>
+<path id="acceptance" aria-label="acceptance" d="M445.5 79L548.5 60.5L573 426L549 429L445.5 79Z" fill="black" stroke="black"/>
+</g>
+</svg>

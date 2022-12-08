@@ -6,10 +6,10 @@
 	import _ from "lodash";
 	import { onDestroy } from "svelte";
 	import { Howl } from "howler";
-	import okaySlices from "$svg/okay-slices.svg";
-	import goodSlices from "$svg/good-slices.svg";
-	import notGreatSlices from "$svg/not-great-slices.svg";
-	import busySlices from "$svg/busy-slices.svg";
+	import okaySlices from "$svg/okay.svg";
+	import goodSlices from "$svg/good.svg";
+	import notGreatSlices from "$svg/not-great.svg";
+	import busySlices from "$svg/busy.svg";
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
 
