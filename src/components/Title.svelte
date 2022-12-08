@@ -5,6 +5,8 @@
 	import { scaleLinear } from "d3-scale";
 	import mq from "$stores/mq.js";
 	import { annotate } from "svelte-rough-notation";
+	import Button from "$components/Button.svelte";
+	import variables from "$data/variables.json";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
@@ -37,38 +39,13 @@
 			<div>{@html copy.byline}</div>
 
 			<div class="buttons">
-				<button
-					class="enter"
-					on:click={enter}
-					on:mouseenter={() => (hoverEnter = true)}
-					on:mouseleave={() => (hoverEnter = false)}
-					use:annotate={{
-						type: "box",
-						animate: !$mq.reducedMotion,
-						visible: hoverEnter,
-						color: "black",
-						padding: 0
-					}}
-				>
-					Enter the story
-				</button>
+				<Button onClick={enter} color={"#8bcc8b"}>Enter the story</Button>
 
-				<span
-					use:annotate={{
-						type: "box",
-						animate: !$mq.reducedMotion,
-						visible: hoverActivities,
-						color: "black",
-						padding: 0
-					}}
-					on:mouseenter={() => (hoverActivities = true)}
-					on:mouseleave={() => (hoverActivities = false)}
-					class="activities"
-				>
+				<Button onClick={null} color={variables.color["gray-300"]}>
 					<a class="activities" href="/activities" target="_blank"
 						>Activities page</a
 					>
-				</span>
+				</Button>
 			</div>
 
 			<div class="audio">FYI, this story contains audio.</div>
@@ -138,28 +115,10 @@
 		margin: 1em 0;
 		font-size: 0.7em;
 	}
-	button.enter {
-		background: #8bcc8b;
-		transition: all calc(var(--1s) * 0.5);
-		margin-right: 8px;
-	}
-	button.enter:hover {
-		background: #60a160;
-	}
-	span.activities {
-		background: var(--color-gray-300);
-		padding: 8px;
-		transition: all calc(var(--1s) * 0.5);
+
+	a.activities {
 		font-size: var(--16px);
 	}
-	span.activities:hover {
-		color: var(--color-fg);
-		background: var(--color-gray-400);
-	}
-	a.activities:hover {
-		color: var(--color-fg);
-	}
-
 	.buttons {
 		width: 100%;
 		display: flex;

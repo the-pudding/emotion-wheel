@@ -5,6 +5,7 @@
 	import { onDestroy } from "svelte";
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
+	import Button from "$components/Button.svelte";
 
 	export let text;
 
@@ -59,7 +60,8 @@
 	</div>
 </div>
 
-<button class="skip" on:click={skip} {disabled}>skip</button>
+<!-- <button class="skip" on:click={skip} {disabled}>skip</button> -->
+<Button color="blue">skip</Button>
 
 <style>
 	.basic {
@@ -85,7 +87,7 @@
 		padding: 0;
 		text-align: left;
 	}
-	button.skip {
+	.skip {
 		position: absolute;
 		top: 50%;
 		left: 76%;
