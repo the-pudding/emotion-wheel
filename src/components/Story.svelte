@@ -46,7 +46,7 @@
 	$: if ($entered && !sound.playing()) sound.play();
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
-	$: bgImage = `${base}/assets/img/bg/bg${worldInColor ? "-color" : ""}.png`;
+	$: bgImage = `${base}/assets/img/bg/bg${worldInColor ? "-color" : ""}`;
 
 	/* polling to tell if user is scrolling */
 	const onScroll = (e) => {
@@ -111,7 +111,11 @@
 	on:wheel|preventDefault={onMouseWheel}
 	style:height={`${innerHeight}px`}
 	style:background-color={$showInfo ? "var(--color-gray-500)" : $worldBg}
-	style:background-image={`url(${bgImage})`}
+	style={`background-image: -webkit-image-set(
+    url(${bgImage}-sm.png) 1x,
+    url(${bgImage}-lg.png) 2x); background-image: image-set(
+    url(${bgImage}-sm.png) 1x,
+    url(${bgImage}-lg.png) 2x)`}
 >
 	<div class="play" class:visible={!$showPause}>
 		{#if innerHeight}

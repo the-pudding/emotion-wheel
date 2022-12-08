@@ -4,16 +4,11 @@
 	import { entered, scrolled, scrollMax } from "$stores/misc.js";
 	import { scaleLinear } from "d3-scale";
 	import mq from "$stores/mq.js";
-	import { annotate } from "svelte-rough-notation";
 	import Button from "$components/Button.svelte";
-	import variables from "$data/variables.json";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
-	$: bgImage = `${base}/assets/img/bg/notebook.jpeg`;
-
-	let hoverEnter = false;
-	let hoverActivities = false;
+	$: bgImage = `${base}/assets/img/bg/notebook`;
 
 	const zoomScale = scaleLinear()
 		.domain([0, $scrollMax])
@@ -30,7 +25,14 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<div class="title" style={`background-image: url(${bgImage})`}>
+	<div
+		class="title"
+		style={`background-image: -webkit-image-set(
+			url(${bgImage}-sm.jpeg) 1x,
+			url(${bgImage}-lg.jpeg) 2x); background-image: image-set(
+			url(${bgImage}-sm.jpeg) 1x,
+			url(${bgImage}-lg.jpeg) 2x)`}
+	>
 		<div class="words" class:visible={showText}>
 			<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
 
