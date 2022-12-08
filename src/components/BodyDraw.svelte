@@ -4,6 +4,7 @@
 	import { base } from "$app/paths";
 	import { onMount, onDestroy } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import Button from "$components/Button.svelte";
 
 	export let screenshotEl;
 	export let color = "rgb(0,0,0)";
@@ -90,7 +91,7 @@
 	<div class="color-picker">
 		<ColorPicker bind:color />
 
-		<button class="skip" on:click={clear}>clear</button>
+		<Button onClick={clear} small={true}>clear</Button>
 	</div>
 
 	<div class="canvas" bind:this={screenshotEl}>

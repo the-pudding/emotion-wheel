@@ -3,6 +3,7 @@
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { toPng } from "html-to-image";
 	import _ from "lodash";
+	import Button from "$components/Button.svelte";
 	import { timeFormat } from "d3";
 	import variables from "$data/variables.json";
 	import { annotate } from "svelte-rough-notation";
@@ -33,7 +34,13 @@
 	}}
 >
 	<div class="box" bind:this={summaryEl}>
-		<button class="download skip" on:click={save}>download</button>
+		<Button
+			onClick={save}
+			right={0}
+			bottom={"-3em"}
+			small={true}
+			transform={false}>download</Button
+		>
 
 		<div class="section">
 			<h3>I feel:</h3>
@@ -112,15 +119,6 @@
 	}
 	li.word {
 		width: fit-content;
-	}
-	.download {
-		position: absolute;
-		bottom: -3em;
-		right: 0;
-	}
-	.download:hover {
-		cursor: pointer;
-		color: var(--color-gray-700);
 	}
 
 	@media (max-height: 600px) {

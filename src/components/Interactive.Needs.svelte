@@ -2,6 +2,7 @@
 	import { base } from "$app/paths";
 	import { Howl } from "howler";
 	import NeedsChecklist from "$components/NeedsChecklist.svelte";
+	import Button from "$components/Button.svelte";
 	import { needs, soundOn } from "$stores/misc.js";
 	import needsChecks from "$svg/needs.svg";
 
@@ -31,7 +32,13 @@
 	nextSelectable={skipBtn}
 />
 
-<button bind:this={skipBtn} class="skip" on:click={skip} {disabled}>skip</button
+<Button
+	bind:buttonEl={skipBtn}
+	onClick={skip}
+	top={"53%"}
+	left={"88.5%"}
+	transform={true}
+	{disabled}>skip</Button
 >
 
 <div class="needs">

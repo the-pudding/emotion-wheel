@@ -6,6 +6,7 @@
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
 	import { modalAlt } from "$stores/misc.js";
+	import Button from "$components/Button.svelte";
 
 	export let src;
 	export let comments;
@@ -86,8 +87,20 @@
 
 <div class="buttons">
 	<div class="zoom-title">Zoom</div>
-	<button class="skip" on:click={zoomIn}>+</button>
-	<button class="skip" on:click={zoomOut}>-</button>
+	<Button
+		onClick={zoomIn}
+		width={"1.6em"}
+		height={"1.6em"}
+		big={true}
+		animate={false}>+</Button
+	>
+	<Button
+		onClick={zoomOut}
+		width={"1.6em"}
+		height={"1.6em"}
+		big={true}
+		animate={false}>-</Button
+	>
 </div>
 
 <style>

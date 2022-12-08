@@ -1,6 +1,7 @@
 <script>
 	import { words, colors, worldBg, soundOn } from "$stores/misc.js";
 	import ColorPicker from "$components/ColorPicker.svelte";
+	import Button from "$components/Button.svelte";
 	import { Howl } from "howler";
 	import { onDestroy } from "svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
@@ -95,14 +96,16 @@
 		<ColorPicker bind:color />
 
 		<div class="buttons">
-			<button class="confirm" on:click={confirm}>That's it</button>
+			<Button onClick={confirm}>That's it</Button>
 		</div>
 	{:else}
 		<p>Nice work!</p>
-		<button class="confirm" on:click={edit}>Edit my colors</button>
+		<Button onClick={edit}>Edit my colors</Button>
 	{/if}
 </div>
-<button class="skip" on:click={skip} {disabled}>skip</button>
+<Button onClick={skip} top={"53%"} left={"67.5%"} transform={true} {disabled}
+	>skip</Button
+>
 
 <style>
 	.colors {
@@ -117,13 +120,6 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 1;
-		margin-top: 1em;
-	}
-	button.skip {
-		position: absolute;
-		top: 53%;
-		left: 67.5%;
-		transform: translate(-50%, -50%);
 	}
 	.word {
 		font-size: 1.6em;

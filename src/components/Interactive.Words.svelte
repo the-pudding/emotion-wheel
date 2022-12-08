@@ -1,7 +1,7 @@
 <script>
 	import { base } from "$app/paths";
 	import ClickableWheel from "$components/ClickableWheel.svelte";
-	import Callout from "$components/Callout.svelte";
+	import Button from "$components/Button.svelte";
 	import { basicFeeling, words, soundOn } from "$stores/misc.js";
 	import _ from "lodash";
 	import { onDestroy } from "svelte";
@@ -73,7 +73,13 @@
 	{/key}
 </div>
 
-<button bind:this={skipBtn} class="skip" on:click={skip} {disabled}>skip</button
+<Button
+	bind:buttonEl={skipBtn}
+	top={"53%"}
+	left={"67.5%"}
+	transform={true}
+	onClick={skip}
+	{disabled}>skip</Button
 >
 
 <style>
@@ -90,12 +96,6 @@
 	}
 	.words div {
 		text-align: center;
-	}
-	button.skip {
-		position: absolute;
-		top: 53%;
-		left: 67.5%;
-		transform: translate(-50%, -50%);
 	}
 	span {
 		font-size: 1.6em;

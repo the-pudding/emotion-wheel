@@ -1,6 +1,7 @@
 <script>
 	import { soundOn, showPause, showInfo, showPlain } from "$stores/misc.js";
 	import Modal from "$components/Modal.svelte";
+	import Button from "$components/Button.svelte";
 	import volumeOn from "$svg/icons/volume-on.svg";
 	import volumeOff from "$svg/icons/volume-off.svg";
 	import pause from "$svg/icons/pause.svg";
@@ -53,10 +54,8 @@
 	{/each}
 
 	<div>
-		If you prefer a text-only version of the story, <button
-			class="skip"
-			on:click={goToPlain}>click here</button
-		>.
+		If you prefer a text-only version of the story,
+		<Button onClick={goToPlain} animate={false}>click here</Button>
 	</div>
 </Modal>
 

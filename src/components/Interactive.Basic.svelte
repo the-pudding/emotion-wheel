@@ -60,8 +60,9 @@
 	</div>
 </div>
 
-<!-- <button class="skip" on:click={skip} {disabled}>skip</button> -->
-<Button color="blue">skip</Button>
+<Button top={"50%"} left={"76%"} transform={true} {disabled} onClick={skip}
+	>skip</Button
+>
 
 <style>
 	.basic {
@@ -86,12 +87,6 @@
 		font-size: 1.6em;
 		padding: 0;
 		text-align: left;
-	}
-	.skip {
-		position: absolute;
-		top: 50%;
-		left: 76%;
-		transform: translate(-50%, -50%);
 	}
 
 	span {

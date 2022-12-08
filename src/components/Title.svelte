@@ -40,8 +40,7 @@
 
 			<div class="buttons">
 				<Button onClick={enter} color={"#8bcc8b"}>Enter the story</Button>
-
-				<Button onClick={null} color={variables.color["gray-300"]}>
+				<Button onClick={null} marginLeft={"8px"}>
 					<a class="activities" href="/activities" target="_blank"
 						>Activities page</a
 					>

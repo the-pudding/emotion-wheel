@@ -1,6 +1,7 @@
 <script>
 	import { base } from "$app/paths";
 	import BodyDraw from "$components/BodyDraw.svelte";
+	import Button from "$components/Button.svelte";
 	import Modal from "$components/Modal.svelte";
 	import determineFontColor from "$utils/determineFontColor.js";
 	import { words, colors, bodyDrawing, soundOn } from "$stores/misc.js";
@@ -13,8 +14,6 @@
 	import mq from "$stores/mq.js";
 
 	export let text;
-
-	$: console.log($bodyDrawing);
 
 	let screenshotEl;
 	let i = Math.floor(Math.random() * $words.length);
@@ -68,7 +67,7 @@
 	</div>
 
 	{#if $mq.sm}
-		<button class="confirm modal" on:click={openModal}>Draw</button>
+		<Button onClick={openModal} marginLeft={"2em"}>Draw</Button>
 		<Modal bind:visible={showModal} big={true} closeBtn={false}>
 			<div class="interactive modal">
 				<div>Click a word to use that color</div>
@@ -97,7 +96,7 @@
 				</div>
 
 				<BodyDraw {color} bind:screenshotEl />
-				<button class="confirm" on:click={screenshot}>Done</button>
+				<Button onClick={screenshot} bottom={"1em"} right={"1em"}>Done</Button>
 			</div>
 		</Modal>
 	{:else}
@@ -132,7 +131,9 @@
 </div>
 
 {#if !$mq.sm}
-	<button class="confirm absolute" on:click={screenshot}>Done</button>
+	<Button onClick={screenshot} top={"53%"} left={"75%"} transform={true}
+		>Done</Button
+	>
 {/if}
 
 <style>
@@ -143,21 +144,7 @@
 		width: 70%;
 		top: 40%;
 	}
-	.modal button.confirm {
-		position: absolute;
-		bottom: 1em;
-		right: 1em;
-	}
-	.confirm.absolute {
-		position: absolute;
-		top: 53%;
-		left: 75%;
-		transform: translate(-50%, -50%);
-	}
-	button.modal {
-		margin-left: 3em;
-		margin-right: 3em;
-	}
+
 	.words {
 		margin-right: 3em;
 	}
@@ -174,9 +161,7 @@
 	.word {
 		font-weight: bold;
 	}
-	button.skip {
-		margin-top: 1em;
-	}
+
 	span.main-word {
 		font-size: 1.6em;
 		font-weight: bold;

@@ -21,4 +21,7 @@
 	hex-color-picker:hover {
 		cursor: pointer !important;
 	}
+	div {
+		margin-bottom: 1em;
+	}
 </style>
