@@ -6,11 +6,10 @@
 	export let text;
 	export let alt;
 	export let id;
-	export let long = false;
 	export let cloud = false;
 	export let overlay = false;
 
-	$: center = id === "fascinating" || id === "entry" || id === "overview";
+	$: center = id === "fascinating";
 
 	const onClick = () => {
 		$zoomModalImage = `panels/${id}${overlay ? "2" : ""}`;
@@ -23,7 +22,6 @@
 	class:center
 	class:big={id === "fascinating"}
 	class:visible={i === $currentPanel || $mq.reducedMotion}
-	class:long
 	class:first={id === "entry"}
 >
 	{#each text as t}

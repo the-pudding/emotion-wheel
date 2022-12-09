@@ -34,13 +34,13 @@
 	}}
 >
 	<div class="box" bind:this={summaryEl}>
-		<Button
+		<!-- <Button
 			onClick={save}
 			right={0}
 			bottom={"-3em"}
 			small={true}
 			transform={false}>download</Button
-		>
+		> -->
 
 		<div class="section">
 			<h3>I feel:</h3>

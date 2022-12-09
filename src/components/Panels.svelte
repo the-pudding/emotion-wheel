@@ -58,7 +58,6 @@
 
 	const noImg = [
 		"entry",
-		"overview",
 		"try-wheel",
 		"fascinating",
 		"color",
@@ -69,7 +68,6 @@
 		"data"
 	];
 	const sign = ["gallery-intro", "closing"];
-	const longText = ["entry", "gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color", "same-way", "body"];
 </script>
 
@@ -82,7 +80,6 @@
 			: "ground"}
 		{@const cloud = !noImg.includes(id) && !sign.includes(id)}
 		{@const overlay = hasOverlay.includes(id)}
-		{@const long = longText.includes(id)}
 
 		<div
 			class="step"
@@ -114,7 +111,7 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text {i} {text} {alt} {id} {cloud} {overlay} {long} />
+					<Text {i} {text} {alt} {id} {cloud} {overlay} />
 				{/if}
 
 				{#if id === "try-wheel"}
