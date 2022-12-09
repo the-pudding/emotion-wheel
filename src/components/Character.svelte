@@ -34,6 +34,7 @@
 	let svg;
 	let simulation;
 	let imageWidth = 0;
+	let hoveredBalloon = undefined;
 	$: r = $mq.sm ? 12 : $mq.md ? 15 : 20;
 	$: fx = imageWidth * 0.4;
 	$: fy = innerHeight ? innerHeight * 0.37 : 100;
@@ -165,6 +166,14 @@
 			.data(nodes)
 			.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 	};
+
+	const onBalloonHover = (e) => {
+		if (nodes.length > 2) hoveredBalloon = e.target.id;
+		// TODO: raise node?
+	};
+	const onBalloonExit = () => {
+		hoveredBalloon = undefined;
+	};
 </script>
 
 <WalkingSprite bind:width={imageWidth} />
@@ -194,7 +203,10 @@
 
 	<g class="links">
 		{#each links as l}
-			<line stroke="darkgrey" />
+			{@const faded =
+				hoveredBalloon &&
+				l.target.name !== parseInt(hoveredBalloon.split("-")[1])}
+			<line stroke="darkgrey" class:faded />
 		{/each}
 	</g>
 
@@ -206,7 +218,18 @@
 				: $basicFeeling
 				? $basicFeeling
 				: ""}
-			<g class="node" {opacity}>
+			{@const faded =
+				hoveredBalloon &&
+				hoveredBalloon !== `${label}-${n.name}` &&
+				n.name !== "source"}
+			<g
+				class="node"
+				class:faded
+				id={`${label}-${n.name}`}
+				{opacity}
+				on:mouseenter={onBalloonHover}
+				on:mouseleave={onBalloonExit}
+			>
 				<polygon
 					points={`0,${r + 2} -3,${r + 8} 3,${r + 8}`}
 					class="triangle"
@@ -250,6 +273,12 @@
 	svg.reducedMotion {
 		position: fixed;
 		width: 100vw;
+	}
+	g.node {
+		pointer-events: all;
+	}
+	.faded {
+		opacity: 0.3;
 	}
 	text.label {
 		alignment-baseline: central;
