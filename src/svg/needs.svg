@@ -1,34 +1,36 @@
-<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg  viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="needs">
-<path id="belly-box" aria-label="to breathe into my belly" d="M849.5 333H839.5V346H851.5L849.5 333Z" fill="black"/>
-<path id="talk-box" aria-label="to talk to someone" d="M860.5 400.5L845.5 403L847 415.5L862 414.5L860.5 400.5Z" fill="black"/>
-<path id="breathing-box" aria-label="to focus on my breathing" d="M829 617.5L818 621V632.5L830.5 631L829 617.5Z" fill="black"/>
-<path id="ground-box" aria-label="to ground in the present" d="M828.5 703L811 704.5V722.5H830.5L828.5 703Z" fill="black"/>
-<path id="sleep-box" aria-label="to rest or sleep" d="M1111.5 737L1100.5 740L1101.5 751L1114.5 750L1111.5 737Z" fill="black"/>
-<path id="cry-box" aria-label="to cry" d="M1108 799H1098L1099 812L1111 811.5L1108 799Z" fill="black"/>
-<path id="hug-box" aria-label="a hug or a snuggle" d="M1110.5 841.5L1100.5 844L1103 854.5H1113.5L1110.5 841.5Z" fill="black"/>
-<path id="snack-box" aria-label="a snack" d="M1362.5 605.5L1349 608L1351.5 622L1365 621L1362.5 605.5Z" fill="black"/>
-<path id="no-box" aria-label="to say no" d="M1357.5 656L1346.5 657L1348 670H1360.5L1357.5 656Z" fill="black"/>
-<path id="discharge-box" aria-label="to discharge energy" d="M1362.5 697.5L1350.5 701L1353 712H1364L1362.5 697.5Z" fill="black"/>
-<path id="make-box" aria-label="to make something" d="M1360 335L1348 337V351H1362.5L1360 335Z" fill="black"/>
-<path id="play-box" aria-label="to play" d="M1366 409H1353L1355 425H1369L1366 409Z" fill="black"/>
-<path id="savor-box" aria-label="savor it" d="M1104 249L1089.5 250V263.5H1105L1104 249Z" fill="black"/>
-<path id="celebrate-box" aria-label="celebrate" d="M1102.5 298L1087.5 300.5L1089.5 314L1104.5 313L1102.5 298Z" fill="black"/>
-<path id="remember-box" aria-label="remember this for later" d="M1102 342L1089.5 344L1091 358L1104 357L1102 342Z" fill="black"/>
-<rect id="belly" x="824" y="314" width="229" height="76" fill="black"/>
-<rect id="talk" x="824" y="389" width="229" height="79" fill="black"/>
-<rect id="savor" x="1077" y="230" width="226" height="49" fill="black"/>
-<rect id="celebrate" x="1077" y="278" width="226" height="49" fill="black"/>
-<rect id="remember" x="1077" y="326" width="218" height="61" fill="black"/>
-<rect id="make" x="1332" y="323" width="251" height="71" fill="black"/>
-<rect id="play" x="1332" y="393" width="251" height="55" fill="black"/>
-<rect id="snack" x="1337" y="591" width="237" height="49" fill="black"/>
-<rect id="no" x="1337" y="639" width="237" height="46" fill="black"/>
-<rect id="discharge" x="1337" y="684" width="237" height="95" fill="black"/>
-<rect id="sleep" x="1082" y="723" width="219" height="69" fill="black"/>
-<rect id="cry" x="1082" y="791" width="219" height="38" fill="black"/>
-<rect id="hug" x="1082" y="828" width="219" height="75" fill="black"/>
-<rect id="breathing" x="804" y="602" width="243" height="75" fill="black"/>
-<rect id="ground" x="800" y="690" width="244" height="101" fill="black"/>
+<path id="suspend-box" d="M849 331.5H837.5L839 345.5H850.5L849 331.5Z" fill="black"/>
+<path id="someone-box" d="M862 422L846.5 424.5L848 437H863.5L862 422Z" fill="black"/>
+<path id="savor-box" d="M1104.5 247.5L1088.5 248.5L1090 263H1105.5L1104.5 247.5Z" fill="black"/>
+<path id="celebrate-box" d="M1102.5 296L1086 300L1089 313L1105.5 312L1102.5 296Z" fill="black"/>
+<path id="later-box" d="M1101.5 341L1089.5 343L1091 357H1104L1101.5 341Z" fill="black"/>
+<path id="learn-box" d="M1369 345.5L1356.5 347.5V361.5H1371.5L1369 345.5Z" fill="black"/>
+<path id="play-box" d="M1372.5 409.5L1359.5 410.5L1361 426H1375.5L1372.5 409.5Z" fill="black"/>
+<path id="heard-box" d="M1362.5 605L1348.5 607L1351.5 622L1365.5 620L1362.5 605Z" fill="black"/>
+<path id="snack-box" d="M1358 656L1346.5 657L1348 670L1360.5 670.5L1358 656Z" fill="black"/>
+<path id="discharge-box" d="M1362.5 697L1351 701L1353.5 712.5L1364 711.5L1362.5 697Z" fill="black"/>
+<path id="sleep-box" d="M1111.5 737L1100 740.5L1101.5 751.5L1113.5 750L1111.5 737Z" fill="black"/>
+<path id="cry-box" d="M1108.5 799.5H1098L1100 812H1110.5L1108.5 799.5Z" fill="black"/>
+<path id="hug-box" d="M1110.5 842L1100.5 843.5L1103 855H1113L1110.5 842Z" fill="black"/>
+<path id="slow-box" d="M833 614L815 616L816 631.5L833 630V614Z" fill="black"/>
+<path id="breathing-box" d="M831 655.5L819.5 659L820.5 670.5L832.5 668L831 655.5Z" fill="black"/>
+<path id="ground-box" d="M832 717H815L816.5 735.5H834L832 717Z" fill="black"/>
+<rect id="ground" aria-label="to ground in the present" x="805" y="707" width="240" height="93" fill="black"/>
+<rect id="breathing" aria-label="to focus on my breathing" x="800" y="646" width="245" height="62" fill="black"/>
+<rect id="slow" aria-label="to slow down" x="805" y="599" width="240" height="48" fill="black"/>
+<rect id="hug" aria-label="a hug or a snuggle" x="1083" y="827" width="218" height="72" fill="black"/>
+<rect id="cry" aria-label="to cry" x="1078" y="789" width="223" height="39" fill="black"/>
+<rect id="sleep" aria-label="to rest or sleep" x="1078" y="726" width="223" height="64" fill="black"/>
+<rect id="discharge" aria-label="to discharge energy" x="1339" y="687" width="237" height="85" fill="black"/>
+<rect id="snack" aria-label="a snack" x="1332" y="649" width="244" height="39" fill="black"/>
+<rect id="heard" aria-label="to be heard/noticed" x="1332" y="590" width="244" height="60" fill="black"/>
+<rect id="play" aria-label="to play" x="1332" y="399" width="250" height="47" fill="black"/>
+<rect id="learn" aria-label="to learn more" x="1332" y="328" width="250" height="72" fill="black"/>
+<rect id="later" aria-label="to remember this moment for later" x="1078" y="328" width="215" height="57" fill="black"/>
+<rect id="celebrate" aria-label="celebrate!" x="1069" y="278" width="234" height="51" fill="black"/>
+<rect id="savor" aria-label="savor it" x="1069" y="228" width="234" height="51" fill="black"/>
+<rect id="someone" aria-label="to talk to someone" x="831" y="414" width="217" height="74" fill="black"/>
+<rect id="suspend" aria-label="to suspend judgement" x="825" y="313" width="227" height="102" fill="black"/>
 </g>
 </svg>
