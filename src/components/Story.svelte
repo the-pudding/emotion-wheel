@@ -109,9 +109,9 @@
 	bind:this={containerEl}
 	on:scroll={onScroll}
 	on:wheel|preventDefault={onMouseWheel}
-	style:height={`${innerHeight}px`}
-	style:background-color={$showInfo ? "var(--color-gray-500)" : $worldBg}
-	style={`background-image: -webkit-image-set(
+	style={`height: ${innerHeight}px; background-color: ${
+		$showInfo ? "var(--color-gray-500)" : $worldBg
+	}; background-image: -webkit-image-set(
     url(${bgImage}-sm.png) 1x,
     url(${bgImage}-lg.png) 2x); background-image: image-set(
     url(${bgImage}-sm.png) 1x,

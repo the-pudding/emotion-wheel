@@ -17,53 +17,54 @@
 </script>
 
 <div class="plain" class:visible>
-	<div class="title-row">
-		<h1>{@html copy.title}</h1>
-		<div class="subtitle">All-text version</div>
-		<Button onClick={toStory}>Go to visual/interactive story</Button>
-	</div>
-	<p>{@html copy.description}</p>
-	<p>{@html copy.byline}</p>
+	<div class="column">
+		<div class="title-row">
+			<h1>{@html copy.title}</h1>
+			<div class="subtitle">All-text version</div>
+			<Button onClick={toStory}>Go to visual/interactive story</Button>
+		</div>
+		<p>{@html copy.description}</p>
+		<p>{@html copy.byline}</p>
 
-	{#each steps as step}
-		{#if step.id === "survey-basic"}
-			<p class="interactive">
-				Hi, how are you doing? Options: ok, good, not great, or busy.
-			</p>
-		{:else if step.id === "survey-words"}
-			<p class="interactive">
-				Can you think any other words for the simple word you chose earlier?
-			</p>
-		{:else if step.id === "survey-body"}
-			<p class="interactive">
-				Take a moment here to pause and notice your body. Start at the top-most
-				part of your body and scan down through your center, out to your edges.
-			</p>
-		{:else if step.id === "survey-needs"}
-			<p class="interactive">What does your body need right now?</p>
-		{:else}
-			{#each step.text as p}
-				{#if step.id === "resources"}
-					<h3>{@html p.title}</h3>
-					<ul>
-						{#each p.bullets as bullet}
-							<li>{@html bullet}</li>
-						{/each}
-					</ul>
-				{:else}
-					<p>{@html p}</p>
-				{/if}
-			{/each}
-		{/if}
-	{/each}
+		{#each steps as step}
+			{#if step.id === "survey-basic"}
+				<p class="interactive">
+					Hi, how are you doing? Options: ok, good, not great, or busy.
+				</p>
+			{:else if step.id === "survey-words"}
+				<p class="interactive">
+					Can you think any other words for the simple word you chose earlier?
+				</p>
+			{:else if step.id === "survey-body"}
+				<p class="interactive">
+					Take a moment here to pause and notice your body. Start at the
+					top-most part of your body and scan down through your center, out to
+					your edges.
+				</p>
+			{:else if step.id === "survey-needs"}
+				<p class="interactive">What does your body need right now?</p>
+			{:else}
+				{#each step.text as p}
+					{#if step.id === "resources"}
+						<h3>{@html p.title}</h3>
+						<ul>
+							{#each p.bullets as bullet}
+								<li>{@html bullet}</li>
+							{/each}
+						</ul>
+					{:else}
+						<p>{@html p}</p>
+					{/if}
+				{/each}
+			{/if}
+		{/each}
+	</div>
+
+	<Footer />
 </div>
-<Footer />
 
 <style>
 	.plain {
-		max-width: 700px;
-		margin: 0 auto;
-		font-size: var(--18px);
 		font-family: var(--sans);
 		letter-spacing: normal;
 		word-spacing: normal;
@@ -71,6 +72,11 @@
 	}
 	.plain.visible {
 		display: block;
+	}
+	.column {
+		max-width: 700px;
+		margin: 0 auto;
+		font-size: var(--18px);
 	}
 	.subtitle {
 		margin-bottom: 1em;
