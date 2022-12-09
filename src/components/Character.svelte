@@ -168,8 +168,9 @@
 	};
 
 	const onBalloonHover = (e) => {
-		if (nodes.length > 2) hoveredBalloon = e.target.id;
-		// TODO: raise node?
+		if (nodes.length > 2) {
+			hoveredBalloon = e.target.id;
+		}
 	};
 	const onBalloonExit = () => {
 		hoveredBalloon = undefined;
@@ -278,7 +279,7 @@
 		pointer-events: all;
 	}
 	.faded {
-		opacity: 0.3;
+		opacity: 0.1;
 	}
 	text.label {
 		alignment-baseline: central;
