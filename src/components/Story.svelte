@@ -219,6 +219,10 @@
 	:global(.story span#pause-text) {
 		border-bottom: 3px solid var(--color-pause);
 	}
+	:global(.story p:has(span.callout)) {
+		background: #f0e292;
+		padding: 0.7em 0.4em;
+	}
 
 	@media (max-height: 800px) {
 		.story {
