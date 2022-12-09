@@ -16,6 +16,7 @@
 	let zoomableWidth;
 	let z;
 
+	$: isBodyDiagram = src === "assets/img/panels/body-color2";
 	$: src, imageUpdate();
 
 	const handleZoom = (e) => {
@@ -78,7 +79,14 @@
 			<Comment {text} {location} />
 		{/each}
 
-		{#if src}
+		{#if isBodyDiagram}
+			<img
+				srcset={`${src}-lg.png 1000w, ${src}-xl.png 2000w`}
+				sizes={`(max-width: 600px) 1000px, 2000px`}
+				src={`${src}-lg.png`}
+				alt={$modalAlt ? $modalAlt : null}
+			/>
+		{:else if src}
 			<img
 				srcset={`${src}-sm.png 1000w, ${src}-lg.png 1920w`}
 				sizes={`(max-width: 600px) 1000px, 1920px`}
