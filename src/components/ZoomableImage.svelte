@@ -51,7 +51,7 @@
 	};
 
 	const setupZoom = async () => {
-		if (src !== "") {
+		if (src) {
 			const ratio = 1080 / 1920;
 			let actualHeight = ratio * zoomableWidth;
 			zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
@@ -78,12 +78,14 @@
 			<Comment {text} {location} />
 		{/each}
 
-		<img
-			srcset={`${src}-sm.png 1000w, ${src}-lg.png 1920w`}
-			sizes={`(max-width: 600px) 1000px, 1920px`}
-			src={`${src}-lg.png`}
-			alt={$modalAlt ? $modalAlt : null}
-		/>
+		{#if src}
+			<img
+				srcset={`${src}-sm.png 1000w, ${src}-lg.png 1920w`}
+				sizes={`(max-width: 600px) 1000px, 1920px`}
+				src={`${src}-lg.png`}
+				alt={$modalAlt ? $modalAlt : null}
+			/>
+		{/if}
 	</div>
 </div>
 

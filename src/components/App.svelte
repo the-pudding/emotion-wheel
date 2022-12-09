@@ -33,14 +33,14 @@
 	});
 </script>
 
-<Loading visible={loadingVisible} />
+<!-- <Loading visible={loadingVisible} />
 
-<Rotate visible={rotateVisible} />
+<Rotate visible={rotateVisible} /> -->
 
 <Story {innerWidth} {innerHeight} visible={storyVisible} />
 
-<Plain visible={plainVisible} />
+<!-- <Plain visible={plainVisible} />
 
-<TopBar visible={topBarVisible} />
+<TopBar visible={topBarVisible} /> -->
 
 <svelte:window bind:innerHeight bind:innerWidth />

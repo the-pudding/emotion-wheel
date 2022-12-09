@@ -136,7 +136,7 @@
 			style:width={`${progress}px`}
 		/>
 
-		<Modal />
+		<!-- <Modal /> -->
 	</div>
 
 	<div class="pause" class:visible={$showPause}>
