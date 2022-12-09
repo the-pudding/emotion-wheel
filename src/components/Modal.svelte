@@ -78,7 +78,8 @@
 		box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px,
 			rgb(0 0 0 / 30%) 0px 3px 7px -3px;
 		border: 1px solid rgb(50 50 93 / 15%);
-		max-height: 80vh;
+		max-height: 90vh;
+		max-width: 90vw;
 	}
 	.modal.big {
 		width: 90vw;

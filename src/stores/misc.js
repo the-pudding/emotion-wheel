@@ -13,6 +13,7 @@ export const showInfo = writable(false);
 
 export const currentPanel = writable(undefined);
 export const soundOn = writable(true);
+export const userMuted = writable(false);
 
 export const basicFeeling = writable(undefined);
 export const words = writable([]);

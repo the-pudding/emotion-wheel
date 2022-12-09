@@ -4,7 +4,13 @@
 	import Plain from "$components/Plain.svelte";
 	import Story from "$components/Story.svelte";
 	import Rotate from "$components/Rotate.svelte";
-	import { stepWidth, showPlain, entered } from "$stores/misc.js";
+	import {
+		stepWidth,
+		showPlain,
+		entered,
+		soundOn,
+		userMuted
+	} from "$stores/misc.js";
 	import mq from "$stores/mq.js";
 	import { onMount } from "svelte";
 
@@ -30,6 +36,14 @@
 			.addEventListener("change", (e) => {
 				isLandscape = e.matches;
 			});
+
+		document.addEventListener("visibilitychange", (event) => {
+			if (document.visibilityState == "visible") {
+				if (!$userMuted) $soundOn = true;
+			} else {
+				$soundOn = false;
+			}
+		});
 	});
 </script>
 

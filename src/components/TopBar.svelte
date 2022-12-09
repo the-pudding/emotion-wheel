@@ -1,5 +1,11 @@
 <script>
-	import { soundOn, showPause, showInfo, showPlain } from "$stores/misc.js";
+	import {
+		soundOn,
+		showPause,
+		showInfo,
+		showPlain,
+		userMuted
+	} from "$stores/misc.js";
 	import Modal from "$components/Modal.svelte";
 	import Button from "$components/Button.svelte";
 	import volumeOn from "$svg/icons/volume-on.svg";
@@ -13,10 +19,13 @@
 
 	const mute = () => {
 		$soundOn = !$soundOn;
+		if (!$soundOn) $userMuted = true;
+		else $userMuted = false;
 	};
 	const exit = () => {
 		$showPause = !$showPause;
 		if ($showPause) $soundOn = false;
+		else if (!$userMuted) $soundOn = true;
 	};
 	const openInfo = () => {
 		$showInfo = true;
