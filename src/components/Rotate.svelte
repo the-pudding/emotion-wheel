@@ -3,7 +3,11 @@
 </script>
 
 <div class="rotate" class:visible>
-	<img src="assets/img/wheels/simple_wheel_color.png" />
+	<img
+		srcset={`assets/img/wheels/simple_wheel_color-sm.png 500w, assets/img/wheels/simple_wheel_color-lg.png 800w`}
+		sizes={`(max-width: 600px) 500px, 800px`}
+		src="assets/img/wheels/simple_wheel_color-lg.png"
+	/>
 
 	<h3>Please rotate your device.</h3>
 

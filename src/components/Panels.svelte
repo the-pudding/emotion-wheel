@@ -91,7 +91,9 @@
 			style:width={`${$stepWidth}px`}
 		>
 			<img
-				src={`assets/img/panels/${panelBg}.png`}
+				srcset={`assets/img/panels/${panelBg}-sm.png 800w, assets/img/panels/${panelBg}-lg.png 1920w`}
+				sizes={`(max-width: 600px) 800px, 1920px`}
+				src={`assets/img/panels/${panelBg}-lg.png`}
 				class="full-panel"
 				alt="the ground"
 			/>
@@ -148,7 +150,13 @@
 			class:visible={$entered}
 			style:width={`${$stepWidth}px`}
 		>
-			<img src={`assets/img/panels/ground.png`} class="full-panel" />
+			<img
+				srcset={`assets/img/panels/ground-sm.png 800w, assets/img/panels/ground-lg.png 1920w`}
+				sizes={`(max-width: 600px) 800px, 1920px`}
+				src={`assets/img/panels/ground-lg.png`}
+				class="full-panel"
+				alt="the ground"
+			/>
 			<Footer />
 		</div>
 	{/if}

@@ -103,7 +103,9 @@
 
 <div class="interactive-wheel" on:keydown={trapFocus}>
 	<img
-		src={`${base}/${imgSrc}`}
+		srcset={`${imgSrc}-sm.png 500w, ${imgSrc}-lg.png 800w`}
+		sizes={`(max-width: 600px) 800px, 1000px`}
+		src={`${base}/${imgSrc}-lg.png`}
 		alt="watercolor illustrated emotion wheel by abby"
 	/>
 

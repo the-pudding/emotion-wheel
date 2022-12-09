@@ -2,16 +2,16 @@
 	import { annotate } from "svelte-rough-notation";
 	import mq from "$stores/mq.js";
 
-	export let buttonEl;
+	export let buttonEl = null;
 	export let onClick;
 	export let color = "white";
-	export let height;
-	export let width;
-	export let top;
-	export let left;
-	export let right;
-	export let bottom;
-	export let marginLeft;
+	export let height = null;
+	export let width = null;
+	export let top = null;
+	export let left = null;
+	export let right = null;
+	export let bottom = null;
+	export let marginLeft = null;
 	export let disabled = false;
 	export let transform = false;
 	export let small = false;

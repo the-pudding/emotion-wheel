@@ -63,7 +63,7 @@
 	{#key $basicFeeling}
 		<ClickableWheel
 			slices={slices[$basicFeeling]}
-			imgSrc={`assets/img/wheels/${_.kebabCase($basicFeeling)}.png`}
+			imgSrc={`assets/img/wheels/${_.kebabCase($basicFeeling)}`}
 			wheelId={`${_.kebabCase($basicFeeling)}-grey`}
 			bind:selected={$words}
 			limit={3}

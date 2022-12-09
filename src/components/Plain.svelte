@@ -2,6 +2,7 @@
 	import { showPlain } from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import Footer from "$components/FooterStandard.svelte";
+	import Button from "$components/Button.svelte";
 
 	export let visible;
 
@@ -19,9 +20,7 @@
 	<div class="title-row">
 		<h1>{@html copy.title}</h1>
 		<div class="subtitle">All-text version</div>
-		<button class="skip" on:click={toStory}
-			>Go to visual/interactive story</button
-		>
+		<Button onClick={toStory}>Go to visual/interactive story</Button>
 	</div>
 	<p>{@html copy.description}</p>
 	<p>{@html copy.byline}</p>

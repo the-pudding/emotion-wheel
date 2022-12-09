@@ -33,11 +33,19 @@
 
 {#if cloud}
 	<div class="image" {id} on:click={onClick}>
-		<img src={`assets/img/panels/${id}.png`} class="cloud" {alt} />
+		<img
+			srcset={`assets/img/panels/${id}-sm.png 800w, assets/img/panels/${id}-lg.png 1000w`}
+			sizes={`(max-width: 600px) 800px, 1000px`}
+			src={`assets/img/panels/${id}-lg.png`}
+			class="cloud"
+			{alt}
+		/>
 
 		{#if overlay}
 			<img
-				src={`assets/img/panels/${id}2.png`}
+				srcset={`assets/img/panels/${id}2-sm.png 800w, assets/img/panels/${id}2-lg.png 1000w`}
+				sizes={`(max-width: 600px) 800px, 1000px`}
+				src={`assets/img/panels/${id}2-lg.png`}
 				class="cloud overlay"
 				class:visible={$currentPanel === i}
 				{alt}

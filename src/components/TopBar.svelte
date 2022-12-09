@@ -49,6 +49,7 @@
 </div>
 
 <Modal bind:visible={$showInfo}>
+	<h3>About this project</h3>
 	{#each copy.info as text}
 		<div class="modal-text">{@html text}</div>
 	{/each}
@@ -84,6 +85,9 @@
 	}
 	button.skip {
 		background: white;
+	}
+	h3 {
+		margin: 0;
 	}
 
 	button:not(.skip) {

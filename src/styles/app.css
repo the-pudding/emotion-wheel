@@ -77,7 +77,7 @@ h6 {
 	font-size: var(--20px, 20px);
 }
 
-button.skip,
+/* button.skip,
 button.confirm {
 	box-shadow: 5px 5px var(--color-fg);
 	border: 2px solid var(--color-fg);
@@ -94,14 +94,14 @@ button.skip {
 }
 button.skip:hover {
 	background: var(--color-gray-300);
-}
+} */
 
 a:hover {
 	color: var(--color-gray-700);
 }
 
-@media (max-height: 600px) {
+/* @media (max-height: 600px) {
 	button.skip {
 		font-size: var(--12px);
 	}
-}
+} */

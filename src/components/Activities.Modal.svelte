@@ -3,10 +3,11 @@
 	import ClickableWheel from "$components/ClickableWheel.svelte";
 	import BodyDraw from "$components/BodyDraw.svelte";
 	import NeedsChecklist from "$components/NeedsChecklist.svelte";
+	import Button from "$components/Button.svelte";
 	import slices from "$svg/slices.svg";
 	import checks from "$svg/needs-activities.svg";
 	import { toPng } from "html-to-image";
-	import { onMount, tick } from "svelte";
+	import { tick } from "svelte";
 	import copy from "$data/copy.json";
 
 	export let currentActivity;
@@ -88,7 +89,7 @@
 
 			<ClickableWheel
 				{slices}
-				imgSrc={`assets/activities/wheel.png`}
+				imgSrc={`../assets/activities/wheel`}
 				wheelId="the-wheel"
 				bind:selected={words}
 				withColor={true}
@@ -113,7 +114,7 @@
 				<p>{@html copy.activitiesPage.needs}</p>
 			</details>
 
-			<button on:click={clearNeeds} class="skip">clear</button>
+			<Button onClick={clearNeeds} small={true}>clear</Button>
 			<NeedsChecklist
 				{checks}
 				imgSrc={"assets/activities/needs.png"}

@@ -13,7 +13,9 @@
 <button
 	class="card"
 	id={imageSrc}
-	style={`--background: url(${base}/assets/activities/${imageSrc}.png)`}
+	style={`--background: url(${base}/assets/activities/${imageSrc}${
+		imageSrc === "wheel" ? "-lg" : ""
+	}.png)`}
 	on:click={onClick}
 >
 	<h3>{title}</h3>

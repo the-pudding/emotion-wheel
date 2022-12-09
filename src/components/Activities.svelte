@@ -48,7 +48,6 @@
 
 	<div class="top">
 		<h1>{@html copy.activitiesPage.title}</h1>
-		<!-- <a href={`../`} class="to-story">Go back to story</a> -->
 		<p class="description">{@html copy.activitiesPage.main}</p>
 	</div>
 
