@@ -4,7 +4,8 @@
 		showPause,
 		showInfo,
 		showPlain,
-		userMuted
+		userMuted,
+		currentPanel
 	} from "$stores/misc.js";
 	import Modal from "$components/Modal.svelte";
 	import Button from "$components/Button.svelte";
@@ -16,6 +17,8 @@
 	import copy from "$data/copy.json";
 
 	export let visible;
+
+	$: pulse = $currentPanel === 1 && !$showPause;
 
 	const mute = () => {
 		$soundOn = !$soundOn;
@@ -40,6 +43,7 @@
 <div class="top-bar" class:visible>
 	<button
 		class="exit-btn"
+		class:pulse
 		on:click={exit}
 		aria-label={$showPause ? "resume the story" : "pause the story"}
 	>
@@ -98,13 +102,20 @@
 	h3 {
 		margin: 0;
 	}
-
 	button:not(.skip) {
 		background: none;
 		height: 30px;
 		width: 30px;
 		padding: 0;
 		margin: 0 0.8em;
+	}
+	button.exit-btn {
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+		transform: scale(1);
+		border-radius: 15px;
+	}
+	button.exit-btn.pulse {
+		animation: pulse calc(var(--1s) * 1.5) infinite;
 	}
 
 	@media (max-height: 600px) {
