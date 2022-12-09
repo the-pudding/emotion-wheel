@@ -88,6 +88,9 @@
 		padding: 0;
 		text-align: left;
 	}
+	button.option:hover {
+		color: var(--color-gray-600);
+	}
 
 	span {
 		pointer-events: none;

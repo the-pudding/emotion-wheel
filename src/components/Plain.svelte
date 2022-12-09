@@ -12,8 +12,6 @@
 	const toStory = () => {
 		$showPlain = false;
 	};
-
-	console.log(steps);
 </script>
 
 <div class="plain" class:visible>

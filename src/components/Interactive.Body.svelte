@@ -175,9 +175,13 @@
 	.other-word {
 		background: none;
 		position: relative;
+		transition: transform 500ms;
 	}
 	.other-word span {
 		pointer-events: none;
+	}
+	.other-word:hover {
+		transform: scale(1.15);
 	}
 
 	@media (max-height: 600px) {
