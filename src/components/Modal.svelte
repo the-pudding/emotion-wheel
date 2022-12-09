@@ -68,11 +68,10 @@
 		position: fixed;
 		background: white;
 		z-index: 100;
-		visibility: hidden;
+		display: none;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		display: flex;
 		flex-direction: column;
 		padding: 5em 3em;
 		justify-content: center;
@@ -84,11 +83,9 @@
 	.modal.big {
 		width: 90vw;
 		padding: 1em;
-		/* max-height: 90vh;
-		height: 90vh; */
 	}
 	.visible {
-		visibility: visible;
+		display: flex;
 	}
 	.close {
 		color: rgb(50 50 93 / 60%);

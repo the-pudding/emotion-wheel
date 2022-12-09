@@ -87,14 +87,16 @@
 				<p>{@html copy.activitiesPage.wheel}</p>
 			</details>
 
-			<ClickableWheel
-				{slices}
-				imgSrc={`../assets/activities/wheel`}
-				wheelId="the-wheel"
-				bind:selected={words}
-				withColor={true}
-				nextSelectable={closeBtn}
-			/>
+			<div class="wheel-wrapper">
+				<ClickableWheel
+					{slices}
+					imgSrc={`../assets/activities/wheel`}
+					wheelId="the-wheel"
+					bind:selected={words}
+					withColor={true}
+					nextSelectable={closeBtn}
+				/>
+			</div>
 		</div>
 	{:else if currentActivity === "body"}
 		<div class="body">
@@ -133,6 +135,7 @@
 		height: 90%;
 		background: var(--color-gray-100);
 		visibility: hidden;
+		overflow: hidden;
 	}
 	.modal.visible {
 		visibility: visible;
@@ -141,6 +144,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		height: 100%;
+	}
+	.wheel-wrapper {
+		max-height: 80%;
 	}
 	.body {
 		height: 100%;
@@ -157,10 +164,14 @@
 	.description:hover {
 		cursor: pointer;
 	}
+	h2 {
+		text-align: center;
+	}
 	.needs {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		height: 100%;
 	}
 	.close {
 		color: rgb(50 50 93 / 60%);

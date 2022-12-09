@@ -89,9 +89,9 @@
 		</div>
 	</div>
 
-	<button class="download skip" class:visible={bodyImage} on:click={save}>
+	<!-- <button class="download skip" class:visible={bodyImage} on:click={save}>
 		download
-	</button>
+	</button> -->
 
 	<Modal bind:currentActivity bind:words bind:bodyImage bind:needs />
 </div>
@@ -139,6 +139,7 @@
 	}
 	.top h1 {
 		margin-bottom: 0;
+		text-align: center;
 	}
 	.cards {
 		display: flex;
@@ -200,5 +201,23 @@
 	}
 	:global(.wordmark svg path) {
 		fill: currentColor;
+	}
+	@media (max-width: 600px) {
+		:global(hex-color-picker) {
+			height: 150px;
+			width: 150px;
+		}
+	}
+	@media (max-width: 400px) {
+		:global(hex-color-picker) {
+			height: 110px;
+			width: 110px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.cards {
+			flex-direction: column;
+		}
 	}
 </style>

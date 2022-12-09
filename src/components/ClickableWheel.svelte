@@ -115,11 +115,11 @@
 <style>
 	.interactive-wheel {
 		position: relative;
-		max-width: 800px;
 		margin: 0 auto;
+		height: 100%;
 	}
 	img {
-		width: 100%;
+		max-height: 100%;
 	}
 
 	:global(.interactive-wheel svg) {

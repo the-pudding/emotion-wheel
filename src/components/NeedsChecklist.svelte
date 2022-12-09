@@ -113,7 +113,13 @@
 		position: relative;
 	}
 	.interactive-needs-checklist.activities {
-		max-width: 900px;
+		max-height: 70%;
+		width: auto;
+		height: auto;
+	}
+	.activities img {
+		height: 100%;
+		margin: auto;
 	}
 	:global(.interactive-needs-checklist svg) {
 		position: absolute;

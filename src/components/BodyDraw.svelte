@@ -113,7 +113,7 @@
 		<div
 			class="cursor"
 			class:visible={showCursor}
-			style={`--color: ${color}; left: ${mouseX}px; right: ${mouseY}px`}
+			style={`--color: ${color}; left: ${mouseX}px; top: ${mouseY}px`}
 		/>
 	</div>
 </div>
