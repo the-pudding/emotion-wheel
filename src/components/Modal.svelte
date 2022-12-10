@@ -83,6 +83,7 @@
 	}
 	.modal.big {
 		width: 90vw;
+		height: 90vh;
 		padding: 1em;
 	}
 	.visible {

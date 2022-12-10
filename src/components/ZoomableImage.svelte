@@ -18,7 +18,7 @@
 
 	$: isGallery = src && src.includes("gallery");
 	$: isBodyDiagram = src === "assets/img/panels/body-color2";
-	$: src, imageUpdate();
+	$: src, zoomableWidth, imageUpdate();
 
 	const handleZoom = (e) => {
 		select(imageWrapper).style(
@@ -54,7 +54,8 @@
 
 	const setupZoom = async () => {
 		if (src) {
-			const ratio = 1080 / 1920;
+			// load the image, different dimensions each time
+			const ratio = 250 / 251;
 			let actualHeight = ratio * zoomableWidth;
 			zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
 
@@ -134,6 +135,8 @@
 		transform-origin: 0px 0px;
 		display: flex;
 		justify-content: center;
+		width: 100%;
+		height: 100%;
 	}
 	.outer {
 		overflow: hidden;
@@ -160,7 +163,9 @@
 		height: 1.6em;
 	}
 	img {
-		max-height: 85vh;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
 	.comment-instructions {
 		display: flex;

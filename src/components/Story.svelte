@@ -146,7 +146,7 @@
 		/>
 
 		<div class="instructions" class:visible={showInstructions}>
-			<div>{$mq.desktop ? "Scroll" : "Swipe"} to advance</div>
+			<div>{$mq.desktop ? "Scroll down" : "Swipe"} to advance</div>
 			<span class="arrow" class:pulse={showInstructions}>{@html arrow}</span>
 		</div>
 
