@@ -114,9 +114,6 @@
 		transform: scale(1);
 		border-radius: 15px;
 	}
-	button.exit-btn.pulse {
-		animation: pulse calc(var(--1s) * 1.5) infinite;
-	}
 
 	@media (max-height: 600px) {
 		.top-bar {

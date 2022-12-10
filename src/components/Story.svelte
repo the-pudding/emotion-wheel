@@ -4,6 +4,7 @@
 	import Character from "$components/Character.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
 	import { base } from "$app/paths";
+	import arrow from "$svg/icons/arrow.svg";
 	import { Howl } from "howler";
 	import {
 		entered,
@@ -41,6 +42,7 @@
 		.range([0, innerWidth]);
 
 	$: $entered = $scrolled >= $scrollMax;
+	$: showInstructions = $currentPanel === 0;
 	$: progress = progressScale($currentPanel);
 	$: worldInColor = $worldBg === variables.color["sky-blue"];
 	$: if ($entered && !sound.playing()) sound.play();
@@ -136,6 +138,13 @@
 			style:width={`${progress}px`}
 		/>
 
+		<div class="instructions" class:visible={showInstructions}>
+			<p>
+				<strong>Scroll up + down</strong> to advance
+			</p>
+			<span class="arrow" class:pulse={showInstructions}>{@html arrow}</span>
+		</div>
+
 		<Modal />
 	</div>
 
@@ -214,6 +223,23 @@
 	}
 	.pause.visible {
 		z-index: 1;
+	}
+	.instructions {
+		position: fixed;
+		right: 2em;
+		bottom: 12%;
+		align-items: center;
+		display: none;
+	}
+	.instructions.visible {
+		display: flex;
+	}
+	.instructions p {
+		margin-right: 10px;
+	}
+	.instructions .arrow {
+		height: 26px;
+		max-width: 50px;
 	}
 
 	:global(.story span#pause-text) {

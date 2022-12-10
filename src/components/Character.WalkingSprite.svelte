@@ -38,7 +38,7 @@
 </script>
 
 <div class="container" class:visible={$entered}>
-	<div
+	<!-- <div
 		class="instructions"
 		class:visible={showInstructions}
 		use:annotate={{
@@ -55,7 +55,7 @@
 		{:else}
 			<strong>Swipe left + right</strong> to move me.
 		{/if}
-	</div>
+	</div> -->
 	<div
 		class="image"
 		style={`width: ${width}px; height: ${height}px; background-image: ${bgImage}; background-position: ${
