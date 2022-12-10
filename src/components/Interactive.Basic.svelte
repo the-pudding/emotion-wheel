@@ -6,10 +6,16 @@
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
 	import Button from "$components/Button.svelte";
+	import mq from "$stores/mq.js";
 
 	export let text;
 
 	const options = ["okay", "good", "not great", "busy"];
+
+	const processText = (str) => {
+		if ($mq.desktop) return str;
+		else return str.replace("click", "tap").replace("Click", "Tap");
+	};
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -41,7 +47,7 @@
 
 <div class="basic">
 	{#each text as t}
-		<p>{@html t}</p>
+		<p>{@html processText(t)}</p>
 	{/each}
 	<div class="options">
 		{#each options as d}

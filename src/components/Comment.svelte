@@ -1,5 +1,5 @@
 <script>
-	import Icon from "$components/helpers/Icon.svelte";
+	import { showComments } from "$stores/misc.js";
 
 	export let text;
 	export let location = "[50, 50]";
@@ -13,8 +13,8 @@
 	$: top = `${cleaned[1]}%`;
 </script>
 
-<div class="comment" style:left style:top>
-	<span class="circle"><Icon name="menu" /></span>
+<div class="comment" style:left style:top class:visible={$showComments}>
+	<span class="circle">💡</span>
 	<span class="text">{@html text}</span>
 </div>
 
@@ -24,23 +24,26 @@
 		z-index: 10;
 		width: 36px;
 		height: 36px;
-		background: white;
+		background: var(--color-gray-700);
 		border-top-right-radius: 18px;
 		border-top-left-radius: 18px;
 		border-bottom-right-radius: 18px;
 		box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 10px;
 		transition: transform calc(var(--1s) * 0.4);
 		font-size: var(--16px);
-		display: flex;
 		justify-content: center;
 		align-items: center;
-		border: 4px solid var(--color-fg);
+		border: 4px solid var(--color-gray-700);
+		display: none;
+	}
+	.comment.visible {
+		display: flex;
 	}
 	span.circle {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: white;
+		background: var(--color-gray-700);
 		width: 26px;
 		height: 26px;
 		border-radius: 13px;
@@ -54,6 +57,8 @@
 	}
 	.comment:hover {
 		cursor: pointer;
+		width: 100%;
+		max-width: 400px;
 		min-width: 200px;
 		height: auto;
 		transform: translate(0, -20%);

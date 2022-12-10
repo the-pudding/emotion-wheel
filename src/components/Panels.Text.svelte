@@ -11,6 +11,11 @@
 
 	$: center = id === "fascinating";
 
+	const processText = (str) => {
+		if ($mq.desktop) return str;
+		else return str.replace("click", "tap").replace("Click", "Tap");
+	};
+
 	const onClick = () => {
 		$zoomModalImage = `panels/${id}${overlay ? "2" : ""}`;
 		$modalAlt = alt;
@@ -25,7 +30,7 @@
 	class:first={id === "entry"}
 >
 	{#each text as t}
-		<p>{@html t}</p>
+		<p>{@html processText(t)}</p>
 	{/each}
 </div>
 
@@ -38,6 +43,16 @@
 			class="cloud"
 			{alt}
 		/>
+
+		{#if id === "show-you"}
+			<div class="cloud-instruction">
+				You can {$mq.desktop ? "click" : "tap"} on clouds to see them up close!
+			</div>
+		{:else if id === "body-color"}
+			<div class="cloud-instruction">
+				{$mq.desktop ? "Click" : "Tap"} to see this one up close, there's a lot there!
+			</div>
+		{/if}
 
 		{#if overlay}
 			<img
@@ -95,6 +110,15 @@
 	}
 	.overlay.visible {
 		opacity: 1;
+	}
+
+	.cloud-instruction {
+		position: absolute;
+		top: -15%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		font-size: 0.7em;
 	}
 
 	@media (max-height: 600px) {

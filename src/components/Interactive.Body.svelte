@@ -67,10 +67,12 @@
 	</div>
 
 	{#if $mq.sm}
-		<Button onClick={openModal} marginLeft={"2em"}>Draw</Button>
+		<Button onClick={openModal} marginLeft={"2em"} pulse={!$bodyDrawing}
+			>Draw</Button
+		>
 		<Modal bind:visible={showModal} big={true} closeBtn={false}>
 			<div class="interactive modal">
-				<div>Click a word to use that color</div>
+				<div>{$mq.desktop ? "Click" : "Tap"} a word to use that color</div>
 				<div class="other-words">
 					{#each $words as w, i}
 						{@const bg = $colors[i]
@@ -96,7 +98,12 @@
 				</div>
 
 				<BodyDraw {color} bind:screenshotEl />
-				<Button onClick={screenshot} bottom={"1em"} right={"1em"}>Done</Button>
+				<Button
+					onClick={screenshot}
+					bottom={"1em"}
+					right={"1em"}
+					pulse={showModal}>Done</Button
+				>
 			</div>
 		</Modal>
 	{:else}
@@ -124,15 +131,21 @@
 					</button>
 				{/each}
 			</div>
-			<div style={`font-size: var(--16px)`}>Click a word to use that color</div>
+			<div style={`font-size: var(--16px)`}>
+				{$mq.desktop ? "Click" : "Tap"} a word to use that color
+			</div>
 			<BodyDraw {color} bind:screenshotEl />
 		</div>
 	{/if}
 </div>
 
 {#if !$mq.sm}
-	<Button onClick={screenshot} top={"53%"} left={"75%"} transform={true}
-		>Done</Button
+	<Button
+		onClick={screenshot}
+		top={"53%"}
+		left={"75%"}
+		transform={true}
+		pulse={!$bodyDrawing}>Done</Button
 	>
 {/if}
 

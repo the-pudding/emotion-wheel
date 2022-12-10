@@ -23,6 +23,7 @@
 	import { onDestroy } from "svelte";
 	import copy from "$data/copy.json";
 	import { scaleLinear } from "d3-scale";
+	import mq from "$stores/mq.js";
 
 	export let visible;
 	export let innerWidth;
@@ -139,9 +140,7 @@
 		/>
 
 		<div class="instructions" class:visible={showInstructions}>
-			<p>
-				<strong>Scroll up + down</strong> to advance
-			</p>
+			<div>{$mq.desktop ? "Scroll" : "Swipe"} to advance</div>
 			<span class="arrow" class:pulse={showInstructions}>{@html arrow}</span>
 		</div>
 
@@ -227,15 +226,15 @@
 	.instructions {
 		position: fixed;
 		right: 2em;
-		bottom: 12%;
+		bottom: 14%;
 		align-items: center;
 		display: none;
 	}
 	.instructions.visible {
 		display: flex;
 	}
-	.instructions p {
-		margin-right: 10px;
+	.instructions div {
+		margin-right: 12px;
 	}
 	.instructions .arrow {
 		height: 26px;

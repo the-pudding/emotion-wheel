@@ -15,6 +15,7 @@
 	import play from "$svg/icons/play.svg";
 	import info from "$svg/icons/info.svg";
 	import copy from "$data/copy.json";
+	import mq from "$stores/mq.js";
 
 	export let visible;
 
@@ -44,6 +45,7 @@
 	<button
 		class="exit-btn"
 		class:pulse
+		class:border={pulse}
 		on:click={exit}
 		aria-label={$showPause ? "resume the story" : "pause the story"}
 	>
@@ -69,7 +71,9 @@
 
 	<div>
 		If you prefer a text-only version of the story,
-		<Button onClick={goToPlain} animate={false}>click here</Button>
+		<Button onClick={goToPlain} animate={false}
+			>{$mq.desktop ? "click" : "tap"} here</Button
+		>
 	</div>
 </Modal>
 

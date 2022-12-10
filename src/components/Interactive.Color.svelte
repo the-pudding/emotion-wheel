@@ -96,7 +96,7 @@
 		<ColorPicker bind:color />
 
 		<div class="buttons">
-			<Button onClick={confirm}>That's it</Button>
+			<Button onClick={confirm} pulse={editing}>That's it</Button>
 		</div>
 	{:else}
 		<p>Nice work!</p>

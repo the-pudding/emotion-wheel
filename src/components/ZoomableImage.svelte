@@ -4,7 +4,7 @@
 	import viewport from "$stores/viewport.js";
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
-	import { modalAlt } from "$stores/misc.js";
+	import { modalAlt, showComments } from "$stores/misc.js";
 	import Button from "$components/Button.svelte";
 
 	export let src;
@@ -16,6 +16,7 @@
 	let zoomableWidth;
 	let z;
 
+	$: isGallery = src && src.includes("gallery");
 	$: isBodyDiagram = src === "assets/img/panels/body-color2";
 	$: src, imageUpdate();
 
@@ -68,6 +69,10 @@
 		}
 	};
 
+	const hideComments = () => {
+		$showComments = !$showComments;
+	};
+
 	onMount(async () => {
 		setupZoom();
 	});
@@ -115,6 +120,15 @@
 	>
 </div>
 
+{#if isGallery}
+	<div class="comment-instructions">
+		<span>💡</span> = comment from Abby ({$mq.desktop ? "hover" : "tap"} to view)
+		<Button marginLeft={"10px"} onClick={hideComments}
+			>{$showComments ? "Hide" : "Show"} comments</Button
+		>
+	</div>
+{/if}
+
 <style>
 	.image-wrapper {
 		transform-origin: 0px 0px;
@@ -147,5 +161,15 @@
 	}
 	img {
 		max-height: 85vh;
+	}
+	.comment-instructions {
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		padding: 4px;
+		font-size: 0.7em;
 	}
 </style>

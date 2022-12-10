@@ -5,14 +5,14 @@
 	import copy from "$data/copy.json";
 
 	$: visible = $zoomModalImage;
-	$: comments = copy.gallery.filter((d) => d.id === $zoomModalImage)[0]
-		? copy.gallery.filter((d) => d.id === $zoomModalImage)[0].comments
-		: [];
+	$: comments = copy.gallery.find(
+		(d) => `gallery/${d.id}` === $zoomModalImage
+	)?.comments;
 </script>
 
 <Modal {visible} big={true}>
 	<ZoomableImage
 		src={$zoomModalImage ? `assets/img/${$zoomModalImage}` : null}
-		{comments}
+		comments={comments ? comments : []}
 	/>
 </Modal>

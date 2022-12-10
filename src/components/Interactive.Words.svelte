@@ -16,7 +16,7 @@
 	export let text;
 
 	let skipBtn;
-	let calloutEl;
+	let moveOnEl;
 
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
@@ -68,9 +68,11 @@
 			bind:selected={$words}
 			limit={3}
 			soundId={"pop"}
-			nextSelectable={!skipBtn || skipBtn.disabled ? calloutEl : skipBtn}
+			nextSelectable={!skipBtn || skipBtn.disabled ? moveOnEl : skipBtn}
 		/>
 	{/key}
+
+	<div tabindex="-1" bind:this={moveOnEl} />
 </div>
 
 <Button

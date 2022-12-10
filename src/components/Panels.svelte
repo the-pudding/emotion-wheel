@@ -64,8 +64,7 @@
 		"final-wheel",
 		"let-go",
 		"gallery",
-		"resources",
-		"data"
+		"resources"
 	];
 	const sign = ["gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color", "same-way", "body"];
@@ -118,19 +117,6 @@
 					<RollingWheel img={"grey_wheel_blank.png"} {i} />
 				{:else if id === "color"}
 					<RollingWheel img={"simple_wheel_color.png"} {i} />
-				{:else if id === "body-color"}
-					<div
-						class="genius"
-						use:annotate={{
-							type: "box",
-							animate: false,
-							visible: true,
-							color: "black",
-							padding: 0
-						}}
-					>
-						I added a new category! More on that later.
-					</div>
 				{:else if id === "final-wheel"}
 					<RollingWheel img={"final_wheel.png"} {i} />
 				{:else if id === "let-go"}

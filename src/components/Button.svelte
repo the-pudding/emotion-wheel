@@ -17,6 +17,7 @@
 	export let small = false;
 	export let big = false;
 	export let animate = true;
+	export let pulse = false;
 
 	let hovered = false;
 </script>
@@ -27,6 +28,8 @@
 	class:transform
 	class:small
 	class:big
+	class:pulse
+	class:border={pulse}
 	style={`--background: ${color}; --top: ${top}; --left: ${left}; --right: ${right}; --bottom: ${bottom}; --marginLeft: ${marginLeft}; --height: ${height}; --width: ${width}`}
 	on:click={onClick}
 	on:mouseenter={() => (hovered = true)}
