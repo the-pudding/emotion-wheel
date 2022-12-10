@@ -65,6 +65,8 @@
 	const onMouseWheel = (e) => {
 		if ($inModal) return;
 
+		console.log("hey");
+
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
 			// if (
@@ -107,6 +109,7 @@
 <div
 	class="story"
 	class:visible
+	class:entered={$entered}
 	class:info-open={$showInfo}
 	bind:this={containerEl}
 	on:scroll={onScroll}
@@ -173,6 +176,18 @@
 		font-size: var(--24px);
 		display: none;
 	}
+	.story.entered {
+		overflow-x: scroll;
+	}
+	@media (hover: hover) and (pointer: fine) {
+		.story {
+			overflow-x: hidden;
+		}
+		.story.entered {
+			overflow-x: hidden;
+		}
+	}
+
 	.story.visible {
 		display: flex;
 	}
