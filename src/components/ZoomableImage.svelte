@@ -5,6 +5,7 @@
 	import mq from "$stores/mq.js";
 	import { modalAlt, showComments } from "$stores/misc.js";
 	import Button from "$components/Button.svelte";
+	import Toggle from "$components/helpers/Toggle.svelte";
 
 	export let src;
 	export let comments;
@@ -14,7 +15,9 @@
 	let zoomableHeight;
 	let zoomableWidth;
 	let z;
+	let toggleValue = "on";
 
+	$: $showComments = toggleValue === "on" ? true : false;
 	$: isGallery = src && src.includes("gallery");
 	$: isBodyDiagram = src === "assets/img/panels/body-color2";
 	$: src, zoomableWidth, imageUpdate();
@@ -99,32 +102,30 @@
 	</div>
 </div>
 
-<div class="buttons">
-	<div class="zoom-title">Zoom</div>
-	<Button
-		onClick={zoomIn}
-		width={"1.6em"}
-		height={"1.6em"}
-		big={true}
-		animate={false}>+</Button
-	>
-	<Button
-		onClick={zoomOut}
-		width={"1.6em"}
-		height={"1.6em"}
-		big={true}
-		animate={false}>-</Button
-	>
-</div>
-
-{#if isGallery}
-	<div class="comment-instructions">
-		<span>💡</span> = comment from Abby ({$mq.desktop ? "hover" : "tap"} to view)
-		<Button marginLeft={"10px"} onClick={hideComments}
-			>{$showComments ? "Hide" : "Show"} comments</Button
-		>
+<div class="sidebar">
+	<div class="zoom">
+		<div class="zoom-title">Zoom</div>
+		<div class="buttons">
+			<Button
+				onClick={zoomIn}
+				width={"1.6em"}
+				height={"1.6em"}
+				big={true}
+				animate={false}>+</Button
+			>
+			<Button
+				onClick={zoomOut}
+				width={"1.6em"}
+				height={"1.6em"}
+				big={true}
+				animate={false}>-</Button
+			>
+		</div>
 	</div>
-{/if}
+	{#if isGallery}
+		<Toggle label={"Abby's comments 💡"} bind:value={toggleValue} />
+	{/if}
+</div>
 
 <style>
 	.image-wrapper {
@@ -141,15 +142,16 @@
 	}
 	.zoom-title {
 		text-align: center;
-		font-family: var(--sans);
-		letter-spacing: normal;
-		word-spacing: normal;
 		margin-bottom: 6px;
 	}
-	.buttons {
+	.sidebar {
+		display: flex;
+		flex-direction: column;
+		height: calc(100% - 4em);
+		justify-content: space-between;
 		position: absolute;
-		left: 16px;
-		top: 16px;
+		left: 1em;
+		top: 2em;
 		font-size: 0.7em;
 	}
 	button {
@@ -163,14 +165,9 @@
 		height: 100%;
 		object-fit: contain;
 	}
-	.comment-instructions {
+	.zoom {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		position: absolute;
-		top: 0;
-		left: 50%;
-		transform: translate(-50%, 0);
-		padding: 4px;
-		font-size: 0.7em;
 	}
 </style>

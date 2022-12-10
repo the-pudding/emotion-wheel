@@ -1,4 +1,6 @@
 <script>
+	import { annotate } from "svelte-rough-notation";
+
 	export let label;
 	export let style = "inner";
 	export let options = ["on", "off"];
@@ -23,6 +25,13 @@
 		aria-checked={checked}
 		aria-labelledby={id}
 		on:click={handleClick}
+		use:annotate={{
+			type: "box",
+			animate: false,
+			visible: true,
+			color: "black",
+			padding: 0
+		}}
 	>
 		{#if style === "inner"}
 			<span>{options[0]}</span>
@@ -32,10 +41,17 @@
 </div>
 
 <style>
+	.toggle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.toggle button,
 	.label {
 		font-family: inherit;
 		font-size: 1em;
+		margin-bottom: 6px;
 	}
 
 	.toggle--inner [role="switch"][aria-checked="true"] :first-child,

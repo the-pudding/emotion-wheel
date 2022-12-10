@@ -15,11 +15,17 @@ export const currentPanel = writable(undefined);
 export const soundOn = writable(true);
 export const userMuted = writable(false);
 
-export const basicFeeling = writable(undefined);
-export const words = writable([]);
-export const colors = writable([]);
-export const bodyDrawing = writable(undefined);
-export const needs = writable([]);
+// export const basicFeeling = writable(undefined);
+// export const words = writable([]);
+// export const colors = writable([]);
+// export const bodyDrawing = writable(undefined);
+// export const needs = writable([]);
+
+export const basicFeeling = writable("okay");
+export const words = writable(["tired", "creative"]);
+export const colors = writable(["#ffffff", "#000000"]);
+export const bodyDrawing = writable("hi");
+export const needs = writable(["this", "that"]);
 
 export const zoomModalImage = writable(undefined);
 export const showComments = writable(true);
