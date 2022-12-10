@@ -1,7 +1,6 @@
 <script>
 	import { zoom, select, zoomIdentity } from "d3";
 	import { onMount } from "svelte";
-	import viewport from "$stores/viewport.js";
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
 	import { modalAlt, showComments } from "$stores/misc.js";
@@ -52,12 +51,9 @@
 		setupZoom();
 	};
 
-	const setupZoom = async () => {
+	const setupZoom = () => {
 		if (src) {
-			// load the image, different dimensions each time
-			const ratio = 250 / 251;
-			let actualHeight = ratio * zoomableWidth;
-			zoomableHeight = Math.max($viewport.height * 0.7, actualHeight);
+			zoomableHeight = zoomableWidth;
 
 			z = zoom()
 				.scaleExtent([1, 4])

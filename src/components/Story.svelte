@@ -65,8 +65,6 @@
 	const onMouseWheel = (e) => {
 		if ($inModal) return;
 
-		console.log("hey");
-
 		const leaving = $entered && containerEl.scrollLeft === 0 && e.deltaY < 0;
 		if (!$entered || leaving) {
 			// if (
