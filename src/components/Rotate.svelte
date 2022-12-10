@@ -1,9 +1,21 @@
 <script>
+	import wordmark from "$svg/wordmark.svg";
+	import { base } from "$app/paths";
+
+	let src = `${base}/assets/img/logo_small.png`;
+
 	export let visible;
 </script>
 
 <div class="rotate" class:visible>
+	<div class="wordmark">
+		<a href="https://pudding.cool" aria-label="The Pudding" target="_blank"
+			>{@html wordmark}</a
+		>
+	</div>
+
 	<img
+		class="wheel"
 		srcset={`assets/img/wheels/simple_wheel_color-sm.png 500w, assets/img/wheels/simple_wheel_color-lg.png 800w`}
 		sizes={`(max-width: 600px) 500px, 800px`}
 		src="assets/img/wheels/simple_wheel_color-lg.png"
@@ -15,12 +27,30 @@
 </div>
 
 <style>
+	.wordmark {
+		width: 100%;
+		max-width: 10em;
+		margin: 0 auto;
+		padding: 1em 0;
+	}
+	.wordmark a {
+		border: none;
+		display: block;
+		color: white;
+	}
+	.wordmark a:hover {
+		background-color: transparent;
+	}
+	:global(.wordmark svg path) {
+		fill: currentColor;
+	}
+
 	.rotate {
 		z-index: 100;
 		height: 100%;
 		width: 100%;
 		position: fixed;
-		padding: 5em 2em;
+		padding: 4em 2em;
 		flex-direction: column;
 		align-items: center;
 		font-family: var(--sans);
@@ -37,7 +67,7 @@
 	p {
 		text-align: center;
 	}
-	img {
+	img.wheel {
 		max-width: 300px;
 		animation: spin calc(var(--1s) * 4.5) infinite;
 	}
