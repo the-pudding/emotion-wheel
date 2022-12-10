@@ -72,7 +72,7 @@
 			// 	(e.deltaY < 0 && $scrolled >= 0)
 			// )
 			// 	$scrolled += e.deltaY;
-		} else {
+		} else if (!$showPause) {
 			containerEl.scrollLeft += e.deltaY;
 		}
 	};
@@ -93,7 +93,7 @@
 				// 	(delta < 0 && $scrolled >= 0)
 				// )
 				// 	$scrolled += delta;
-			} else {
+			} else if (!$showPause) {
 				containerEl.scrollLeft += delta;
 			}
 		}
@@ -173,9 +173,6 @@
 	.story.visible {
 		display: flex;
 	}
-	.story.entered {
-		overflow-x: scroll;
-	}
 	.story.info-open {
 		opacity: 0.6;
 	}
@@ -245,7 +242,7 @@
 		border-bottom: 3px solid var(--color-pause);
 	}
 	:global(.story p:has(span.callout)) {
-		background: #f0e292;
+		background: #f1ecd1;
 		padding: 0.7em 0.4em;
 	}
 
