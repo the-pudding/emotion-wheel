@@ -24,7 +24,6 @@
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
-	import { annotate } from "svelte-rough-notation";
 
 	let scrollyEl;
 
@@ -64,7 +63,8 @@
 		"final-wheel",
 		"let-go",
 		"gallery",
-		"resources"
+		"resources",
+		"thank-you"
 	];
 	const sign = ["gallery-intro", "closing"];
 	const hasOverlay = ["core", "body-color", "same-way", "body"];

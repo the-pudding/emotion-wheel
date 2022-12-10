@@ -28,6 +28,7 @@
 	class:big={id === "fascinating"}
 	class:visible={i === $currentPanel || $mq.reducedMotion}
 	class:first={id === "entry"}
+	class:thank-you={id === "thank-you"}
 >
 	{#each text as t}
 		<p>{@html processText(t)}</p>
@@ -75,6 +76,11 @@
 		transform: translate(50px, -20%);
 		opacity: 0;
 		transition: all calc(var(--1s) * 1.5);
+	}
+	.text.thank-you {
+		width: 100%;
+		margin-left: 0;
+		max-width: 900px;
 	}
 	.text.visible {
 		opacity: 1;
