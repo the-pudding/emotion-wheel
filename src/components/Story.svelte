@@ -107,19 +107,22 @@
 <div
 	class="story"
 	class:visible
-	class:entered={$entered}
 	class:info-open={$showInfo}
 	bind:this={containerEl}
 	on:scroll={onScroll}
 	on:wheel|preventDefault={onMouseWheel}
 	style={`height: ${innerHeight}px; background-color: ${
 		$showInfo ? "var(--color-gray-500)" : $worldBg
-	}; background-image: -webkit-image-set(
-    url(${bgImage}-sm.png) 1x,
-    url(${bgImage}-lg.png) 2x); background-image: image-set(
-    url(${bgImage}-sm.png) 1x,
-    url(${bgImage}-lg.png) 2x)`}
+	}`}
 >
+	<img
+		class="bg-image"
+		class:visible
+		srcset={`${bgImage}-sm.png 480, ${bgImage}-md.png 950w`}
+		sizes={`(max-width: 600px) 480px, 1920px`}
+		src={`${bgImage}-md.png`}
+		alt="mountains in the background"
+	/>
 	<div class="play" class:visible={!$showPause}>
 		{#if innerHeight}
 			<Title />
@@ -175,6 +178,17 @@
 	}
 	.story.info-open {
 		opacity: 0.6;
+	}
+
+	.bg-image {
+		display: none;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		position: fixed;
+	}
+	.bg-image.visible {
+		display: flex;
 	}
 
 	.progress {

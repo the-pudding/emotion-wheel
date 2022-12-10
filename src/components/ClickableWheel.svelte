@@ -116,10 +116,12 @@
 	.interactive-wheel {
 		position: relative;
 		margin: 0 auto;
-		height: 100%;
+		height: 80%;
 	}
 	img {
-		max-height: 100%;
+		object-fit: contain;
+		width: 100%;
+		height: 100%;
 	}
 
 	:global(.interactive-wheel svg) {

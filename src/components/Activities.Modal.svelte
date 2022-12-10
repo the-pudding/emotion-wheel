@@ -87,16 +87,14 @@
 				<p>{@html copy.activitiesPage.wheel}</p>
 			</details>
 
-			<div class="wheel-wrapper">
-				<ClickableWheel
-					{slices}
-					imgSrc={`../assets/activities/wheel`}
-					wheelId="the-wheel"
-					bind:selected={words}
-					withColor={true}
-					nextSelectable={closeBtn}
-				/>
-			</div>
+			<ClickableWheel
+				{slices}
+				imgSrc={`../assets/activities/wheel`}
+				wheelId="the-wheel"
+				bind:selected={words}
+				withColor={true}
+				nextSelectable={closeBtn}
+			/>
 		</div>
 	{:else if currentActivity === "body"}
 		<div class="body">

@@ -25,32 +25,31 @@
 	style={`transform: scale(${zoom})`}
 	class:visible={!$entered}
 >
-	<div
-		class="title"
-		style={`background-image: -webkit-image-set(
-			url(${bgImage}-sm.jpeg) 1x,
-			url(${bgImage}-lg.jpeg) 2x); background-image: image-set(
-			url(${bgImage}-sm.jpeg) 1x,
-			url(${bgImage}-lg.jpeg) 2x)`}
-	>
-		<div class="words" class:visible={showText}>
-			<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
+	<img
+		class="bg-image"
+		srcset={`${bgImage}-sm.jpeg 800, ${bgImage}-lg.jpeg 2500w`}
+		sizes={`(max-width: 600px) 800px, 2500px`}
+		src={`${bgImage}-lg.jpeg`}
+		alt="notebook with paint"
+	/>
 
-			<h1>{@html copy.title}</h1>
-			<div class="description">{@html copy.description}</div>
-			<div>{@html copy.byline}</div>
+	<div class="words" class:visible={showText}>
+		<img class="logo" src="assets/img/logo_full.png" alt="pudding logo" />
 
-			<div class="buttons">
-				<Button onClick={enter} color={"#8bcc8b"}>Enter the story</Button>
-				<Button onClick={null} marginLeft={"8px"}>
-					<a class="activities" href="/activities" target="_blank"
-						>Activities page</a
-					>
-				</Button>
-			</div>
+		<h1>{@html copy.title}</h1>
+		<div class="description">{@html copy.description}</div>
+		<div>{@html copy.byline}</div>
 
-			<div class="audio">FYI, this story contains audio.</div>
+		<div class="buttons">
+			<Button onClick={enter} color={"#8bcc8b"}>Enter the story</Button>
+			<Button onClick={null} marginLeft={"8px"}>
+				<a class="activities" href="/activities" target="_blank"
+					>Activities page</a
+				>
+			</Button>
 		</div>
+
+		<div class="audio">FYI, this story contains audio.</div>
 	</div>
 </div>
 
@@ -63,6 +62,12 @@
 		position: absolute;
 		display: none;
 		height: 100%;
+		width: 100%;
+		transform: scale(1);
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
 	}
 	.visible {
 		display: block;
@@ -74,22 +79,10 @@
 	.logo {
 		height: 2.3em;
 	}
-	.title {
-		width: 100vw;
+	.bg-image {
+		object-fit: cover;
+		width: 100%;
 		height: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-
-		display: flex;
-		flex-shrink: 0;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
 	}
 
 	.words {
@@ -98,10 +91,12 @@
 		align-items: center;
 		position: fixed;
 		top: 52%;
-		transform: translate(0, -50%);
+		left: 50%;
+		transform: translate(-50%, -50%);
 		opacity: 0;
 		transition: opacity var(--1s);
 		max-width: 47%;
+		min-width: 350px;
 	}
 	.words.visible {
 		opacity: 1;
