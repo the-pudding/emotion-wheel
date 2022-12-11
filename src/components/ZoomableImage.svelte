@@ -91,9 +91,9 @@
 	on:click={() => (hoveredComment = undefined)}
 >
 	<div class="image-wrapper" bind:this={imageWrapper}>
-		{#each comments as { text, location }, i}
+		<!-- {#each comments as { text, location }, i}
 			<Comment {i} {text} {location} {k} bind:hoveredComment />
-		{/each}
+		{/each} -->
 
 		{#if isBodyDiagram}
 			<img
@@ -133,9 +133,9 @@
 			>
 		</div>
 	</div>
-	{#if isGallery}
+	<!-- {#if isGallery}
 		<Toggle label={"Abby's comments 💡"} bind:value={toggleValue} />
-	{/if}
+	{/if} -->
 </div>
 
 <style>
