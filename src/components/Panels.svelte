@@ -118,7 +118,7 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text {i} {text} {alt} {id} {cloud} {overlay} />
+					<Text i={i >= 9 ? i + 1 : i} {text} {alt} {id} {cloud} {overlay} />
 				{/if}
 
 				{#if id === "try-wheel"}
