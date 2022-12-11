@@ -42,7 +42,7 @@
 </div>
 
 {#if cloud}
-	<div class="image" {id} on:click={onClick}>
+	<button class="image" {id} on:click={onClick}>
 		<img
 			srcset={`assets/img/panels/${id}-sm.png 800w, assets/img/panels/${id}-lg.png 1000w`}
 			sizes={`(max-width: 600px) 800px, 1000px`}
@@ -71,10 +71,13 @@
 				{alt}
 			/>
 		{/if}
-	</div>
+	</button>
 {/if}
 
 <style>
+	button {
+		background: none;
+	}
 	.text {
 		width: 40%;
 		margin-left: 5%;

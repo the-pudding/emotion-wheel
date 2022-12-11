@@ -4,9 +4,9 @@
 <path id="celebrate-box" d="M91 219L78.5 219.5L79.5 235L92.5 233.5L91 219Z" fill="black"/>
 <path id="rest-box" d="M93.5 258.5L76 260.5L78 280L94.5 279L93.5 258.5Z" fill="black"/>
 <path id="later-box" d="M100.5 313H79.5L81.5 333L102 331L100.5 313Z" fill="black"/>
-<rect id="savor" x="44" y="157" width="334" height="50" fill="black"/>
-<rect id="celebrate" x="44" y="206" width="334" height="43" fill="black"/>
-<rect id="rest" x="44" y="248" width="334" height="43" fill="black"/>
-<rect id="later" x="44" y="290" width="344" height="131" fill="black"/>
+<rect id="savor" aria-label="savor it" x="44" y="157" width="334" height="50" fill="black"/>
+<rect id="celebrate" aria-label="to celebrate" x="44" y="206" width="334" height="43" fill="black"/>
+<rect id="rest" aria-label="rest" x="44" y="248" width="334" height="43" fill="black"/>
+<rect id="later" aria-label="remember this moment for later" x="44" y="290" width="344" height="131" fill="black"/>
 </g>
 </svg>

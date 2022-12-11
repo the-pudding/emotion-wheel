@@ -8,6 +8,7 @@
 
 	export let text;
 
+	let moveOnEl;
 	let skipBtn;
 	const sound = new Howl({
 		src: [`${base}/assets/sound/select.wav`],
@@ -29,7 +30,7 @@
 	wheelId={"needs"}
 	bind:selected={$needs}
 	limit={5}
-	nextSelectable={skipBtn}
+	nextSelectable={!skipBtn || skipBtn.disabled ? moveOnEl : skipBtn}
 />
 
 <Button
@@ -46,6 +47,7 @@
 		<p>{@html t}</p>
 	{/each}
 </div>
+<div tabindex="-1" bind:this={moveOnEl} />
 
 <style>
 	.needs {

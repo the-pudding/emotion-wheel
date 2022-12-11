@@ -25,42 +25,45 @@
 	};
 </script>
 
-<img
-	{id}
-	class:roll-in={$mq.desktop && animation && ($currentPanel === i || onScreen)}
+<button
+	on:click={onClick}
 	class:visible={!$mq.desktop || !animation}
+	class:roll-in={$mq.desktop && animation && ($currentPanel === i || onScreen)}
 	class:big={img === "final_wheel.png"}
-	srcset={`assets/img/wheels/${id}-sm.png 500w, assets/img/wheels/${id}-lg.png 800w`}
-	sizes={`(max-width: 600px) 800px, 1000px`}
-	src={`assets/img/wheels/${id}-lg.png`}
 	use:inView
 	on:enter={() => (onScreen = true)}
 	on:exit={() => (onScreen = false)}
-	on:click={onClick}
-	alt="rolling emotion wheel"
-/>
+>
+	<img
+		{id}
+		srcset={`assets/img/wheels/${id}-sm.png 500w, assets/img/wheels/${id}-lg.png 800w`}
+		sizes={`(max-width: 600px) 800px, 1000px`}
+		src={`assets/img/wheels/${id}-lg.png`}
+		alt="rolling emotion wheel"
+	/>
+</button>
 
 <style>
-	img {
+	button {
+		background: none;
 		position: absolute;
 		left: 65%;
-		width: 400px;
 		bottom: 8%;
+		width: 400px;
 		opacity: 0;
 		transition: transform calc(var(--1s) * 0.5);
 	}
 	img.big {
 		width: 500px;
 	}
-	img.visible {
+	.visible {
 		opacity: 1;
 	}
 	img:hover {
-		cursor: pointer;
 		transform: scale(1.03);
 	}
 
-	img.roll-in {
+	.roll-in {
 		opacity: 1;
 		animation: spin calc(var(--1s) * 3) ease-out;
 	}

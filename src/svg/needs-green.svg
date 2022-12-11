@@ -4,9 +4,9 @@
 <path id="talk-box" d="M73 206H52.5L54 222H73.5L73 206Z" fill="black"/>
 <path id="release-box" d="M74 281L55 282L58 299.5L76 300.5L74 281Z" fill="black"/>
 <path id="belly-box" d="M81.5 333.5L59 334.5L60 353.5H82.5L81.5 333.5Z" fill="black"/>
-<rect id="suspend" x="38" y="107" width="357" height="85" fill="black"/>
-<rect id="talk" x="38" y="191" width="357" height="77" fill="black"/>
-<rect id="release" x="38" y="267" width="357" height="50" fill="black"/>
-<rect id="belly" x="38" y="316" width="357" height="83" fill="black"/>
+<rect id="suspend" aria-label="to suspend judgement" x="38" y="107" width="357" height="85" fill="black"/>
+<rect id="talk" aria-label="to talk about/share something causing discomfort" x="38" y="191" width="357" height="77" fill="black"/>
+<rect id="release" aria-label="to release something" x="38" y="267" width="357" height="50" fill="black"/>
+<rect id="belly" aria-label="to breathe into or engage my belly" x="38" y="316" width="357" height="83" fill="black"/>
 </g>
 </svg>

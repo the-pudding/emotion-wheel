@@ -7,12 +7,12 @@
 <path id="cry-box" d="M73 306L65.5 306.5L66.5 318.5L75 318L73 306Z" fill="black"/>
 <path id="remember-box" d="M80 343.5L69.5 345L72 357.5L82 355.5L80 343.5Z" fill="black"/>
 <path id="nice-box" d="M86 377L77.5 379.5L78.5 388.5L86.5 387L86 377Z" fill="black"/>
-<rect id="sleep" x="40" y="143" width="353" height="34" fill="black"/>
-<rect id="break" x="40" y="176" width="353" height="30" fill="black"/>
-<rect id="attention" x="40" y="205" width="353" height="35" fill="black"/>
-<rect id="touch" x="40" y="239" width="353" height="59" fill="black"/>
-<rect id="cry" x="40" y="298" width="353" height="32" fill="black"/>
-<rect id="remember" x="40" y="329" width="348" height="35" fill="black"/>
-<rect id="nice" x="40" y="363" width="348" height="60" fill="black"/>
+<rect id="sleep" aria-label="to rest or sleep" x="40" y="143" width="353" height="34" fill="black"/>
+<rect id="break" aria-label="to take a break" x="40" y="176" width="353" height="30" fill="black"/>
+<rect id="attention" aria-label="to ask for attention" x="40" y="205" width="353" height="35" fill="black"/>
+<rect id="touch" aria-label="consensual physical touch" x="40" y="239" width="353" height="59" fill="black"/>
+<rect id="cry" aria-label="to cry" x="40" y="298" width="353" height="32" fill="black"/>
+<rect id="remember" aria-label="to remember" x="40" y="329" width="348" height="35" fill="black"/>
+<rect id="nice" aria-label="to do something nice for myself" x="40" y="363" width="348" height="60" fill="black"/>
 </g>
 </svg>

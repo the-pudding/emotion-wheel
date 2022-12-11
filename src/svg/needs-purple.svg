@@ -6,11 +6,11 @@
 <path id="calm-box" d="M55 251.5L44.5 253.5L45.5 265.5L57 264.5L55 251.5Z" fill="black"/>
 <path id="discharge-purple-box" d="M52.5 199L43.5 201.5V214L53.5 212L52.5 199Z" fill="black"/>
 <path id="breath-box" d="M53 146L41.5 148.5L43 158.5L54.5 157L53 146Z" fill="black"/>
-<rect id="breath" x="31" y="131" width="372" height="57" fill="black"/>
-<rect id="discharge-purple" x="31" y="187" width="372" height="53" fill="black"/>
-<rect id="calm" x="31" y="239" width="372" height="36" fill="black"/>
-<rect id="slow" x="31" y="274" width="372" height="36" fill="black"/>
-<rect id="speed" x="31" y="309" width="368" height="36" fill="black"/>
-<rect id="ground" x="31" y="344" width="368" height="62" fill="black"/>
+<rect id="breath" aria-label="to focus on my breath or change my breathing" x="31" y="131" width="372" height="57" fill="black"/>
+<rect id="discharge-purple" aria-label="to discharge energy" x="31" y="187" width="372" height="53" fill="black"/>
+<rect id="calm" aria-label="to find a calm place in my mind" x="31" y="239" width="372" height="36" fill="black"/>
+<rect id="slow" aria-label="to slow down" x="31" y="274" width="372" height="36" fill="black"/>
+<rect id="speed" aria-label="to speed up" x="31" y="309" width="368" height="36" fill="black"/>
+<rect id="ground" aria-label="to ground in the present" x="31" y="344" width="368" height="62" fill="black"/>
 </g>
 </svg>

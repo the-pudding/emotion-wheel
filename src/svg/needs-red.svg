@@ -6,11 +6,11 @@
 <path id="boundary-box" d="M80 269L69 271L71 282.5H82L80 269Z" fill="black"/>
 <path id="discharge-red-box" d="M82 319.5H72V330H83L82 319.5Z" fill="black"/>
 <path id="glucose-box" d="M79.5 369.5L68 372V380.5H81L79.5 369.5Z" fill="black"/>
-<rect id="information" x="48" y="135" width="337" height="50" fill="black"/>
-<rect id="heard" x="48" y="184" width="337" height="37" fill="black"/>
-<rect id="no" x="48" y="220" width="337" height="32" fill="black"/>
-<rect id="boundary" x="48" y="251" width="334" height="39" fill="black"/>
-<rect id="discharge-red" x="48" y="289" width="334" height="68" fill="black"/>
-<rect id="glucose" x="51" y="357" width="331" height="40" fill="black"/>
+<rect id="information" aria-label="more information, clarity or understanding" x="48" y="135" width="337" height="50" fill="black"/>
+<rect id="heard" aria-label="to be heard/noticed" x="48" y="184" width="337" height="37" fill="black"/>
+<rect id="no" aria-label="to say no" x="48" y="220" width="337" height="32" fill="black"/>
+<rect id="boundary" aria-label="to set a new boundary" x="48" y="251" width="334" height="39" fill="black"/>
+<rect id="discharge-red" aria-label="to discharge energy" x="48" y="289" width="334" height="68" fill="black"/>
+<rect id="glucose" aria-label="a snack/more glucose" x="51" y="357" width="331" height="40" fill="black"/>
 </g>
 </svg>
