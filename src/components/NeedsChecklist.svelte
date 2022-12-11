@@ -12,6 +12,7 @@
 	export let soundId = "select";
 	export let limit = 1000;
 	export let nextSelectable;
+	export let isActivities = false;
 
 	let numFocusableElements;
 	let firstFocusableElement;
@@ -98,7 +99,7 @@
 
 <div
 	class="interactive-needs-checklist"
-	class:activities={wheelId === "needs-activities"}
+	class:activities={isActivities}
 	on:keydown={trapFocus}
 >
 	{#if imgSrc} <img src={`${base}/${imgSrc}`} alt="needs checklist" /> {/if}
@@ -107,8 +108,8 @@
 
 <style>
 	.interactive-needs-checklist {
-		/* width: 100%;
-		height: 100%; */
+		width: 100%;
+		height: 100%;
 		max-width: none;
 		position: relative;
 	}

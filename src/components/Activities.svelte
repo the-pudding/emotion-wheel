@@ -11,7 +11,7 @@
 	import { timeFormat } from "d3";
 	import copy from "$data/copy.json";
 	import Footer from "$components/FooterStandard.svelte";
-	import mq from "$stores/mq.js";
+	import mq from "$stores/mqWidth.js";
 
 	let summaryEl;
 	let currentActivity;
@@ -58,9 +58,10 @@
 		{/each}
 	</div>
 
-	{#if $mq.desktop}
+	{#if $mq.desktop && (words.length > 0 || bodyImage || needs.length > 0)}
 		<div class="results" bind:this={summaryEl}>
 			<div class="wheel-results">
+				<div style={"font-size: 18px"}>I'm feeling...</div>
 				<ul>
 					{#each words as { word, color }}
 						<li
@@ -83,6 +84,7 @@
 				{/if}
 			</div>
 			<div class="needs-results">
+				<div style={"font-size: 18px"}>I need...</div>
 				<ul>
 					{#each needs as need}
 						<li>{needsKey[need]}</li>
@@ -158,10 +160,10 @@
 	}
 	.wheel-results {
 		font-size: var(--32px);
-		padding-top: 2em;
 	}
 	.wheel-results ul {
 		list-style-type: none;
+		padding: 0;
 	}
 	.body-results {
 		display: flex;

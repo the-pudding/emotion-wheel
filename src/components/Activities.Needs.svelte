@@ -57,6 +57,7 @@
 				wheelId={currentColor}
 				bind:selected={needs}
 				nextSelectable={closeBtn}
+				isActivities={true}
 			/>
 		{/key}
 	{:else}
@@ -68,6 +69,7 @@
 			wheelId={"needs-activities"}
 			bind:selected={needs}
 			nextSelectable={closeBtn}
+			isActivities={true}
 		/>
 	{/if}
 </div>
@@ -81,6 +83,7 @@
 	}
 	h2 {
 		text-align: center;
+		padding: 0 1em;
 	}
 	.description {
 		text-align: center;
