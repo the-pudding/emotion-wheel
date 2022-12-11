@@ -272,6 +272,9 @@
 		background: #f1ecd1;
 		padding: 0.7em 0.4em;
 	}
+	:global(.story p:has(span.callout)):hover {
+		cursor: pointer;
+	}
 
 	@media (max-height: 800px) {
 		.story {

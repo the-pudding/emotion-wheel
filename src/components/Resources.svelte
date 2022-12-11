@@ -3,17 +3,17 @@
 </script>
 
 <div class="resources">
-	<h2>Resources</h2>
+	<h2>Resources <span>(Scroll to see more)</span></h2>
 	<div class="sections">
 		{#each text as { title, bullets }}
-			<div class="section">
-				<h3>{@html title}</h3>
+			<details>
+				<summary>{title}</summary>
 				<ul>
 					{#each bullets as bullet}
 						<li>{@html bullet}</li>
 					{/each}
 				</ul>
-			</div>
+			</details>
 		{/each}
 	</div>
 </div>
@@ -32,53 +32,43 @@
 		font-size: var(--16px);
 		display: flex;
 		flex-direction: column;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		overflow-y: scroll;
 		overflow-x: hidden;
-		width: auto;
-	}
-	.section {
-		width: 40%;
+		width: 70%;
+		min-width: 500px;
+		height: 100%;
 	}
 	h2 {
 		width: fit-content;
 		font-weight: bold;
+		margin-bottom: 0;
+	}
+	h2 span {
+		display: none;
+		font-size: var(--18px);
+	}
+	details:not(:first-child) {
+		margin-top: 1em;
+	}
+	summary:hover {
+		cursor: pointer;
+	}
+	.sections::-webkit-scrollbar {
+		width: 10px;
+	}
+	.sections::-webkit-scrollbar-thumb {
+		background: var(--color-gray-700);
+		border-radius: 10px;
 	}
 
 	@media (max-height: 600px) {
-		h2 {
-			font-size: var(--24px);
-		}
-		h3 {
-			font-size: var(--18px);
-		}
 		.resources {
-			font-size: var(--12px);
+			top: 1%;
 		}
-		.sections {
-			font-size: var(--12px);
-		}
-	}
-
-	@media (max-height: 900px) {
-		.section {
-			width: auto;
-		}
-		.sections {
-			flex-wrap: nowrap;
-			padding-right: 1em;
-			width: 70%;
-		}
-		.sections::-webkit-scrollbar {
-			width: 10px;
-		}
-		.sections::-webkit-scrollbar-track {
-			border: 1px solid darkgrey;
-			border-radius: 10px;
-		}
-		.sections::-webkit-scrollbar-thumb {
-			background: var(--color-gray-700);
-			border-radius: 10px;
+		h2 span {
+			display: inline-block;
+			font-size: var(--18px);
 		}
 	}
 </style>

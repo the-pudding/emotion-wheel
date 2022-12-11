@@ -31,7 +31,13 @@
 	class:thank-you={id === "thank-you"}
 >
 	{#each text as t}
-		<p>{@html processText(t)}</p>
+		{#if t.includes("<span class=callout")}
+			<a href="/activities" target="_blank">
+				<p>{@html processText(t)}</p>
+			</a>
+		{:else}
+			<p>{@html processText(t)}</p>
+		{/if}
 	{/each}
 </div>
 
@@ -94,6 +100,9 @@
 	}
 	.center.visible {
 		transform: translate(50%, -20%);
+	}
+	.big {
+		font-size: 2em;
 	}
 
 	.image {
