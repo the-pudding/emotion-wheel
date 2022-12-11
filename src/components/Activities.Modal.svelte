@@ -104,7 +104,7 @@
 				<p>{@html copy.activitiesPage.body}</p>
 			</details>
 
-			<BodyDraw bind:screenshotEl />
+			<BodyDraw bind:screenshotEl isActivitiesPage={true} />
 		</div>
 	{:else if currentActivity === "needs"}
 		<div class="needs">
@@ -134,6 +134,7 @@
 		background: var(--color-gray-100);
 		visibility: hidden;
 		overflow: hidden;
+		padding: 1em;
 	}
 	.modal.visible {
 		visibility: visible;

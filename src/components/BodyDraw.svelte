@@ -5,15 +5,18 @@
 	import { onMount, onDestroy } from "svelte";
 	import ColorPicker from "$components/ColorPicker.svelte";
 	import Button from "$components/Button.svelte";
+	import mq from "$stores/mq.js";
 
 	export let screenshotEl;
 	export let color = "rgb(0,0,0)";
+	export let isActivitiesPage = false;
 
 	$: bgImage = `${base}/assets/img/blank_body.png`;
 	$: canvasHeight = $viewport.height * 0.5;
 	$: canvasWidth = canvasHeight * 0.6;
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
+	$: useClient = isActivitiesPage && !$mq.desktop;
 
 	let canvas;
 	let ctx;
@@ -38,13 +41,19 @@
 		mouseX = e.offsetX
 			? e.offsetX
 			: e.targetTouches[0]
-			? e.targetTouches[0].pageX - screenshotEl.getBoundingClientRect().left
-			: e.changedTouches[e.changedTouches.length - 1].pageX;
+			? e.targetTouches[0][useClient ? "clientX" : "pageX"] -
+			  screenshotEl.getBoundingClientRect().left
+			: e.changedTouches[e.changedTouches.length - 1][
+					useClient ? "clientX" : "pageX"
+			  ];
 		mouseY = e.offsetY
 			? e.offsetY
 			: e.targetTouches[0]
-			? e.targetTouches[0].pageY - screenshotEl.getBoundingClientRect().top
-			: e.changedTouches[e.changedTouches.length - 1].pageY;
+			? e.targetTouches[0][useClient ? "clientY" : "pageY"] -
+			  screenshotEl.getBoundingClientRect().top
+			: e.changedTouches[e.changedTouches.length - 1][
+					useClient ? "clientY" : "pageY"
+			  ];
 
 		if (!painting) return;
 
