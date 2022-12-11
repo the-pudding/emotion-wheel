@@ -32,7 +32,7 @@
 >
 	{#each text as t}
 		{#if t.includes("<span class=callout")}
-			<a href="/activities" target="_blank">
+			<a href="https://pudding.cool/2022/12/emotion-wheel/" target="_blank">
 				<p>{@html processText(t)}</p>
 			</a>
 		{:else}

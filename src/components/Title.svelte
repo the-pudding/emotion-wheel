@@ -43,8 +43,10 @@
 		<div class="buttons">
 			<Button onClick={enter} color={"#8bcc8b"}>Enter the story</Button>
 			<Button onClick={null} marginLeft={"8px"}>
-				<a class="activities" href="/activities" target="_blank"
-					>Activities page</a
+				<a
+					class="activities"
+					href="https://pudding.cool/2022/12/emotion-wheel/activities"
+					target="_blank">Activities page</a
 				>
 			</Button>
 		</div>
