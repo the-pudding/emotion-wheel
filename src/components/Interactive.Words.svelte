@@ -12,8 +12,10 @@
 	import busySlices from "$svg/busy.svg";
 	import { annotate } from "svelte-rough-notation";
 	import variables from "$data/variables.json";
+	import mq from "$stores/mq.js";
 
 	export let text;
+	export let justWheel = false;
 
 	let skipBtn;
 	let moveOnEl;
@@ -45,44 +47,64 @@
 	});
 </script>
 
-<div class="words">
-	<div>
-		Here you try... what do you mean by<br /><span
-			use:annotate={{
-				type: "highlight",
-				animate: false,
-				visible: true,
-				color: variables.color["grey-balloon"]
-			}}>{$basicFeeling}?</span
-		>
+{#if justWheel}
+	<div class="just-wheel-wrapper">
+		{#key $basicFeeling}
+			<ClickableWheel
+				slices={slices[$basicFeeling]}
+				imgSrc={`assets/img/wheels/${_.kebabCase($basicFeeling)}`}
+				wheelId={`${_.kebabCase($basicFeeling)}-grey`}
+				bind:selected={$words}
+				limit={3}
+				soundId={"pop"}
+				nextSelectable={!skipBtn || skipBtn.disabled ? moveOnEl : skipBtn}
+			/>
+		{/key}
 	</div>
-	{#each text as t, i}
-		<div>{@html t}</div>
-	{/each}
+{:else}
+	<div class="words">
+		<div>
+			Here you try... what do you mean by<br /><span
+				use:annotate={{
+					type: "highlight",
+					animate: false,
+					visible: true,
+					color: variables.color["grey-balloon"]
+				}}>{$basicFeeling}?</span
+			>
+		</div>
+		{#each text as t, i}
+			<div>{@html t}</div>
+		{/each}
 
-	{#key $basicFeeling}
-		<ClickableWheel
-			slices={slices[$basicFeeling]}
-			imgSrc={`assets/img/wheels/${_.kebabCase($basicFeeling)}`}
-			wheelId={`${_.kebabCase($basicFeeling)}-grey`}
-			bind:selected={$words}
-			limit={3}
-			soundId={"pop"}
-			nextSelectable={!skipBtn || skipBtn.disabled ? moveOnEl : skipBtn}
-		/>
-	{/key}
+		{#if !$mq.sm}
+			{#key $basicFeeling}
+				<ClickableWheel
+					slices={slices[$basicFeeling]}
+					imgSrc={`assets/img/wheels/${_.kebabCase($basicFeeling)}`}
+					wheelId={`${_.kebabCase($basicFeeling)}-grey`}
+					bind:selected={$words}
+					limit={3}
+					soundId={"pop"}
+					nextSelectable={!skipBtn || skipBtn.disabled ? moveOnEl : skipBtn}
+				/>
+			{/key}
+		{/if}
 
-	<div tabindex="-1" bind:this={moveOnEl} />
-</div>
+		<div tabindex="-1" bind:this={moveOnEl} />
+	</div>
+{/if}
 
-<Button
-	bind:buttonEl={skipBtn}
-	top={"53%"}
-	left={"67.5%"}
-	transform={true}
-	onClick={skip}
-	{disabled}>skip</Button
->
+{#if justWheel || !$mq.sm}
+	<Button
+		bind:buttonEl={skipBtn}
+		top={"53%"}
+		left={"67.5%"}
+		transform={true}
+		onClick={skip}
+		{disabled}>skip</Button
+	>
+{/if}
 
 <style>
 	.words {
@@ -102,5 +124,12 @@
 	span {
 		font-size: 1.6em;
 		font-weight: bold;
+	}
+	.just-wheel-wrapper {
+		height: 100%;
+		display: flex;
+		margin-top: 1em;
+		justify-content: flex-start;
+		transform: translate(-50%, 0);
 	}
 </style>

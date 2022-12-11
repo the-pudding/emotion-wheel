@@ -24,6 +24,7 @@
 	} from "$stores/misc.js";
 	import copy from "$data/copy.json";
 	import { tick } from "svelte";
+	import mq from "$stores/mq.js";
 
 	let scrollyEl;
 
@@ -77,6 +78,7 @@
 			: sign.includes(id)
 			? id
 			: "ground"}
+		{@const wordSurveyMobile = id === "survey-words" && $mq.sm}
 		{@const cloud = !noImg.includes(id) && !sign.includes(id)}
 		{@const overlay = hasOverlay.includes(id)}
 
@@ -87,9 +89,15 @@
 			style:width={`${$stepWidth}px`}
 		>
 			<img
-				srcset={`assets/img/panels/${panelBg}-sm.png 800w, assets/img/panels/${panelBg}-lg.png 1920w`}
+				srcset={`assets/img/panels/${
+					wordSurveyMobile ? "ground" : panelBg
+				}-sm.png 800w, assets/img/panels/${
+					wordSurveyMobile ? "ground" : panelBg
+				}-lg.png 1920w`}
 				sizes={`(max-width: 600px) 800px, 1920px`}
-				src={`assets/img/panels/${panelBg}-lg.png`}
+				src={`assets/img/panels/${
+					wordSurveyMobile ? "ground" : panelBg
+				}-lg.png`}
 				class="full-panel"
 				alt="the ground"
 			/>
@@ -124,6 +132,25 @@
 				{/if}
 			</div>
 		</div>
+
+		{#if id === "survey-words" && $mq.sm}
+			<div
+				class="step"
+				class:visible={$entered}
+				{id}
+				style:width={`${$stepWidth}px`}
+			>
+				<img
+					srcset={`assets/img/panels/${panelBg}-sm.png 800w, assets/img/panels/${panelBg}-lg.png 1920w`}
+					sizes={`(max-width: 600px) 800px, 1920px`}
+					src={`assets/img/panels/${panelBg}-lg.png`}
+					class="full-panel"
+					alt="the ground"
+					style={`position: absolute; bottom: 0`}
+				/>
+				<Words justWheel={true} />
+			</div>
+		{/if}
 	{/each}
 
 	{#if showFooter}
