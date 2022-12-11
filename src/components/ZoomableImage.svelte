@@ -1,5 +1,5 @@
 <script>
-	import { zoom, select, zoomIdentity } from "d3";
+	import { zoom, select, zoomIdentity, zoomTransform } from "d3";
 	import { onMount } from "svelte";
 	import Comment from "$components/Comment.svelte";
 	import mq from "$stores/mq.js";
@@ -16,17 +16,24 @@
 	let zoomableWidth;
 	let z;
 	let toggleValue = "on";
+	let k = 1;
+	let hoveredComment;
 
 	$: $showComments = toggleValue === "on" ? true : false;
 	$: isGallery = src && src.includes("gallery");
 	$: isBodyDiagram = src === "assets/img/panels/body-color2";
 	$: src, zoomableWidth, imageUpdate();
 
+	const updateK = () => {
+		k = zoomTransform(outer).k;
+	};
+
 	const handleZoom = (e) => {
 		select(imageWrapper).style(
 			"transform",
 			`translate(${e.transform.x}px, ${e.transform.y}px) scale(${e.transform.k})`
 		);
+		updateK();
 	};
 
 	const zoomIn = () => {
@@ -36,6 +43,7 @@
 				.duration($mq.reducedMotion ? 0 : 250),
 			1.3
 		);
+		updateK();
 	};
 	const zoomOut = () => {
 		z.scaleBy(
@@ -44,6 +52,7 @@
 				.duration($mq.reducedMotion ? 0 : 250),
 			1 / 1.3
 		);
+		updateK();
 	};
 
 	const imageUpdate = async () => {
@@ -66,11 +75,8 @@
 				])
 				.on("zoom", handleZoom);
 			select(outer).call(z);
+			updateK();
 		}
-	};
-
-	const hideComments = () => {
-		$showComments = !$showComments;
 	};
 
 	onMount(async () => {
@@ -78,10 +84,15 @@
 	});
 </script>
 
-<div class="outer" bind:this={outer} bind:clientWidth={zoomableWidth}>
+<div
+	class="outer"
+	bind:this={outer}
+	bind:clientWidth={zoomableWidth}
+	on:click={() => (hoveredComment = undefined)}
+>
 	<div class="image-wrapper" bind:this={imageWrapper}>
-		{#each comments as { text, location }}
-			<Comment {text} {location} />
+		{#each comments as { text, location }, i}
+			<Comment {i} {text} {location} {k} bind:hoveredComment />
 		{/each}
 
 		{#if isBodyDiagram}
