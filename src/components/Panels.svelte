@@ -65,6 +65,8 @@
 		"let-go",
 		"gallery",
 		"resources",
+		"activities-callout",
+		"pre-needs",
 		"thank-you"
 	];
 	const sign = ["gallery-intro", "closing"];
@@ -78,7 +80,7 @@
 			: sign.includes(id)
 			? id
 			: "ground"}
-		{@const wordSurveyMobile = id === "survey-words" && $mq.sm}
+		{@const wordsExtra = id === "survey-words" && $mq.sm}
 		{@const cloud = !noImg.includes(id) && !sign.includes(id)}
 		{@const overlay = hasOverlay.includes(id)}
 
@@ -90,14 +92,12 @@
 		>
 			<img
 				srcset={`assets/img/panels/${
-					wordSurveyMobile ? "ground" : panelBg
+					wordsExtra ? "ground" : panelBg
 				}-sm.png 800w, assets/img/panels/${
-					wordSurveyMobile ? "ground" : panelBg
+					wordsExtra ? "ground" : panelBg
 				}-lg.png 1920w`}
 				sizes={`(max-width: 600px) 800px, 1920px`}
-				src={`assets/img/panels/${
-					wordSurveyMobile ? "ground" : panelBg
-				}-lg.png`}
+				src={`assets/img/panels/${wordsExtra ? "ground" : panelBg}-lg.png`}
 				class="full-panel"
 				alt="the ground"
 			/>
@@ -118,7 +118,14 @@
 				{:else if id === "resources"}
 					<Resources {text} />
 				{:else if text && text.length}
-					<Text i={i >= 9 ? i + 1 : i} {text} {alt} {id} {cloud} {overlay} />
+					<Text
+						i={$mq.sm && i >= 9 ? i + 1 : i}
+						{text}
+						{alt}
+						{id}
+						{cloud}
+						{overlay}
+					/>
 				{/if}
 
 				{#if id === "try-wheel"}
@@ -133,7 +140,7 @@
 			</div>
 		</div>
 
-		{#if id === "survey-words" && $mq.sm}
+		{#if wordsExtra}
 			<div
 				class="step"
 				class:visible={$entered}
@@ -206,6 +213,12 @@
 		padding: 0.5em;
 		font-size: var(--14px);
 		text-align: center;
+	}
+
+	@media (max-height: 600px) {
+		:global(div#let-go p:has(span.callout)) {
+			display: none;
+		}
 	}
 
 	@media (max-height: 450px) {

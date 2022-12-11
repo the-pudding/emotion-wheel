@@ -1,8 +1,5 @@
 <script>
 	import wordmark from "$svg/wordmark.svg";
-	import { base } from "$app/paths";
-
-	let src = `${base}/assets/img/logo_small.png`;
 
 	export let visible;
 </script>

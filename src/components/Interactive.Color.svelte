@@ -109,8 +109,7 @@
 
 <style>
 	.colors {
-		margin-left: 20%;
-		width: 30%;
+		width: 70%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

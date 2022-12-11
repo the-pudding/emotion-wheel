@@ -9,7 +9,6 @@
 	import {
 		entered,
 		scrolled,
-		zoomModalImage,
 		inModal,
 		worldBg,
 		scrollMax,
@@ -50,6 +49,7 @@
 	$: if (!$soundOn) sound.mute(true);
 	$: if ($soundOn) sound.mute(false);
 	$: bgImage = `${base}/assets/img/bg/bg${worldInColor ? "-color" : ""}`;
+	$: innerHeight, innerWidth, ($isScrolling = false);
 
 	/* polling to tell if user is scrolling */
 	const onScroll = (e) => {

@@ -41,7 +41,7 @@
 	$: stringLength = svgHeight * 0.35;
 	$: svgHeight = innerHeight * 0.5;
 	$: svgWidth = $visibleWidth ? $visibleWidth : 0;
-	$: balloonsDisappear = $currentPanel >= 24;
+	$: balloonsDisappear = $currentPanel >= 28;
 
 	let nodes = [
 		{ name: "source", fx: 0, fy: 0 },

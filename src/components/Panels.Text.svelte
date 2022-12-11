@@ -82,6 +82,9 @@
 		margin-left: 0;
 		max-width: 900px;
 	}
+	:global(.thank-you h2) {
+		font-size: var(--24px);
+	}
 	.text.visible {
 		opacity: 1;
 		transform: translate(0px, -20%);
@@ -119,8 +122,9 @@
 	}
 
 	.cloud-instruction {
+		width: 100%;
 		position: absolute;
-		top: -15%;
+		top: -20%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		text-align: center;
