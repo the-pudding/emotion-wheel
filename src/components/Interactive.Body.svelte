@@ -72,29 +72,39 @@
 		>
 		<Modal bind:visible={showModal} big={true} closeBtn={false}>
 			<div class="interactive modal">
-				<div>{$mq.desktop ? "Click" : "Tap"} a word to use that color</div>
-				<div class="other-words">
-					{#each $words as w, i}
-						{@const bg = $colors[i]
-							? $colors[i]
-							: variables.color["grey-balloon"]}
-						{@const textColor = determineFontColor(bg)}
-						<button
-							on:click={newWord}
-							class="other-word"
-							id={`body-interactive-${w}`}
-						>
-							<span
+				<div class="description">
+					<div style={`text-align: center`}>
+						{$mq.desktop ? "Click" : "Tap"} a word to use that color
+					</div>
+					<div class="other-words">
+						{#each $words as w, i}
+							{@const bg = $colors[i]
+								? $colors[i]
+								: variables.color["grey-balloon"]}
+							{@const textColor = determineFontColor(bg)}
+							<button
+								on:click={newWord}
+								class="other-word"
+								id={`body-interactive-${w}`}
 								use:annotate={{
 									type: "highlight",
 									animate: false,
 									visible: true,
 									color: bg
 								}}
-								style:color={textColor}>{formatWord(w)}</span
 							>
-						</button>
-					{/each}
+								<span
+									use:annotate={{
+										type: "highlight",
+										animate: false,
+										visible: true,
+										color: bg
+									}}
+									style:color={textColor}>{formatWord(w)}</span
+								>
+							</button>
+						{/each}
+					</div>
 				</div>
 
 				<BodyDraw {color} bind:screenshotEl />
@@ -170,9 +180,20 @@
 	.interactive.modal {
 		padding: 0 4em;
 		justify-content: center;
+		flex-direction: row;
+	}
+	.description {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.word {
 		font-weight: bold;
+	}
+	.modal .other-words {
+		flex-direction: column;
+		align-items: center;
+		margin-top: 1em;
 	}
 
 	span.main-word {

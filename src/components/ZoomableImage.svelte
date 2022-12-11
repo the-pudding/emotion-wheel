@@ -158,11 +158,11 @@
 	.sidebar {
 		display: flex;
 		flex-direction: column;
-		height: calc(100% - 4em);
+		height: calc(100% - 2em);
 		justify-content: space-between;
 		position: absolute;
 		left: 1em;
-		top: 2em;
+		top: 1em;
 		font-size: 0.7em;
 	}
 	button {
