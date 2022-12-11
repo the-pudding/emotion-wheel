@@ -1,12 +1,13 @@
 <script>
 	import Icon from "$components/helpers/Icon.svelte";
 	import { inModal } from "$stores/misc.js";
-	import { onMount } from "svelte";
+	import { createEventDispatcher, onMount } from "svelte";
 	import { zoomModalImage } from "$stores/misc.js";
 
 	export let visible;
 	export let big = false;
-	export let closeBtn = true;
+	export let hasClose = true;
+	export let closeBtn;
 
 	$: if (visible && modalEl) modalEl.focus();
 	$: $inModal = visible;
@@ -16,9 +17,12 @@
 	let firstFocusableElement;
 	let lastFocusableElement;
 
+	const dispatch = createEventDispatcher();
+
 	const close = () => {
 		$zoomModalImage = null;
 		visible = false;
+		dispatch("close");
 	};
 
 	const trapFocus = (e) => {
@@ -39,10 +43,11 @@
 	};
 
 	onMount(() => {
-		numFocusableElements = modalEl.querySelectorAll("button,a").length;
-		firstFocusableElement = modalEl.querySelectorAll("button,a")[0];
+		const selectables = "path, rect, button, a";
+		numFocusableElements = modalEl.querySelectorAll(selectables).length;
+		firstFocusableElement = modalEl.querySelectorAll(selectables)[0];
 		lastFocusableElement =
-			modalEl.querySelectorAll("button,a")[numFocusableElements - 1];
+			modalEl.querySelectorAll(selectables)[numFocusableElements - 1];
 	});
 </script>
 
@@ -56,9 +61,12 @@
 >
 	<slot />
 
-	{#if closeBtn}
-		<button class="close " aria-label="close" on:click={close}
-			><Icon name="x" /></button
+	{#if hasClose}
+		<button
+			bind:this={closeBtn}
+			class="close"
+			aria-label="close"
+			on:click={close}><Icon name="x" /></button
 		>
 	{/if}
 </div>

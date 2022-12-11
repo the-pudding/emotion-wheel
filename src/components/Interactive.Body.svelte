@@ -70,7 +70,7 @@
 		<Button onClick={openModal} marginLeft={"2em"} pulse={!$bodyDrawing}
 			>Draw</Button
 		>
-		<Modal bind:visible={showModal} big={true} closeBtn={false}>
+		<Modal bind:visible={showModal} big={true} hasClose={false}>
 			<div class="interactive modal">
 				<div class="description">
 					<div style={`text-align: center`}>

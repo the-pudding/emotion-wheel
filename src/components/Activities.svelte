@@ -11,6 +11,7 @@
 	import { timeFormat } from "d3";
 	import copy from "$data/copy.json";
 	import Footer from "$components/FooterStandard.svelte";
+	import mq from "$stores/mq.js";
 
 	let summaryEl;
 	let currentActivity;
@@ -57,37 +58,39 @@
 		{/each}
 	</div>
 
-	<div class="results" bind:this={summaryEl}>
-		<div class="wheel-results">
-			<ul>
-				{#each words as { word, color }}
-					<li
-						use:annotate={{
-							type: "highlight",
-							animate: false,
-							visible: true,
-							color: variables.color[color]
-						}}
-						style:color={determineFontColor(variables.color[color])}
-					>
-						{formatWord(word)}
-					</li>
-				{/each}
-			</ul>
+	{#if $mq.desktop}
+		<div class="results" bind:this={summaryEl}>
+			<div class="wheel-results">
+				<ul>
+					{#each words as { word, color }}
+						<li
+							use:annotate={{
+								type: "highlight",
+								animate: false,
+								visible: true,
+								color: variables.color[color]
+							}}
+							style:color={determineFontColor(variables.color[color])}
+						>
+							{formatWord(word)}
+						</li>
+					{/each}
+				</ul>
+			</div>
+			<div class="body-results">
+				{#if bodyImage}
+					<img src={bodyImage.src} alt="your body scan drawing" />
+				{/if}
+			</div>
+			<div class="needs-results">
+				<ul>
+					{#each needs as need}
+						<li>{needsKey[need]}</li>
+					{/each}
+				</ul>
+			</div>
 		</div>
-		<div class="body-results">
-			{#if bodyImage}
-				<img src={bodyImage.src} alt="your body scan drawing" />
-			{/if}
-		</div>
-		<div class="needs-results">
-			<ul>
-				{#each needs as need}
-					<li>{needsKey[need]}</li>
-				{/each}
-			</ul>
-		</div>
-	</div>
+	{/if}
 
 	<!-- <button class="download skip" class:visible={bodyImage} on:click={save}>
 		download

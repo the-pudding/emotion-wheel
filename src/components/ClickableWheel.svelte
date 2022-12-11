@@ -91,8 +91,8 @@
 		});
 		allSlices.on("click", onClick);
 
-		selected.forEach((id) => {
-			select(`#${wheelId} #slices path#${id}`).classed("highlighted", true);
+		selected.forEach(({ word }) => {
+			select(`#${wheelId} #slices path#${word}`).classed("highlighted", true);
 		});
 	});
 
@@ -101,7 +101,11 @@
 	});
 </script>
 
-<div class="interactive-wheel" on:keydown={trapFocus}>
+<div
+	class="interactive-wheel"
+	class:activities={wheelId === "the-wheel"}
+	on:keydown={trapFocus}
+>
 	<img
 		srcset={`${imgSrc}-sm.png 500w, ${imgSrc}-lg.png 800w`}
 		sizes={`(max-width: 600px) 800px, 1000px`}
@@ -117,6 +121,10 @@
 		position: relative;
 		margin: 0 auto;
 		height: 80%;
+	}
+	.activities {
+		height: auto;
+		max-height: 72%;
 	}
 	img {
 		object-fit: contain;

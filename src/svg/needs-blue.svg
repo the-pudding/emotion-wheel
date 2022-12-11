@@ -1,0 +1,18 @@
+<svg width="100%" height="100%" viewBox="0 0 433 461" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="blue">
+<path id="sleep-box" d="M74 154L62 156V170L76.5 168.5L74 154Z" fill="black"/>
+<path id="break-box" d="M72.5 188L64 190L65 203.5L75.5 202L72.5 188Z" fill="black"/>
+<path id="attention-box" d="M73.5 226H64.5L66.5 238.5L75.5 237.5L73.5 226Z" fill="black"/>
+<path id="touch-box" d="M73.5 254.5L64.5 256L67 268.5L75.5 268L73.5 254.5Z" fill="black"/>
+<path id="cry-box" d="M73 306L65.5 306.5L66.5 318.5L75 318L73 306Z" fill="black"/>
+<path id="remember-box" d="M80 343.5L69.5 345L72 357.5L82 355.5L80 343.5Z" fill="black"/>
+<path id="nice-box" d="M86 377L77.5 379.5L78.5 388.5L86.5 387L86 377Z" fill="black"/>
+<rect id="sleep" x="40" y="143" width="353" height="34" fill="black"/>
+<rect id="break" x="40" y="176" width="353" height="30" fill="black"/>
+<rect id="attention" x="40" y="205" width="353" height="35" fill="black"/>
+<rect id="touch" x="40" y="239" width="353" height="59" fill="black"/>
+<rect id="cry" x="40" y="298" width="353" height="32" fill="black"/>
+<rect id="remember" x="40" y="329" width="348" height="35" fill="black"/>
+<rect id="nice" x="40" y="363" width="348" height="60" fill="black"/>
+</g>
+</svg>

@@ -107,13 +107,15 @@
 
 <style>
 	.interactive-needs-checklist {
-		width: 100%;
-		height: 100%;
+		/* width: 100%;
+		height: 100%; */
 		max-width: none;
 		position: relative;
 	}
 	.interactive-needs-checklist.activities {
-		height: 70%;
+		height: auto;
+		max-height: 65%;
+		margin-top: 1em;
 	}
 	.activities img {
 		object-fit: contain;

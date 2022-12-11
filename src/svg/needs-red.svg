@@ -1,0 +1,16 @@
+<svg width="100%" height="100%" viewBox="0 0 433 461" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="red">
+<path id="information-box" d="M77.5 148L66.5 150L68.5 162L79.5 160.5L77.5 148Z" fill="black"/>
+<path id="heard-box" d="M79.5 203L65.5 205.5V215L81.5 214L79.5 203Z" fill="black"/>
+<path id="no-box" d="M80 236.5L70.5 238L72 250L81.5 248L80 236.5Z" fill="black"/>
+<path id="boundary-box" d="M80 269L69 271L71 282.5H82L80 269Z" fill="black"/>
+<path id="discharge-red-box" d="M82 319.5H72V330H83L82 319.5Z" fill="black"/>
+<path id="glucose-box" d="M79.5 369.5L68 372V380.5H81L79.5 369.5Z" fill="black"/>
+<rect id="information" x="48" y="135" width="337" height="50" fill="black"/>
+<rect id="heard" x="48" y="184" width="337" height="37" fill="black"/>
+<rect id="no" x="48" y="220" width="337" height="32" fill="black"/>
+<rect id="boundary" x="48" y="251" width="334" height="39" fill="black"/>
+<rect id="discharge-red" x="48" y="289" width="334" height="68" fill="black"/>
+<rect id="glucose" x="51" y="357" width="331" height="40" fill="black"/>
+</g>
+</svg>

@@ -12,6 +12,7 @@
 	export let right = null;
 	export let bottom = null;
 	export let marginLeft = null;
+	export let marginBottom = null;
 	export let disabled = false;
 	export let transform = false;
 	export let small = false;
@@ -30,7 +31,7 @@
 	class:big
 	class:pulse
 	class:border={pulse}
-	style={`--background: ${color}; --top: ${top}; --left: ${left}; --right: ${right}; --bottom: ${bottom}; --marginLeft: ${marginLeft}; --height: ${height}; --width: ${width}`}
+	style={`--background: ${color}; --top: ${top}; --left: ${left}; --right: ${right}; --bottom: ${bottom}; --marginLeft: ${marginLeft}; --marginBottom: ${marginBottom}; --height: ${height}; --width: ${width}`}
 	on:click={onClick}
 	on:mouseenter={() => (hovered = true)}
 	on:mouseleave={() => (hovered = false)}
@@ -50,6 +51,7 @@
 	button {
 		transition: all calc(var(--1s) * 0.5);
 		margin-left: var(--marginLeft);
+		margin-bottom: var(--marginBottom);
 		background: var(--background);
 		border: 1px solid black;
 		width: var(--width);

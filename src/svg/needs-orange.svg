@@ -1,0 +1,22 @@
+<svg width="100%" height="100%" viewBox="0 0 433 461" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="orange">
+<path id="share-box" d="M74 131.5L56.5 133L58.5 148.5H76L74 131.5Z" fill="black"/>
+<path id="dance-box" d="M228 171.5L212.5 173.5L214.5 189L228 187.5V171.5Z" fill="black"/>
+<path id="play-box" d="M64.5 172L49.5 174.5L51 190H64.5V172Z" fill="black"/>
+<path id="sing-box" d="M70 215.5L60 217.5L62 230.5H73.5L70 215.5Z" fill="black"/>
+<path id="write-box" d="M62.5 257.5L42 259L45.5 281.5L64 280L62.5 257.5Z" fill="black"/>
+<path id="learn-box" d="M60 311.5L36.5 314.5L38.5 335.5L60 334V311.5Z" fill="black"/>
+<path id="make-box" d="M61 364.5L40 368L42.5 390.5L64 389L61 364.5Z" fill="black"/>
+<path id="explore-box" d="M227.5 217H209.5L211.5 234.5H227.5V217Z" fill="black"/>
+<path id="action-box" d="M239 257H221.5L222.5 276.5L244 277L239 257Z" fill="black"/>
+<rect id="share" x="25" y="117" width="389" height="44" fill="black"/>
+<rect id="learn" x="25" y="307" width="380" height="47" fill="black"/>
+<rect id="make" x="25" y="353" width="380" height="47" fill="black"/>
+<rect id="play" x="25" y="160" width="180" height="41" fill="black"/>
+<rect id="dance" x="204" y="160" width="201" height="41" fill="black"/>
+<rect id="sing" x="25" y="200" width="180" height="41" fill="black"/>
+<rect id="explore" x="204" y="200" width="201" height="41" fill="black"/>
+<rect id="write" x="25" y="240" width="180" height="67" fill="black"/>
+<rect id="action" x="204" y="240" width="201" height="67" fill="black"/>
+</g>
+</svg>

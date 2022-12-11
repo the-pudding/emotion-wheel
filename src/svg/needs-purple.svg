@@ -1,0 +1,16 @@
+<svg width="100%" height="100%" viewBox="0 0 433 461" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="purple">
+<path id="ground-box" d="M59 357.5L48.5 359L50.5 370H61L59 357.5Z" fill="black"/>
+<path id="speed-box" d="M59 319.5L45 321.5L47 336.5H62L59 319.5Z" fill="black"/>
+<path id="slow-box" d="M58 289H46V300H59.5L58 289Z" fill="black"/>
+<path id="calm-box" d="M55 251.5L44.5 253.5L45.5 265.5L57 264.5L55 251.5Z" fill="black"/>
+<path id="discharge-purple-box" d="M52.5 199L43.5 201.5V214L53.5 212L52.5 199Z" fill="black"/>
+<path id="breath-box" d="M53 146L41.5 148.5L43 158.5L54.5 157L53 146Z" fill="black"/>
+<rect id="breath" x="31" y="131" width="372" height="57" fill="black"/>
+<rect id="discharge-purple" x="31" y="187" width="372" height="53" fill="black"/>
+<rect id="calm" x="31" y="239" width="372" height="36" fill="black"/>
+<rect id="slow" x="31" y="274" width="372" height="36" fill="black"/>
+<rect id="speed" x="31" y="309" width="368" height="36" fill="black"/>
+<rect id="ground" x="31" y="344" width="368" height="62" fill="black"/>
+</g>
+</svg>
