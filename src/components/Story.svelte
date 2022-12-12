@@ -4,6 +4,7 @@
 	import Character from "$components/Character.svelte";
 	import Modal from "$components/Gallery.Modal.svelte";
 	import { base } from "$app/paths";
+	import Icon from "$components/helpers/Icon.svelte";
 	import arrow from "$svg/icons/arrow.svg";
 	import { Howl } from "howler";
 	import {
@@ -35,6 +36,7 @@
 		volume: 0.3,
 		loop: true
 	});
+	let showMobileWarning = true;
 
 	const numSteps = copy.steps.length;
 	$: progressScale = scaleLinear()
@@ -116,10 +118,23 @@
 		$showInfo ? "var(--color-gray-500)" : $worldBg
 	}`}
 >
+	{#if $mq.sm}
+		<div
+			class="best-viewed"
+			class:visible={showMobileWarning}
+			class:entered={$entered}
+			on:click={() => (showMobileWarning = false)}
+		>
+			This experience is best viewed on desktop.
+			<span on:click={() => (showMobileWarning = false)}><Icon name="x" /></span
+			>
+		</div>
+	{/if}
+
 	<img
 		class="bg-image"
 		class:visible
-		srcset={`${bgImage}-sm.png 480, ${bgImage}-md.png 950w`}
+		srcset={`${bgImage}-sm.png 480w, ${bgImage}-md.png 950w`}
 		sizes={`(max-width: 600px) 480px, 1920px`}
 		src={`${bgImage}-md.png`}
 		alt="mountains in the background"
@@ -161,6 +176,35 @@
 <svelte:window on:keydown={keyDown} />
 
 <style>
+	.best-viewed {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		position: fixed;
+		top: 0;
+		font-size: var(--14px);
+		font-family: var(--sans);
+		letter-spacing: normal;
+		word-spacing: normal;
+		color: black;
+		background: rgb(223, 223, 223, 0.9);
+		z-index: 100;
+		padding: 0.2em 0;
+		width: 100%;
+		text-align: center;
+	}
+	.best-viewed.entered {
+		background: rgb(223, 223, 223, 0.3);
+	}
+	.best-viewed.visible {
+		display: flex;
+	}
+	.best-viewed span {
+		display: flex;
+		position: absolute;
+		right: 2em;
+	}
+
 	.story {
 		position: relative;
 		overflow-y: hidden;

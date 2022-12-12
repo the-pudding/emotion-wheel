@@ -27,7 +27,7 @@
 >
 	<img
 		class="bg-image"
-		srcset={`${bgImage}-sm.jpeg 800, ${bgImage}-lg.jpeg 2500w`}
+		srcset={`${bgImage}-sm.jpeg 800w, ${bgImage}-lg.jpeg 2500w`}
 		sizes={`(max-width: 600px) 800px, 2500px`}
 		src={`${bgImage}-lg.jpeg`}
 		alt="notebook with paint"
