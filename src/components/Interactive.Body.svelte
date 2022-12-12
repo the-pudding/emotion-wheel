@@ -37,7 +37,10 @@
 		if (showModal) showModal = false;
 
 		sound.play();
-		let png = await toPng(screenshotEl);
+		let png = await toPng(screenshotEl, {
+			cacheBust: true,
+			style: { backgroundColor: "transparent" }
+		});
 		let img = new Image();
 		img.src = png;
 		$bodyDrawing = img;

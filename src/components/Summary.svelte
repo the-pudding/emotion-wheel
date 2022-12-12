@@ -8,9 +8,12 @@
 	import variables from "$data/variables.json";
 	import { annotate } from "svelte-rough-notation";
 	import needsKey from "$utils/needsKey";
+	import mq from "$stores/mq.js";
 
 	const formatWord = (str) => _.startCase(str).toLowerCase();
 	const formatTime = timeFormat("%m-%d-%Y");
+
+	$: showBody = $mq.desktop && !$mq.safari;
 
 	let summaryEl;
 
@@ -62,10 +65,12 @@
 			</ul>
 		</div>
 
-		<div class="section" id="body-summary">
-			<h3>I notice:</h3>
-			<img class="body" src={$bodyDrawing.src} alt="your body scan drawing" />
-		</div>
+		{#if showBody}
+			<div class="section" id="body-summary">
+				<h3>I notice:</h3>
+				<img class="body" src={$bodyDrawing.src} alt="your body scan drawing" />
+			</div>
+		{/if}
 
 		<div class="section">
 			<h3>I need:</h3>

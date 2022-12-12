@@ -7,7 +7,8 @@ const queries = {
 	lg: "(max-height: 1024px)",
 	xl: "(max-height: 1280px)",
 	reducedMotion: "(prefers-reduced-motion: reduce)",
-	desktop: "(hover: hover) and (pointer: fine)"
+	desktop: "(hover: hover) and (pointer: fine)",
+	safari: "not all and (min-resolution:.001dpcm)"
 };
 
 function calculateMedia(mqls) {
