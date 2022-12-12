@@ -31,7 +31,6 @@
 	class:visible={$showComments}
 	class:open
 	on:click={!$mq.desktop ? onClick : null}
-	on:blur={() => console.log("ya")}
 >
 	💡
 	<span class="text">{@html text}</span>

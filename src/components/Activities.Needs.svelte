@@ -32,8 +32,6 @@
 		else i = 0;
 	};
 
-	$: console.log({ needs });
-
 	const clearNeeds = () => {
 		needs = [];
 	};
