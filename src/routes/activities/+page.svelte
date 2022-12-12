@@ -14,13 +14,19 @@
 		"https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2"
 	];
 
-	const { activitiesTitle, activitiesDescription, activitiesUrl, keywords } =
-		copy;
+	const {
+		activitiesTitle,
+		activitiesDescription,
+		activitiesUrl,
+		url,
+		keywords
+	} = copy;
 </script>
 
 <Meta
 	title={activitiesTitle}
 	description={activitiesDescription}
+	baseUrl={url}
 	url={activitiesUrl}
 	{preloadFont}
 	{keywords}
