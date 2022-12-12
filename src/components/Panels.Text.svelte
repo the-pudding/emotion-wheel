@@ -32,7 +32,10 @@
 >
 	{#each text as t}
 		{#if t.includes("<span class=callout")}
-			<a href="https://pudding.cool/2022/12/emotion-wheel/" target="_blank">
+			<a
+				href="https://pudding.cool/2022/12/emotion-wheel/activities"
+				target="_blank"
+			>
 				<p>{@html processText(t)}</p>
 			</a>
 		{:else}
@@ -112,7 +115,8 @@
 		position: relative;
 		width: 60%;
 		max-width: 700px;
-		margin-right: 5%;
+		/* margin-right: 5%; */
+		padding: 0;
 		transition: transform calc(var(--1s) * 0.5);
 	}
 	.image:hover {
