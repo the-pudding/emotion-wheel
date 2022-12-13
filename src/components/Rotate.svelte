@@ -23,11 +23,13 @@
 		return (
 			str.includes("FBAN") ||
 			str.includes("FBAV") ||
+			str.includes("FB_IAB") ||
 			str.toLowerCase().includes("instagram")
 		);
 	};
 
 	onMount(() => {
+		// console.log(window.navigator.userAgent);
 		facebookOrInstagram = isFbOrIg(window.navigator.userAgent);
 	});
 </script>
@@ -87,6 +89,7 @@
 		background: white;
 		color: black;
 		padding: 1em;
+		width: 100%;
 	}
 	.copied {
 		position: absolute;
