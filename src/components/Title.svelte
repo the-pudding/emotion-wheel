@@ -5,6 +5,7 @@
 	import { scaleLinear } from "d3-scale";
 	import mq from "$stores/mq.js";
 	import Button from "$components/Button.svelte";
+	import Tip from "$components/helpers/Tip.svelte";
 
 	$: zoom = zoomScale($scrolled);
 	$: showText = $scrolled < 80;
@@ -53,9 +54,20 @@
 
 		<div class="audio">FYI, this story contains audio.</div>
 	</div>
+
+	<div class="tip">
+		<Tip href={"https://donate.stripe.com/8wMaI2aJR6G46LCfYZ"} />
+	</div>
 </div>
 
 <style>
+	.tip {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		font-size: var(--18px);
+	}
+
 	a.logo-link,
 	a.activities {
 		border-bottom: none;

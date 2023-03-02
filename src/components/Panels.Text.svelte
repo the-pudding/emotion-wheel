@@ -1,4 +1,5 @@
 <script>
+	import Tip from "$components/helpers/Tip.svelte";
 	import { currentPanel, zoomModalImage, modalAlt } from "$stores/misc.js";
 	import mq from "$stores/mq.js";
 
@@ -42,6 +43,13 @@
 			<p>{@html processText(t)}</p>
 		{/if}
 	{/each}
+
+	{#if id === "closing"}
+		<Tip
+			text="Send a tip to Abby"
+			href={"https://donate.stripe.com/8wMaI2aJR6G46LCfYZ"}
+		/>
+	{/if}
 </div>
 
 {#if cloud}
